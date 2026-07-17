@@ -1,0 +1,91 @@
+{
+  "schema": "rokid.private-evidence-manifest.v1",
+  "test_id": "04a-base-model-select-gemini",
+  "generated_at": "2026-07-17T13:31:31.227978+00:00",
+  "files": [
+    {
+      "relative_path": "SHA256SUMS",
+      "size_bytes": 5208,
+      "sha256": "79c7b8e4557a31c34469e4cce5332ec16089926b8caf0fc97ead4b184ee96af2",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/04a-pcapdroid-connections.csv",
+      "size_bytes": 5408,
+      "sha256": "a185a803de34e0d70ab834c3e4590829109e7b2cccd420b55b66b90dde125b2a",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/http-requests-private.txt",
+      "size_bytes": 2457,
+      "sha256": "383e624472f262bcaec3cef4949a01a63058b91d2f55fbb7cadeb9b487141229",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/post-selection-persistence-private.tsv",
+      "size_bytes": 984,
+      "sha256": "b0dff2c94d80f9139f1c22cae5a73d8822c96a2fe986d67e4a459f9dcd935c7c",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/protocol-summary.txt",
+      "size_bytes": 1060,
+      "sha256": "d809f33d9fc661e0815944366f23018ab6b0c5e0f88408f70eb5e5dd8eef7245",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/websocket-payload-fingerprints-private.tsv",
+      "size_bytes": 5061,
+      "sha256": "c65bd713daaf69cfdab19e63cd9909c5dad4bd618620a8d561aee8a2a25cb145",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "logcat/04a-base-model-select-gemini-logcat.txt",
+      "size_bytes": 3128216,
+      "sha256": "80c654678ab0d6215a4427445a4e81a607bfb1bc683341242aaa5a31b92e59d6",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/final-result.txt",
+      "size_bytes": 1865,
+      "sha256": "596e947baa75f007a4d4eeebc051a81897b6d9aa9eb071663208dde5b642bfb0",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/normalized-action-timeline.tsv",
+      "size_bytes": 659,
+      "sha256": "23e803a6ae0f631c78cb589222b301cffee67ae22f09baa0ab6510bf949515f1",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/operator-marker-correction.txt",
+      "size_bytes": 1250,
+      "sha256": "9597316bc648adce7ce70dcc2768b80cb8809abb9903f8038768b6e935ee7831",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "pcap/04a-base-model-select-gemini.pcap",
+      "size_bytes": 136120,
+      "sha256": "da97738edb5129e2e072a5a8b2084d3e4719c6c17769b7c684c30bd5452b188c",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "pcap/04a-base-model-select-gemini.sslkeylog",
+      "size_bytes": 15936,
+      "sha256": "8a831376de2cc0d2f9a41fdd26e1384f32f47f0906c02d51d4fb773944f21594",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "screenshots/04a-after-base-gemini-vision-gemini.jpg",
+      "size_bytes": 2733059,
+      "sha256": "d9e32b61d2dd8548d19ab397ecf028b042ebb43262e3a76d30ea4df0a13d4ca1",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "screenshots/04a-before-base-chatgpt-vision-gemini.jpg",
+      "size_bytes": 2573993,
+      "sha256": "f58d2e5d49feccb5b615b0b1ff63d0cc3efee253b1e599ed988bf4a15b0707ce",
+      "classification": "private-hash-only"
+    }
+  ]
+}

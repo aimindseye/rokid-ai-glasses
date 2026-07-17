@@ -7,12 +7,12 @@
 | 02b | Owner unbind and rebind | Account binding | Complete |
 | 03a | Firefox TLS canary | MITM validation | Complete — PASS |
 | 03b | Hi Rokid idle/model menu | TLS target app | Complete — PASS |
-| 04a | Select Gemini base model | Base model only | Next |
-| 04b | Select ChatGPT base model | Base model only | Next |
+| 04a | Select Gemini base model | Base model only | Complete — VALID WITH OPERATOR MARKER CORRECTION |
+| 04b | Select ChatGPT base model | Base model only | Complete — PASS |
 | 04c | Select Gemini vision model | Vision model only | Planned |
 | 04d | Select ChatGPT vision model | Vision model only | Planned |
 | 05a | Gemini text canary | Prompt only | Planned |
-| 05b | ChatGPT text canary | Prompt only | Planned |
+| 05b | ChatGPT text canary | Prompt only | Next |
 | 06a | Gemini vision canary | Image request only | Planned |
 | 06b | ChatGPT vision canary | Image request only | Planned |
 | 07 | Connected idle, screen on | Display state | Planned |

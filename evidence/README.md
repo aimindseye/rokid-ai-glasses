@@ -3,7 +3,8 @@
 This directory contains only reviewed and sanitized evidence.
 
 Raw packet captures, TLS keys, decrypted payloads, Android logs, Bluetooth
-captures, account IDs, device IDs, and credentials are intentionally excluded.
+captures, account IDs, device IDs, credentials, and screenshots are
+intentionally excluded.
 
 ## Test 03b
 
@@ -17,3 +18,19 @@ captures, account IDs, device IDs, and credentials are intentionally excluded.
 
 `manifests/03b-private-evidence-sha256.json` contains hashes, sizes, and
 private-relative filenames only. It does not contain captured payload data.
+
+## Tests 04a and 04b
+
+`sanitized/04/model-selection-summary.md` contains the reviewed
+bidirectional model-selection result without raw payload bytes, timestamps,
+identifiers, or private paths.
+
+The following hash-only provenance files are generated from the private
+test roots:
+
+- `manifests/04a-private-evidence-sha256.json`
+- `manifests/04b-private-evidence-sha256.json`
+
+They contain private-relative filenames, sizes, SHA-256 digests, and the
+`private-hash-only` classification. They do not contain captured payload
+data.

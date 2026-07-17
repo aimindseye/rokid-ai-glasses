@@ -1,0 +1,103 @@
+{
+  "schema": "rokid.private-evidence-manifest.v1",
+  "test_id": "04b-base-model-select-chatgpt",
+  "generated_at": "2026-07-17T13:31:31.295473+00:00",
+  "files": [
+    {
+      "relative_path": "SHA256SUMS",
+      "size_bytes": 5457,
+      "sha256": "7a78d7669de168c66f2e3c458805fe85b89db76bed56d9a20f55d766b7e7c990",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/04b-pcapdroid-connections.csv",
+      "size_bytes": 5206,
+      "sha256": "e55bd7c4f50d492ca33744e81c6e1a0f96b60597c6820847a2846a2247f73c7c",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/http-requests-private.txt",
+      "size_bytes": 2366,
+      "sha256": "bef2f95e37155711d5679ef3e553e915bdda448d7af8524bff2fe286fe1d6098",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/protocol-summary.txt",
+      "size_bytes": 1123,
+      "sha256": "9327f90311917fb489ac1f0737084c7f918cbb1d42e431872e63e946a771ad66",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/websocket-payload-fingerprints-private.tsv",
+      "size_bytes": 6799,
+      "sha256": "575569639b9f6c7ef684b556d5ccc45024edc51b3e306d4874ba25e220fcd139",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/websocket-state-persistence-private.tsv",
+      "size_bytes": 1729,
+      "sha256": "4342d644a1b54f63023b737f61cb7f68e5d768c1af53f75feaf8b4b6bd10d08a",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "logcat/04b-base-model-select-chatgpt-logcat.txt",
+      "size_bytes": 4776943,
+      "sha256": "8d49a99fc9d3fdca4c243a4cb91fccc1ed30f387a3e15268e99ef623ce3bc0f1",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/final-result.txt",
+      "size_bytes": 2649,
+      "sha256": "8112eafe7ba8a4201b1c2e254d45f74173d80869b35389b24a685e6fde37fbb0",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/normalized-action-timeline.tsv",
+      "size_bytes": 428,
+      "sha256": "eee64d1c7a2fbae1cb0944e518b73746d9ac37c01f273ab71dc77726dee4efaf",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/screenshot-recovery-note.txt",
+      "size_bytes": 835,
+      "sha256": "e305dbbe505d2dbb990dd3576b88f81ebb3fd3ca33718a80e5dc75ad40d37ffb",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/screenshot-sha256.txt",
+      "size_bytes": 772,
+      "sha256": "ed378a707d208db750f5a0dbefe53ea269b9fe2c2571575525a813720ac8f79d",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "notes/ui-screenshot-evidence.txt",
+      "size_bytes": 603,
+      "sha256": "e212aa517239aedc8c9b485107726cb0e9fc080172ac7381c67086f59c8675bf",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "pcap/04b-base-model-select-chatgpt.pcap",
+      "size_bytes": 136104,
+      "sha256": "2d10fa401fa3c9d20060e22d8b8d6b273a992910307d847a5931617c79bc39f5",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "pcap/04b-base-model-select-chatgpt.sslkeylog",
+      "size_bytes": 15184,
+      "sha256": "e99d046edcaaff968e6c9194b5f1a68eed08e218e30c3d533d633c5272f199ca",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "screenshots/04b-after-base-chatgpt-vision-gemini-recovered.png",
+      "size_bytes": 151909,
+      "sha256": "167e9b158e4f5b8d2e7934d1a98bbdc79ccc9b457b12e3eba5d33c2dee8c7b44",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "screenshots/04b-before-base-gemini-vision-gemini-recovered.png",
+      "size_bytes": 151618,
+      "sha256": "5d1702e4fccf9d72e8eddeb19b17edbc132ac9a3f001fc6c749522b2d9be7e6b",
+      "classification": "private-hash-only"
+    }
+  ]
+}
