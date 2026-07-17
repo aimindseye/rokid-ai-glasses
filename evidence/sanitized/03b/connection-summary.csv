@@ -1,0 +1,20 @@
+App,PackageName,Host,Protocol,Status,DestinationPort,Connections,BytesSent,BytesReceived,PacketsSent,PacketsReceived,FirstSeen,LastSeen
+Hi Rokid,com.rokid.sprite.global.aiapp,rcs-internal.rokid.com,DNS,Closed,53,1,68,84,1,1,2026-07-16T22:40:14.646-04:00,2026-07-16T22:40:14.664-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,rcs-internal.rokid.com,HTTPS,Closed,443,3,8022,16417,59,63,2026-07-16T22:40:14.671-04:00,2026-07-16T22:41:29.596-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,xr-cloud-global.rokid.com,DNS,Closed,53,1,71,87,1,1,2026-07-16T22:40:14.693-04:00,2026-07-16T22:40:14.919-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,xr-cloud-global.rokid.com,HTTPS,Closed,443,4,5905,11255,38,38,2026-07-16T22:40:14.924-04:00,2026-07-16T22:41:19.176-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ar-service.rokid.com,DNS,Closed,53,1,66,130,1,1,2026-07-16T22:40:14.983-04:00,2026-07-16T22:40:15.098-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ar-service.rokid.com,HTTPS,Closed,443,1,1693,4940,13,14,2026-07-16T22:40:15.101-04:00,2026-07-16T22:41:19.175-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,rcs-internal.rokid.com,HTTPS,Error,443,1,1079,1738,8,7,2026-07-16T22:40:15.388-04:00,2026-07-16T22:40:15.960-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,device-account-prod.rokid.com,DNS,Closed,53,1,75,91,1,1,2026-07-16T22:40:16.787-04:00,2026-07-16T22:40:17.010-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,device-account-prod.rokid.com,HTTPS,Closed,443,1,1845,3324,12,16,2026-07-16T22:40:17.015-04:00,2026-07-16T22:41:19.176-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ai-cloud-global.rokid.com,DNS,Closed,53,1,71,155,1,1,2026-07-16T22:40:17.156-04:00,2026-07-16T22:40:18.658-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,imgs-ac.alipay.com,DNS,Closed,53,1,64,181,1,1,2026-07-16T22:40:17.735-04:00,2026-07-16T22:40:18.165-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,imgs-ac.alipay.com,HTTPS,Closed,443,2,4240,8158,29,31,2026-07-16T22:40:18.169-04:00,2026-07-16T22:41:24.385-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ai-cloud-global.rokid.com,HTTPS,Closed,443,3,9475,14773,74,76,2026-07-16T22:40:18.661-04:00,2026-07-16T22:43:09.703-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ota.rokid.com,DNS,Closed,53,1,59,75,1,1,2026-07-16T22:40:21.126-04:00,2026-07-16T22:40:21.141-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ota.rokid.com,HTTPS,Closed,443,1,1457,3740,7,10,2026-07-16T22:40:21.146-04:00,2026-07-16T22:41:24.386-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ota-g.rokidcdn.com,DNS,Closed,53,1,64,235,1,1,2026-07-16T22:40:37.169-04:00,2026-07-16T22:40:37.421-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,ota-g.rokidcdn.com,HTTPS,Error,443,1,941,2992,11,11,2026-07-16T22:40:37.439-04:00,2026-07-16T22:40:38.899-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,firebaselogging-pa.googleapis.com,DNS,Closed,53,1,79,207,1,1,2026-07-16T22:41:07.719-04:00,2026-07-16T22:41:07.742-04:00
+Hi Rokid,com.rokid.sprite.global.aiapp,firebaselogging-pa.googleapis.com,HTTPS,Closed,443,1,2483,3227,7,8,2026-07-16T22:41:07.754-04:00,2026-07-16T22:42:10.219-04:00

@@ -16,43 +16,47 @@ This repository documents:
 
 ## Current status
 
-Validated as of 2026-07-16:
+Validated through Test 03b:
 
 - Hi Rokid package identified as `com.rokid.sprite.global.aiapp`
 - Pre-login and post-login network baselines captured
-- Owner-authorized account transfer documented
+- Owner-authorized unbind, account change, and rebind documented
 - BLE, GATT, classic Bluetooth, and RFCOMM use observed
-- PCAPdroid TLS interception validated
-- Rokid HTTP/1.1, HTTP/2, JSON, and WebSocket traffic decrypted
-- Rokid model catalog and AI WebSocket gateway identified
+- PCAPdroid TLS interception validated with a unique Firefox HTTPS canary
+- Hi Rokid HTTP/1.1, HTTP/2, JSON, and WebSocket traffic decrypted
+- Rokid model-catalog and AI WebSocket gateway endpoints identified
 
-Model-specific prompt and vision-routing tests are not yet complete.
+Model-selection-only tests and prompt-routing tests remain pending.
 
 ## Evidence policy
 
-Raw captures and credentials are not stored in this public repository.
+Raw captures and credentials are not stored in this public repository. Public
+evidence is limited to sanitized endpoint inventories, protocol summaries,
+methodology, hash-only manifests, and reviewed redacted excerpts.
 
-Public evidence is limited to:
-
-- Sanitized endpoint inventories
-- Redacted protocol summaries
-- Test methodology
-- Evidence hashes
-- Sanitized screenshots and excerpts
-
-Raw PCAP files, TLS key logs, Android bugreports, logcat files, tokens,
-account identifiers, device serial numbers, and decrypted payloads remain
-outside the Git worktree.
+Raw PCAP files, TLS key logs, bugreports, logcat files, tokens, account IDs,
+device serials, Bluetooth addresses, and decrypted payloads remain outside the
+Git worktree.
 
 See [Evidence Handling](docs/methodology/evidence-handling.md).
+
+## Documentation
+
+- [Test methodology](docs/methodology/test-methodology.md)
+- [Test matrix](docs/tests/test-matrix.md)
+- [TLS interception baseline](docs/tests/03-tls-interception.md)
+- [Endpoint inventory](docs/findings/endpoint-inventory.md)
+- [Security and privacy observations](docs/findings/security-and-privacy-observations.md)
+- [Next model-selection runbook](docs/runbooks/04-model-selection.md)
 
 ## Repository layout
 
 - `docs/methodology/` — test and evidence-handling procedures
-- `docs/tests/` — individual test reports
+- `docs/tests/` — completed test reports and matrix
+- `docs/runbooks/` — controlled procedures for pending tests
 - `docs/findings/` — consolidated technical findings
 - `evidence/sanitized/` — reviewed public evidence
-- `evidence/manifests/` — hashes and provenance records
+- `evidence/manifests/` — hash-only provenance records
 - `scripts/` — extraction, sanitization, and validation tools
 
 ## Disclaimer

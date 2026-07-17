@@ -2,28 +2,30 @@
 
 ## Private evidence root
 
-Raw evidence is stored outside the Git repository at:
+Raw evidence is stored outside the Git repository. The local default is:
 
     /Users/piyushdaiya/rokid-nettest
 
-The private path is configured locally through `.env.local`. Public
-documentation and committed scripts should not require this exact path.
+The path is configured through the ignored `.env.local` file:
+
+    ROKID_PRIVATE_ROOT=/absolute/path/to/rokid-nettest
+
+Committed scripts must support an overridden private root and must never copy
+raw secrets into the public tree.
 
 ## Never publish
 
-The following artifacts remain private:
-
-- PCAP and PCAPNG captures
+- PCAP or PCAPNG captures
 - TLS SSLKEYLOGFILE files
-- HAR and mitmproxy flow files
+- HAR or mitmproxy flow files
 - Full adb logcat output
 - Bluetooth HCI snoop logs
 - Android bugreports
 - Unredacted HTTP request or response exports
-- Authorization headers, cookies, and account tokens
-- Email addresses and account identifiers
-- Glasses serial numbers and device identifiers
+- Authorization headers, cookies, account tokens, or ASR tokens
+- Email addresses, account IDs, glasses serials, or device IDs
 - Bluetooth MAC addresses
+- OAuth client secrets
 - Images, audio, or prompts containing personal information
 
 ## Public evidence
@@ -33,11 +35,11 @@ The following may be published after manual review:
 - Protocol hierarchy summaries
 - Hostname and endpoint inventories
 - HTTP methods and sanitized paths
-- Query-parameter names with values removed
+- Query-parameter names with all values removed
 - Response status and content type
-- Packet counts and timing summaries
+- Aggregated byte, packet, and timing summaries without IP addresses
 - Sanitized screenshots
-- SHA-256 evidence manifests
+- SHA-256 hash-only evidence manifests
 
 ## Redaction standard
 
@@ -47,10 +49,21 @@ Example header:
 
     Authorization: Bearer [REDACTED]
 
-Query parameters may retain their names but not their values.
-
-Example path:
+Query-parameter names may remain, but values must be removed:
 
     /device/login?deviceId=[REDACTED]&userId=[REDACTED]
 
-Every generated public artifact must be manually reviewed before staging.
+UUIDs, long identifier-like path segments, IP addresses, and Bluetooth MAC
+addresses are also redacted in generated public evidence.
+
+## Validation gate
+
+Before staging or committing, run:
+
+    ./scripts/run_baseline_gate.sh
+
+The gate runs unit tests, regenerates the 03b public evidence when private
+inputs are available, and scans the public tree for forbidden file types and
+unredacted secret patterns.
+
+Every generated artifact still requires manual review before staging.

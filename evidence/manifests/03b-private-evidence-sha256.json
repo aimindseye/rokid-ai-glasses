@@ -1,0 +1,43 @@
+{
+  "schema": "rokid.private-evidence-manifest.v1",
+  "test_id": "03b-tls-hi-rokid-idle-model-menu",
+  "generated_at": "2026-07-17T10:53:12.432598+00:00",
+  "files": [
+    {
+      "relative_path": "decrypted/03b/analysis/http-requests-private.txt",
+      "size_bytes": 2499,
+      "sha256": "3aa386fdbbd1a2cb38b226306cfbdba0f465f76032078570f6ab816f0e5d75d5",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/03b/analysis/protocol-summary.txt",
+      "size_bytes": 1059,
+      "sha256": "52caa7c856406ffc161606cc19020fa460b2cc478f615e668a1145b702d7158e",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "decrypted/03b/raw-exports/PCAPdroid_16_Jul_22_55_00.csv",
+      "size_bytes": 5406,
+      "sha256": "216bdd6c8e340e8b0b265b758b73ff9d82faac5a7cc09e4d411030f46cf14a60",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "logcat/03b-tls-hi-rokid-idle-model-menu-logcat.txt",
+      "size_bytes": 2344058,
+      "sha256": "1308781cad24733fdcf271c6905509395ad951594615cc5a9ffcdb510f1f5ad2",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "pcap/03b-tls-hi-rokid-idle-model-menu.pcap",
+      "size_bytes": 144672,
+      "sha256": "158e118aa630647cbaaec5e888c80fb21439ae18ec51270acf1ce5a3e310ed4a",
+      "classification": "private-hash-only"
+    },
+    {
+      "relative_path": "pcap/03b-tls-hi-rokid-idle-model-menu.sslkeylog",
+      "size_bytes": 16122,
+      "sha256": "a6bbbc152368a18cb2c5e2ae4eee67c0de4a63f9ac8a49e73d2f327855768c39",
+      "classification": "private-hash-only"
+    }
+  ]
+}

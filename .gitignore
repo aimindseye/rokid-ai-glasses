@@ -34,3 +34,28 @@ raw-exports/
 # Local files
 .DS_Store
 *.tmp
+
+# BEGIN rokid research private-evidence guard r1
+*.pcap
+*.pcapng
+*.sslkeylog
+sslkeylogfile.txt
+*.har
+*.mitm
+*.apk
+*.apks
+*.aab
+*bugreport*.zip
+*btsnoop*
+private-evidence/
+decrypted/
+raw-exports/
+**/raw-exports/
+**/*-private.*
+.env.local
+.DS_Store
+# END rokid research private-evidence guard r1
+
+# Python generated files
+__pycache__/
+*.py[cod]

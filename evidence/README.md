@@ -2,26 +2,18 @@
 
 This directory contains only reviewed and sanitized evidence.
 
-Raw network captures, TLS keys, decrypted payloads, Android logs, Bluetooth
-captures, account identifiers, and device identifiers are intentionally
-excluded.
+Raw packet captures, TLS keys, decrypted payloads, Android logs, Bluetooth
+captures, account IDs, device IDs, and credentials are intentionally excluded.
 
-## Current evidence
+## Test 03b
 
-### `sanitized/03b/protocol-summary.txt`
+`sanitized/03b/` contains:
 
-Protocol hierarchy for the Hi Rokid TLS interception test covering application
-startup, connected-device initialization, model-management navigation, and
-idle behavior.
+- `protocol-summary.txt` — protocol hierarchy only
+- `http-request-paths.tsv` — sanitized and aggregated HTTP paths
+- `http-request-paths.md` — human-readable sanitized path table
+- `connection-summary.csv` — aggregated PCAPdroid connection statistics
+- `connection-summary.md` — human-readable connection table
 
-The summary establishes the presence of:
-
-- DNS
-- TLS
-- HTTP/1.1
-- HTTP/2
-- JSON
-- WebSocket traffic
-
-It does not contain request headers, credentials, account identifiers, device
-serial numbers, or message bodies.
+`manifests/03b-private-evidence-sha256.json` contains hashes, sizes, and
+private-relative filenames only. It does not contain captured payload data.
