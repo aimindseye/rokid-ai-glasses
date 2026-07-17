@@ -73,8 +73,10 @@ import sys
 
 paths = [Path(value) for value in sys.argv[1:]]
 
+user_root_pattern = "/" + "Users" + r"/[A-Za-z0-9._-]+/"
+
 blocked = {
-    "private macOS user path": re.compile(r"/Users/[A-Za-z0-9._-]+/"),
+    "private macOS user path": re.compile(user_root_pattern),
     "Bluetooth MAC address": re.compile(
         r"(?i)(?<![0-9a-f])(?:[0-9a-f]{2}:){5}[0-9a-f]{2}(?![0-9a-f])"
     ),
