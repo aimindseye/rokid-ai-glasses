@@ -1,0 +1,3 @@
+# Test Methodology
+
+Status: Draft.

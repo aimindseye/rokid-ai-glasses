@@ -1,0 +1,20 @@
+
+===================================================================
+Protocol Hierarchy Statistics
+Filter: 
+
+frame                                    frames:550 bytes:135848
+  eth                                    frames:550 bytes:135848
+    ip                                   frames:550 bytes:135848
+      udp                                frames:18 bytes:2732
+        dns                              frames:18 bytes:2732
+      tcp                                frames:532 bytes:133116
+        tls                              frames:239 bytes:106828
+          http2                          frames:91 bytes:29776
+            http2                        frames:15 bytes:8332
+              http2                      frames:1 bytes:620
+          http                           frames:18 bytes:8108
+            json                         frames:10 bytes:4028
+          websocket                      frames:39 bytes:9244
+            data                         frames:39 bytes:9244
+===================================================================

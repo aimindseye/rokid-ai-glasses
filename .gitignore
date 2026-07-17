@@ -1,0 +1,36 @@
+# Raw packet and TLS evidence
+*.pcap
+*.pcapng
+*.sslkeylog
+sslkeylogfile.txt
+*.har
+*.mitm
+
+# Raw device evidence
+*bugreport*.zip
+*btsnoop*
+private-evidence/
+decrypted/
+raw-exports/
+**/raw-exports/
+**/*-private.*
+
+# Certificates and secrets
+*.crt
+*.cer
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+!.env.example
+
+# Android packages
+*.apk
+*.apks
+*.aab
+
+# Local files
+.DS_Store
+*.tmp

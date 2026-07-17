@@ -1,0 +1,3 @@
+# Endpoint Inventory
+
+Status: Draft.
