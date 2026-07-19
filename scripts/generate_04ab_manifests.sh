@@ -1,8 +1,6 @@
 #!/bin/bash
 set -euo pipefail
 
-export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin${PATH:+:$PATH}"
-
 REPO="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO"
 
@@ -13,7 +11,13 @@ if [[ -f .env.local ]]; then
   set +a
 fi
 
-PRIVATE_ROOT="${ROKID_PRIVATE_ROOT:-$HOME/rokid-nettest}"
+if [[ -z "${ROKID_PRIVATE_ROOT:-}" ]]; then
+  echo "ERROR: ROKID_PRIVATE_ROOT is not configured." >&2
+  echo "Copy .env.example to .env.local and set the private evidence root." >&2
+  exit 1
+fi
+
+PRIVATE_ROOT="$ROKID_PRIVATE_ROOT"
 TEST_A="$PRIVATE_ROOT/tests/04a-base-model-select-gemini"
 TEST_B="$PRIVATE_ROOT/tests/04b-base-model-select-chatgpt"
 MANIFEST_DIR="$REPO/evidence/manifests"

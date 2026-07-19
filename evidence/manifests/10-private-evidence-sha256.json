@@ -1,0 +1,76 @@
+{
+  "schema": "rokid.private-evidence-archive-manifest.v1",
+  "public_test": "10",
+  "generated_utc": "2026-07-19T20:00:00Z",
+  "classification": "private-hash-only",
+  "notes": [
+    "Raw archives remain outside Git.",
+    "Names, sizes, and SHA-256 digests are provenance only.",
+    "Private 07b and 07c capture aliases map to public Test 10."
+  ],
+  "entries": [
+    {
+      "private_capture_alias": "07b-r3",
+      "public_test": "10b",
+      "filename": "07b-r3-pixel-translation-chatgpt-gemini-20260719-103523-passive-and-failed-mitm-private.zip",
+      "size_bytes": 2559428,
+      "sha256": "fed4adcfed8f8ff72557e22bee04253482895c5f26c41f1c1338eb4881b116d7",
+      "classification": "private-hash-only",
+      "purpose": "Passive control and failed MITM comparison"
+    },
+    {
+      "private_capture_alias": "07b-r5",
+      "public_test": "10b",
+      "filename": "07b-r5-minimal-passive-chatgpt-gemini-20260719-114105-private.zip",
+      "size_bytes": 10094563,
+      "sha256": "80a81bdd5de103ed99b2d61d4c58b7bcfe1b66de4c22da80b8e924dac926f988",
+      "classification": "private-hash-only",
+      "purpose": "Minimal passive ChatGPT/Gemini translation routing"
+    },
+    {
+      "private_capture_alias": "07c-1",
+      "public_test": "10c1",
+      "filename": "07c-1-s25-local-model-download-provenance-20260719-135153-evidence-lite.zip",
+      "size_bytes": 9818802,
+      "sha256": "7a6bccd2fe6e4a402a8e357e4594f9dd3e50128a325aeffcab8cce72ba2063f1",
+      "classification": "private-hash-only",
+      "purpose": "Local-model download provenance"
+    },
+    {
+      "private_capture_alias": "07c-2",
+      "public_test": "10c2",
+      "filename": "07c-2-s25-local-model-metadata-20260719-142004-private.zip",
+      "size_bytes": 21755419,
+      "sha256": "c598daff6713a608a9355e79fcbdddfd6c7f8d4d801fc5a9ebfdc79972dc52df",
+      "classification": "private-hash-only",
+      "purpose": "Installed package metadata and bounded binary headers"
+    },
+    {
+      "private_capture_alias": "07c-3-initial",
+      "public_test": "10c3",
+      "filename": "07c-3-s25-offline-local-translation-20260719-144237-private.zip",
+      "size_bytes": 9915024,
+      "sha256": "a729412a1e55ea87bff6fff5ee0adb8474cbc856a813d0237296f755f2333fa1",
+      "classification": "private-hash-only",
+      "purpose": "Offline local execution with missing target-language offline voice"
+    },
+    {
+      "private_capture_alias": "07c-3-repeat",
+      "public_test": "10c3",
+      "filename": "07c-3-s25-offline-local-translation-20260719-151111-private.zip",
+      "size_bytes": 12963383,
+      "sha256": "d644a20a1aceeac5b49498802ddbc54562e6a4e6044d5657657ae9df88af49eb",
+      "classification": "private-hash-only",
+      "purpose": "Accepted offline execution after Spanish offline voice installation"
+    },
+    {
+      "private_capture_alias": "07c-4-r2",
+      "public_test": "10c4",
+      "filename": "07c-4-r2-s25-local-vs-online-flow-20260719-152755-private.zip",
+      "size_bytes": 19398462,
+      "sha256": "cb351eb09c3740b4bcd7b2b996cbaff5851e26c7016bc76c714513a1e77b13eb",
+      "classification": "private-hash-only",
+      "purpose": "Controlled Local-versus-Online execution-flow comparison"
+    }
+  ]
+}

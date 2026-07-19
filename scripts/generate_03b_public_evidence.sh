@@ -11,7 +11,13 @@ if [[ -f .env.local ]]; then
   set +a
 fi
 
-PRIVATE_ROOT="${ROKID_PRIVATE_ROOT:-/Users/piyushdaiya/rokid-nettest}"
+if [[ -z "${ROKID_PRIVATE_ROOT:-}" ]]; then
+  echo "ERROR: ROKID_PRIVATE_ROOT is not configured." >&2
+  echo "Copy .env.example to .env.local and set the private evidence root." >&2
+  exit 1
+fi
+
+PRIVATE_ROOT="$ROKID_PRIVATE_ROOT"
 ANALYSIS="$PRIVATE_ROOT/decrypted/03b/analysis"
 RAW_EXPORTS="$PRIVATE_ROOT/decrypted/03b/raw-exports"
 PUBLIC="$REPO/evidence/sanitized/03b"

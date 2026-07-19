@@ -17,7 +17,7 @@ This repository documents:
 
 ## Current status
 
-Validated through **Test 06c** using Hi Rokid
+Validated through **Test 10c4** using Hi Rokid
 `G1.10.11.0713` (`com.rokid.sprite.global.aiapp`, version code `10100011`).
 
 ### Test 03 — TLS interception and protocol baseline
@@ -26,8 +26,8 @@ Validated through **Test 06c** using Hi Rokid
   canary before interpreting application traffic.
 - Hi Rokid HTTP/1.1, HTTP/2, JSON, and WebSocket traffic was decrypted.
 - Rokid model-catalog and AI WebSocket gateway endpoints were identified.
-- Idle behavior and model-menu activity were captured without relying on
-  raw secrets or unredacted payloads in the public repository.
+- Idle behavior and model-menu activity were captured without publishing raw
+  secrets or unredacted payloads.
 
 ### Test 04 — Base-model selection
 
@@ -54,37 +54,45 @@ Validated through **Test 06c** using Hi Rokid
 
 - No direct OpenAI or Google model endpoint was observed in the tested
   captures.
-- The evidence supports Rokid-mediated AI gateway routing. It does not
-  prove which upstream provider handled any individual request or whether
-  the selected labels map one-to-one to distinct backend providers.
+- The evidence supports Rokid-mediated AI gateway routing. It does not prove
+  which upstream provider handled an individual request or whether the UI
+  labels map one-to-one to distinct backend providers.
 
-### Test 06 — Local capability, translation, and optional peripherals
+### Test 06 — Local capability and optional peripherals
 
-- The local/offline model workflow was blocked on the tested Motorola Razr
-  by an application compatibility gate requiring a Snapdragon 8 Gen 2 or
-  newer Android device.
-- In the tested Hi Rokid translation configuration, the application marked
-  glasses audio as unsupported and displayed DuoTalking results on the
-  phone. This is a configuration-specific result, not a categorical claim
-  that custom translation or audio-routing workflows are impossible.
+- The local-model workflow was blocked on the tested Motorola phone by an
+  application compatibility gate requiring newer Android hardware.
 - The Device connection feature explicitly describes Bluetooth rings and
   control panels for interaction with the glasses.
 - A controlled discovery run found no compatible peripheral. No peripheral
   was selected or paired.
-- No phone-side Rokid-specific BLE filter was identified by device name,
-  primary UUID, solicitation UUID, or manufacturer identifier.
 - Static analysis confirmed
-  `NativeCXRBridge::startBTPairing(unsigned int)`. The function constructs
-  a nested `rokid::Caps` command containing `startBTPairing` and sends it
-  toward the `CXRControl` endpoint.
-- The evidence strongly supports the phone delegating pairing initiation to
-  the connected glasses control plane. The receiving glasses-firmware
-  behavior was not inspected, so glasses-side BLE scanning remains a
-  bounded inference rather than a directly observed implementation detail.
-- Ring advertisement data, GATT services, authentication, and input-event
-  encoding remain unknown. This workstream is closed because no compatible
-  reference peripheral is available and none will be purchased for this
-  effort.
+  `NativeCXRBridge::startBTPairing(unsigned int)`, which constructs a nested
+  `rokid::Caps` command containing `startBTPairing` and sends it toward the
+  `CXRControl` endpoint.
+- The receiving glasses-firmware behavior was not inspected, so
+  glasses-side scanning remains a bounded inference.
+
+### Test 10 — Translation architecture
+
+- Face-to-Face translation consumed audio from the glasses microphone and
+  returned spoken output through Bluetooth A2DP to the glasses.
+- Online translation used Microsoft Azure Speech infrastructure in the
+  tested configuration, including speech recognition, translation, and
+  neural text-to-speech.
+- Selecting ChatGPT or Gemini as the assistant base model did not produce a
+  detectable change in the translation service path.
+- The compatible-phone local package was downloaded from Rokid's CDN and
+  installed as `wend` version `v2.7.0`.
+- The package contains a streaming VAD, a quantized speech encoder, and a
+  Qwen3 text model. No identifiable TTS model was present.
+- Local recognition and translation ran on the companion phone without
+  usable internet access.
+- Local spoken output was supplied by Android's Google speech engine. The
+  target-language offline voice had to be installed separately.
+- A controlled Local-versus-Online run kept Face to Face, language direction,
+  and source audio constant. The principal difference was phone-hosted local
+  processing versus Microsoft-hosted online processing.
 
 ## Evidence policy
 
@@ -93,9 +101,9 @@ Public evidence is limited to sanitized endpoint inventories, protocol
 summaries, methodology, hash-only manifests, and reviewed redacted excerpts.
 
 Raw PCAP files, TLS key logs, bugreports, logcat files, tokens, account IDs,
-device serials, Bluetooth addresses, screenshots, APKs, native libraries,
-decompiled application trees, and decrypted payloads remain outside the Git
-worktree.
+device serials, Bluetooth addresses, screenshots, APKs, model binaries,
+native libraries, decompiled application trees, and decrypted payloads
+remain outside the Git worktree.
 
 See [Evidence Handling](docs/methodology/evidence-handling.md).
 
@@ -107,13 +115,19 @@ See [Evidence Handling](docs/methodology/evidence-handling.md).
 - [Base-model selection tests](docs/tests/04-model-selection.md)
 - [ChatGPT and Gemini comparison](docs/experiments/05-gemini-r2-vs-chatgpt-r4.md)
 - [Device connection test](docs/tests/06c-device-connection.md)
-- [Peripheral pairing experiment](docs/experiments/06c-device-connection-peripheral-pairing.md)
-- [Peripheral pairing control path](docs/findings/peripheral-pairing-control-path.md)
-- [Native CXR static-analysis method](docs/methodology/native-cxr-static-analysis.md)
+- [Translation overview](docs/tests/10-translation-overview.md)
+- [Face-to-Face input routing](docs/tests/10a-face-to-face-input-routing.md)
+- [Online translation services](docs/tests/10b-online-translation-services.md)
+- [Local-model download provenance](docs/tests/10c1-local-model-download.md)
+- [Local-model package analysis](docs/tests/10c2-local-model-package.md)
+- [Offline local execution](docs/tests/10c3-offline-local-execution.md)
+- [Local-versus-Online flow](docs/tests/10c4-local-vs-online-flow.md)
+- [Translation architecture finding](docs/findings/translation-architecture.md)
+- [Local `wend` model finding](docs/findings/local-model-wend.md)
+- [Translation network-routing finding](docs/findings/translation-network-routing.md)
+- [Translation runbook](docs/runbooks/10-translation.md)
 - [Endpoint inventory](docs/findings/endpoint-inventory.md)
-- [Model-selection behavior](docs/findings/model-selection-behavior.md)
 - [Security and privacy observations](docs/findings/security-and-privacy-observations.md)
-- [Executed model-selection runbook](docs/runbooks/04-model-selection.md)
 
 ## Repository layout
 
