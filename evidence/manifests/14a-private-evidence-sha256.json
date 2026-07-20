@@ -1,0 +1,11 @@
+{
+  "schema": "rokid.private-evidence-hash-manifest.v1",
+  "test_id": "14a-ai-assistant-base-model",
+  "classification": "private-hash-only",
+  "private_evidence_bundle_sha256": "0eee0531800d559c89362e0a1c91811ecb04557654fc1818e2707b5c5336aa5f",
+  "private_capture_sha256": [
+    "8e89b5e08761b598525df596d30252899ef2e261faf929e21c7f08c73eaa5e81",
+    "ee8555e28f4a0d948ca07aa90e78171fc8588e719f6909bb1486efb443295dff"
+  ],
+  "raw_evidence_committed": false
+}

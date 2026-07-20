@@ -1,0 +1,13 @@
+{
+  "schema": "rokid.private-evidence-hash-manifest.v1",
+  "test_id": "14a-r2-ai-assistant-base-model",
+  "classification": "private-hash-only",
+  "private_evidence_bundle_sha256": "dd9c3aa76430cc30ab514754e0296638c3f8a83b8f6a24e7333dd731212ae546",
+  "validated_counts": {
+    "pcap": 6,
+    "ssl_keylog": 6,
+    "sidecar": 35,
+    "manifest_entries": 77
+  },
+  "raw_evidence_committed": false
+}

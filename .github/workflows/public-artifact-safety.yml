@@ -1,0 +1,13 @@
+name: Public artifact safety
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate public repository
+        run: bash scripts/safety/validate_public_repo.sh

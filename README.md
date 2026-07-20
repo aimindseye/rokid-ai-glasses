@@ -1,148 +1,233 @@
-# Rokid AI Glasses Research
+# Rokid AI Glasses Style — Consumer, Developer, and Research Guide
 
-Independent technical research into the Rokid AI Glasses and the Hi Rokid
-Android application.
+![Product](https://img.shields.io/badge/Product-Rokid%20AI%20Glasses%20Style-111827)
+![Form factor](https://img.shields.io/badge/Form%20factor-Display--free-0284c7)
+![Audience](https://img.shields.io/badge/Audience-Consumers%20%7C%20Developers%20%7C%20Researchers-7c3aed)
+![Evidence](https://img.shields.io/badge/Evidence-Sanitized%20and%20reproducible-16a34a)
 
-## Scope
+An independent, community-maintained guide to the **display-free Rokid AI
+Glasses Style** and the **Hi Rokid** companion app.
 
-This repository documents:
+This repository is designed as a one-stop starting point for:
 
-- Android application behavior and account/device lifecycle
-- Network endpoints, protocol usage, and TLS interception methodology
-- Bluetooth pairing, device binding, classic Bluetooth, BLE, and RFCOMM
-- ChatGPT and Gemini selection and prompt-routing experiments
-- Local-model, translation, audio-routing, and device-compatibility checks
-- Optional ring and control-panel pairing behavior
-- Privacy and security observations
+- consumers deciding whether the glasses fit their needs;
+- owners setting up, updating, and troubleshooting the product;
+- developers evaluating SDKs, companion applications, and community projects;
+- researchers studying Bluetooth, cloud AI, local models, privacy, and firmware.
 
-## Current status
+> Unofficial community project. Not affiliated with Rokid.
 
-Validated through **Test 10c4** using Hi Rokid
-`G1.10.11.0713` (`com.rokid.sprite.global.aiapp`, version code `10100011`).
+---
 
-### Test 03 — TLS interception and protocol baseline
+## Contents
 
-- PCAPdroid TLS interception was validated with a unique Firefox HTTPS
-  canary before interpreting application traffic.
-- Hi Rokid HTTP/1.1, HTTP/2, JSON, and WebSocket traffic was decrypted.
-- Rokid model-catalog and AI WebSocket gateway endpoints were identified.
-- Idle behavior and model-menu activity were captured without publishing raw
-  secrets or unredacted payloads.
+- [Start here](#start-here)
+- [What this product is](#what-this-product-is)
+- [Quick answers](#quick-answers)
+- [Consumer guide](#consumer-guide)
+- [Phone and local-model compatibility](#phone-and-local-model-compatibility)
+- [Architecture](#architecture)
+- [Developer resources](#developer-resources)
+- [Validated research](#validated-research)
+- [Privacy and evidence](#privacy-and-evidence)
+- [Repository layout](#repository-layout)
+- [Contributing](#contributing)
 
-### Test 04 — Base-model selection
+## Start here
 
-- Bidirectional base-model selection was tested:
-  ChatGPT to Gemini in 04a and Gemini to ChatGPT in 04b.
-- Neither selection produced an identifiable immediate HTTP update,
-  additional WebSocket message, WebSocket reconnect, or persistent
-  WebSocket model-state field.
-- Test 04a is accepted with a documented operator-marker correction.
-  Test 04b is accepted without a marker correction.
-- The captures establish application behavior around model selection, but
-  do not prove how the selected provider is represented or applied on
-  Rokid's backend.
+| Goal | Recommended page |
+|---|---|
+| Understand the product | [Product overview](docs/consumer/product-overview.md) |
+| Pair and configure the glasses | [Getting started](docs/consumer/getting-started.md) |
+| Check phone or local-model support | [Phone compatibility](docs/consumer/phone-and-local-model-compatibility.md) |
+| Troubleshoot pairing, power, or updates | [Troubleshooting](docs/consumer/troubleshooting.md) |
+| Understand the non-display architecture | [Architecture](docs/architecture/non-display-system-architecture.md) |
+| Evaluate SDK and development options | [SDK guide](docs/development/sdk-and-development-options.md) |
+| Find community projects | [Community ecosystem](docs/development/community-ecosystem.md) |
+| Review independent tests | [Test matrix](docs/tests/test-matrix.md) |
+| Reproduce a test | [Public scripts](scripts/README.md) |
 
-### Test 05 — ChatGPT and Gemini prompt-routing comparison
+## What this product is
 
-- Controlled voice prompt tests were completed with ChatGPT and Gemini
-  selected as the base model.
-- Both tested modes used Rokid's AI WebSocket gateway:
+This repository focuses on **Rokid AI Glasses Style**, the display-free,
+voice-first model. Some packaging and app screens may use the shorter name
+“Rokid AI Glasses.” It should not be confused with **Rokid Glasses**, the
+separate display-equipped product.
 
-  ```text
-  ai-cloud-global.rokid.com/ws/ai
-  ```
+The Style experience centers on:
 
-- No direct OpenAI or Google model endpoint was observed in the tested
-  captures.
-- The evidence supports Rokid-mediated AI gateway routing. It does not prove
-  which upstream provider handled an individual request or whether the UI
-  labels map one-to-one to distinct backend providers.
+- a first-person camera;
+- microphones and open-ear speakers;
+- voice-first AI interaction;
+- Bluetooth and Wi-Fi connectivity;
+- the Hi Rokid phone application;
+- audio and phone-screen output instead of an in-lens HUD.
 
-### Test 06 — Local capability and optional peripherals
+See [Product overview](docs/consumer/product-overview.md).
 
-- The local-model workflow was blocked on the tested Motorola phone by an
-  application compatibility gate requiring newer Android hardware.
-- The Device connection feature explicitly describes Bluetooth rings and
-  control panels for interaction with the glasses.
-- A controlled discovery run found no compatible peripheral. No peripheral
-  was selected or paired.
-- Static analysis confirmed
-  `NativeCXRBridge::startBTPairing(unsigned int)`, which constructs a nested
-  `rokid::Caps` command containing `startBTPairing` and sends it toward the
-  `CXRControl` endpoint.
-- The receiving glasses-firmware behavior was not inspected, so
-  glasses-side scanning remains a bounded inference.
+## Quick answers
 
-### Test 10 — Translation architecture
+### Does the Style model have a display?
 
-- Face-to-Face translation consumed audio from the glasses microphone and
-  returned spoken output through Bluetooth A2DP to the glasses.
-- Online translation used Microsoft Azure Speech infrastructure in the
-  tested configuration, including speech recognition, translation, and
-  neural text-to-speech.
-- Selecting ChatGPT or Gemini as the assistant base model did not produce a
-  detectable change in the translation service path.
-- The compatible-phone local package was downloaded from Rokid's CDN and
-  installed as `wend` version `v2.7.0`.
-- The package contains a streaming VAD, a quantized speech encoder, and a
-  Qwen3 text model. No identifiable TTS model was present.
-- Local recognition and translation ran on the companion phone without
-  usable internet access.
-- Local spoken output was supplied by Android's Google speech engine. The
-  target-language offline voice had to be installed separately.
-- A controlled Local-versus-Online run kept Face to Face, language direction,
-  and source audio constant. The principal difference was phone-hosted local
-  processing versus Microsoft-hosted online processing.
+No. It is display-free. Responses and status are delivered mainly through
+open-ear audio and Hi Rokid on the phone.
 
-## Evidence policy
+### Is a phone required?
+
+Some capture and audio functions may work without continuous phone interaction,
+but Hi Rokid is central to pairing, settings, AI model selection, local-model
+management, media, translation configuration, and firmware updates.
+
+### Does selecting ChatGPT or Gemini change anything?
+
+Yes. Test 14A-r2 confirmed that Hi Rokid sends different opaque
+`base_model_no` values for the ChatGPT and Gemini selections. Both use a
+Rokid-managed AI WebSocket gateway. The evidence does not expose the exact
+downstream public model version.
+
+### Are assistant answers generated locally?
+
+The tested assistant path was cloud-mediated: the app uploaded audio and
+received server-side speech recognition, LLM text, and synthesized speech. A
+local Qwen3-family `Wend_Audio` component was observed, but it was identical
+across both routes and is not proof of local answer generation.
+
+### How are firmware updates checked?
+
+When the glasses are connected, Hi Rokid checks automatically after app launch,
+checks again when the firmware page opens, and sends a new live request for
+each manual check. The app submits the installed version to Rokid's OTA service
+and receives a complete OTA manifest.
+
+### Which phones support local models?
+
+Hi Rokid contains an in-app “tested and available” list. The captured list and
+its limitations are documented in
+[Phone and local-model compatibility](docs/consumer/phone-and-local-model-compatibility.md).
+
+## Consumer guide
+
+- [Product overview](docs/consumer/product-overview.md)
+- [Getting started](docs/consumer/getting-started.md)
+- [Features and limitations](docs/consumer/features-and-limitations.md)
+- [Phone and local-model compatibility](docs/consumer/phone-and-local-model-compatibility.md)
+- [Troubleshooting](docs/consumer/troubleshooting.md)
+
+## Phone and local-model compatibility
+
+The current lab uses a **Samsung Galaxy S25 Ultra** as the primary phone.
+Earlier work used a Motorola Razr 2024 and a Pixel 7 for narrower tests.
+
+The app-displayed list captured on 2026-07-20 includes selected Xiaomi, Redmi,
+OPPO, realme, OnePlus, vivo, iQOO, Samsung, Apple, and Sony devices. It is an
+app-version snapshot, not a permanent support guarantee.
+
+![Hi Rokid local-model phone list](docs/assets/hi-rokid-local-model-phone-list-20260720.jpg)
+
+## Architecture
+
+The [architecture guide](docs/architecture/non-display-system-architecture.md)
+separates:
+
+1. glasses hardware and embedded software;
+2. Bluetooth/Wi-Fi device and media channels;
+3. the Hi Rokid phone application;
+4. Rokid-operated AI, OTA, account, mapping, and ancillary services.
+
+Validated flows:
+
+- [AI assistant routing](docs/findings/ai-assistant-routing.md)
+- [Firmware update path](docs/findings/firmware-update-path.md)
+
+## Developer resources
+
+Rokid development material spans several product families. Do not assume a
+sample built for display-equipped Rokid Glasses will work on the display-free
+Style model.
+
+Start with:
+
+- [SDK and development options](docs/development/sdk-and-development-options.md)
+- [Community ecosystem](docs/development/community-ecosystem.md)
+- [Non-display architecture](docs/architecture/non-display-system-architecture.md)
+- [awesome-rokid](https://github.com/Anezium/awesome-rokid), a broader index
+  across many Rokid products
+- [Community Rokid platform documentation](https://github.com/buildwithfenna/rokid-docs)
+
+SDK and project references are included for discovery even where Style
+compatibility has not yet been validated.
+
+## Validated research
+
+The Test 14 publication set includes:
+
+- **Test 14A** — initial AI assistant base-model comparison;
+- **Test 14A-r2** — fresh-session manual-voice ChatGPT/Gemini comparison;
+- **Test 14B** — firmware-check triggers and OTA version resolution.
+
+Highlights:
+
+- ChatGPT and Gemini selections propagate different opaque route identifiers.
+- Assistant audio is sent to a Rokid-managed WebSocket gateway.
+- Text first appears in server-side `recognized_speech`.
+- No direct public OpenAI or Gemini API request was observed.
+- Firmware checking is connection-gated.
+- Connected launch, page entry, and manual presses all trigger OTA requests.
+- The OTA result uses hybrid server/client policy rather than a simple
+  comparison of one version string.
+
+See [Test matrix](docs/tests/test-matrix.md).
+
+## Privacy and evidence
 
 Raw captures and credentials are not stored in this public repository.
-Public evidence is limited to sanitized endpoint inventories, protocol
-summaries, methodology, hash-only manifests, and reviewed redacted excerpts.
 
-Raw PCAP files, TLS key logs, bugreports, logcat files, tokens, account IDs,
-device serials, Bluetooth addresses, screenshots, APKs, model binaries,
-native libraries, decompiled application trees, and decrypted payloads
-remain outside the Git worktree.
+Do not commit:
 
-See [Evidence Handling](docs/methodology/evidence-handling.md).
+- PCAP/PCAPNG files or TLS key logs;
+- raw logcat, bugreports, HCI logs, or decrypted payload dumps;
+- tokens, account IDs, serials, Bluetooth addresses, or precise location;
+- APKs, native libraries, or decompiled application trees;
+- screenshots containing private account or device information.
 
-## Documentation
+Public material is limited to sanitized reports, generalized scripts,
+non-sensitive images, protocol summaries, and hash-only provenance records.
 
-- [Test methodology](docs/methodology/test-methodology.md)
-- [Test matrix](docs/tests/test-matrix.md)
-- [TLS interception baseline](docs/tests/03-tls-interception.md)
-- [Base-model selection tests](docs/tests/04-model-selection.md)
-- [ChatGPT and Gemini comparison](docs/experiments/05-gemini-r2-vs-chatgpt-r4.md)
-- [Device connection test](docs/tests/06c-device-connection.md)
-- [Translation overview](docs/tests/10-translation-overview.md)
-- [Face-to-Face input routing](docs/tests/10a-face-to-face-input-routing.md)
-- [Online translation services](docs/tests/10b-online-translation-services.md)
-- [Local-model download provenance](docs/tests/10c1-local-model-download.md)
-- [Local-model package analysis](docs/tests/10c2-local-model-package.md)
-- [Offline local execution](docs/tests/10c3-offline-local-execution.md)
-- [Local-versus-Online flow](docs/tests/10c4-local-vs-online-flow.md)
-- [Translation architecture finding](docs/findings/translation-architecture.md)
-- [Local `wend` model finding](docs/findings/local-model-wend.md)
-- [Translation network-routing finding](docs/findings/translation-network-routing.md)
-- [Translation runbook](docs/runbooks/10-translation.md)
-- [Endpoint inventory](docs/findings/endpoint-inventory.md)
-- [Security and privacy observations](docs/findings/security-and-privacy-observations.md)
+See [Evidence handling](docs/methodology/evidence-handling.md).
 
 ## Repository layout
 
-- `docs/methodology/` — test and evidence-handling procedures
-- `docs/tests/` — completed test reports and matrix
-- `docs/experiments/` — controlled comparisons and bounded investigations
-- `docs/runbooks/` — controlled procedures and execution records
-- `docs/findings/` — consolidated technical findings
-- `evidence/sanitized/` — reviewed public evidence
-- `evidence/manifests/` — hash-only provenance records
-- `scripts/` — extraction, sanitization, manifest, and validation tools
+- `docs/consumer/` — ownership, setup, compatibility, features, troubleshooting
+- `docs/architecture/` — non-display hardware/app/cloud architecture
+- `docs/development/` — SDK applicability and community projects
+- `docs/tests/` — completed reports and master matrix
+- `docs/runbooks/` — reproducible procedures
+- `docs/findings/` — consolidated findings
+- `docs/methodology/` — evidence and analysis procedures
+- `docs/research/` — evidence levels and interpretation rules
+- `docs/assets/` — reviewed public images
+- `evidence/sanitized/` — public summaries derived from private captures
+- `evidence/manifests/` — hash-only provenance
+- `scripts/tests/` — interactive capture runners
+- `scripts/recovery/` — bounded MediaStore recovery/finalization
+- `scripts/safety/` — public-repository privacy gates
+
+## Contributing
+
+Contributions are welcome for consumer guidance, compatibility reports,
+developer resources, reproducible tests, and corrections.
+
+Label important claims as:
+
+- **Official** — stated by Rokid;
+- **Observed** — captured or reproduced;
+- **Inferred** — best-supported interpretation;
+- **Unverified** — listed for discovery but not tested.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Disclaimer
 
-This project is not affiliated with Rokid.
-
-Testing is performed only on devices and accounts controlled by the
-repository owner.
+This project is not affiliated with Rokid. Product names and trademarks belong
+to their respective owners. Testing is performed only on devices and accounts
+controlled by the repository owner.

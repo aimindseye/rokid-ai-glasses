@@ -1,35 +1,51 @@
 # Evidence Handling
 
-Raw capture material stays outside the public repository.
+## Public/private boundary
 
-## Private evidence
+Private evidence may contain:
 
-Do not commit:
+- packet captures and TLS secrets;
+- account and session identifiers;
+- device identifiers and Bluetooth addresses;
+- precise location or context;
+- authorization headers and signatures;
+- raw logcat, bugreports, screenshots, and UI dumps;
+- APK/native-library analysis artifacts.
 
-- PCAP or PCAPNG files;
-- TLS key logs or HAR files;
-- decrypted payload indexes;
-- raw connection CSV files;
-- logcat or bugreport output;
-- Bluetooth HCI logs;
-- APK or APKS files;
-- screenshots containing account or device information;
-- Android serials, IP addresses, MAC addresses, tokens, emails, or account identifiers;
-- absolute workstation paths.
+Private evidence remains outside the Git worktree.
 
-## Public artifacts
+## Public evidence allowed
 
-Public material may include:
+The repository may contain:
 
-- generalized scripts;
-- synthetic fixtures;
-- operator templates;
-- sanitized numeric summaries;
-- methodology and interpretation limits;
-- SHA-256 values of sanitized reports.
+- sanitized reports;
+- generalized endpoint and protocol summaries;
+- reproducible capture scripts;
+- cropped images without private data;
+- redacted excerpts;
+- hash-only manifests;
+- synthetic fixtures.
 
-## Integrity
+## Review procedure
 
-Create a private SHA-256 manifest after the capture and again after derived analysis is complete. Any edit to a sealed capture directory requires regenerating the manifest.
+Before publication:
 
-The repository privacy gate in `scripts/safety/scan_public_artifacts.sh` checks common prohibited extensions and content patterns. It supplements, but does not replace, human review.
+1. inspect every file;
+2. remove workstation paths and identifiers;
+3. remove tokens, signatures, cookies, and authorization values;
+4. confirm screenshots contain no account/device information;
+5. exclude raw captures and TLS keys;
+6. generate hashes for private provenance when useful;
+7. run `scripts/safety/validate_public_repo.sh`.
+
+## Hash-only provenance
+
+A private-bundle SHA-256 shows which private evidence supported a public report
+without publishing its contents. A hash does not make private evidence public
+and does not prove the report by itself.
+
+## Repository safety gate
+
+The CI gate rejects common raw-capture, TLS-key, APK, native-library, and
+bugreport file types. It also checks for known private path/serial patterns and
+compiles the public Python tools.
