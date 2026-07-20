@@ -23,11 +23,15 @@
 - [Test 14A](tests/14a-ai-assistant-base-model.md)
 - [Test 14A-r2](tests/14a-r2-manual-voice-base-model.md)
 - [Test 14B](tests/14b-firmware-update-discovery.md)
+- [Test 15 consolidated visual AI result](tests/15-visual-ai-architecture-routing-retention.md)
 - [AI assistant routing](findings/ai-assistant-routing.md)
+- [Visual AI workflow](findings/visual-ai-workflow.md)
 - [Firmware update path](findings/firmware-update-path.md)
 
 ## Reproduction
 
 - [Test 14A-r2 runbook](runbooks/14a-r2-manual-voice.md)
 - [Test 14B runbook](runbooks/14b-firmware-check.md)
+- [Test 15A runbook](runbooks/15a-vision-workflow.md)
+- [Test 15B runbook](runbooks/15b-visual-routing-retention.md)
 - [Public scripts](../scripts/README.md)

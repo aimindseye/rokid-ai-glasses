@@ -13,7 +13,7 @@ This repository is designed as a one-stop starting point for:
 - consumers deciding whether the glasses fit their needs;
 - owners setting up, updating, and troubleshooting the product;
 - developers evaluating SDKs, companion applications, and community projects;
-- researchers studying Bluetooth, cloud AI, local models, privacy, and firmware.
+- researchers studying Bluetooth, cloud AI, visual AI, local models, privacy, and firmware.
 
 > Unofficial community project. Not affiliated with Rokid.
 
@@ -45,6 +45,7 @@ This repository is designed as a one-stop starting point for:
 | Evaluate SDK and development options | [SDK guide](docs/development/sdk-and-development-options.md) |
 | Find community projects | [Community ecosystem](docs/development/community-ecosystem.md) |
 | Review independent tests | [Test matrix](docs/tests/test-matrix.md) |
+| Understand the visual-assistant workflow | [Visual AI workflow](docs/findings/visual-ai-workflow.md) |
 | Reproduce a test | [Public scripts](scripts/README.md) |
 
 ## What this product is
@@ -92,6 +93,21 @@ received server-side speech recognition, LLM text, and synthesized speech. A
 local Qwen3-family `Wend_Audio` component was observed, but it was identical
 across both routes and is not proof of local answer generation.
 
+
+### How does the visual assistant handle an image?
+
+A visually grounded question is recognized by Rokid's cloud, which returns a
+`take_photo` tool action. Hi Rokid then asks the glasses to capture a WebP
+frame, receives it over Bluetooth, uploads it to Rokid-managed object storage,
+and sends the object URL through the AI WebSocket.
+
+ChatGPT and Gemini visual selections use different `vl_model_no` routes.
+Specific visual follow-ups take a **new current-scene photo** rather than
+reusing the previous frame. Conversation thumbnails remain available from a
+local app-private cache after a process restart and while the phone is offline.
+
+See [Test 15](docs/tests/15-visual-ai-architecture-routing-retention.md).
+
 ### How are firmware updates checked?
 
 When the glasses are connected, Hi Rokid checks automatically after app launch,
@@ -137,6 +153,7 @@ separates:
 Validated flows:
 
 - [AI assistant routing](docs/findings/ai-assistant-routing.md)
+- [Visual AI workflow](docs/findings/visual-ai-workflow.md)
 - [Firmware update path](docs/findings/firmware-update-path.md)
 
 ## Developer resources
@@ -159,22 +176,32 @@ compatibility has not yet been validated.
 
 ## Validated research
 
-The Test 14 publication set includes:
+Published qualification sets include:
 
-- **Test 14A** — initial AI assistant base-model comparison;
-- **Test 14A-r2** — fresh-session manual-voice ChatGPT/Gemini comparison;
-- **Test 14B** — firmware-check triggers and OTA version resolution.
+- **Test 14A / 14A-r2** — voice assistant ChatGPT/Gemini routing;
+- **Test 14B** — firmware-check triggers and OTA version resolution;
+- **Test 15A / 15B** — visual capture, routing, retention, and context behavior.
 
 Highlights:
 
-- ChatGPT and Gemini selections propagate different opaque route identifiers.
+- Voice ChatGPT and Gemini selections propagate different `base_model_no`
+  values.
+- Visual ChatGPT and Gemini selections propagate different `vl_model_no`
+  values while the visual base route remains fixed.
 - Assistant audio is sent to a Rokid-managed WebSocket gateway.
 - Text first appears in server-side `recognized_speech`.
-- No direct public OpenAI or Gemini API request was observed.
-- Firmware checking is connection-gated.
-- Connected launch, page entry, and manual presses all trigger OTA requests.
-- The OTA result uses hybrid server/client policy rather than a simple
-  comparison of one version string.
+- Visual questions trigger a server `take_photo` tool action.
+- The glasses return WebP images over Bluetooth; Hi Rokid uploads them to
+  Rokid-managed Aliyun OSS and sends object URLs to the AI service.
+- Specific visual follow-ups recapture the current scene rather than reusing
+  the previous image.
+- Conversation text and thumbnails remain available offline from a persistent
+  app-private cache.
+- AI answer speech is synthesized in Rokid's cloud and streamed to the glasses;
+  phone TTS was not observed generating those answers.
+- No direct public OpenAI, Gemini, Microsoft TTS, or other downstream provider
+  API request was observed from the phone.
+- Firmware checking is connection-gated and uses a hybrid server/client policy.
 
 See [Test matrix](docs/tests/test-matrix.md).
 

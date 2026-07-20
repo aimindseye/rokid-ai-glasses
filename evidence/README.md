@@ -15,4 +15,5 @@ Test 14 publication:
 - `sanitized/14a/`
 - `sanitized/14a-r2/`
 - `sanitized/14b/`
+- `sanitized/15/` — consolidated visual AI architecture summary
 - `manifests/` hash-only provenance

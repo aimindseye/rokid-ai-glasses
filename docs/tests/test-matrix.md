@@ -21,5 +21,8 @@
 | 14B-C2 | Open firmware page | Page entry | Additional OTA request |
 | 14B-C3 | First manual check | Button press | Live OTA request |
 | 14B-C4 | Repeated manual check | Repeated press | Fresh live OTA request |
+| 15A | Visual workflow discovery | Capture and transport path | PASS — glasses WebP → Bluetooth → OSS → object URL |
+| 15B | Visual routing, retention, and context | Route switch, follow-up, offline history | PASS — `vl_model_no` switch, grounded recapture, local cache |
+| 15 | Consolidated visual AI qualification | 15A + 15B | PASS |
 
 Raw captures remain private. Public reports are sanitized.

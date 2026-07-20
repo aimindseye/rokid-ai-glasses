@@ -7,6 +7,8 @@ stored outside the Git worktree.
 
 - `tests/run_14a_r2_manual_voice.py`
 - `tests/run_14b_firmware_check.py`
+- `tests/run_15a_vision_workflow.py`
+- `tests/run_15b_visual_routing_retention.py`
 
 ## Recovery
 
