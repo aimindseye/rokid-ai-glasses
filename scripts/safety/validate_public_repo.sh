@@ -30,6 +30,7 @@ paths = [
 forbidden_suffixes = {
     ".pcap", ".pcapng", ".cap", ".keylog", ".keys", ".har",
     ".apk", ".apks", ".aab", ".so", ".hci", ".pyc",
+    ".img", ".bin", ".mbn", ".elf", ".dump", ".dmp",
 }
 
 # These patterns identify raw/private evidence artifacts. They must not reject
@@ -42,6 +43,8 @@ raw_artifact_name_patterns = [
     re.compile(r"private-raw-do-not-upload", re.I),
     re.compile(r"sanitized-upload.*\.zip$", re.I),
     re.compile(r"sslkeylog", re.I),
+    re.compile(r"selected[-_ ]?apks", re.I),
+    re.compile(r"(?:boot|vbmeta|vendor|super|recovery)[-_ ]?partition", re.I),
 ]
 name_scan_exempt_suffixes = {".sh", ".py", ".md"}
 
@@ -112,6 +115,20 @@ PYCACHE_DIR="$(mktemp -d)"
 trap 'rm -rf "$PYCACHE_DIR"' EXIT
 PYTHONPYCACHEPREFIX="$PYCACHE_DIR" \
   python3 -m py_compile scripts/tests/*.py scripts/recovery/*.py
+
+for script in scripts/tests/*.sh scripts/safety/*.sh; do
+  [[ -f "$script" ]] || continue
+  bash -n "$script"
+done
+
+python3 - <<'PYJSON'
+from __future__ import annotations
+import json
+import pathlib
+
+for path in pathlib.Path("evidence").rglob("*.json"):
+    json.loads(path.read_text(encoding="utf-8"))
+PYJSON
 
 git diff --check
 

@@ -30,5 +30,12 @@
 | 16C-r2 | Pairing and paired data sharing | Unpaired, binding, AI, dismissal, relaunch | PASS — broad `init_scene` context; no additional package |
 | 16D | Pixel background-mode A/B | Banner unsatisfied vs Unrestricted | PASS — process/services/WebSocket active in both arms |
 | 16 | Consolidated Android background and privacy qualification | 16A–16D | PASS in documented scope |
+| 17A | Glasses USB ADB discovery | Original debug cable and authorized Mac | PASS — `RG_glasses` USB ADB confirmed |
+| 17B | Glasses OS/build/boot/storage baseline | Read-only ADB properties and mounts | PASS — Android 12 production build; orange/unlocked reported |
+| 17C | Local services and TCP 8341 | Processes, services, socket UID and init metadata | PASS — privileged stack; GateServiced owner very-high-confidence |
+| 17D | Voice-AI passive interface monitor | One stock voice question | PASS — no glasses IP interface or route observed |
+| 17E | Visual-AI passive interface monitor | One fresh-image request; 360 half-second samples | PASS — no glasses IP interface or route observed |
+| 17F | Static development baseline | Packages, APK hashes, Binder/HAL/hardware/network | PASS — privacy gate; 8/8 private APK hashes matched |
+| 17 | Consolidated glasses OS, ADB and network-exposure qualification | 17A–17F | PASS in read-only documented scope |
 
 Raw captures remain private. Public reports are sanitized.

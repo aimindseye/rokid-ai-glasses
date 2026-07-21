@@ -15,6 +15,9 @@ stored outside the Git worktree.
 - `tests/run_16c_r2_paired_background.py` — paired data-sharing/lifecycle runner
 - `tests/run_16d_pixel_background_ab.py` — background-banner A/B runner
 - `tests/test16_common.py` — local sanitizer, HMAC pseudonymization, TLS direction analysis, and privacy gate
+- `tests/run_rokid_test17e_visual_ai_interface.sh` — passive half-second visual-AI interface monitor
+- `tests/run_rokid_test17f_static_dev_baseline.sh` — read-only glasses OS/package/service baseline with optional private APK pulls
+- `tests/check_rokid_adb_state.sh` — read-only USB/wireless ADB state check
 
 ## Recovery
 
@@ -27,7 +30,8 @@ stored outside the Git worktree.
 - Python 3.10+
 - Android platform tools (`adb`)
 - authorized Android phone
-- PCAPdroid configured for the controlled app/account
+- for Test 17, one authorized `model:RG_glasses` USB ADB target and the original data/debug cable
+- PCAPdroid configured for the controlled app/account where required
 
 Generated evidence can include captures, TLS keys, screenshots, logs,
 bugreports, session data, and precise context.
@@ -50,3 +54,17 @@ The Test 16 privacy gate rejects raw captures, TLS keys, APKs, media, private
 workstation paths, credentials, JWTs, precise coordinates, and other common
 sensitive patterns. It retains only interpretable hostnames, path templates,
 counts, event types, hashes, and sensitive-field presence/value state.
+
+
+## Test 17 private output
+
+Test 17 scripts write private data under `~/rokid-nettest/private/` and
+sanitized results under `~/rokid-nettest/sanitized/`.
+
+Private output may contain USB/device serials, interface addresses, raw logs,
+package and service metadata, APK binaries, signatures, and complete Android
+state. Do not run the static collector from inside the Git worktree, and never
+commit the private output.
+
+The Test 17 scripts do not enable wireless ADB, contact TCP 8341, reboot, root,
+remount, flash, or modify packages/settings.

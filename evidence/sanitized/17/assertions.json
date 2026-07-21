@@ -1,0 +1,148 @@
+{
+  "adb": {
+    "adb_root_expected": false,
+    "global_adb_enabled": 1,
+    "global_adb_wifi_enabled": 0,
+    "host_authorization_state": "device",
+    "persist_adb_tcp_port": null,
+    "persist_sys_usb_config": "adb",
+    "ro_adb_secure": 1,
+    "ro_debuggable": 0,
+    "ro_secure": 1,
+    "service_adb_tcp_port": null,
+    "sys_usb_config": "adb",
+    "transport": "usb",
+    "usb_adb_confirmed": true
+  },
+  "boot": {
+    "fastboot_or_flashing_tested": false,
+    "origin_determined": false,
+    "researcher_unlock_claimed": false,
+    "vbmeta_device_state_reported": "unlocked",
+    "verified_boot_state_reported": "orange"
+  },
+  "device": {
+    "abi": "arm64-v8a",
+    "android_release": "12",
+    "api_level": 32,
+    "board": "neo",
+    "brand": "Rokid",
+    "build_fingerprint": "Rokid/glasses/glasses:12/SKQ1.240613.001/1.22.009-20260710-150201:user/release-keys",
+    "build_tags": "release-keys",
+    "build_type": "user",
+    "device": "glasses",
+    "kernel": "5.10.209",
+    "manufacturer": "Rokid",
+    "model": "RG-glasses"
+  },
+  "gate_service": {
+    "active_external_interface_exposing_listener": false,
+    "executable": "/vendor/bin/GateServiced",
+    "full_kernel_capability_mask_observed": true,
+    "gid": 0,
+    "no_new_privs": 0,
+    "owner_attribution": "GateServiced \u2014 very high confidence; direct FD link unavailable",
+    "port_probed": false,
+    "process_present": true,
+    "seccomp": 0,
+    "selinux_domain": "u:r:tee:s0",
+    "socket_uid": 0,
+    "tcp_listener": "0.0.0.0:8341",
+    "uid": 0
+  },
+  "limitations": [
+    "One US consumer unit and one firmware build were tested.",
+    "Developer Mode persistence across phone migration was not tested.",
+    "No root, fastboot, flashing, relocking, remount, or partition write was attempted.",
+    "No request was sent to TCP port 8341.",
+    "Other workflows may explicitly establish Wi-Fi or P2P.",
+    "Consumer compatibility with official enterprise SDK demos remains untested."
+  ],
+  "network": {
+    "idle": {
+      "ipv4_route": false,
+      "p2p0": "DOWN",
+      "wifi_aware0": "DOWN",
+      "wlan0": "DOWN"
+    },
+    "phone_as_stock_ai_gateway": "strongly supported",
+    "visual_ai": {
+      "ipv4_route_observed": false,
+      "p2p0_activated": false,
+      "port_8341_persisted": true,
+      "sample_count": 360,
+      "sample_interval_seconds": 0.5,
+      "wifi_aware0_activated": false,
+      "wlan0_activated": false
+    },
+    "voice_ai": {
+      "duration_seconds_approx": 180,
+      "ipv4_route_observed": false,
+      "p2p0_activated": false,
+      "port_8341_persisted": true,
+      "wifi_aware0_activated": false,
+      "wlan0_activated": false
+    }
+  },
+  "packages": {
+    "apk_binaries_public": false,
+    "ordinary_third_party_package_count": 0,
+    "private_apk_host_device_hash_matches": 8,
+    "private_apks_pulled": 8,
+    "selected_private_apk_hashes": {
+      "com.iap.mobile.ar_pay": "966ad76351a1cf99935840cbc3556ae2d9a810fe31d55a2db9135f449e5fa3cc",
+      "com.rokid.cxrservice": "177305c60d688ee2747227b61e12773e18f92b7b70b54f995734c4a42e938a5e",
+      "com.rokid.glass.ota": "6bcb9c83243697481a08df9e57de1c5c4d54459dcaa051db9e9ad9fbd6fd0aaf",
+      "com.rokid.os.master.screenstream": "685220ad37ffa97d603b9a2061fb59f426f1986f8f0809691681d4f110bf1410",
+      "com.rokid.os.sprite.assistserver": "53b5d85837650ba048bb95489180c9ce7638e710c8bc29454ece608438123e81",
+      "com.rokid.os.sprite.launcher": "96c6a6a6c02037786977c2982d62ee5b0972ade2032668ce3bf5e78e3b7cbccf",
+      "com.rokid.os.sprite.live": "51672b655f858f1028e08bbe8028d5ae3539b0152a617fdda260d0991b69ee2f",
+      "com.rokid.sysconfig": "e6f8dbad6a4c5e7f77864553784ad1098849fa83fc45eec70db5f9366e537b5e"
+    }
+  },
+  "privacy": {
+    "adb_keys_included": false,
+    "apk_binaries_included": false,
+    "device_serial_included": false,
+    "local_ip_addresses_included": false,
+    "mac_addresses_included": false,
+    "partition_images_included": false,
+    "raw_dumps_included": false,
+    "raw_logs_included": false
+  },
+  "schema": "rokid.public.test17.v1",
+  "scope": {
+    "form_factor": "non-display",
+    "product": "Rokid AI Glasses Style",
+    "region": "United States",
+    "stock_workflows": [
+      "voice_ai",
+      "fresh_image_visual_ai"
+    ],
+    "test_date": "2026-07-21"
+  },
+  "services": {
+    "antpay_preinstalled": true,
+    "assistserver_services": [
+      "MasterAssistService",
+      "InstructService",
+      "SpriteMediaService",
+      "SystemFuncService",
+      "TtsService",
+      "PaymentService",
+      "WebServerService",
+      "RokidBluetoothService",
+      "SpriteWifiService"
+    ],
+    "glass2pay_service_active": true,
+    "payment_credentials_observed": false
+  },
+  "storage": {
+    "complete_partition_map_published": false,
+    "immutable_system_image_mounts_observed": true,
+    "partition_images_extracted": false,
+    "writable_data_free_approx_gb": 18,
+    "writable_data_total_approx_gb": 19,
+    "writable_data_used_approx_mb": 966
+  }
+}

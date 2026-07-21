@@ -47,6 +47,7 @@ This repository is designed as a one-stop starting point for:
 | Review independent tests | [Test matrix](docs/tests/test-matrix.md) |
 | Understand the visual-assistant workflow | [Visual AI workflow](docs/findings/visual-ai-workflow.md) |
 | Understand Android background services and data sharing | [Background services finding](docs/findings/background-services-and-data-sharing.md) |
+| Understand the glasses OS, USB ADB, and local services | [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
 | Reproduce a test | [Public scripts](scripts/README.md) |
 
 ## What this product is
@@ -127,6 +128,22 @@ visibility is not a reliable proxy for service activity.
 
 See [Test 16](docs/tests/16-android-background-services-package-lineage-data-sharing.md).
 
+### Do the non-display glasses run Android and support USB ADB?
+
+Yes on the tested US unit. Test 17 identified Android 12/API 32 on a production
+`user/release-keys` build and confirmed RSA-protected USB ADB through the
+original Rokid data/debug cable. Wireless ADB was disabled.
+
+The same unit reported `verifiedbootstate=orange` and
+`vbmeta.device_state=unlocked`; the origin was not determined, and no flashing,
+root, relocking, or partition modification was attempted.
+
+During tested stock voice and visual-AI requests, the glasses did not activate
+Wi-Fi, Wi-Fi Direct, Wi-Fi Aware, or an IP route. The paired phone remained the
+strongly supported cloud-network gateway.
+
+See [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md).
+
 ### How are firmware updates checked?
 
 When the glasses are connected, Hi Rokid checks automatically after app launch,
@@ -150,8 +167,10 @@ its limitations are documented in
 
 ## Phone and local-model compatibility
 
-The current lab uses a **Samsung Galaxy S25 Ultra** as the primary phone.
-Earlier work used a Motorola Razr 2024 and a Pixel 7 for narrower tests.
+The current development lab uses a **Pixel 7** as the dedicated Rokid test and
+development phone. A **Samsung Galaxy S25 Ultra** remains the regular phone and
+was used for earlier lifecycle comparison. Migration of the glasses back to the
+S25 is intentionally deferred until custom applications work on the Pixel.
 
 The app-displayed list captured on 2026-07-20 includes selected Xiaomi, Redmi,
 OPPO, realme, OnePlus, vivo, iQOO, Samsung, Apple, and Sony devices. It is an
@@ -174,6 +193,8 @@ Validated flows:
 - [AI assistant routing](docs/findings/ai-assistant-routing.md)
 - [Visual AI workflow](docs/findings/visual-ai-workflow.md)
 - [Background services and data sharing](docs/findings/background-services-and-data-sharing.md)
+- [Glasses Android OS and USB ADB](docs/findings/glasses-android-os-and-adb.md)
+- [Glasses local services and TCP port 8341](docs/findings/glasses-local-services-and-port-8341.md)
 - [Firmware update path](docs/findings/firmware-update-path.md)
 
 ## Developer resources
@@ -203,7 +224,9 @@ Published qualification sets include:
 - **Test 15A / 15B** — visual capture, routing, retention, and context behavior;
 - **Test 16A–16D** — Android package lineage, first-run telemetry, pairing-time
   context, background-service persistence, force-stop behavior, and Pixel/S25
-  comparison.
+  comparison;
+- **Test 17A–17F** — glasses Android/boot/USB-ADB baseline, privileged local
+  services, package hashes, port 8341, and passive voice/visual interface tests.
 
 Highlights:
 
@@ -239,6 +262,14 @@ Highlights:
 - The in-app “run in background” banner did not accurately describe actual
   service state on the Pixel; the service was already active before selecting
   Android Unrestricted battery mode.
+- The tested glasses are an Android 12 production device with RSA-protected USB
+  ADB persistently configured and wireless ADB disabled.
+- Boot properties reported orange/unlocked state; no bootloader or flashing
+  experiment was performed.
+- A privileged on-glasses Rokid service stack and a root TEE-domain listener on
+  TCP 8341 were observed. No request was sent to that listener.
+- Neither the tested stock voice nor fresh-image visual workflow activated a
+  glasses Wi-Fi/P2P interface or IPv4 route.
 
 See [Test matrix](docs/tests/test-matrix.md).
 
@@ -252,6 +283,8 @@ Do not commit:
 - raw logcat, bugreports, HCI logs, or decrypted payload dumps;
 - tokens, account IDs, serials, Bluetooth addresses, or precise location;
 - APKs, native libraries, or decompiled application trees;
+- ADB host keys, device authorization files, or USB/device serials;
+- complete block-device maps or boot/vbmeta/vendor/partition images;
 - screenshots containing private account or device information.
 
 Public material is limited to sanitized reports, generalized scripts,

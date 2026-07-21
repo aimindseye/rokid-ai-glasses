@@ -1,0 +1,50 @@
+{
+  "excluded_from_publication": [
+    "device and ADB serials",
+    "MAC and local IP addresses",
+    "ADB host keys and authorization files",
+    "raw logcat/dumpsys/Binder/HAL/process output",
+    "private APK binaries and decompilation output",
+    "complete block-device maps",
+    "boot, vbmeta, vendor, or other partition images",
+    "raw monitor files"
+  ],
+  "operator_confirmed_private_runs": [
+    {
+      "artifact_state": "raw private monitor retained locally; public result transcribed after review",
+      "subtest": "17D"
+    },
+    {
+      "artifact_state": "raw private monitor and local manifest retained locally; sanitized result transcribed after review",
+      "subtest": "17E"
+    }
+  ],
+  "public_source_artifacts": [
+    {
+      "name": "test17f-static-development-baseline-20260721T130443Z-sanitized.zip",
+      "sha256": "8d9ca3a1895e80759ab008d54fd451675f98622afbe836fc73fdd98ab550ad75"
+    },
+    {
+      "name": "test17f sanitized assertions.json",
+      "sha256": "7db7ff27b3ab2a38a587583ccad79ede5e8d7c169a79512ff6af197a9c0e2929"
+    },
+    {
+      "name": "test17f sanitized summary.md",
+      "sha256": "365c0394a9d1e3d9f4b7ea5ae6f70c9562e4e6e589e433ddb97c45852d503434"
+    },
+    {
+      "name": "test17f private evidence manifest",
+      "sha256": "a5f0404fb60a4ebbfd4b9498d6ad51fcf1fc8c6210aa38d33264b39f149b7601"
+    },
+    {
+      "name": "run_rokid_test17e_visual_ai_interface.sh",
+      "sha256": "75d021ac1129e22f5f985bf43d2172ecfd9bdbf1ee15987c8f794506363afc0e"
+    },
+    {
+      "name": "rokid-test17f-r1.zip",
+      "sha256": "1528cec7a830adf16947802ea6e9af0629dacfc3ecedecde3dae7efba34bb818"
+    }
+  ],
+  "schema": "rokid.public-evidence-manifest.v1",
+  "test": "17"
+}

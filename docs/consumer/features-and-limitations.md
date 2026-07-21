@@ -72,10 +72,24 @@ The update page requires connected glasses. OTA resolution uses a hybrid
 server/client policy; one returned version string alone did not explain the
 displayed “latest” status.
 
-## Development
+## Development and USB ADB
 
-Most public Rokid examples target display-equipped products. Style
-compatibility must be demonstrated separately.
+The tested US non-display unit is a full Android 12/API 32 device and exposed
+RSA-protected USB ADB through the original Rokid data/debug cable while
+Developer Mode was enabled. It was a production `user/release-keys` build, not
+a rooted development build. Wireless ADB was disabled.
+
+Most public Rokid examples target enterprise or display-equipped products.
+USB ADB makes glasses-side application testing possible, but Style consumer
+firmware compatibility with each official SDK/demo still must be demonstrated.
+
+The tested unit reported orange/unlocked verified-boot properties. This is a
+reported state, not evidence that the user performed an unlock or that flashing
+is safe. No bootloader or partition operation was attempted.
+
+When development is not active, disconnecting the physical debug cable removes
+the observed ADB transport. Do not publish ADB keys, device serials, APKs, or
+raw system dumps.
 
 
 ## Background operation
@@ -111,3 +125,25 @@ such as account/device state, precise location fields, weather, model routes,
 and payment-capability configuration. This is feature/configuration context;
 no Google Wallet, Samsung Wallet, card number, balance, or transaction data was
 observed.
+
+
+## Glasses networking and local listeners
+
+The glasses contain Wi-Fi, Wi-Fi Direct, Wi-Fi Aware, and Bluetooth networking
+software. Capability does not mean those interfaces are continuously active.
+
+During the tested idle state, one voice-AI question, and one fresh-image visual
+question, `wlan0`, `p2p0`, and Wi-Fi Aware remained down and no IPv4 route
+appeared. The phone was the strongly supported stock-AI network gateway.
+
+A privileged root service retained a listener on TCP port 8341, but no active
+non-loopback IP interface exposed it during those workflows. No request was
+sent to the port. Other custom or stock workflows may intentionally establish
+P2P and should be tested separately.
+
+## On-glasses payment components
+
+The firmware includes AntPay/Glass2Pay and Rokid PaymentService components.
+Their presence explains payment-capability configuration sent during AI session
+initialization. It does not show that a payment account is bound or that card,
+balance, transaction, Google Wallet, or Samsung Wallet data was accessed.

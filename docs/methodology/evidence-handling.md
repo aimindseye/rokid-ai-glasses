@@ -10,7 +10,10 @@ Private evidence may contain:
 - precise location or context;
 - authorization headers and signatures;
 - raw logcat, bugreports, screenshots, and UI dumps;
-- APK/native-library analysis artifacts.
+- APK/native-library analysis artifacts;
+- ADB host keys and authorized-host files;
+- raw USB/configfs metadata and stable USB/ADB serials;
+- block-device maps and boot, vbmeta, vendor, or other partition images.
 
 Private evidence remains outside the Git worktree.
 
@@ -67,3 +70,22 @@ and does not prove the report by itself.
 The CI gate rejects common raw-capture, TLS-key, APK, native-library, and
 bugreport file types. It also checks for known private path/serial patterns and
 compiles the public Python tools.
+
+
+## Test 17 ADB and glasses-OS evidence
+
+Test 17 uses a stricter glasses-development boundary:
+
+- device serials and ADB host keys remain private;
+- selected APKs may be pulled only into the private evidence tree;
+- public evidence may include package names and SHA-256 hashes, not binaries;
+- raw `dumpsys`, package, Binder, HAL, process, listener, init, USB, interface,
+  and log output remains private;
+- only high-level storage/mount conclusions are public;
+- no block-device map or partition image is public;
+- no request is sent to an unexplained local listener.
+
+The Test 17F collector creates separate private and sanitized trees and runs a
+privacy gate before presenting the public summary. The public repository stores
+a consolidated assertion set and a hash-only provenance manifest rather than
+the raw collector output.

@@ -26,6 +26,10 @@ flowchart LR
         LP["NXP RT600 low-power controller"]
         AR1["Qualcomm AR1 Gen 1"]
         STORE["On-device storage"]
+        AOS["Android 12 / API 32"]
+        ASSIST["Rokid assistant-service stack"]
+        GATE["GateServiced :8341"]
+        USB["RSA-protected USB ADB"]
     end
 
     subgraph P["Phone"]
@@ -47,6 +51,10 @@ flowchart LR
     MIC --> LP
     CTRL --> LP
     CAM --> AR1
+    AR1 --> AOS
+    AOS --> ASSIST
+    AOS --> GATE
+    USB --> AOS
     LP <--> HR
     AR1 <--> HR
     HR <--> OS
@@ -69,6 +77,27 @@ storage, and no display.
 
 The exact processor responsibility split is not fully exposed to third-party
 developers.
+
+
+## On-glasses Android and local-service layer
+
+**Observed in Test 17:** the tested non-display unit runs Android 12/API 32 on
+an arm64 `user/release-keys` build. RSA-protected USB ADB was available through
+the original debug cable; wireless ADB was disabled.
+
+The glasses contained a privileged assistant-server stack with local services
+for instructions, media, system functions, TTS, payments, Bluetooth, Wi-Fi,
+and a controllable Java web-server component. Separate preloaded components
+handled OTA, configuration, CXR, live/media, launcher, screen streaming, and
+AntPay.
+
+A root `GateServiced` process in SELinux domain `u:r:tee:s0` was attributed with
+very high confidence to a persistent wildcard TCP listener on port 8341. No
+request was sent to the listener. While all non-loopback interfaces were down,
+the wildcard bind was not externally reachable.
+
+The unit also reported orange/unlocked verified-boot properties while running a
+production build. No flashing, root, relock, or partition write was attempted.
 
 ## Phone and device-control layer
 
@@ -358,9 +387,10 @@ this local component.
 - App-private thumbnail cache path, format, expiry, and deletion
 - OSS object accessibility, lifetime, and deletion behavior
 - Retention after logout, unbind, or Android storage cleanup
-- Complete glasses-side service inventory
+- Public/private API boundary of the privileged glasses-side services
 - Long-duration background reconnect behavior and `init_scene` resend policy
 - Exact purpose of the observed `HEAD https://www.baidu.com/` request
-- Style-specific public SDK contract
+- Consumer-firmware compatibility with official Glasses/Phone SDK demos
+- Exact trigger and persistence model for the Hi Rokid Developer Mode control
 - Local-model lifecycle and offline boundaries
 - Firmware signature-verification implementation
