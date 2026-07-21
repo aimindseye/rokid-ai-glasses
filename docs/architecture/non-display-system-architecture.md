@@ -246,6 +246,69 @@ Android Google TTS initializes inside Hi Rokid but was not observed generating
 the assistant answers. Microsoft/Azure TTS was not observed on the phone.
 Rokid's upstream cloud TTS provider remains unknown.
 
+## Android background runtime
+
+Test 16 established that the visible Hi Rokid Activity is only one part of the
+phone-side runtime.
+
+```mermaid
+flowchart LR
+    UI["Hi Rokid Activity / UI"]
+    AI["AiService
+foreground connected-device service"]
+    CONN["ConnectCompanionDeviceService"]
+    LOC["LocationService"]
+    CACHE["App-private state/cache"]
+    BT["Bluetooth RFCOMM / device channels"]
+    WS["Rokid AI WebSocket"]
+    G["Rokid glasses"]
+
+    UI <--> AI
+    UI <--> CONN
+    UI <--> CACHE
+    AI <--> CONN
+    AI <--> LOC
+    CONN <--> BT
+    BT <--> G
+    AI <--> WS
+```
+
+The observed services are Android components inside
+`com.rokid.sprite.global.aiapp`. A clean-install inventory found no second
+package, no delayed companion APK, and no separate application corresponding
+to the “AI Service” label.
+
+### Lifecycle boundaries
+
+| Android action | Observed result |
+|---|---|
+| Remove task from Recents | UI task removed; process, `AiService`, `LocationService`, Bluetooth connection, and AI WebSocket may continue |
+| Turn screen off | Existing service and WebSocket remained active in the tested window |
+| Deny notification permission | Service can remain active without a visible AI Service notification |
+| Force-stop package | Process, services, RFCOMM, and WebSocket terminated in the S25 control |
+| Relaunch app | Services and glasses connection re-established; AI session initialization repeated |
+
+The Pixel in-app “Allow Rokid App to run in the background” banner did not
+reliably describe low-level state. Before the banner was satisfied, Android
+already reported background and foreground-service app-ops as allowed, the
+process and services were active, and the WebSocket survived both the Recents
+swipe and screen-off period.
+
+### AI session initialization and idle traffic
+
+When the AI WebSocket initializes, Hi Rokid sends an `init_scene` message. The
+sanitized evidence confirmed the presence of account identity, device/glasses
+state, precise latitude/longitude fields, weather context, model-route fields,
+and payment-capability configuration. Public evidence records only category
+presence and value state; private values are excluded.
+
+After the Recents swipe, the tested stable connection exchanged binary
+ping/pong keepalives at approximately ten-second intervals. No new audio,
+image, prompt, `init_scene`, latitude/longitude, user-ID, or payment-binding
+message was observed during the segmented screen-on or screen-off idle windows.
+A future reconnect may send a new `init_scene`; no reconnect occurred in those
+segments.
+
 ## Firmware sequence
 
 ```mermaid
@@ -282,7 +345,7 @@ this local component.
 | Glasses ↔ phone | Device control, audio, media, firmware state |
 | Phone app-private cache | Conversation text and image thumbnails |
 | Phone ↔ Rokid account | Identity, binding, preferences |
-| Phone ↔ AI gateway | Audio, context, model routes, responses |
+| Phone ↔ AI gateway | Audio, sensitive scene context, keepalives, model routes, responses |
 | Phone ↔ object storage | Current-scene image bytes and upload credentials |
 | Phone ↔ OTA | Device identity, installed version, package policy |
 | Rokid ↔ providers | Hidden visual, language, and TTS providers |
@@ -296,6 +359,8 @@ this local component.
 - OSS object accessibility, lifetime, and deletion behavior
 - Retention after logout, unbind, or Android storage cleanup
 - Complete glasses-side service inventory
+- Long-duration background reconnect behavior and `init_scene` resend policy
+- Exact purpose of the observed `HEAD https://www.baidu.com/` request
 - Style-specific public SDK contract
 - Local-model lifecycle and offline boundaries
 - Firmware signature-verification implementation

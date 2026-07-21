@@ -26,6 +26,24 @@ The repository may contain:
 - hash-only manifests;
 - synthetic fixtures.
 
+## Privacy-first test output
+
+Test 16B–16D scripts create two separate trees:
+
+```text
+private-raw-DO-NOT-UPLOAD/
+sanitized-upload/
+```
+
+Only the privacy-gated `-SANITIZED-UPLOAD.zip` is suitable for review. The
+sanitizer preserves hostnames, path templates, event types, counts, hashes, and
+sensitive-field **presence/value state** while excluding the underlying
+identifiers, coordinates, credentials, tokens, audio, images, and payload
+values.
+
+A local HMAC key can correlate pseudonymous package/UID identities across runs
+without publishing the originals. The key remains outside the repository.
+
 ## Review procedure
 
 Before publication:

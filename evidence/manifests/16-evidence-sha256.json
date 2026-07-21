@@ -1,0 +1,48 @@
+{
+  "artifacts": [
+    {
+      "filename": "16a-rokid-background-service-20260720-154839-private-evidence.zip",
+      "note": "not published",
+      "sha256": "c1d2cd4a4e006890699996d50e7fc4e44db71415525ba4c1c48b1b5a5888f8b2",
+      "type": "private"
+    },
+    {
+      "filename": "16b-pixel-clean-install-20260720-173721-SANITIZED-UPLOAD.zip",
+      "note": "superseded hostname-only baseline retained privately",
+      "sha256": "73018be8d482c8378acdc8e536b1d29c284c4d75ec365a4f544843297635a8fa",
+      "type": "sanitized"
+    },
+    {
+      "filename": "16b-pixel-clean-install-20260720-181257-SANITIZED-UPLOAD.zip",
+      "note": "primary clean-install decrypted run",
+      "sha256": "951ee699b1fd4f85978b4fbbcce5d801e1d0bb1fef9b798a1deac7ba490d1a6d",
+      "type": "sanitized"
+    },
+    {
+      "filename": "16b-r2-pixel-unauthenticated-20260720-190150-SANITIZED-UPLOAD.zip",
+      "note": "primary unauthenticated repair",
+      "sha256": "56bd503382df7ed7fb66a6e26d8ad7bb7d563f9372b273aa0332a1b40a003883",
+      "type": "sanitized"
+    },
+    {
+      "filename": "16c-r2-pixel-paired-background-20260720-192402-SANITIZED-UPLOAD.zip",
+      "note": "primary paired data-sharing run",
+      "sha256": "2de971cb11c66f90b33729b10e93d26cb8767885c74bb2837ada579fc12cd7d8",
+      "type": "sanitized"
+    },
+    {
+      "filename": "16d-pixel-background-ab-20260720-212655-SANITIZED-UPLOAD.zip",
+      "note": "primary background A/B run",
+      "sha256": "7dc3b676d39c4507198ffab66beb1d3b19f73987c6b1147ff29dc68e6c4e6f4b",
+      "type": "sanitized"
+    },
+    {
+      "filename": "rokid_app.apks",
+      "note": "not published",
+      "sha256": "df99ba51906e1c7866135d7cd1400fca62eae4205eed78c1c8730da3d33cdc3a",
+      "type": "private reviewed artifact"
+    }
+  ],
+  "publication_policy": "hash-only provenance; raw and sanitized source bundles remain outside Git",
+  "schema": "rokid.test16.evidence-manifest.v1"
+}

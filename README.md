@@ -46,6 +46,7 @@ This repository is designed as a one-stop starting point for:
 | Find community projects | [Community ecosystem](docs/development/community-ecosystem.md) |
 | Review independent tests | [Test matrix](docs/tests/test-matrix.md) |
 | Understand the visual-assistant workflow | [Visual AI workflow](docs/findings/visual-ai-workflow.md) |
+| Understand Android background services and data sharing | [Background services finding](docs/findings/background-services-and-data-sharing.md) |
 | Reproduce a test | [Public scripts](scripts/README.md) |
 
 ## What this product is
@@ -108,6 +109,24 @@ local app-private cache after a process restart and while the phone is offline.
 
 See [Test 15](docs/tests/15-visual-ai-architecture-routing-retention.md).
 
+### What happens after Hi Rokid is swiped away?
+
+Removing Hi Rokid from Android Recents removes the visible task, but it does
+not necessarily stop the companion runtime. Tests 16A and 16D observed the Hi
+Rokid process, `AiService`, `LocationService`, the glasses connection, and the
+Rokid AI WebSocket continuing with periodic ping/pong traffic while the screen
+was on and off.
+
+Android **force-stop** is a different boundary. The S25 control terminated the
+Hi Rokid process, foreground services, Bluetooth RFCOMM connection, and AI
+WebSocket and prevented automatic restart until the app was launched again.
+
+On the Pixel, the service ran even though the app's notification permission was
+not granted, so no visible “AI Service” notification appeared. Notification
+visibility is not a reliable proxy for service activity.
+
+See [Test 16](docs/tests/16-android-background-services-package-lineage-data-sharing.md).
+
 ### How are firmware updates checked?
 
 When the glasses are connected, Hi Rokid checks automatically after app launch,
@@ -154,6 +173,7 @@ Validated flows:
 
 - [AI assistant routing](docs/findings/ai-assistant-routing.md)
 - [Visual AI workflow](docs/findings/visual-ai-workflow.md)
+- [Background services and data sharing](docs/findings/background-services-and-data-sharing.md)
 - [Firmware update path](docs/findings/firmware-update-path.md)
 
 ## Developer resources
@@ -180,7 +200,10 @@ Published qualification sets include:
 
 - **Test 14A / 14A-r2** — voice assistant ChatGPT/Gemini routing;
 - **Test 14B** — firmware-check triggers and OTA version resolution;
-- **Test 15A / 15B** — visual capture, routing, retention, and context behavior.
+- **Test 15A / 15B** — visual capture, routing, retention, and context behavior;
+- **Test 16A–16D** — Android package lineage, first-run telemetry, pairing-time
+  context, background-service persistence, force-stop behavior, and Pixel/S25
+  comparison.
 
 Highlights:
 
@@ -202,6 +225,20 @@ Highlights:
 - No direct public OpenAI, Gemini, Microsoft TTS, or other downstream provider
   API request was observed from the phone.
 - Firmware checking is connection-gated and uses a hybrid server/client policy.
+- A clean Pixel install added only `com.rokid.sprite.global.aiapp`; no separate
+  “Rokid AI Service,” Baidu, or delayed companion package was installed.
+- Before Rokid login, Hi Rokid registered a Firebase installation, sent
+  app/device telemetry, and called Rokid's token bootstrap with an empty
+  `rokidToken`.
+- Pairing and AI connection initialization sent an `init_scene` context that
+  included account/device state, precise location fields, weather, model
+  routes, and payment-capability configuration.
+- After a Recents swipe, the existing WebSocket remained open with roughly
+  ten-second ping/pong keepalives; fresh audio, image, prompt, or context
+  resends were not observed during the tested idle windows.
+- The in-app “run in background” banner did not accurately describe actual
+  service state on the Pixel; the service was already active before selecting
+  Android Unrestricted battery mode.
 
 See [Test matrix](docs/tests/test-matrix.md).
 

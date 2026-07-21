@@ -1,0 +1,56 @@
+{
+  "background_lifecycle": {
+    "background_banner_reflected_actual_state": false,
+    "force_stop_terminates_runtime": "confirmed by Test 16A",
+    "periodic_full_context_resend_observed": false,
+    "recents_swipe_terminates_process": false,
+    "screen_off_terminates_service_in_test_window": false,
+    "visible_notification_required": false,
+    "websocket_keepalive_after_swipe": true
+  },
+  "limitations": [
+    "minutes-long background windows",
+    "reconnect may resend init_scene",
+    "packed implementation limits static source-to-sink analysis",
+    "Test 16D force-stop capture not authoritative"
+  ],
+  "package_lineage": {
+    "delayed_companion_package": false,
+    "only_hi_rokid_added": true,
+    "separate_ai_service_app": false
+  },
+  "paired_initialization": {
+    "account_identity_category": true,
+    "ai_websocket_observed": true,
+    "calendar_structures": true,
+    "device_state_category": true,
+    "google_or_samsung_wallet_data_observed": false,
+    "init_scene_observed": true,
+    "model_route_fields": true,
+    "payment_capability_configuration": true,
+    "payment_credentials_observed": false,
+    "precise_location_fields_nonempty": true,
+    "weather_category": true
+  },
+  "schema": "rokid.test16.public-assertions.v1",
+  "subject": {
+    "package": "com.rokid.sprite.global.aiapp",
+    "version_code": 10100011,
+    "version_name": "G1.10.11.0713"
+  },
+  "third_party": {
+    "baidu_head_request_observed": true,
+    "baidu_purpose": "unresolved",
+    "separate_baidu_package_installed": false
+  },
+  "unauthenticated_first_run": {
+    "ai_websocket_observed": false,
+    "email_or_password_observed": false,
+    "external_communication": true,
+    "firebase_installation_registration": true,
+    "firebase_logging": true,
+    "precise_location_observed": false,
+    "rokid_bootstrap_called": true,
+    "rokid_token_state": "empty"
+  }
+}

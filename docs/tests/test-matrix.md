@@ -24,5 +24,11 @@
 | 15A | Visual workflow discovery | Capture and transport path | PASS — glasses WebP → Bluetooth → OSS → object URL |
 | 15B | Visual routing, retention, and context | Route switch, follow-up, offline history | PASS — `vl_model_no` switch, grounded recapture, local cache |
 | 15 | Consolidated visual AI qualification | 15A + 15B | PASS |
+| 16A | Existing-install background lifecycle | Recents vs force-stop vs relaunch | PASS — service/socket survival after swipe; force-stop boundary confirmed |
+| 16B | Pixel clean install and first run | Package lineage and pre/post-login traffic | PASS — only Hi Rokid installed; pre-login Firebase/Rokid bootstrap observed |
+| 16B-r2 | Clean unauthenticated repair | App-data clear and empty-token check | PASS — `rokidToken` empty before login |
+| 16C-r2 | Pairing and paired data sharing | Unpaired, binding, AI, dismissal, relaunch | PASS — broad `init_scene` context; no additional package |
+| 16D | Pixel background-mode A/B | Banner unsatisfied vs Unrestricted | PASS — process/services/WebSocket active in both arms |
+| 16 | Consolidated Android background and privacy qualification | 16A–16D | PASS in documented scope |
 
 Raw captures remain private. Public reports are sanitized.

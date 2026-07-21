@@ -24,8 +24,10 @@
 - [Test 14A-r2](tests/14a-r2-manual-voice-base-model.md)
 - [Test 14B](tests/14b-firmware-update-discovery.md)
 - [Test 15 consolidated visual AI result](tests/15-visual-ai-architecture-routing-retention.md)
+- [Test 16 Android background services and data sharing](tests/16-android-background-services-package-lineage-data-sharing.md)
 - [AI assistant routing](findings/ai-assistant-routing.md)
 - [Visual AI workflow](findings/visual-ai-workflow.md)
+- [Background services and data sharing](findings/background-services-and-data-sharing.md)
 - [Firmware update path](findings/firmware-update-path.md)
 
 ## Reproduction
@@ -34,4 +36,8 @@
 - [Test 14B runbook](runbooks/14b-firmware-check.md)
 - [Test 15A runbook](runbooks/15a-vision-workflow.md)
 - [Test 15B runbook](runbooks/15b-visual-routing-retention.md)
+- [Test 16A background lifecycle runbook](runbooks/16a-background-lifecycle.md)
+- [Test 16B clean-install runbook](runbooks/16b-clean-install-package-lineage.md)
+- [Test 16C paired data-sharing runbook](runbooks/16c-paired-data-sharing.md)
+- [Test 16D background-mode A/B runbook](runbooks/16d-background-mode-ab.md)
 - [Public scripts](../scripts/README.md)
