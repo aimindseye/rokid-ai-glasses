@@ -19,8 +19,15 @@ This repository is designed as a one-stop starting point for:
 
 ---
 
+## Headline finding
+
+> **The tested US non-display Rokid AI Glasses are a full Android 12 device. The retail production build exposes RSA-protected USB ADB when Developer Mode is enabled, contains a privileged on-glasses Rokid application stack, and runs a root TEE-domain daemon listening on TCP port 8341. During tested voice and visual AI workflows, the glasses did not activate Wi-Fi, Wi-Fi Direct or an IP route; the paired phone remained the cloud-network gateway.**
+
+---
+
 ## Contents
 
+- [Headline finding](#headline-finding)
 - [Start here](#start-here)
 - [What this product is](#what-this-product-is)
 - [Quick answers](#quick-answers)
@@ -47,7 +54,7 @@ This repository is designed as a one-stop starting point for:
 | Review independent tests | [Test matrix](docs/tests/test-matrix.md) |
 | Understand the visual-assistant workflow | [Visual AI workflow](docs/findings/visual-ai-workflow.md) |
 | Understand Android background services and data sharing | [Background services finding](docs/findings/background-services-and-data-sharing.md) |
-| Understand the glasses OS, USB ADB, and local services | [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
+| Understand the glasses OS, USB ADB, and local services | [Glasses OS & Services](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
 | Reproduce a test | [Public scripts](scripts/README.md) |
 
 ## What this product is
@@ -172,11 +179,23 @@ development phone. A **Samsung Galaxy S25 Ultra** remains the regular phone and
 was used for earlier lifecycle comparison. Migration of the glasses back to the
 S25 is intentionally deferred until custom applications work on the Pixel.
 
-The app-displayed list captured on 2026-07-20 includes selected Xiaomi, Redmi,
-OPPO, realme, OnePlus, vivo, iQOO, Samsung, Apple, and Sony devices. It is an
-app-version snapshot, not a permanent support guarantee.
+Hi Rokid's in-app **tested-and-available** list for local models, captured on
+2026-07-20, enumerated these devices:
 
-![Hi Rokid local-model phone list](docs/assets/hi-rokid-local-model-phone-list-20260720.jpg)
+- **Xiaomi:** 15 Ultra; 17; 17 Max; 17 Pro Max
+- **Redmi:** K80 Pro; K90; K90 Pro Max
+- **OPPO:** Find N5; Find N6 Collector Edition; Find X7 Ultra; Find X8 Ultra;
+  Find X9 Ultra
+- **realme:** Neo8
+- **OnePlus:** 12; Ace 3 Pro; Ace 6T; 15R
+- **vivo:** X300 Ultra; X300 FE; S50 Pro Mini
+- **iQOO:** 13
+- **Samsung:** Galaxy S25 Ultra; Galaxy S26; Galaxy S26+; Galaxy S26 Ultra
+- **Apple:** iPhone 17 Pro
+- **Sony:** Xperia 1 VII
+
+This is an app-version snapshot, not a permanent support guarantee. The names
+above are transcribed from the Hi Rokid screen and may be region-specific.
 
 ## Architecture
 
