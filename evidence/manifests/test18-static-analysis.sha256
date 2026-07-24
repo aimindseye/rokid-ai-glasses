@@ -1,6 +1,0 @@
-# Hash-only public provenance.
-# The raw OTA, APKs, decompiled trees, boot images, and private evidence remain
-# outside the public repository.
-#
-# Exact OTA package used for the private static analysis:
-163ab2058d8e8789f82e962c7bfccbe6ca9725437d15adaf4bc4a811bafc94e5  private/rokid-ota-1.22.009-20260710-150201.bin

@@ -75,24 +75,116 @@ migration is deferred until the target applications work end-to-end on Pixel.
 
 See [Test 17](../tests/17-glasses-os-adb-and-network-exposure.md).
 
-<!-- TEST18_USB_ADB_STATIC_START -->
-## Test 18 static control-path follow-up
+<!-- USB_ADB_CONTROL_STATIC_START -->
+## USB ADB control-path follow-up
 
-Offline analysis of the exact stock software identified the
-`settings_developer_mode` key and the glasses-side enable/disable writes. The
-enable path sets `persist.vendor.adb=true` and writes global ADB state `1`; the
-available disable path sets `persist.vendor.adb=false` without a matching
-global-state `0` write. This creates a credible stale-state hypothesis, but it
-does not reveal the current live value on the glasses.
+Offline analysis of the exact stock software identified the glasses-side
+Developer Mode key:
 
-The relevant Rokid packages statically resolve to `priv_app`, and
-`persist.vendor.adb` maps to `adbd_config_prop`. Direct authorization after
-compiled-policy attribute expansion remains unresolved.
+```text
+settings_developer_mode
+```
 
-Real boot inputs showed charger-related generic debug-board detection but no
-direct path to ADB or an official cable identifier. Cable/contact and
-firmware/gadget-state explanations both remain open.
+The recovered enable path performs:
 
-See [Test 18](../tests/18-usb-adb-control-and-cable-analysis.md) and the
-[consolidated control-path finding](usb-adb-control-path-and-stale-state.md).
-<!-- TEST18_USB_ADB_STATIC_END -->
+```text
+persist.vendor.adb=true
+Settings.Global.adb_enabled=1
+```
+
+The recovered disable path performs:
+
+```text
+persist.vendor.adb=false
+```
+
+No matching `Settings.Global.adb_enabled=0` write was found in the available
+disable method. This makes a stale state statically possible:
+
+```text
+phone or framework state: enabled
+vendor ADB property:      false
+```
+
+The implementation does not reveal the current live value or prove which
+branch most recently executed.
+
+### Runtime domain and property boundary
+
+The relevant Rokid packages statically resolve to `priv_app`:
+
+```text
+com.rokid.os.sprite.assistserver
+com.rokid.cxrservice
+com.rokid.sysconfig
+```
+
+The property maps to:
+
+```text
+persist.vendor.adb → adbd_config_prop
+```
+
+The reviewed policy sources contained neither a fully expanded direct allow
+rule nor an explicit prohibition. Direct authorization remains unresolved
+pending compiled-policy attribute expansion or future authorized runtime
+evidence. A missing text-policy match is not proof of denial.
+
+### Cable and debug-board boundary
+
+The real `dtbo`, `vendor_boot`, and exact earlier debug-board binary candidate
+were analyzed.
+
+Generic debug-board detection exists in charger-related code, but no bounded
+same-function or same-device-tree-node path connected it to:
+
+- `persist.vendor.adb`;
+- `adbd`;
+- USB gadget activation; or
+- an official Rokid cable identifier.
+
+The current cable model is reportedly used successfully by multiple other
+owners. That lowers the probability of a model-wide incompatibility, but does
+not eliminate an individual cable, contact, alignment, adapter, or
+unit-specific connector issue.
+
+Current classification:
+
+```text
+special firmware cable-code check: not proven
+cable/contact cause:               not ruled out
+firmware/USB-gadget-state cause:   not ruled out
+```
+
+### Repair-app feasibility
+
+No exported, unprotected glasses-side component was proven to reach the
+Developer Mode setter. A normal user-installed glasses APK is therefore not
+assumed capable of directly changing the protected property or secure global
+ADB state.
+
+A phone-side companion remains a plausible research direction:
+
+```text
+query current state
+send settings_developer_mode=off
+wait for positive reply
+send settings_developer_mode=on
+wait for positive reply
+query current state again
+```
+
+It is not implementation-ready. Exact CXR framing, authentication, device
+addressing, request correlation, and reply semantics remain open.
+
+The replay could repair a stale control-plane mismatch. It cannot repair an
+incompatible cable, failed contact, failed USB controller, or lower-level
+gadget executor that ignores the property.
+
+### Recovery boundary
+
+Recovery contains ADB, sideload, fastbootd, and a generic swipe-capable menu,
+but the non-display gesture mapping and reliable exit sequence are unresolved.
+Blind recovery navigation, sideload, fastboot, flashing, and slot changes
+remain outside the approved boundary.
+<!-- USB_ADB_CONTROL_STATIC_END -->

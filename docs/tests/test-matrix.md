@@ -41,6 +41,6 @@
 | 18B | Runtime domain and property context | Manifest, seapp and policy evidence | PARTIAL — `priv_app` and `adbd_config_prop` bounded; direct authorization unresolved |
 | 18C | Cable and debug-board path | Real boot inputs and bounded native/FDT analysis | BOUNDED — charger-side debug-board evidence; no direct ADB/cable-ID path proven |
 | 18D | Repair-app and recovery boundaries | Static reachability and recovery artifacts | BOUNDED — no safe exported repair component; phone replay remains blocked |
-| 18 | Consolidated USB ADB control analysis | 18A–18D | PASS in static/offline scope; current runtime and cable cause unresolved |
+| 18 | USB ADB control-path follow-up | 18A–18D | PASS in static/offline scope; current runtime and cable cause unresolved |
 
 Raw captures remain private. Public reports are sanitized.
