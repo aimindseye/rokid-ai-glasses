@@ -151,6 +151,7 @@ strongly supported cloud-network gateway.
 
 See [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md).
 | Understand OTA and firmware setup | [OTA & Firmware](docs/findings/ota-and-firmware.md) |
+| Review exact OTA, boot-image, AVB, and recovery values | [OTA & Firmware — Technical Appendix](docs/findings/ota-and-firmware-technical-appendix.md) |
 
 ### How are firmware updates checked?
 

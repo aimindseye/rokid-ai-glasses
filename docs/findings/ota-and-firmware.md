@@ -1,8 +1,8 @@
 # OTA & Firmware
 
-This page describes the OTA packaging, partition layout, boot chain, verified
-boot, recovery environment, fastbootd architecture, and patch-risk findings for
-the tested non-display Rokid AI Glasses Style.
+This page summarizes the OTA packaging, firmware layout, boot chain, recovery
+environment, fastbootd architecture, and patch-risk findings for the tested
+non-display Rokid AI Glasses Style.
 
 The exact stock update targets:
 
@@ -10,10 +10,15 @@ The exact stock update targets:
 1.22.009-20260710-150201
 ```
 
-The work was offline. No OTA was installed, no recovery or fastboot command was
-issued to the glasses, no partition was written, and no slot was changed.
+The work was performed offline. No OTA was installed, no recovery or fastboot
+command was issued to the glasses, no partition was written, and no slot was
+changed.
 
-## OTA package
+Exact byte counts, hashes, header fields, AVB descriptors, and stock-versus-
+patched comparison values are collected in the
+[compact technical appendix](ota-and-firmware-technical-appendix.md).
+
+## OTA package and exact byte sizes
 
 The package is a signed Android A/B OTA:
 
@@ -26,84 +31,51 @@ post-build=1.22.009-20260710-150201
 No source-build constraint was present, supporting classification as a full
 rather than incremental OTA.
 
-Verified hashes:
-
-```text
-outer OTA:
-163ab2058d8e8789f82e962c7bfccbe6ca9725437d15adaf4bc4a811bafc94e5
-
-payload.bin:
-7cd13cca5ad530207ad42aec188ddbe8187f01716b2e54a228e9612e25321a24
-
-metadata:
-b48d9d6d54e5362e08e2facaa4ec5d152c16301273482f20a66135f77476cfba
-```
+The outer package and embedded payload were validated by exact size and hash.
+The payload uses Android's `CrAU` payload format version 2.
 
 ## Partition inventory
 
-| Partition | Approximate image size |
-|---|---:|
-| `boot` | 101 MB |
-| `dtbo` | 25 MB |
-| `imagefv` | 16 KB |
-| `modem` | 48 MB |
-| `odm` | 1.1 MB |
-| `product` | 761 MB |
-| `recovery` | 105 MB |
-| `system` | 853 MB |
-| `system_ext` | 308 MB |
-| `uefi` | 2.7 MB |
-| `vbmeta` | 8 KB |
-| `vbmeta_system` | 4 KB |
-| `vendor` | 614 MB |
-| `vendor_boot` | 101 MB |
-| `vendor_dlkm` | 65 MB |
-| `xbl` | 983 KB |
-| `xbl_config` | 148 KB |
-| `xbl_ramdump` | 700 KB |
+The payload contains boot-chain, modem, Android system, vendor, recovery, and
+Qualcomm bootloader-related partitions.
 
 No separate `init_boot` partition was present.
 
-The filesystems are described as separate read-only image mounts. The evidence
-does not justify calling the layout dynamic partitions.
+The filesystems are best described as separate read-only image mounts. The
+available evidence does not justify labeling the layout as dynamic partitions.
 
-## Boot images
+## Boot-image structures
 
-The stock boot image uses Android boot header version 3:
+The stock boot image uses Android boot header version 3 and targets Android 12
+with the July 2024 security patch level.
 
-```text
-Android version:       12
-security patch level:  2024-07
-partition size:        100663296 bytes
-kernel size:           47331340 bytes
-ramdisk size:          1922154 bytes
-```
+Recovery is also a header-v3 image and primarily carries a recovery ramdisk.
+`vendor_boot` uses header version 3 and contains the vendor ramdisk, DTB, and
+Qualcomm USB-controller configuration.
 
-Stock boot SHA-256:
+The detailed image sizes, ramdisk sizes, DTB size, hashes, and meaningful boot
+image boundary are in the technical appendix.
 
-```text
-31f071baf83381c78d007b4849944b2778e49899d28beae2734c55b93ec82d3e
-```
+## Image hashes
 
-Recovery contains `recovery`, `adbd`, `minadbd`, `update_engine_sideload`,
-`fastbootd`, recovery fastboot libraries, and generic swipe-related menu code.
+Public provenance is hash-only. The raw OTA, payload, boot images, extracted
+filesystems, APKs, and decompiled trees remain private.
 
-Recovery SHA-256:
+The appendix lists the exact SHA-256 values for:
 
 ```text
-aed5c2ec43b6a8e7c9d5483a3dd91d7f3acef958312bd7bf4f454c60e23b4102
+outer OTA
+payload.bin
+metadata
+boot.img
+dtbo.img
+recovery.img
+vendor_boot.img
+vbmeta.img
+vbmeta_system.img
 ```
 
-`vendor_boot` uses header version 3 and contains the vendor ramdisk, device tree,
-and Qualcomm USB-controller configuration.
-
-Vendor boot SHA-256:
-
-```text
-c586a8bed81d731a4a1f1292c38071f6e0d3bca336809474d9eee0ce88d6d92a
-```
-
-## Verified Boot
+## AVB topology and descriptors
 
 Top-level `vbmeta` uses:
 
@@ -111,95 +83,73 @@ Top-level `vbmeta` uses:
 SHA256_RSA4096
 ```
 
-It protects the boot-related images and chains recovery and `vbmeta_system`.
-`vbmeta_system` protects system, product, and system-extension images.
-Vendor, vendor-DLKM, and ODM use hashtree descriptors.
+It directly protects the boot-related images and chains recovery and
+`vbmeta_system`.
 
-The stock boot image matches the digest in Rokid's signed top-level AVB
-metadata.
+`vbmeta_system` protects the system, product, and system-extension images.
+Vendor, vendor-DLKM, and ODM are protected by hashtree descriptors.
 
-```text
-vbmeta:
-d17b2ace773b74ab3e149b4b50709e033840e9c2a7170e945f998c77296a201a
+The stock boot image matches the digest recorded in Rokid's signed top-level
+AVB metadata.
 
-vbmeta_system:
-dbbbe035833e445cc1f7ebc3ed1ddd39f23ccbed0c8cc62155be01285ad8534b
-```
+The appendix records the boot descriptor's meaningful image size, salt,
+digest, and the rollback-index locations used by the chained metadata.
 
-## OTA signing and recovery trust
+## Recovery and fastbootd
+
+Recovery contains:
+
+- `recovery`;
+- `adbd`;
+- `minadbd`;
+- `update_engine_sideload`;
+- `fastbootd`;
+- fastboot HAL libraries;
+- standard recovery-menu and swipe-related UI strings.
+
+Core fastbootd contains ordinary partition operations. The vendor HAL supplies
+vendor-specific hooks and metadata rather than the basic writer.
+
+Static evidence did not prove which fastboot HAL implementation loads at
+runtime, which partitions are exposed, or how lock enforcement behaves on this
+device.
+
+Generic swipe-capable recovery UI support is present, but the non-display
+gesture direction, arm evdev mapping, top-button keycode, press behavior, and
+reliable exit sequence remain unresolved.
+
+## OTA signing and sideload trust
 
 The OTA is signed with a self-issued Rokid System certificate. The package
 certificate matches a certificate trusted by the exact recovery environment.
 
 This makes the stock OTA a credible signed recovery-sideload candidate for the
-matching device family. It does not prove that same-build reinstall is
-accepted, that it repairs slot state, or that it repairs USB debugging.
+matching device family.
+
+It does not prove that:
+
+- same-build reinstall is accepted;
+- equal-build reinstall repairs slot metadata;
+- every device-specific state is preserved;
+- USB debugging is repaired;
+- blind recovery navigation is safe.
 
 The stock OTA remains an emergency research candidate, not an approved first
 repair step.
 
-## Normal USB behavior
+## Magisk patch comparison
 
-The normal boot ramdisk defaults persistent USB configuration to `none`.
-Recovery also defaults to `none` and enables ADB, sideload, or fastboot through
-mode-specific configfs transitions.
-
-The USB-ADB control path is documented in
-[Glasses OS & Services](glasses-android-os-and-adb.md).
-
-## Fastbootd
-
-The recovery environment contains fastbootd and calls the `IFastboot` HAL.
-Core fastbootd contains ordinary partition operations; the vendor HAL supplies
-vendor-specific hooks and metadata.
-
-Only one visible HIDL passthrough implementation candidate was recovered, with
-an `impl-mock` library name. Static evidence did not prove runtime selection.
-
-```text
-fastbootd architecture present: yes
-ordinary core flash handlers present: yes
-runtime partition exposure and lock enforcement: unresolved
-safe flashing authorization: no
-```
-
-## Recovery menu and input limits
-
-The exact recovery contains standard menu labels including:
-
-```text
-Reboot system now
-Apply update from ADB
-Apply update from SD card
-Wipe data/factory reset
-Wipe cache partition
-Mount /system
-View recovery logs
-Run graphics test
-Run locale test
-Enter fastboot
-Power off
-```
-
-Generic swipe-capable recovery UI support is present. Offline analysis did not
-close the initial selection, gesture direction, arm evdev mapping, top-button
-keycode, press behavior, or reliable no-display feedback.
-
-Blind recovery navigation remains outside the approved boundary.
-
-## Research-only Magisk patch
-
-A research-only image was generated from the exact stock boot image using
+A research-only boot image was generated from the exact stock boot image using
 Magisk 30.7 on a Pixel phone. It was never installed on the glasses.
 
-The patch preserved full partition size, kernel size, and a parseable boot
-header. It did not preserve AVB integrity:
+The patch preserved the full partition size and kernel size, but did not
+preserve AVB consistency:
 
 ```text
 embedded descriptor size stale:    yes
 embedded descriptor digest stale:  yes
 matches Rokid signed boot digest:   no
-AVB verification status:            failure
+AVB verification:                   failed
 ```
 
 The patched ramdisk also embedded:
@@ -208,20 +158,24 @@ The patched ramdisk also embedded:
 PREINITDEVICE=sda8
 ```
 
-That came from the Pixel patching environment and is not qualified for the
-glasses.
-
-```text
-RESEARCH_ONLY_NEVER_FLASH=YES
-```
+That value came from the Pixel patching environment and is not qualified for
+the glasses.
 
 Gross partition truncation, gross boot-header damage, and kernel corruption
-were ruled out for the analyzed image. The leading possible failure stages are
-fastbootd rejection, bootloader enforcement of Rokid's signed digest, or later
-slot bootability effects. The exact stage remains unresolved without the
-researcher's complete fastboot transcript.
+were ruled out for the analyzed image.
 
-## Safety boundary
+The leading possible failure stages are:
+
+1. fastbootd rejects a locked or internally inconsistent AVB image;
+2. writing succeeds, but the bootloader rejects the image because it does not
+   match Rokid's signed top-level boot digest;
+3. failed boot attempts affect slot bootability or return the device to a
+   limited fastboot state.
+
+The exact stage remains unresolved without the original researcher's complete
+fastboot transcript.
+
+## Safety conclusions
 
 The present research does not authorize:
 
@@ -236,3 +190,7 @@ verified-boot disabling
 slot changes
 patched-boot installation
 ```
+
+The normal USB-ADB control path, stale-state hypothesis, cable boundary, and
+repair-app feasibility are documented in
+[Glasses OS & Services](glasses-android-os-and-adb.md).
