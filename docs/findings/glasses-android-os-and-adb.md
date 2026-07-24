@@ -74,3 +74,25 @@ USB ADB are left enabled while development is active. The S25 daily-driver
 migration is deferred until the target applications work end-to-end on Pixel.
 
 See [Test 17](../tests/17-glasses-os-adb-and-network-exposure.md).
+
+<!-- TEST18_USB_ADB_STATIC_START -->
+## Test 18 static control-path follow-up
+
+Offline analysis of the exact stock software identified the
+`settings_developer_mode` key and the glasses-side enable/disable writes. The
+enable path sets `persist.vendor.adb=true` and writes global ADB state `1`; the
+available disable path sets `persist.vendor.adb=false` without a matching
+global-state `0` write. This creates a credible stale-state hypothesis, but it
+does not reveal the current live value on the glasses.
+
+The relevant Rokid packages statically resolve to `priv_app`, and
+`persist.vendor.adb` maps to `adbd_config_prop`. Direct authorization after
+compiled-policy attribute expansion remains unresolved.
+
+Real boot inputs showed charger-related generic debug-board detection but no
+direct path to ADB or an official cable identifier. Cable/contact and
+firmware/gadget-state explanations both remain open.
+
+See [Test 18](../tests/18-usb-adb-control-and-cable-analysis.md) and the
+[consolidated control-path finding](usb-adb-control-path-and-stale-state.md).
+<!-- TEST18_USB_ADB_STATIC_END -->

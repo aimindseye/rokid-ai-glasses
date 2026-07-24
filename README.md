@@ -55,6 +55,7 @@ This repository is designed as a one-stop starting point for:
 | Understand the visual-assistant workflow | [Visual AI workflow](docs/findings/visual-ai-workflow.md) |
 | Understand Android background services and data sharing | [Background services finding](docs/findings/background-services-and-data-sharing.md) |
 | Understand the glasses OS, USB ADB, and local services | [Glasses OS & Services](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
+| Understand ADB control, stale-state risk, and cable uncertainty | [Test 18](docs/tests/18-usb-adb-control-and-cable-analysis.md) |
 | Reproduce a test | [Public scripts](scripts/README.md) |
 
 ## What this product is
@@ -245,6 +246,7 @@ Published qualification sets include:
   context, background-service persistence, force-stop behavior, and Pixel/S25
   comparison;
 - **Test 17A–17F** — glasses Android/boot/USB-ADB baseline, privileged local
+* Test 18A–18D — offline ADB-toggle control-path analysis, privilege/domain boundaries, cable/debug-board evidence, and recovery safety assessment.
   services, package hashes, port 8341, and passive voice/visual interface tests.
 
 Highlights:
@@ -347,3 +349,7 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md).
 This project is not affiliated with Rokid. Product names and trademarks belong
 to their respective owners. Testing is performed only on devices and accounts
 controlled by the repository owner.
+
+## Test 18 highlight
+
+* Static OTA analysis identified `settings_developer_mode`, a vendor ADB property path, and a possible disable-path stale-state asymmetry; runtime state and cable cause remain unresolved.
