@@ -1,0 +1,157 @@
+{
+  "architecture": "arm64",
+  "callbacks": {
+    "finalizer_execution_count": 0,
+    "finalizer_target_count": 2,
+    "initializer_execution_count": 29,
+    "initializer_target_count": 29
+  },
+  "event_type_counts": {
+    "agent_configured": 1,
+    "callback_array_snapshot_precision": 1,
+    "callback_execute_precision": 29,
+    "callback_hook_installed_precision": 31,
+    "component_failed": 1,
+    "java_bridge_ready": 1,
+    "java_handoff_precision": 3,
+    "java_hook_installed": 6,
+    "java_hooks_ready": 1,
+    "lifecycle_native_enter": 1,
+    "native_hook_installed_precision": 2,
+    "native_hooks_ready": 1,
+    "register_natives_attributed": 3,
+    "register_natives_hook_installed": 2,
+    "register_natives_hooks_ready": 1,
+    "registered_native_enter": 2,
+    "registered_native_hook_installed": 14,
+    "registered_native_leave": 1,
+    "script_loaded": 1
+  },
+  "evidence_level": "Observed",
+  "internal_evidence_release": "r1.3.3.2.22.1.1",
+  "java_handoff": {
+    "application_attach_enter_count": 1,
+    "application_attach_leave_count": 0,
+    "application_oncreate_count": 0,
+    "hook_overload_count": 9,
+    "java_bridge_ready": true,
+    "myapplication_classload_count": 2
+  },
+  "native_execution": {
+    "myjni_cl": "ENTER_AND_RETURN_OBSERVED",
+    "myjni_cl_elapsed_ms": 741,
+    "myjni_load": "ENTER_OBSERVED_RETURN_NOT_OBSERVED_BEFORE_EXIT"
+  },
+  "not_proven": [
+    "Application.attach return",
+    "LoadedApk.makeApplication execution",
+    "Instrumentation.callApplicationOnCreate execution",
+    "complete protected DEX/class inventory",
+    "semantics of all MyJni methods",
+    "complete first-party application or device protocol"
+  ],
+  "private_evidence_sha256": "de42196325239dabc54982d8d3e318ab77b91913eb6eab0ff3f8f80438301e30",
+  "register_natives": {
+    "call_count": 3,
+    "class_method_counts": {
+      "android.net.TrafficStats": 2,
+      "com.netease.nis.wrapper.MyJni": 11,
+      "dalvik.system.DexFile": 1
+    },
+    "myjni_methods": [
+      {
+        "execution": "Entry observed; return not observed before process exit",
+        "name": "load",
+        "signature": "(Landroid/app/Application;Ljava/lang/String;)Z"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "run",
+        "signature": "(Landroid/content/Context;Landroid/app/Application;)Z"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "d",
+        "signature": "(Ljava/lang/String;)V"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "e",
+        "signature": "(Ljava/lang/String;)V"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "cp",
+        "signature": "()V"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "ip",
+        "signature": "(Landroid/app/Application;)V"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "ra",
+        "signature": "(Landroid/content/Context;Landroid/app/Application;)Z"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "getEnvInfo",
+        "signature": "()Ljava/lang/String;"
+      },
+      {
+        "execution": "Entry and return observed; 741 ms",
+        "name": "cl",
+        "signature": "(Ljava/lang/ClassLoader;Landroid/content/pm/ApplicationInfo;Ljava/lang/String;)Ljava/lang/ClassLoader;"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "rp",
+        "signature": "(Landroid/content/Context;Landroid/app/Application;)Z"
+      },
+      {
+        "execution": "Registered; execution not observed",
+        "name": "ed",
+        "signature": "(Ljava/lang/String;)V"
+      }
+    ],
+    "total_method_count": 14
+  },
+  "runtime_acceptance": "PASS_RECOVERED",
+  "runtime_capture": {
+    "external_relocation_slot_count": 68,
+    "post_transform_snapshot": {
+      "published": false,
+      "sha256": "f05c08d1ee74eeeb8600f93feecb71c59a3f0a970a5def780404e42ee48701f7",
+      "size_bytes": 821616,
+      "standalone_elf_at_sample_boundary": false
+    },
+    "recovered_event_count": 102,
+    "secondary_mapping_base": "CAPTURED_ADDRESS_WITHHELD"
+  },
+  "schema": "rokid.public.native_loader_runtime_status.v1",
+  "six_blocker_closure": {
+    "resolved_count": 6,
+    "statuses": {
+      "MYJNI_NATIVE_REGISTRATION": "PROVEN_11_METHODS_FOR_EXACT_CLASS",
+      "POST_TRANSFORM_RUNTIME_BYTES": "CAPTURED_EXACT_SHA256",
+      "PROTECTED_JAVA_HANDOFF": "PROVEN_MYAPPLICATION_CLASSLOAD_AND_APPLICATION_ATTACH_ENTER",
+      "SECONDARY_CALLBACK_EXECUTION": "PROVEN_INIT_29_FINI_0_EXECUTIONS",
+      "SECONDARY_EXTERNAL_SYMBOL_RELOCATION_VALUES": "CAPTURED_68_SLOTS",
+      "SECONDARY_MAPPING_RUNTIME_BASE": "CAPTURED"
+    },
+    "total_count": 6
+  },
+  "source_identity": {
+    "accepted_apk_set_aggregate_sha256": "7215996f9282f139390553ae590976057dac4107d2113c0d34e443ccf68b801c",
+    "libnesec_sha256": "58bab7c77df93962cceb7688d2f3de0daab7957906b32c97dacd263ea0b608c4"
+  },
+  "terminal_state": {
+    "application_relaunched_after_exit": true,
+    "cause": "UNRESOLVED",
+    "classification": "EXIT_SELF_STATUS_28",
+    "tombstone_present": false
+  },
+  "tested_package": "com.rokid.sprite.global.aiapp",
+  "title": "Hi Rokid Protected Native Loader and Java Handoff"
+}

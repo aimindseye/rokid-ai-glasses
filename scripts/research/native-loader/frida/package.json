@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "frida-compile": "19.0.5",
+    "frida-java-bridge": "7.0.13"
+  },
+  "name": "rokid-public-native-loader-observer",
+  "private": true,
+  "scripts": {
+    "build": "frida-compile agent.ts -o dist/agent.js -T none"
+  },
+  "type": "module",
+  "version": "1.0.0"
+}

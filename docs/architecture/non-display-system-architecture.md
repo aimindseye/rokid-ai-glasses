@@ -12,6 +12,11 @@ This document deliberately separates three layers that are easy to conflate:
 2. the Hi Rokid companion application and its Android services;
 3. Rokid-operated cloud, object-storage, account, and OTA services.
 
+
+Within the phone layer, the guide also distinguishes the ordinary Android
+service/UI surface from the protected native-loader and Java-application
+handoff used during Hi Rokid startup.
+
 Evidence labels:
 
 - **Official** — published by Rokid;
@@ -53,6 +58,8 @@ flowchart LR
             LOC["LocationService"]
             CACHE["App-private conversation cache"]
             MEDIA["Bluetooth media and image transport"]
+            LOADER["Protected native loader\nlibnesec.so"]
+            PRT["Protected runtime\nMyJni → MyApplication"]
         end
         POS["Android Bluetooth, network, location, notification and lifecycle services"]
     end
@@ -84,6 +91,9 @@ flowchart LR
     CONN <--> AIS
     UI <--> AIS
     UI <--> CACHE
+    UI --> LOADER
+    LOADER --> PRT
+    PRT --> AIS
     AIS <--> LOC
     APP <--> POS
 
@@ -239,6 +249,54 @@ A clean-install inventory found no second AI package and no separately
 installed application corresponding to the UI label “AI Service.” The
 assistant runtime and background services are components inside the Hi Rokid
 package.
+
+
+### Protected companion-app startup
+
+**Observed:** the global Hi Rokid package contains a protected startup layer
+whose complete application logic is not available through ordinary static APK
+inspection. Runtime instrumentation on a user-controlled rooted Pixel 7
+recovered this bounded sequence:
+
+```mermaid
+flowchart TD
+    APK["Hi Rokid package\ncom.rokid.sprite.global.aiapp"]
+    NATIVE["libnesec.so protected native loader"]
+    IMAGE["Secondary runtime image\nmaterialized and mapped"]
+    RELOC["68 external relocation slots\nresolved at runtime"]
+    INIT["Initializer callback array\n29 targets executed"]
+    JNI["RegisterNatives\n11 methods attributed to MyJni"]
+    CL["MyJni.cl\nenter and return observed"]
+    LOAD["MyJni.load\nentry observed"]
+    APPCLASS["MyApplication\nclass load observed twice"]
+    ATTACH["Application.attach\nentry observed"]
+    NEXT["Application.onCreate / complete protected app\nnot observed"]
+
+    APK --> NATIVE --> IMAGE --> RELOC --> INIT --> JNI
+    JNI --> CL --> APPCLASS --> ATTACH --> NEXT
+    JNI --> LOAD
+```
+
+| Runtime boundary | Sanitized result |
+|---|---|
+| Secondary mapping | Captured; absolute address omitted publicly |
+| External relocation state | 68 resolved slots captured |
+| Post-transform snapshot | Captured and represented publicly by SHA-256 only |
+| Initializer callbacks | 29 targets present; 29 executions observed |
+| Finalizer callbacks | 2 targets present; 0 executions observed |
+| JNI registration | 14 methods total across three classes; exactly 11 attributed to `com.netease.nis.wrapper.MyJni` |
+| Native handoff | `MyJni.cl` enter/return and `MyJni.load` entry observed |
+| Protected Java class | `com.netease.nis.wrapper.MyApplication` loaded twice |
+| Android lifecycle | `Application.attach` entry observed; return and `Application.onCreate` not observed |
+
+The research establishes the loader and Java-handoff architecture. It does not
+publish proprietary binaries, recovered DEX files, memory dumps, absolute
+runtime addresses, or raw device events, and it does not establish the complete
+business logic of Hi Rokid.
+
+See [Protected native loader research](../research/native-loader/README.md) for
+the evidence-bounded findings, exact JNI signatures, methodology, limitations,
+and hash-only provenance.
 
 ### Primary Android services
 
@@ -554,6 +612,7 @@ this local component.
 | Glasses hardware ↔ glasses OS | Camera, microphone, buttons, storage and local privileged services |
 | Glasses OS ↔ phone | Device control, audio, media and firmware state |
 | Hi Rokid services ↔ phone OS | Background execution, permissions, location, notifications and lifecycle |
+| Hi Rokid wrapper ↔ protected runtime | Native image materialization, relocation, dynamic JNI registration, class-loader handoff and lifecycle visibility |
 | Phone app-private cache | Conversation text and image thumbnails |
 | Phone ↔ Rokid account | Identity, binding and preferences |
 | Phone ↔ AI gateway | Audio, sensitive scene context, model routes and responses |
@@ -584,6 +643,13 @@ The dedicated development baseline keeps the glasses paired to the Pixel 7,
 leaves Developer Mode enabled, and reserves the Samsung S25 for later
 compatibility testing after custom applications work on the Pixel.
 
+
+The protected-loader findings should guide boundary discovery, not encourage
+copying the first-party protection mechanism into a common smart-glasses
+platform. A clean implementation should isolate reusable assistant, media,
+translation and transport interfaces from a Rokid-specific adapter, and should
+prefer documented SDK or protocol boundaries where available.
+
 ## Open questions
 
 - Exact Bluetooth RFCOMM/DLCI framing for audio and images
@@ -599,3 +665,10 @@ compatibility testing after custom applications work on the Pixel.
 - Exact trigger and persistence model for the Hi Rokid Developer Mode control
 - Local-model lifecycle and offline boundaries
 - Firmware signature-verification implementation
+
+- Complete protected DEX/class materialization inventory
+- Completion of `Application.attach`, `LoadedApk.makeApplication`, and
+  `Instrumentation.callApplicationOnCreate`
+- Semantic attribution of all 11 dynamically registered `MyJni` methods
+- Relationship between protected bootstrap methods and user-facing Bluetooth,
+  AI, translation, media, account, and firmware workflows

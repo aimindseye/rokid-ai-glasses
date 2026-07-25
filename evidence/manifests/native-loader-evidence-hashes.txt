@@ -1,0 +1,11 @@
+
+# Hi Rokid protected native loader — public hash provenance
+# SHA-256 values only. Private/proprietary artifacts are not in this repository.
+
+7215996f9282f139390553ae590976057dac4107d2113c0d34e443ccf68b801c  accepted-apk-set.aggregate.sha256
+58bab7c77df93962cceb7688d2f3de0daab7957906b32c97dacd263ea0b608c4  libnesec.so.sha256
+f05c08d1ee74eeeb8600f93feecb71c59a3f0a970a5def780404e42ee48701f7  post-transform-runtime-snapshot.private.sha256
+93be25461c7b4d540ca6050b2db270136609b98b3fa6862c788fc98cdd7f6688  native-runtime-attempt3.private-evidence.zip.sha256
+0cbdc2f2714c81ec45cd5d8d971d082e08be1e7066a72402ec38845475db8a3e  java-handoff-attempt1.diagnostics-private.zip.sha256
+77a7b3f2074e3439b4f72365a86f8456dcdc25a873ee0ca50685321c45e511aa  recovered-102-event-stream.private.sha256
+de42196325239dabc54982d8d3e318ab77b91913eb6eab0ff3f8f80438301e30  protected-loader-six-blocker-closure.private-evidence.zip.sha256

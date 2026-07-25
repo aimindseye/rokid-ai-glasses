@@ -23,6 +23,8 @@ This repository is designed as a one-stop starting point for:
 
 > **The tested US non-display Rokid AI Glasses are a full Android 12 device. The retail production build exposes RSA-protected USB ADB when Developer Mode is enabled, contains a privileged on-glasses Rokid application stack, and runs a root TEE-domain daemon listening on TCP port 8341. During tested voice and visual AI workflows, the glasses did not activate Wi-Fi, Wi-Fi Direct or an IP route; the paired phone remained the cloud-network gateway.**
 
+> **A separate runtime study of the global Hi Rokid Android companion app recovered its protected native-loader and Java-handoff architecture. The observed path materialized a secondary runtime image, resolved 68 external relocation slots, executed 29 initializer callbacks, dynamically registered 11 methods for `com.netease.nis.wrapper.MyJni`, completed `MyJni.cl`, entered `MyJni.load`, loaded `com.netease.nis.wrapper.MyApplication`, and entered `Application.attach`. The study does not claim recovery of the complete protected application or its business protocols.**
+
 ---
 
 ## Contents
@@ -36,6 +38,7 @@ This repository is designed as a one-stop starting point for:
 - [Architecture](#architecture)
 - [Developer resources](#developer-resources)
 - [Validated research](#validated-research)
+- [Protected companion-app startup research](#protected-companion-app-startup-research)
 - [Privacy and evidence](#privacy-and-evidence)
 - [Repository layout](#repository-layout)
 - [Contributing](#contributing)
@@ -56,6 +59,7 @@ This repository is designed as a one-stop starting point for:
 | Understand Android background services and data sharing | [Background services finding](docs/findings/background-services-and-data-sharing.md) |
 | Understand the glasses OS, USB ADB, and local services | [Glasses OS & Services](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
 | Reproduce a test | [Public scripts](scripts/README.md) |
+| Understand the protected Hi Rokid startup path | [Protected native loader research](docs/research/native-loader/README.md) |
 
 ## What this product is
 
@@ -153,6 +157,20 @@ See [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md).
 | Understand OTA and firmware setup | [OTA & Firmware](docs/findings/ota-and-firmware.md) |
 | Review exact OTA, boot-image, AVB, and recovery values | [OTA & Firmware — Technical Appendix](docs/findings/ota-and-firmware-technical-appendix.md) |
 
+
+### How does the protected Hi Rokid application start?
+
+Observed runtime evidence supports a staged phone-side startup path. The native
+loader materializes and relocates a secondary image, executes initializer
+callbacks, dynamically registers native methods for
+`com.netease.nis.wrapper.MyJni`, returns a protected class-loader boundary from
+`MyJni.cl`, loads `com.netease.nis.wrapper.MyApplication`, and enters
+`Application.attach`.
+
+The evidence does **not** establish completion through `Application.onCreate`,
+a complete protected DEX/class inventory, or the semantics of every native
+method. See [Protected native loader research](docs/research/native-loader/README.md).
+
 ### How are firmware updates checked?
 
 When the glasses are connected, Hi Rokid checks automatically after app launch,
@@ -217,6 +235,7 @@ Validated flows:
 - [Glasses Android OS and USB ADB](docs/findings/glasses-android-os-and-adb.md)
 - [Glasses local services and TCP port 8341](docs/findings/glasses-local-services-and-port-8341.md)
 - [Firmware update path](docs/findings/firmware-update-path.md)
+- [Protected native loader and Java handoff](docs/research/native-loader/loader-architecture.md)
 
 ## Developer resources
 
@@ -248,6 +267,7 @@ Published qualification sets include:
   comparison;
 - **Test 17A–17F** — glasses Android/boot/USB-ADB baseline, privileged local
   services, package hashes, port 8341, and passive voice/visual interface tests.
+- **Protected native loader and Java handoff investigation** — secondary runtime mapping, relocation state, initializer callbacks, exact MyJni registration attribution, native execution, protected class loading, and `Application.attach` entry.
 
 Highlights:
 
@@ -291,8 +311,29 @@ Highlights:
   TCP 8341 were observed. No request was sent to that listener.
 - Neither the tested stock voice nor fresh-image visual workflow activated a
   glasses Wi-Fi/P2P interface or IPv4 route.
+- The protected companion-app startup path dynamically registered 11 methods for `com.netease.nis.wrapper.MyJni`, executed all 29 observed initializer callbacks, loaded `MyApplication`, and entered `Application.attach`; finalizer execution and `Application.onCreate` were not observed.
 
 See [Test matrix](docs/tests/test-matrix.md).
+
+
+## Protected companion-app startup research
+
+The public research package documents the validated native-loader and Java
+handoff path without publishing APKs, native libraries, memory snapshots,
+private runtime events, tokens, account data, device identifiers, or absolute
+runtime addresses.
+
+Start with:
+
+- [Research index](docs/research/native-loader/README.md)
+- [Validated findings](docs/research/native-loader/r1.3.3.2.22.1.1-findings.md)
+- [Loader architecture](docs/research/native-loader/loader-architecture.md)
+- [Dynamically registered JNI map](docs/research/native-loader/jni-registration-map.md)
+- [Limitations](docs/research/native-loader/limitations.md)
+
+The internal evidence lineage uses release identifiers for reproducibility, but
+public-facing titles describe the technical subject instead of presenting the
+work as “Test 22” or “r22.”
 
 ## Privacy and evidence
 
@@ -304,6 +345,7 @@ Do not commit:
 - raw logcat, bugreports, HCI logs, or decrypted payload dumps;
 - tokens, account IDs, serials, Bluetooth addresses, or precise location;
 - APKs, native libraries, or decompiled application trees;
+- memory dumps, transformed binary snapshots, recovered proprietary DEX files, or absolute runtime-address inventories;
 - ADB host keys, device authorization files, or USB/device serials;
 - complete block-device maps or boot/vbmeta/vendor/partition images;
 - screenshots containing private account or device information.
@@ -329,6 +371,8 @@ See [Evidence handling](docs/methodology/evidence-handling.md).
 - `scripts/tests/` — interactive capture runners
 - `scripts/recovery/` — bounded MediaStore recovery/finalization
 - `scripts/safety/` — public-repository privacy gates
+- `docs/research/native-loader/` — sanitized protected-loader findings, architecture, JNI map, methodology, limitations, and provenance hashes
+- `scripts/research/native-loader/` — generic manifest/status utilities and Frida 17 loader-observation infrastructure
 
 ## Contributing
 
@@ -349,5 +393,3 @@ Read [CONTRIBUTING.md](CONTRIBUTING.md).
 This project is not affiliated with Rokid. Product names and trademarks belong
 to their respective owners. Testing is performed only on devices and accounts
 controlled by the repository owner.
-
-## Test 18 highlight

@@ -1,0 +1,24 @@
+
+flowchart TD
+    APK["Hi Rokid package\ncom.rokid.sprite.global.aiapp"]
+    NATIVE["libnesec.so\nprotected native loader"]
+    INPUT["Current relocated libnesec PT_LOAD mapping"]
+    TRANSFORM["Protected transform and parser chain"]
+    SECONDARY["Secondary runtime image\nmaterialized and mapped"]
+    RELOC["Runtime relocations\n68 external slots captured"]
+    CALLBACKS["Callback arrays\n29 init · 2 fini targets"]
+    INITEXEC["29 initializer executions"]
+    REG["ART RegisterNatives\n3 calls · 14 total methods"]
+    MYJNI["com.netease.nis.wrapper.MyJni\n11 methods"]
+    CL["MyJni.cl\nentry and return observed"]
+    LOAD["MyJni.load\nentry observed"]
+    CLASS["MyApplication\nloaded twice"]
+    ATTACH["Application.attach\nentry observed"]
+    NEXT["attach return / onCreate / full protected app\nunresolved"]
+    FINI["2 finalizer targets\n0 executions observed"]
+
+    APK --> NATIVE --> INPUT --> TRANSFORM --> SECONDARY --> RELOC --> CALLBACKS
+    CALLBACKS --> INITEXEC --> REG --> MYJNI
+    MYJNI --> CL --> CLASS --> ATTACH --> NEXT
+    MYJNI --> LOAD
+    CALLBACKS -. no observed execution .-> FINI
