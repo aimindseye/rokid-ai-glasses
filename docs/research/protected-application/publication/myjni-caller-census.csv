@@ -1,0 +1,12 @@
+method,signature,classification,evidence_class,runtime_observations,physical_dex_observations,unique_logical_sites,caller_classes
+cl,(Ljava/lang/ClassLoader;Landroid/content/pm/ApplicationInfo;Ljava/lang/String;)Ljava/lang/ClassLoader;,PROTECTED_CODE_LOADING,RUNTIME_CALLER_CONFIRMED,2,3,1,android.app.ActivityThread;android.app.ActivityThread$H;android.app.LoadedApk;android.os.Handler;android.os.Looper;com.android.internal.os.RuntimeInit$MethodAndArgsCaller;com.android.internal.os.ZygoteInit;com.netease.nis.wrapper.g;java.lang.reflect.Method
+cp,()V,FEATURE_PATH_CANDIDATE,STATIC_CALLER_ONLY,0,3,1,com.netease.nis.wrapper.MyApplication
+d,(Ljava/lang/String;)V,REGISTERED_NOT_REACHED,UNRESOLVED_CALLER,0,0,0,
+e,(Ljava/lang/String;)V,REGISTERED_NOT_REACHED,UNRESOLVED_CALLER,0,0,0,
+ed,(Ljava/lang/String;)V,REGISTERED_NOT_REACHED,UNRESOLVED_CALLER,0,0,0,
+getEnvInfo,()Ljava/lang/String;,REGISTERED_NOT_REACHED,UNRESOLVED_CALLER,0,0,0,
+ip,(Landroid/app/Application;)V,FEATURE_PATH_CANDIDATE,STATIC_CALLER_ONLY,0,6,2,com.netease.nis.wrapper.MyApplication
+load,(Landroid/app/Application;Ljava/lang/String;)Z,STARTUP_BOOTSTRAP,RUNTIME_CALLER_CONFIRMED,4,3,1,android.app.ActivityThread;android.app.ActivityThread$H;android.app.Application;android.app.Instrumentation;android.app.LoadedApk;android.os.Handler;android.os.Looper;com.android.internal.os.RuntimeInit$MethodAndArgsCaller;com.android.internal.os.ZygoteInit;com.netease.nis.wrapper.MyApplication;java.lang.reflect.Method
+ra,(Landroid/content/Context;Landroid/app/Application;)Z,FEATURE_PATH_CANDIDATE,STATIC_CALLER_ONLY,0,3,1,com.netease.nis.wrapper.MyApplication
+rp,(Landroid/content/Context;Landroid/app/Application;)Z,FEATURE_PATH_CANDIDATE,STATIC_CALLER_ONLY,0,3,1,com.netease.nis.wrapper.MyApplication
+run,(Landroid/content/Context;Landroid/app/Application;)Z,FEATURE_PATH_CANDIDATE,STATIC_CALLER_ONLY,0,3,1,com.netease.nis.wrapper.MyApplication

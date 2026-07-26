@@ -1,0 +1,9 @@
+{
+  "candidate_class": "com.rokid.sprite.global.RealApplication",
+  "candidate_present_in_runtime_inventory": false,
+  "candidate_present_in_supplied_apk_dex": false,
+  "interpretation": "RealApplication remains a prior static candidate; it is absent from the supplied APK DEX census and the accepted runtime class inventory. No lifecycle promotion is allowed.",
+  "runtime_class_inventory_count": 20564,
+  "runtime_confirmed": false,
+  "status": "STATIC_CANDIDATE_NOT_PRESENT_IN_RUNTIME_CLASS_INVENTORY"
+}

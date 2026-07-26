@@ -1,0 +1,24 @@
+{
+  "acceptance": "PASS_APK_ENHANCED_REVIEW",
+  "business_feature_semantics_proven": false,
+  "methods_with_exact_dex_sites": 7,
+  "myjni_method_count": 11,
+  "real_application_runtime_confirmed": false,
+  "real_application_status": "STATIC_CANDIDATE_NOT_PRESENT_IN_RUNTIME_CLASS_INVENTORY",
+  "schema": "rokid.r24.1.public.status.v1",
+  "static_caller_only_methods": [
+    "cp",
+    "ip",
+    "ra",
+    "rp",
+    "run"
+  ],
+  "supplied_apk_count": 6,
+  "unique_logical_dex_site_count": 8,
+  "unresolved_caller_methods": [
+    "d",
+    "e",
+    "ed",
+    "getEnvInfo"
+  ]
+}

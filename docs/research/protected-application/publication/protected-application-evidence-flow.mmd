@@ -1,0 +1,10 @@
+flowchart TD
+    A[Accepted runtime inventory: 20,564 classes] --> B[Wrapper MyApplication observed]
+    B --> C[MyJni.load runtime-confirmed]
+    D[Wrapper class-loader path] --> E[MyJni.cl runtime-confirmed]
+    F[Six supplied APK artifacts] --> G[30 enumerated class descriptors]
+    G --> H[Nine wrapper focus classes file-backed in three APK artifacts]
+    H --> I[24 physical MyJni invokes]
+    I --> J[Eight unique logical call sites]
+    J --> K[Five static-only startup-path candidates]
+    G -. RealApplication absent .-> L[RealApplication remains runtime-unconfirmed]

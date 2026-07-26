@@ -1,0 +1,579 @@
+{
+  "acceptance": "PASS_APK_ENHANCED_REVIEW",
+  "class_origin_differential": {
+    "apk_scan_error_count": 0,
+    "baseline_summary": {
+      "apk_class_count": 0,
+      "apk_count": 0,
+      "class_loader_observation_count": 9,
+      "focus_class_count": 10,
+      "in_memory_dex_path_entry_count": 54,
+      "runtime_loaded_class_count": 20564
+    },
+    "enhanced_summary": {
+      "apk_class_count": 30,
+      "apk_count": 6,
+      "class_loader_observation_count": 9,
+      "focus_class_count": 10,
+      "in_memory_dex_path_entry_count": 54,
+      "runtime_loaded_class_count": 20564
+    },
+    "focus_class_differences": [
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.MyApplication",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.MyJni",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.NEDialog",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.Utils",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.f",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.g",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.plugin.b",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.plugin.c",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+        "changed": true,
+        "class": "com.netease.nis.wrapper.plugin.f",
+        "enhanced_apk_sources": [
+          "base.apk",
+          "merged-aligned-debugSigned.apk",
+          "merged.apk"
+        ],
+        "enhanced_origin": "FILE_BACKED_APK_DEX",
+        "namespace": "PROTECTED_WRAPPER",
+        "runtime_loaded": true
+      },
+      {
+        "baseline_origin": "STATIC_CANDIDATE_RUNTIME_UNCONFIRMED",
+        "changed": false,
+        "class": "com.rokid.sprite.global.RealApplication",
+        "enhanced_apk_sources": [],
+        "enhanced_origin": "STATIC_CANDIDATE_RUNTIME_UNCONFIRMED",
+        "namespace": "FIRST_PARTY_CANDIDATE",
+        "runtime_loaded": false
+      }
+    ],
+    "wrapper_classes_promoted_to_file_backed": 9
+  },
+  "dex_caller_census": {
+    "classification_changed_methods": [
+      "cp",
+      "ip",
+      "ra",
+      "rp",
+      "run"
+    ],
+    "methods": [
+      {
+        "baseline_classification": "PROTECTED_CODE_LOADING",
+        "baseline_evidence_class": "RUNTIME_CALLER_CONFIRMED",
+        "caller_classes": [
+          "android.app.ActivityThread",
+          "android.app.ActivityThread$H",
+          "android.app.LoadedApk",
+          "android.os.Handler",
+          "android.os.Looper",
+          "com.android.internal.os.RuntimeInit$MethodAndArgsCaller",
+          "com.android.internal.os.ZygoteInit",
+          "com.netease.nis.wrapper.g",
+          "java.lang.reflect.Method"
+        ],
+        "classification_changed": false,
+        "enhanced_classification": "PROTECTED_CODE_LOADING",
+        "enhanced_evidence_class": "RUNTIME_CALLER_CONFIRMED",
+        "logical_sites": [
+          {
+            "caller_class": "com.netease.nis.wrapper.g",
+            "caller_method": "a",
+            "caller_signature": "(Ljava/lang/ClassLoader;Landroid/content/pm/ApplicationInfo;)V",
+            "code_unit_offset": 9,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "cl",
+            "physical_observation_count": 3,
+            "signature": "(Ljava/lang/ClassLoader;Landroid/content/pm/ApplicationInfo;Ljava/lang/String;)Ljava/lang/ClassLoader;",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          }
+        ],
+        "method": "cl",
+        "physical_dex_invoke_observation_count": 3,
+        "runtime_observation_count": 2,
+        "signature": "(Ljava/lang/ClassLoader;Landroid/content/pm/ApplicationInfo;Ljava/lang/String;)Ljava/lang/ClassLoader;",
+        "unique_logical_dex_site_count": 1
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [
+          "com.netease.nis.wrapper.MyApplication"
+        ],
+        "classification_changed": true,
+        "enhanced_classification": "FEATURE_PATH_CANDIDATE",
+        "enhanced_evidence_class": "STATIC_CALLER_ONLY",
+        "logical_sites": [
+          {
+            "caller_class": "com.netease.nis.wrapper.MyApplication",
+            "caller_method": "a",
+            "caller_signature": "(Landroid/content/Context;)Z",
+            "code_unit_offset": 415,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "cp",
+            "physical_observation_count": 3,
+            "signature": "()V",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          }
+        ],
+        "method": "cp",
+        "physical_dex_invoke_observation_count": 3,
+        "runtime_observation_count": 0,
+        "signature": "()V",
+        "unique_logical_dex_site_count": 1
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [],
+        "classification_changed": false,
+        "enhanced_classification": "REGISTERED_NOT_REACHED",
+        "enhanced_evidence_class": "UNRESOLVED_CALLER",
+        "logical_sites": [],
+        "method": "d",
+        "physical_dex_invoke_observation_count": 0,
+        "runtime_observation_count": 0,
+        "signature": "(Ljava/lang/String;)V",
+        "unique_logical_dex_site_count": 0
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [],
+        "classification_changed": false,
+        "enhanced_classification": "REGISTERED_NOT_REACHED",
+        "enhanced_evidence_class": "UNRESOLVED_CALLER",
+        "logical_sites": [],
+        "method": "e",
+        "physical_dex_invoke_observation_count": 0,
+        "runtime_observation_count": 0,
+        "signature": "(Ljava/lang/String;)V",
+        "unique_logical_dex_site_count": 0
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [],
+        "classification_changed": false,
+        "enhanced_classification": "REGISTERED_NOT_REACHED",
+        "enhanced_evidence_class": "UNRESOLVED_CALLER",
+        "logical_sites": [],
+        "method": "ed",
+        "physical_dex_invoke_observation_count": 0,
+        "runtime_observation_count": 0,
+        "signature": "(Ljava/lang/String;)V",
+        "unique_logical_dex_site_count": 0
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [],
+        "classification_changed": false,
+        "enhanced_classification": "REGISTERED_NOT_REACHED",
+        "enhanced_evidence_class": "UNRESOLVED_CALLER",
+        "logical_sites": [],
+        "method": "getEnvInfo",
+        "physical_dex_invoke_observation_count": 0,
+        "runtime_observation_count": 0,
+        "signature": "()Ljava/lang/String;",
+        "unique_logical_dex_site_count": 0
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [
+          "com.netease.nis.wrapper.MyApplication"
+        ],
+        "classification_changed": true,
+        "enhanced_classification": "FEATURE_PATH_CANDIDATE",
+        "enhanced_evidence_class": "STATIC_CALLER_ONLY",
+        "logical_sites": [
+          {
+            "caller_class": "com.netease.nis.wrapper.MyApplication",
+            "caller_method": "<unknown>",
+            "caller_signature": "?",
+            "code_unit_offset": 35,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "ip",
+            "physical_observation_count": 3,
+            "signature": "(Landroid/app/Application;)V",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          },
+          {
+            "caller_class": "com.netease.nis.wrapper.MyApplication",
+            "caller_method": "<unknown>",
+            "caller_signature": "?",
+            "code_unit_offset": 99,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "ip",
+            "physical_observation_count": 3,
+            "signature": "(Landroid/app/Application;)V",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          }
+        ],
+        "method": "ip",
+        "physical_dex_invoke_observation_count": 6,
+        "runtime_observation_count": 0,
+        "signature": "(Landroid/app/Application;)V",
+        "unique_logical_dex_site_count": 2
+      },
+      {
+        "baseline_classification": "STARTUP_BOOTSTRAP",
+        "baseline_evidence_class": "RUNTIME_CALLER_CONFIRMED",
+        "caller_classes": [
+          "android.app.ActivityThread",
+          "android.app.ActivityThread$H",
+          "android.app.Application",
+          "android.app.Instrumentation",
+          "android.app.LoadedApk",
+          "android.os.Handler",
+          "android.os.Looper",
+          "com.android.internal.os.RuntimeInit$MethodAndArgsCaller",
+          "com.android.internal.os.ZygoteInit",
+          "com.netease.nis.wrapper.MyApplication",
+          "java.lang.reflect.Method"
+        ],
+        "classification_changed": false,
+        "enhanced_classification": "STARTUP_BOOTSTRAP",
+        "enhanced_evidence_class": "RUNTIME_CALLER_CONFIRMED",
+        "logical_sites": [
+          {
+            "caller_class": "com.netease.nis.wrapper.MyApplication",
+            "caller_method": "a",
+            "caller_signature": "(Landroid/content/Context;)Z",
+            "code_unit_offset": 123,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "load",
+            "physical_observation_count": 3,
+            "signature": "(Landroid/app/Application;Ljava/lang/String;)Z",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          }
+        ],
+        "method": "load",
+        "physical_dex_invoke_observation_count": 3,
+        "runtime_observation_count": 4,
+        "signature": "(Landroid/app/Application;Ljava/lang/String;)Z",
+        "unique_logical_dex_site_count": 1
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [
+          "com.netease.nis.wrapper.MyApplication"
+        ],
+        "classification_changed": true,
+        "enhanced_classification": "FEATURE_PATH_CANDIDATE",
+        "enhanced_evidence_class": "STATIC_CALLER_ONLY",
+        "logical_sites": [
+          {
+            "caller_class": "com.netease.nis.wrapper.MyApplication",
+            "caller_method": "a",
+            "caller_signature": "(Landroid/content/Context;)Z",
+            "code_unit_offset": 393,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "ra",
+            "physical_observation_count": 3,
+            "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          }
+        ],
+        "method": "ra",
+        "physical_dex_invoke_observation_count": 3,
+        "runtime_observation_count": 0,
+        "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+        "unique_logical_dex_site_count": 1
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [
+          "com.netease.nis.wrapper.MyApplication"
+        ],
+        "classification_changed": true,
+        "enhanced_classification": "FEATURE_PATH_CANDIDATE",
+        "enhanced_evidence_class": "STATIC_CALLER_ONLY",
+        "logical_sites": [
+          {
+            "caller_class": "com.netease.nis.wrapper.MyApplication",
+            "caller_method": "<init>",
+            "caller_signature": "()V",
+            "code_unit_offset": 53,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "rp",
+            "physical_observation_count": 3,
+            "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          }
+        ],
+        "method": "rp",
+        "physical_dex_invoke_observation_count": 3,
+        "runtime_observation_count": 0,
+        "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+        "unique_logical_dex_site_count": 1
+      },
+      {
+        "baseline_classification": "REGISTERED_NOT_REACHED",
+        "baseline_evidence_class": "UNRESOLVED_CALLER",
+        "caller_classes": [
+          "com.netease.nis.wrapper.MyApplication"
+        ],
+        "classification_changed": true,
+        "enhanced_classification": "FEATURE_PATH_CANDIDATE",
+        "enhanced_evidence_class": "STATIC_CALLER_ONLY",
+        "logical_sites": [
+          {
+            "caller_class": "com.netease.nis.wrapper.MyApplication",
+            "caller_method": "<unknown>",
+            "caller_signature": "?",
+            "code_unit_offset": 26,
+            "dex_entries": [
+              "base.apk!/classes.dex",
+              "merged-aligned-debugSigned.apk!/classes.dex",
+              "merged.apk!/classes.dex"
+            ],
+            "invoke_kind": "invoke-static",
+            "method": "run",
+            "physical_observation_count": 3,
+            "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+            "source_artifacts": [
+              "base.apk",
+              "merged-aligned-debugSigned.apk",
+              "merged.apk"
+            ]
+          }
+        ],
+        "method": "run",
+        "physical_dex_invoke_observation_count": 3,
+        "runtime_observation_count": 0,
+        "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+        "unique_logical_dex_site_count": 1
+      }
+    ],
+    "methods_with_exact_dex_sites": 7,
+    "myjni_method_count": 11,
+    "physical_invoke_observation_count": 24,
+    "runtime_confirmed_methods": [
+      "cl",
+      "load"
+    ],
+    "source_artifact_count_with_call_sites": 3,
+    "source_artifacts_with_call_sites": [
+      "base.apk",
+      "merged-aligned-debugSigned.apk",
+      "merged.apk"
+    ],
+    "static_caller_only_methods": [
+      "cp",
+      "ip",
+      "ra",
+      "rp",
+      "run"
+    ],
+    "unique_logical_site_count": 8,
+    "unresolved_caller_methods": [
+      "d",
+      "e",
+      "ed",
+      "getEnvInfo"
+    ]
+  },
+  "feature_conclusion": {
+    "bounded_startup_path_candidates": [
+      "cp",
+      "ip",
+      "ra",
+      "rp",
+      "run"
+    ],
+    "business_feature_semantics_proven": [],
+    "confirmed_startup_methods": [
+      "cl",
+      "load"
+    ],
+    "interpretation": "APK evidence materially improves caller reachability for five methods but does not prove runtime execution or a user-facing feature meaning."
+  },
+  "inputs": {
+    "apk_enhanced": {
+      "apk_count": 6,
+      "manifest_entry_count": 21,
+      "sha256": "6fbdb7cf2d4076fcbdd589225d7ce9d8f895e0caa4bb2eeede110aa0b4b00929"
+    },
+    "baseline": {
+      "apk_count": 0,
+      "manifest_entry_count": 21,
+      "sha256": "de1094f92080918f1d23b30b5b60f8d32fa98cb32bafa52c56f0207a6d0f4732"
+    }
+  },
+  "lifecycle": {
+    "candidate_class": "com.rokid.sprite.global.RealApplication",
+    "candidate_present_in_runtime_inventory": false,
+    "candidate_present_in_supplied_apk_dex": false,
+    "interpretation": "RealApplication remains a prior static candidate; it is absent from the supplied APK DEX census and the accepted runtime class inventory. No lifecycle promotion is allowed.",
+    "runtime_class_inventory_count": 20564,
+    "runtime_confirmed": false,
+    "status": "STATIC_CANDIDATE_NOT_PRESENT_IN_RUNTIME_CLASS_INVENTORY"
+  },
+  "schema": "rokid.r24.1.accepted-evidence-review.v1"
+}

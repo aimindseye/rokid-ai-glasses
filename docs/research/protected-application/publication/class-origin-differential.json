@@ -1,0 +1,148 @@
+{
+  "apk_scan_error_count": 0,
+  "baseline_summary": {
+    "apk_class_count": 0,
+    "apk_count": 0,
+    "class_loader_observation_count": 9,
+    "focus_class_count": 10,
+    "in_memory_dex_path_entry_count": 54,
+    "runtime_loaded_class_count": 20564
+  },
+  "enhanced_summary": {
+    "apk_class_count": 30,
+    "apk_count": 6,
+    "class_loader_observation_count": 9,
+    "focus_class_count": 10,
+    "in_memory_dex_path_entry_count": 54,
+    "runtime_loaded_class_count": 20564
+  },
+  "focus_class_differences": [
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.MyApplication",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.MyJni",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.NEDialog",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.Utils",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.f",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.g",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.plugin.b",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.plugin.c",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "PROTECTED_WRAPPER_RUNTIME_LOADED_SOURCE_UNATTRIBUTED",
+      "changed": true,
+      "class": "com.netease.nis.wrapper.plugin.f",
+      "enhanced_apk_sources": [
+        "base.apk",
+        "merged-aligned-debugSigned.apk",
+        "merged.apk"
+      ],
+      "enhanced_origin": "FILE_BACKED_APK_DEX",
+      "namespace": "PROTECTED_WRAPPER",
+      "runtime_loaded": true
+    },
+    {
+      "baseline_origin": "STATIC_CANDIDATE_RUNTIME_UNCONFIRMED",
+      "changed": false,
+      "class": "com.rokid.sprite.global.RealApplication",
+      "enhanced_apk_sources": [],
+      "enhanced_origin": "STATIC_CANDIDATE_RUNTIME_UNCONFIRMED",
+      "namespace": "FIRST_PARTY_CANDIDATE",
+      "runtime_loaded": false
+    }
+  ],
+  "wrapper_classes_promoted_to_file_backed": 9
+}
