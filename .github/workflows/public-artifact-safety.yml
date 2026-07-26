@@ -11,3 +11,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate public repository
         run: bash scripts/safety/validate_public_repo.sh
+      - name: Validate documentation links
+        run: python3 scripts/safety/check_markdown_links.py --repo .

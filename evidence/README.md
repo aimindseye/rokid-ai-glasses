@@ -1,27 +1,39 @@
 # Public Evidence
 
-Only reviewed and sanitized evidence is stored here.
+Only reviewed and sanitized summaries or hash-only provenance are stored here.
+Raw captures and private application/device evidence remain outside the Git
+worktree.
 
-Excluded:
+## Index
 
-- raw captures and TLS keys;
-- decrypted payload dumps;
-- logcat, bugreports, and HCI logs;
-- credentials and device/account identifiers;
-- APKs and native libraries.
+- [Sanitized evidence index](sanitized/README.md)
+- [Manifest index](manifests/README.md)
+- [Evidence-handling methodology](../docs/methodology/evidence-handling.md)
+- [Test and research matrix](../docs/tests/test-matrix.md)
 
-Test 14 publication:
+## Published numbered-test summaries
 
-- `sanitized/14a/`
-- `sanitized/14a-r2/`
-- `sanitized/14b/`
-- `sanitized/15/` — consolidated visual AI architecture summary
-- `sanitized/16/` — Android background service, package lineage, and data-sharing summary
-- `sanitized/17/` — glasses Android/ADB/boot/service/network assertions
-- `manifests/` hash-only provenance
+- `sanitized/03b/` — idle/model-menu traffic summaries
+- `sanitized/04/` — model-selection summary
+- `sanitized/06c/` — device-connection summary
+- `sanitized/10/` — translation series
+- `sanitized/14a/` and `sanitized/14a-r2/` — assistant routing
+- `sanitized/14b/` — firmware check
+- `sanitized/15/` — visual AI
+- `sanitized/16/` — background services and privacy
+- `sanitized/17/` — glasses Android, ADB, local service, and network assertions
+- `sanitized/glasses-os-services/` — Test 18 USB ADB control summary
+- `sanitized/ota-firmware/` — OTA/firmware summary
 
+The protected-companion r22–r24.1 results are published primarily under
+[`docs/research/`](../docs/research/README.md). Hash-only native-loader
+provenance is also present in `manifests/` and `sanitized/native-loader/`.
 
-Test 17 additionally excludes ADB host keys, authorized-host files, USB/device
-serials, raw package/Binder/HAL/process dumps, selected vendor APK binaries,
-complete block-device maps, and all partition images. Public package
-provenance is hash-only.
+## Excluded material
+
+- PCAP/PCAPNG and TLS key logs
+- raw HTTP/WebSocket payloads, logcat, bugreports, and HCI logs
+- account tokens, IDs, serials, Bluetooth addresses, and location
+- APKs, native libraries, decompiled trees, and proprietary DEX
+- memory dumps, absolute runtime addresses, and process maps
+- ADB host keys, authorization files, block maps, and partition images

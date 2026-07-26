@@ -253,50 +253,64 @@ package.
 
 ### Protected companion-app startup
 
-**Observed:** the global Hi Rokid package contains a protected startup layer
-whose complete application logic is not available through ordinary static APK
-inspection. Runtime instrumentation on a user-controlled rooted Pixel 7
-recovered this bounded sequence:
+The global Hi Rokid package uses a protected wrapper/native-loader path. Public
+research now covers two evidence layers and an APK-enhanced caller review.
+
+#### Historical native-runtime handoff
 
 ```mermaid
 flowchart TD
-    APK["Hi Rokid package\ncom.rokid.sprite.global.aiapp"]
-    NATIVE["libnesec.so protected native loader"]
-    IMAGE["Secondary runtime image\nmaterialized and mapped"]
-    RELOC["68 external relocation slots\nresolved at runtime"]
-    INIT["Initializer callback array\n29 targets executed"]
-    JNI["RegisterNatives\n11 methods attributed to MyJni"]
-    CL["MyJni.cl\nenter and return observed"]
-    LOAD["MyJni.load\nentry observed"]
-    APPCLASS["MyApplication\nclass load observed twice"]
-    ATTACH["Application.attach\nentry observed"]
-    NEXT["Application.onCreate / complete protected app\nnot observed"]
-
-    APK --> NATIVE --> IMAGE --> RELOC --> INIT --> JNI
-    JNI --> CL --> APPCLASS --> ATTACH --> NEXT
-    JNI --> LOAD
+    APK[Hi Rokid package] --> N[libnesec protected loader]
+    N --> I[Secondary runtime image]
+    I --> R[68 external relocation slots]
+    R --> C[29 initializer executions]
+    C --> J[11 exact MyJni registrations]
+    J --> CL[MyJni.cl enter and return]
+    J --> L[MyJni.load entry]
+    CL --> A[Wrapper MyApplication class loading]
+    A --> AT[Application.attach entry]
+    AT -. return and onCreate unresolved .-> U[Complete protected application]
 ```
 
-| Runtime boundary | Sanitized result |
+| Boundary | Accepted result |
 |---|---|
-| Secondary mapping | Captured; absolute address omitted publicly |
-| External relocation state | 68 resolved slots captured |
-| Post-transform snapshot | Captured and represented publicly by SHA-256 only |
-| Initializer callbacks | 29 targets present; 29 executions observed |
-| Finalizer callbacks | 2 targets present; 0 executions observed |
-| JNI registration | 14 methods total across three classes; exactly 11 attributed to `com.netease.nis.wrapper.MyJni` |
-| Native handoff | `MyJni.cl` enter/return and `MyJni.load` entry observed |
-| Protected Java class | `com.netease.nis.wrapper.MyApplication` loaded twice |
-| Android lifecycle | `Application.attach` entry observed; return and `Application.onCreate` not observed |
+| Secondary mapping | Captured; absolute address withheld |
+| External relocation state | 68 slots captured |
+| Initializer/finalizer callbacks | 29 initializer executions; two finalizer targets, zero executions |
+| JNI registration | 14 methods across three classes; exactly 11 attributed to `MyJni` |
+| Native handoff | `cl` entered/returned; `load` entered |
+| Java lifecycle | wrapper class loading and `Application.attach` entry observed |
 
-The research establishes the loader and Java-handoff architecture. It does not
-publish proprietary binaries, recovered DEX files, memory dumps, absolute
-runtime addresses, or raw device events, and it does not establish the complete
-business logic of Hi Rokid.
+#### Later startup materialization and trigger boundary
 
-See [Protected native loader research](../research/native-loader/README.md) for
-the evidence-bounded findings, exact JNI signatures, methodology, limitations,
-and hash-only provenance.
+A separate 647-event startup capture recorded 148 native DEX-source-open events,
+12 hashed material candidates, 20,564 loaded classes, and 9 class loaders.
+Baseline and Frida spawn/resume without an agent survived. Loading a zero-hook
+agent reached messaging and was followed by death of the injected target in both
+tested modes. The exact detection predicate and exit primitive remain
+unresolved.
+
+#### r24.1 APK-enhanced caller review
+
+Six APK artifacts were scanned without reported parser errors. Nine wrapper
+focus classes gained file-backed APK DEX attribution. Twenty-four physical
+`MyJni` invoke observations reduce to eight unique logical sites across two
+wrapper classes:
+
+- `cl` and `load`: runtime-confirmed startup methods with static DEX callers;
+- `cp`, `ip`, `ra`, `rp`, and `run`: static-caller-only startup-path candidates;
+- `d`, `e`, `ed`, and `getEnvInfo`: caller-unresolved.
+
+`com.rokid.sprite.global.RealApplication` was absent from both the supplied APK
+DEX census and the accepted runtime class inventory. Its constructor,
+`attachBaseContext`, `Application.attach`, and `onCreate` remain unobserved.
+
+These findings characterize startup and wrapper reachability. They do not
+recover complete business logic, assign user-facing semantics to abbreviated
+methods, or provide the stock phone-to-glasses protocol.
+
+See the [native-loader research](../research/native-loader/README.md) and
+[protected-application review](../research/protected-application/README.md).
 
 ### Primary Android services
 
@@ -405,6 +419,38 @@ reconnect may send a new `init_scene`; no reconnect occurred in those segments.
 
 **Inferred:** Hi Rokid is the orchestration bridge between the privileged
 on-glasses service stack, phone-private state, and Rokid's remote services.
+
+### Developer Mode and USB ADB control boundary
+
+Static analysis recovered the glasses-side setting key and property effects:
+
+```text
+settings_developer_mode = on | off
+
+enable:  persist.vendor.adb=true; Settings.Global.adb_enabled=1
+disable: persist.vendor.adb=false
+```
+
+The exact phone-side method, transport message, authentication, device
+addressing, request correlation, reply semantics, and rollback behavior remain
+unresolved. No safe exported glasses-side component was proven to provide the
+same operation to a normal third-party APK.
+
+### Replacement companion readiness
+
+| Layer | Current status |
+|---|---|
+| Stock Bluetooth/media/control behavior | Observed across pairing, voice, visual, and OTA workflows |
+| Exact GATT/RFCOMM/channel framing | Partial; not independently implemented |
+| Binding/session authentication | Stock behavior observed; independent reproduction absent |
+| Read-only custom command | Not implemented |
+| Remote Developer Mode command | Unresolved |
+| Independent Android companion | Not built |
+
+The next practical architecture phase is a clean-room Rokid adapter that first
+implements discovery, binding/session establishment, reconnect, and one harmless
+read-only command. A guarded Developer Mode toggle should follow only after
+state query, positive reply, and rollback behavior are proven.
 
 ## Voice assistant sequence
 
@@ -652,23 +698,33 @@ prefer documented SDK or protocol boundaries where available.
 
 ## Open questions
 
-- Exact Bluetooth RFCOMM/DLCI framing for audio and images
-- Exact upstream language, visual and TTS providers
-- App-private thumbnail cache path, format, expiry and deletion behavior
-- OSS object accessibility, lifetime and deletion behavior
-- Retention after logout, unbind or Android storage cleanup
-- Public/private API boundary of the privileged glasses-side services
+### Phone-to-glasses protocol and replacement app
+
+- Exact Bluetooth service/profile selection and GATT/RFCOMM framing
+- Binding and session-authentication contract
+- Request IDs, reply correlation, error handling, and reconnect state machine
+- A harmless read-only command suitable for independent validation
+- Exact phone-side Developer Mode command and glasses-side reply
+- Whether the stock Developer Mode path can be reproduced safely without
+  first-party privileges
+
+### Glasses and cloud behavior
+
+- Exact upstream language, visual, and TTS providers
+- App-private thumbnail cache path, expiry, and deletion behavior
+- OSS object lifetime and deletion behavior
+- Public/private API boundary of privileged glasses services
 - Consumer-firmware compatibility with official Glasses/Phone SDK demos
-- Third-party access to camera, microphone, button and low-latency audio paths
-- Whether custom applications can establish documented P2P locally without
-  invoking stock cloud workflows
-- Exact trigger and persistence model for the Hi Rokid Developer Mode control
+- Third-party camera, microphone, button, file-transfer, and audio access
 - Local-model lifecycle and offline boundaries
 - Firmware signature-verification implementation
 
-- Complete protected DEX/class materialization inventory
-- Completion of `Application.attach`, `LoadedApk.makeApplication`, and
-  `Instrumentation.callApplicationOnCreate`
-- Semantic attribution of all 11 dynamically registered `MyJni` methods
-- Relationship between protected bootstrap methods and user-facing Bluetooth,
-  AI, translation, media, account, and firmware workflows
+### Protected companion application
+
+- Source and activation path of the unresolved `RealApplication` candidate
+- Completion of the protected application lifecycle beyond wrapper
+  `Application.attach`
+- Runtime execution of the five static-caller-only MyJni methods
+- Caller recovery for `d`, `e`, `ed`, and `getEnvInfo`
+- Any independently evidenced relationship between MyJni methods and Bluetooth,
+  AI, translation, media, account, firmware, or integrity features

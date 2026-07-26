@@ -2,394 +2,219 @@
 
 ![Product](https://img.shields.io/badge/Product-Rokid%20AI%20Glasses%20Style-111827)
 ![Form factor](https://img.shields.io/badge/Form%20factor-Display--free-0284c7)
-![Audience](https://img.shields.io/badge/Audience-Consumers%20%7C%20Developers%20%7C%20Researchers-7c3aed)
+![Coverage](https://img.shields.io/badge/Coverage-Tests%2000%E2%80%9318%20%7C%20Research%20through%20r24.1-7c3aed)
 ![Evidence](https://img.shields.io/badge/Evidence-Sanitized%20and%20reproducible-16a34a)
 
 An independent, community-maintained guide to the **display-free Rokid AI
-Glasses Style** and the **Hi Rokid** companion app.
-
-This repository is designed as a one-stop starting point for:
-
-- consumers deciding whether the glasses fit their needs;
-- owners setting up, updating, and troubleshooting the product;
-- developers evaluating SDKs, companion applications, and community projects;
-- researchers studying Bluetooth, cloud AI, visual AI, local models, privacy, and firmware.
+Glasses Style**, the **Hi Rokid** Android companion application, and the
+validated research completed through **Test 18** and **research release
+r1.3.3.2.24.1**.
 
 > Unofficial community project. Not affiliated with Rokid.
 
----
+## Current state in one page
 
-## Headline finding
+The project has established three complementary layers:
 
-> **The tested US non-display Rokid AI Glasses are a full Android 12 device. The retail production build exposes RSA-protected USB ADB when Developer Mode is enabled, contains a privileged on-glasses Rokid application stack, and runs a root TEE-domain daemon listening on TCP port 8341. During tested voice and visual AI workflows, the glasses did not activate Wi-Fi, Wi-Fi Direct or an IP route; the paired phone remained the cloud-network gateway.**
+1. **Glasses and stock workflow behavior.** The tested US non-display glasses
+   run Android 12, expose RSA-protected USB ADB when Developer Mode is enabled,
+   contain a privileged Rokid service stack, and keep a root TEE-domain service
+   listening on TCP 8341. During the tested voice and visual workflows, the
+   glasses did not establish a Wi-Fi, Wi-Fi Direct, Wi-Fi Aware, or routed IP
+   session; the paired phone remained the observed cloud gateway.
+2. **Hi Rokid cloud and lifecycle behavior.** The companion app handles account
+   binding, Bluetooth media/control transport, AI WebSocket sessions, visual
+   uploads, firmware checks, model routing, background services, and local
+   conversation retention. Tests 14–18 document these boundaries.
+3. **Protected companion startup.** The native-loader research recovered the
+   wrapper/native handoff, exact `MyJni` registration map, startup
+   materialization, zero-hook injection trigger boundary, and an APK-enhanced
+   caller census. It did not recover the complete protected application or an
+   independent phone-to-glasses protocol implementation.
 
-> **A separate runtime study of the global Hi Rokid Android companion app recovered its protected native-loader and Java-handoff architecture. The observed path materialized a secondary runtime image, resolved 68 external relocation slots, executed 29 initializer callbacks, dynamically registered 11 methods for `com.netease.nis.wrapper.MyJni`, completed `MyJni.cl`, entered `MyJni.load`, loaded `com.netease.nis.wrapper.MyApplication`, and entered `Application.attach`. The study does not claim recovery of the complete protected application or its business protocols.**
+### Replacement-app readiness
 
----
+| Capability | Current status | Best current reference |
+|---|---|---|
+| Stock pairing and cloud workflow observation | Substantially complete | [Test matrix](docs/tests/test-matrix.md) |
+| Glasses Android/ADB/local-service baseline | Complete in read-only scope | [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
+| Developer Mode property semantics | Complete statically | [USB ADB finding](docs/findings/glasses-android-os-and-adb.md#usb-adb-control-path-follow-up) |
+| Phone-to-glasses command/session framing | Partial | [Project status](docs/project-status.md) |
+| Remote Developer Mode invocation | Unresolved | [Architecture](docs/architecture/non-display-system-architecture.md#replacement-companion-readiness) |
+| Independent Android companion client | Not implemented | [Project status](docs/project-status.md) |
 
-## Contents
-
-- [Headline finding](#headline-finding)
-- [Start here](#start-here)
-- [What this product is](#what-this-product-is)
-- [Quick answers](#quick-answers)
-- [Consumer guide](#consumer-guide)
-- [Phone and local-model compatibility](#phone-and-local-model-compatibility)
-- [Architecture](#architecture)
-- [Developer resources](#developer-resources)
-- [Validated research](#validated-research)
-- [Protected companion-app startup research](#protected-companion-app-startup-research)
-- [Privacy and evidence](#privacy-and-evidence)
-- [Repository layout](#repository-layout)
-- [Contributing](#contributing)
+The immediate engineering gap is therefore **not broad transport discovery**.
+It is exact stock pairing/session closure, command/reply attribution, and a
+minimal independent Android client that first reproduces a harmless read-only
+operation before any guarded Developer Mode toggle.
 
 ## Start here
 
-| Goal | Recommended page |
+| Goal | Page |
 |---|---|
+| Understand what is proven and what remains | [Project status](docs/project-status.md) |
 | Understand the product | [Product overview](docs/consumer/product-overview.md) |
-| Pair and configure the glasses | [Getting started](docs/consumer/getting-started.md) |
-| Check phone or local-model support | [Phone compatibility](docs/consumer/phone-and-local-model-compatibility.md) |
-| Troubleshoot pairing, power, or updates | [Troubleshooting](docs/consumer/troubleshooting.md) |
-| Understand the non-display architecture | [Architecture](docs/architecture/non-display-system-architecture.md) |
-| Evaluate SDK and development options | [SDK guide](docs/development/sdk-and-development-options.md) |
-| Find community projects | [Community ecosystem](docs/development/community-ecosystem.md) |
-| Review independent tests | [Test matrix](docs/tests/test-matrix.md) |
-| Understand the visual-assistant workflow | [Visual AI workflow](docs/findings/visual-ai-workflow.md) |
-| Understand Android background services and data sharing | [Background services finding](docs/findings/background-services-and-data-sharing.md) |
-| Understand the glasses OS, USB ADB, and local services | [Glasses OS & Services](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
-| Reproduce a test | [Public scripts](scripts/README.md) |
-| Understand the protected Hi Rokid startup path | [Protected native loader research](docs/research/native-loader/README.md) |
-
-## What this product is
-
-This repository focuses on **Rokid AI Glasses Style**, the display-free,
-voice-first model. Some packaging and app screens may use the shorter name
-“Rokid AI Glasses.” It should not be confused with **Rokid Glasses**, the
-separate display-equipped product.
-
-The Style experience centers on:
-
-- a first-person camera;
-- microphones and open-ear speakers;
-- voice-first AI interaction;
-- Bluetooth and Wi-Fi connectivity;
-- the Hi Rokid phone application;
-- audio and phone-screen output instead of an in-lens HUD.
-
-See [Product overview](docs/consumer/product-overview.md).
-
-## Quick answers
-
-### Does the Style model have a display?
-
-No. It is display-free. Responses and status are delivered mainly through
-open-ear audio and Hi Rokid on the phone.
-
-### Is a phone required?
-
-Some capture and audio functions may work without continuous phone interaction,
-but Hi Rokid is central to pairing, settings, AI model selection, local-model
-management, media, translation configuration, and firmware updates.
-
-### Does selecting ChatGPT or Gemini change anything?
-
-Yes. Test 14A-r2 confirmed that Hi Rokid sends different opaque
-`base_model_no` values for the ChatGPT and Gemini selections. Both use a
-Rokid-managed AI WebSocket gateway. The evidence does not expose the exact
-downstream public model version.
-
-### Are assistant answers generated locally?
-
-The tested assistant path was cloud-mediated: the app uploaded audio and
-received server-side speech recognition, LLM text, and synthesized speech. A
-local Qwen3-family `Wend_Audio` component was observed, but it was identical
-across both routes and is not proof of local answer generation.
-
-
-### How does the visual assistant handle an image?
-
-A visually grounded question is recognized by Rokid's cloud, which returns a
-`take_photo` tool action. Hi Rokid then asks the glasses to capture a WebP
-frame, receives it over Bluetooth, uploads it to Rokid-managed object storage,
-and sends the object URL through the AI WebSocket.
-
-ChatGPT and Gemini visual selections use different `vl_model_no` routes.
-Specific visual follow-ups take a **new current-scene photo** rather than
-reusing the previous frame. Conversation thumbnails remain available from a
-local app-private cache after a process restart and while the phone is offline.
-
-See [Test 15](docs/tests/15-visual-ai-architecture-routing-retention.md).
-
-### What happens after Hi Rokid is swiped away?
-
-Removing Hi Rokid from Android Recents removes the visible task, but it does
-not necessarily stop the companion runtime. Tests 16A and 16D observed the Hi
-Rokid process, `AiService`, `LocationService`, the glasses connection, and the
-Rokid AI WebSocket continuing with periodic ping/pong traffic while the screen
-was on and off.
-
-Android **force-stop** is a different boundary. The S25 control terminated the
-Hi Rokid process, foreground services, Bluetooth RFCOMM connection, and AI
-WebSocket and prevented automatic restart until the app was launched again.
-
-On the Pixel, the service ran even though the app's notification permission was
-not granted, so no visible “AI Service” notification appeared. Notification
-visibility is not a reliable proxy for service activity.
-
-See [Test 16](docs/tests/16-android-background-services-package-lineage-data-sharing.md).
-
-### Do the non-display glasses run Android and support USB ADB?
-
-Yes on the tested US unit. Test 17 identified Android 12/API 32 on a production
-`user/release-keys` build and confirmed RSA-protected USB ADB through the
-original Rokid data/debug cable. Wireless ADB was disabled.
-
-The same unit reported `verifiedbootstate=orange` and
-`vbmeta.device_state=unlocked`; the origin was not determined, and no flashing,
-root, relocking, or partition modification was attempted.
-
-During tested stock voice and visual-AI requests, the glasses did not activate
-Wi-Fi, Wi-Fi Direct, Wi-Fi Aware, or an IP route. The paired phone remained the
-strongly supported cloud-network gateway.
-
-See [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md).
-| Understand OTA and firmware setup | [OTA & Firmware](docs/findings/ota-and-firmware.md) |
-| Review exact OTA, boot-image, AVB, and recovery values | [OTA & Firmware — Technical Appendix](docs/findings/ota-and-firmware-technical-appendix.md) |
-
-
-### How does the protected Hi Rokid application start?
-
-Observed runtime evidence supports a staged phone-side startup path. The native
-loader materializes and relocates a secondary image, executes initializer
-callbacks, dynamically registers native methods for
-`com.netease.nis.wrapper.MyJni`, returns a protected class-loader boundary from
-`MyJni.cl`, loads `com.netease.nis.wrapper.MyApplication`, and enters
-`Application.attach`.
-
-The evidence does **not** establish completion through `Application.onCreate`,
-a complete protected DEX/class inventory, or the semantics of every native
-method. See [Protected native loader research](docs/research/native-loader/README.md).
-
-### How are firmware updates checked?
-
-When the glasses are connected, Hi Rokid checks automatically after app launch,
-checks again when the firmware page opens, and sends a new live request for
-each manual check. The app submits the installed version to Rokid's OTA service
-and receives a complete OTA manifest.
-
-### Which phones support local models?
-
-Hi Rokid contains an in-app “tested and available” list. The captured list and
-its limitations are documented in
-[Phone and local-model compatibility](docs/consumer/phone-and-local-model-compatibility.md).
-
-## Consumer guide
-
-- [Product overview](docs/consumer/product-overview.md)
-- [Getting started](docs/consumer/getting-started.md)
-- [Features and limitations](docs/consumer/features-and-limitations.md)
-- [Phone and local-model compatibility](docs/consumer/phone-and-local-model-compatibility.md)
-- [Troubleshooting](docs/consumer/troubleshooting.md)
-
-## Phone and local-model compatibility
-
-The current development lab uses a **Pixel 7** as the dedicated Rokid test and
-development phone. A **Samsung Galaxy S25 Ultra** remains the regular phone and
-was used for earlier lifecycle comparison. Migration of the glasses back to the
-S25 is intentionally deferred until custom applications work on the Pixel.
-
-Hi Rokid's in-app **tested-and-available** list for local models, captured on
-2026-07-20, enumerated these devices:
-
-- **Xiaomi:** 15 Ultra; 17; 17 Max; 17 Pro Max
-- **Redmi:** K80 Pro; K90; K90 Pro Max
-- **OPPO:** Find N5; Find N6 Collector Edition; Find X7 Ultra; Find X8 Ultra;
-  Find X9 Ultra
-- **realme:** Neo8
-- **OnePlus:** 12; Ace 3 Pro; Ace 6T; 15R
-- **vivo:** X300 Ultra; X300 FE; S50 Pro Mini
-- **iQOO:** 13
-- **Samsung:** Galaxy S25 Ultra; Galaxy S26; Galaxy S26+; Galaxy S26 Ultra
-- **Apple:** iPhone 17 Pro
-- **Sony:** Xperia 1 VII
-
-This is an app-version snapshot, not a permanent support guarantee. The names
-above are transcribed from the Hi Rokid screen and may be region-specific.
-
-## Architecture
-
-The [architecture guide](docs/architecture/non-display-system-architecture.md)
-separates:
-
-1. glasses hardware and embedded software;
-2. Bluetooth/Wi-Fi device and media channels;
-3. the Hi Rokid phone application;
-4. Rokid-operated AI, OTA, account, mapping, and ancillary services.
-
-Validated flows:
-
-- [AI assistant routing](docs/findings/ai-assistant-routing.md)
-- [Visual AI workflow](docs/findings/visual-ai-workflow.md)
-- [Background services and data sharing](docs/findings/background-services-and-data-sharing.md)
-- [Glasses Android OS and USB ADB](docs/findings/glasses-android-os-and-adb.md)
-- [Glasses local services and TCP port 8341](docs/findings/glasses-local-services-and-port-8341.md)
-- [Firmware update path](docs/findings/firmware-update-path.md)
-- [Protected native loader and Java handoff](docs/research/native-loader/loader-architecture.md)
-
-## Developer resources
-
-Rokid development material spans several product families. Do not assume a
-sample built for display-equipped Rokid Glasses will work on the display-free
-Style model.
-
-Start with:
-
-- [SDK and development options](docs/development/sdk-and-development-options.md)
-- [Community ecosystem](docs/development/community-ecosystem.md)
-- [Non-display architecture](docs/architecture/non-display-system-architecture.md)
-- [awesome-rokid](https://github.com/Anezium/awesome-rokid), a broader index
-  across many Rokid products
-- [Community Rokid platform documentation](https://github.com/buildwithfenna/rokid-docs)
-
-SDK and project references are included for discovery even where Style
-compatibility has not yet been validated.
-
-## Validated research
-
-Published qualification sets include:
-
-- **Test 14A / 14A-r2** — voice assistant ChatGPT/Gemini routing;
-- **Test 14B** — firmware-check triggers and OTA version resolution;
-- **Test 15A / 15B** — visual capture, routing, retention, and context behavior;
-- **Test 16A–16D** — Android package lineage, first-run telemetry, pairing-time
-  context, background-service persistence, force-stop behavior, and Pixel/S25
-  comparison;
-- **Test 17A–17F** — glasses Android/boot/USB-ADB baseline, privileged local
-  services, package hashes, port 8341, and passive voice/visual interface tests.
-- **Protected native loader and Java handoff investigation** — secondary runtime mapping, relocation state, initializer callbacks, exact MyJni registration attribution, native execution, protected class loading, and `Application.attach` entry.
-
-Highlights:
-
-- Voice ChatGPT and Gemini selections propagate different `base_model_no`
-  values.
-- Visual ChatGPT and Gemini selections propagate different `vl_model_no`
-  values while the visual base route remains fixed.
-- Assistant audio is sent to a Rokid-managed WebSocket gateway.
-- Text first appears in server-side `recognized_speech`.
-- Visual questions trigger a server `take_photo` tool action.
-- The glasses return WebP images over Bluetooth; Hi Rokid uploads them to
-  Rokid-managed Aliyun OSS and sends object URLs to the AI service.
-- Specific visual follow-ups recapture the current scene rather than reusing
-  the previous image.
-- Conversation text and thumbnails remain available offline from a persistent
-  app-private cache.
-- AI answer speech is synthesized in Rokid's cloud and streamed to the glasses;
-  phone TTS was not observed generating those answers.
-- No direct public OpenAI, Gemini, Microsoft TTS, or other downstream provider
-  API request was observed from the phone.
-- Firmware checking is connection-gated and uses a hybrid server/client policy.
-- A clean Pixel install added only `com.rokid.sprite.global.aiapp`; no separate
-  “Rokid AI Service,” Baidu, or delayed companion package was installed.
-- Before Rokid login, Hi Rokid registered a Firebase installation, sent
-  app/device telemetry, and called Rokid's token bootstrap with an empty
-  `rokidToken`.
-- Pairing and AI connection initialization sent an `init_scene` context that
-  included account/device state, precise location fields, weather, model
-  routes, and payment-capability configuration.
-- After a Recents swipe, the existing WebSocket remained open with roughly
-  ten-second ping/pong keepalives; fresh audio, image, prompt, or context
-  resends were not observed during the tested idle windows.
-- The in-app “run in background” banner did not accurately describe actual
-  service state on the Pixel; the service was already active before selecting
-  Android Unrestricted battery mode.
-- The tested glasses are an Android 12 production device with RSA-protected USB
-  ADB persistently configured and wireless ADB disabled.
-- Boot properties reported orange/unlocked state; no bootloader or flashing
-  experiment was performed.
-- A privileged on-glasses Rokid service stack and a root TEE-domain listener on
-  TCP 8341 were observed. No request was sent to that listener.
-- Neither the tested stock voice nor fresh-image visual workflow activated a
-  glasses Wi-Fi/P2P interface or IPv4 route.
-- The protected companion-app startup path dynamically registered 11 methods for `com.netease.nis.wrapper.MyJni`, executed all 29 observed initializer callbacks, loaded `MyApplication`, and entered `Application.attach`; finalizer execution and `Application.onCreate` were not observed.
-
-See [Test matrix](docs/tests/test-matrix.md).
-
-
-## Protected companion-app startup research
-
-The public research package documents the validated native-loader and Java
-handoff path without publishing APKs, native libraries, memory snapshots,
-private runtime events, tokens, account data, device identifiers, or absolute
-runtime addresses.
-
-Start with:
-
-- [Research index](docs/research/native-loader/README.md)
-- [Validated findings](docs/research/native-loader/r1.3.3.2.22.1.1-findings.md)
-- [Loader architecture](docs/research/native-loader/loader-architecture.md)
-- [Dynamically registered JNI map](docs/research/native-loader/jni-registration-map.md)
-- [Limitations](docs/research/native-loader/limitations.md)
-
-The internal evidence lineage uses release identifiers for reproducibility, but
-public-facing titles describe the technical subject instead of presenting the
-work as “Test 22” or “r22.”
-
-## Privacy and evidence
-
-Raw captures and credentials are not stored in this public repository.
-
-Do not commit:
-
-- PCAP/PCAPNG files or TLS key logs;
-- raw logcat, bugreports, HCI logs, or decrypted payload dumps;
-- tokens, account IDs, serials, Bluetooth addresses, or precise location;
-- APKs, native libraries, or decompiled application trees;
-- memory dumps, transformed binary snapshots, recovered proprietary DEX files, or absolute runtime-address inventories;
-- ADB host keys, device authorization files, or USB/device serials;
-- complete block-device maps or boot/vbmeta/vendor/partition images;
-- screenshots containing private account or device information.
-
-Public material is limited to sanitized reports, generalized scripts,
-non-sensitive images, protocol summaries, and hash-only provenance records.
-
-See [Evidence handling](docs/methodology/evidence-handling.md).
+| Set up or troubleshoot the glasses | [Consumer documentation](docs/consumer/README.md) |
+| Understand the full system | [Architecture overview](ARCHITECTURE.md) |
+| Review all numbered tests and research releases | [Test and research matrix](docs/tests/test-matrix.md) |
+| Review stock app/device findings | [Findings index](docs/findings/README.md) |
+| Review protected native-loader research | [Native-loader research](docs/research/native-loader/README.md) |
+| Review r24.1 APK-enhanced caller analysis | [Protected-application research](docs/research/protected-application/README.md) |
+| Run available public procedures | [Runbooks](docs/runbooks/README.md) |
+| Find public scripts | [Scripts index](scripts/README.md) |
+| Understand public/private evidence boundaries | [Evidence index](evidence/README.md) |
+
+## Key validated findings
+
+### Product and on-glasses system
+
+- The target is the **display-free** Rokid AI Glasses Style, not the separate
+  display-equipped Rokid Glasses product.
+- The tested unit reports Android 12/API 32 on an arm64 production
+  `user/release-keys` build.
+- USB ADB uses Android RSA authorization; wireless/TCP ADB was disabled in the
+  captured state.
+- Boot properties reported orange/unlocked state. This project did not unlock,
+  root, flash, relock, or modify partitions.
+- The on-glasses service stack includes assistant, system control, media, TTS,
+  Bluetooth, Wi-Fi, payment, OTA, camera, and screen-stream components.
+- `GateServiced` is the very-high-confidence owner of a root/TEE-domain listener
+  on TCP 8341. No request was sent to that listener.
+
+### Phone, AI, visual, and OTA workflows
+
+- ChatGPT and Gemini selections propagate different opaque `base_model_no`
+  values through a Rokid-managed AI WebSocket.
+- Visual routes use different `vl_model_no` values.
+- Voice text first appears in server-side `recognized_speech`; the phone did
+  not directly call a public OpenAI or Gemini API in the captured paths.
+- Visual requests trigger a server `take_photo` action. A WebP frame returns
+  from the glasses over Bluetooth, is uploaded by Hi Rokid to Rokid-managed
+  object storage, and is referenced in the AI session.
+- Specific visual follow-ups capture a new current-scene image.
+- Conversation text and thumbnails persisted in the app-private cache across
+  restart and offline review in the tested scope.
+- Removing Hi Rokid from Recents did not necessarily stop `AiService`, the
+  glasses connection, or WebSocket keepalives. Android force-stop did.
+- Firmware checks are connection-gated and produce fresh live OTA requests on
+  cold launch, firmware-page entry, and manual checks.
+
+### Developer Mode and USB ADB control path
+
+Static analysis recovered the glasses-side setting key and property writes:
+
+```text
+settings_developer_mode = on | off
+
+enable:
+  persist.vendor.adb=true
+  Settings.Global.adb_enabled=1
+
+disable:
+  persist.vendor.adb=false
+```
+
+No matching `Settings.Global.adb_enabled=0` write was recovered in the bounded
+disable method. The exact phone-to-glasses invocation, authorization,
+request/reply framing, and safe independent replay remain unresolved.
+
+### Protected companion startup and r24.1 result
+
+The accepted native-loader research established:
+
+- 68 external relocation slots captured;
+- 29 initializer executions and two unexecuted finalizer targets;
+- 11 exact `com.netease.nis.wrapper.MyJni` registrations;
+- `MyJni.cl` enter/return and `MyJni.load` entry;
+- wrapper `MyApplication` loading and `Application.attach` entry;
+- 148 native DEX-source-open events, 12 hashed material candidates, 20,564
+  loaded classes, and 9 class loaders in the later startup capture;
+- baseline and Frida spawn/resume without an agent survived, while loading a
+  zero-hook agent was followed by target death in both tested injection modes.
+
+The r24.1 APK-enhanced review added:
+
+- six APK artifacts scanned with no reported parser errors;
+- nine wrapper focus classes attributed to file-backed APK DEX;
+- 24 physical `MyJni` invoke observations reduced to eight logical call sites;
+- exact DEX call sites for seven of 11 methods;
+- `cl` and `load` remained runtime-confirmed startup methods;
+- `cp`, `ip`, `ra`, `rp`, and `run` became static-caller-only startup-path
+  candidates;
+- `d`, `e`, `ed`, and `getEnvInfo` remained caller-unresolved;
+- `com.rokid.sprite.global.RealApplication` remained absent from the supplied
+  APK census and the accepted 20,564-class runtime inventory.
+
+No user-facing business-feature meaning is proven for the abbreviated
+`MyJni` methods.
+
+## Documentation map
+
+- [Documentation index](docs/README.md)
+- [Architecture](docs/architecture/README.md)
+- [Consumer guides](docs/consumer/README.md)
+- [Development resources](docs/development/README.md)
+- [Experiments](docs/experiments/README.md)
+- [Findings](docs/findings/README.md)
+- [Methodology](docs/methodology/README.md)
+- [Research](docs/research/README.md)
+- [Runbooks](docs/runbooks/README.md)
+- [Tests](docs/tests/README.md)
+- [References](docs/references/README.md)
 
 ## Repository layout
 
-- `docs/consumer/` — ownership, setup, compatibility, features, troubleshooting
-- `docs/architecture/` — non-display hardware/app/cloud architecture
-- `docs/development/` — SDK applicability and community projects
-- `docs/tests/` — completed reports and master matrix
-- `docs/runbooks/` — reproducible procedures
-- `docs/findings/` — consolidated findings
-- `docs/methodology/` — evidence and analysis procedures
-- `docs/research/` — evidence levels and interpretation rules
-- `docs/assets/` — reviewed public images
-- `evidence/sanitized/` — public summaries derived from private captures
-- `evidence/manifests/` — hash-only provenance
-- `scripts/tests/` — interactive capture runners
-- `scripts/recovery/` — bounded MediaStore recovery/finalization
-- `scripts/safety/` — public-repository privacy gates
-- `docs/research/native-loader/` — sanitized protected-loader findings, architecture, JNI map, methodology, limitations, and provenance hashes
-- `scripts/research/native-loader/` — generic manifest/status utilities and Frida 17 loader-observation infrastructure
+```text
+docs/
+  architecture/          system architecture and current integration boundary
+  consumer/              setup, compatibility, features, troubleshooting
+  development/           SDK and community development options
+  experiments/           controlled comparison reports
+  findings/              consolidated stock-app/device findings
+  methodology/           evidence, privacy, and interpretation methods
+  research/              native-loader and protected-application publications
+  runbooks/              reproducible operator procedures
+  tests/                 numbered test reports and master matrix
+
+evidence/
+  sanitized/             reviewed public summaries only
+  manifests/             hash-only provenance
+
+scripts/
+  analysis/              offline analysis helpers
+  capture/               capture/workspace helpers
+  recovery/              bounded evidence recovery
+  research/              public research verification utilities
+  safety/                privacy and repository gates
+  tests/                 numbered test runners
+
+tools/frida/             generic observation-only templates
+templates/               capture and observation templates
+fixtures/synthetic/      non-sensitive synthetic fixtures
+```
+
+## Privacy and evidence
+
+Raw captures, TLS keys, logs, device/account identifiers, APKs, native
+libraries, decompiled trees, recovered proprietary DEX, memory dumps, absolute
+runtime addresses, ADB host keys, and partition images do not belong in the
+public repository.
+
+See [Evidence handling](docs/methodology/evidence-handling.md) and the
+[public evidence index](evidence/README.md).
 
 ## Contributing
 
-Contributions are welcome for consumer guidance, compatibility reports,
-developer resources, reproducible tests, and corrections.
+Contributions are welcome for corrected documentation, consumer guidance,
+compatibility reports, reproducible tests, and clean-room development work.
+Label claims as **Official**, **Observed**, **Inferred**, or **Unverified**.
 
-Label important claims as:
-
-- **Official** — stated by Rokid;
-- **Observed** — captured or reproduced;
-- **Inferred** — best-supported interpretation;
-- **Unverified** — listed for discovery but not tested.
-
-Read [CONTRIBUTING.md](CONTRIBUTING.md).
+Read [CONTRIBUTING.md](CONTRIBUTING.md), [SECURITY.md](SECURITY.md), and the
+[documentation index](docs/README.md).
 
 ## Disclaimer
 
-This project is not affiliated with Rokid. Product names and trademarks belong
-to their respective owners. Testing is performed only on devices and accounts
-controlled by the repository owner.
+This project is independent research. Device modification, ADB use, firmware
+analysis, and protocol experimentation can cause data loss, service disruption,
+or warranty issues. Use only devices, accounts, applications, and evidence you
+are authorized to test.

@@ -1,46 +1,73 @@
-# Test Matrix
+# Test and Research Matrix
 
-| ID | Test | Controlled variable | Status |
+This matrix separates the numbered product/device qualification track from the
+protected-companion research-release track. Raw captures remain private; public
+reports and evidence are sanitized.
+
+## Numbered product, app, device, and USB tests
+
+| ID | Test | Controlled variable | Status | Public result |
+|---|---|---|---|---|
+| 00 | First launch without login | App launch | Complete | [Report](00-first-launch.md) |
+| 01 | Login | Authentication | Complete | [Report](01-login.md) |
+| 02b | Owner unbind/rebind | Account binding | Complete | [Report](02-pairing-and-account-transfer.md) |
+| 03a | Firefox TLS canary | MITM validation | PASS | [TLS report](03-tls-interception.md) |
+| 03b | Hi Rokid idle/model menu | TLS target app | PASS | [TLS report](03-tls-interception.md) |
+| 04a | Select Gemini base model | Model selection | Complete with marker correction | [Report](04-model-selection.md) |
+| 04b | Select ChatGPT base model | Model selection | PASS | [Report](04-model-selection.md) |
+| 05 | ChatGPT/Gemini prompt routing | Base model | Rokid-mediated routing observed | [Experiment](../experiments/05-gemini-r2-vs-chatgpt-r4.md) |
+| 06/06c | Local capability and peripheral/device connection | Phone/device capability | Complete in documented scope | [Report](06c-device-connection.md) |
+| 10a–10c4 | Translation architecture series | Mode/context | Complete in documented scope | [Overview](10-translation-overview.md) |
+| 11 | Gallery/recording | Media action | Planned | — |
+| 12 | Original OTA placeholder | Update action | Superseded by 14B | — |
+| 14A | Initial assistant comparison | ChatGPT vs Gemini | Partial pass | [Report](14a-ai-assistant-base-model.md) |
+| 14A-r2 | Fresh-session manual voice | ChatGPT vs Gemini | Primary objective PASS | [Report](14a-r2-manual-voice-base-model.md) |
+| 14B-D1 | Disconnected baseline | Connection | Complete; raw-PCAP association partial | [Report](14b-firmware-update-discovery.md) |
+| 14B-C1 | Connected cold launch | App launch | Automatic OTA request | [Report](14b-firmware-update-discovery.md) |
+| 14B-C2 | Open firmware page | Page entry | Additional OTA request | [Report](14b-firmware-update-discovery.md) |
+| 14B-C3 | First manual check | Button press | Live OTA request | [Report](14b-firmware-update-discovery.md) |
+| 14B-C4 | Repeated manual check | Repeated press | Fresh live OTA request | [Report](14b-firmware-update-discovery.md) |
+| 15A | Visual workflow discovery | Capture and transport | PASS — glasses WebP → Bluetooth → OSS → object URL | [Report](15-visual-ai-architecture-routing-retention.md) |
+| 15B | Visual routing, retention, context | Route/follow-up/offline history | PASS — route switch, recapture, local cache | [Report](15-visual-ai-architecture-routing-retention.md) |
+| 15 | Consolidated visual AI qualification | 15A + 15B | PASS | [Report](15-visual-ai-architecture-routing-retention.md) |
+| 16A | Existing-install background lifecycle | Recents/force-stop/relaunch | PASS | [Report](16-android-background-services-package-lineage-data-sharing.md) |
+| 16B | Pixel clean install and first run | Package lineage and pre/post-login traffic | PASS | [Report](16-android-background-services-package-lineage-data-sharing.md) |
+| 16B-r2 | Clean unauthenticated repair | App-data clear and empty-token check | PASS | [Report](16-android-background-services-package-lineage-data-sharing.md) |
+| 16C-r2 | Pairing and paired data sharing | Unpaired/binding/AI/dismissal/relaunch | PASS | [Report](16-android-background-services-package-lineage-data-sharing.md) |
+| 16D | Pixel background-mode A/B | Banner unsatisfied vs Unrestricted | PASS | [Report](16-android-background-services-package-lineage-data-sharing.md) |
+| 16 | Consolidated Android background/privacy qualification | 16A–16D | PASS in documented scope | [Report](16-android-background-services-package-lineage-data-sharing.md) |
+| 17A | Glasses USB ADB discovery | Original debug cable and authorized Mac | PASS | [Report](17-glasses-os-adb-and-network-exposure.md) |
+| 17B | Glasses OS/build/boot/storage baseline | Read-only properties and mounts | PASS | [Report](17-glasses-os-adb-and-network-exposure.md) |
+| 17C | Local services and TCP 8341 | Processes/services/socket/init metadata | PASS | [Report](17-glasses-os-adb-and-network-exposure.md) |
+| 17D | Voice-AI passive interface monitor | One stock voice question | PASS — no glasses IP interface/route observed | [Report](17-glasses-os-adb-and-network-exposure.md) |
+| 17E | Visual-AI passive interface monitor | Fresh image; 360 half-second samples | PASS — no glasses IP interface/route observed | [Report](17-glasses-os-adb-and-network-exposure.md) |
+| 17F | Static development baseline | APK hashes/Binder/HAL/hardware/network | PASS — privacy gate; 8/8 private APK hashes matched | [Report](17-glasses-os-adb-and-network-exposure.md) |
+| 17 | Consolidated glasses OS/ADB/network qualification | 17A–17F | PASS in read-only scope | [Report](17-glasses-os-adb-and-network-exposure.md) |
+| 18A | Developer Mode control path | Exact stock OTA static analysis | PASS — key, values, enable/disable property writes recovered | [Finding](../findings/glasses-android-os-and-adb.md#usb-adb-control-path-follow-up) |
+| 18B | Runtime domain and property context | Manifest/seapp/policy | PARTIAL — domains/property type bounded; direct authorization unresolved | [Finding](../findings/glasses-android-os-and-adb.md#runtime-domain-and-property-boundary) |
+| 18C | Cable and debug-board path | Boot inputs/native/FDT | BOUNDED — debug-board evidence; direct ADB/cable-ID path not proven | [Finding](../findings/glasses-android-os-and-adb.md#cable-and-debug-board-boundary) |
+| 18D | Repair-app and recovery boundaries | Static reachability/recovery | BOUNDED — no safe exported setter; phone replay blocked | [Finding](../findings/glasses-android-os-and-adb.md#repair-app-feasibility) |
+| 18 | USB ADB control-path follow-up | 18A–18D | PASS in static/offline scope; runtime invocation unresolved | [Sanitized summary](../../evidence/sanitized/glasses-os-services/usb-adb-control-summary.txt) |
+
+## Protected companion research releases
+
+| Release | Scope | Accepted result | Public result |
 |---|---|---|---|
-| 00 | First launch without login | App launch | Complete |
-| 01 | Login | Authentication | Complete |
-| 02b | Owner unbind/rebind | Account binding | Complete |
-| 03a | Firefox TLS canary | MITM validation | PASS |
-| 03b | Hi Rokid idle/model menu | TLS target app | PASS |
-| 04a | Select Gemini base model | Model selection | Complete with marker correction |
-| 04b | Select ChatGPT base model | Model selection | PASS |
-| 05 | ChatGPT/Gemini prompt routing | Base model | Rokid-mediated routing observed |
-| 06 | Local capability/peripherals | Phone/device capability | Complete in documented scope |
-| 10a–10c4 | Translation architecture series | Mode/context | Complete in existing docs |
-| 11 | Gallery/recording | Media action | Planned |
-| 12 | Original OTA placeholder | Update action | Superseded by 14B |
-| 14A | Initial assistant comparison | ChatGPT vs Gemini | Partial pass |
-| 14A-r2 | Fresh-session manual voice | ChatGPT vs Gemini | Primary objective PASS |
-| 14B-D1 | Disconnected baseline | Connection | Complete; raw-PCAP association partial |
-| 14B-C1 | Connected cold launch | App launch | Automatic OTA request |
-| 14B-C2 | Open firmware page | Page entry | Additional OTA request |
-| 14B-C3 | First manual check | Button press | Live OTA request |
-| 14B-C4 | Repeated manual check | Repeated press | Fresh live OTA request |
-| 15A | Visual workflow discovery | Capture and transport path | PASS — glasses WebP → Bluetooth → OSS → object URL |
-| 15B | Visual routing, retention, and context | Route switch, follow-up, offline history | PASS — `vl_model_no` switch, grounded recapture, local cache |
-| 15 | Consolidated visual AI qualification | 15A + 15B | PASS |
-| 16A | Existing-install background lifecycle | Recents vs force-stop vs relaunch | PASS — service/socket survival after swipe; force-stop boundary confirmed |
-| 16B | Pixel clean install and first run | Package lineage and pre/post-login traffic | PASS — only Hi Rokid installed; pre-login Firebase/Rokid bootstrap observed |
-| 16B-r2 | Clean unauthenticated repair | App-data clear and empty-token check | PASS — `rokidToken` empty before login |
-| 16C-r2 | Pairing and paired data sharing | Unpaired, binding, AI, dismissal, relaunch | PASS — broad `init_scene` context; no additional package |
-| 16D | Pixel background-mode A/B | Banner unsatisfied vs Unrestricted | PASS — process/services/WebSocket active in both arms |
-| 16 | Consolidated Android background and privacy qualification | 16A–16D | PASS in documented scope |
-| 17A | Glasses USB ADB discovery | Original debug cable and authorized Mac | PASS — `RG_glasses` USB ADB confirmed |
-| 17B | Glasses OS/build/boot/storage baseline | Read-only ADB properties and mounts | PASS — Android 12 production build; orange/unlocked reported |
-| 17C | Local services and TCP 8341 | Processes, services, socket UID and init metadata | PASS — privileged stack; GateServiced owner very-high-confidence |
-| 17D | Voice-AI passive interface monitor | One stock voice question | PASS — no glasses IP interface or route observed |
-| 17E | Visual-AI passive interface monitor | One fresh-image request; 360 half-second samples | PASS — no glasses IP interface or route observed |
-| 17F | Static development baseline | Packages, APK hashes, Binder/HAL/hardware/network | PASS — privacy gate; 8/8 private APK hashes matched |
-| 17 | Consolidated glasses OS, ADB and network-exposure qualification | 17A–17F | PASS in read-only documented scope |
-| 18A | Developer Mode control path | Exact stock OTA static analysis | PASS — key, values, enable and disable property writes recovered |
-| 18B | Runtime domain and property context | Manifest, seapp and policy evidence | PARTIAL — `priv_app` and `adbd_config_prop` bounded; direct authorization unresolved |
-| 18C | Cable and debug-board path | Real boot inputs and bounded native/FDT analysis | BOUNDED — charger-side debug-board evidence; no direct ADB/cable-ID path proven |
-| 18D | Repair-app and recovery boundaries | Static reachability and recovery artifacts | BOUNDED — no safe exported repair component; phone replay remains blocked |
-| 18 | USB ADB control-path follow-up | 18A–18D | PASS in static/offline scope; current runtime and cable cause unresolved |
+| r1.3.3.2.22.1.1 | Native loader, secondary runtime, relocations, callbacks, exact RegisterNatives attribution, Java handoff | `PASS_RECOVERED`; original six blockers closed in their bounded definitions | [Validated findings](../research/native-loader/r1.3.3.2.22.1.1-findings.md) |
+| r1.3.3.2.23.5.1.6.3 | Standalone external probe and post-injection death-race semantics | Both injected trials accepted; collection/retrieval/retention validated | [Injection comparison](../research/native-loader/injection-mode-comparison.md) |
+| r1.3.3.2.23.5.1.7.1 | Historical preservation and additive startup/trigger publication | Native-runtime and later 647-event evidence sets preserved separately | [Native-loader index](../research/native-loader/README.md) |
+| r1.3.3.2.24 | RealApplication lifecycle, class origin, and MyJni caller classification | `PASS_BOUNDED_CLOSURE`; RealApplication runtime confirmation remained false | [Protected application](../research/protected-application/README.md) |
+| r1.3.3.2.24.1 | Six-APK differential and exact DEX caller census | `PASS_APK_ENHANCED_REVIEW`; 24 physical observations → 8 logical sites; 7/11 methods with exact DEX sites | [Accepted review](../research/protected-application/publication/accepted-evidence-review.json) |
 
-Raw captures remain private. Public reports are sanitized.
+## Capability status after r24.1
+
+| Goal | Status |
+|---|---|
+| Observe stock pairing, AI, visual, OTA, lifecycle, and device behavior | Substantially complete in documented scope |
+| Know glasses-side Developer Mode key/property effects | Complete statically |
+| Independently reproduce stock pairing/session authentication | Not implemented |
+| Independently read glasses state through the stock command channel | Not implemented |
+| Attribute the remote Developer Mode command/reply | Unresolved |
+| Build a replacement Android companion | Not implemented |
+
+See [project status](../project-status.md) for the current engineering boundary.

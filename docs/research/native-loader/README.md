@@ -1,97 +1,54 @@
-
 # Hi Rokid Protected Native Loader Research
 
-This directory publishes the sanitized, evidence-bounded findings from a
-combined static and runtime investigation of the global **Hi Rokid** Android
-application:
+This directory publishes the sanitized, evidence-bounded native-loader and
+startup-trigger findings for the global Hi Rokid Android package:
 
 ```text
 com.rokid.sprite.global.aiapp
 ```
 
-The public title describes the technical subject. Internal release identifiers
-are retained only where needed for reproducible provenance.
+## Evidence sets
 
-## Headline result
+The directory intentionally preserves two related but distinct public evidence
+sets.
 
-Observed runtime evidence supports this startup sequence:
+### Historical native-runtime and Java-handoff closure
 
-```text
-libnesec.so protected loader
-  → secondary runtime image materialization
-  → runtime relocation resolution
-  → initializer callback execution
-  → dynamic RegisterNatives
-  → MyJni.cl / MyJni.load handoff
-  → MyApplication class loading
-  → Application.attach entry
-```
+- [Validated r22 findings](r1.3.3.2.22.1.1-findings.md)
+- [Historical loader architecture](loader-architecture.md)
+- [Original loader-flow diagram](loader-control-flow.mmd)
+- [Exact JNI registration map](jni-registration-map.md)
+- [Original six-blocker closure](six-blocker-closure.md)
+- [Original 102-event inventory](runtime-event-types.md)
+- [Legacy runtime status](runtime-status-summary.json)
 
-Six previously declared runtime blockers were closed. The strongest exact
-results are:
+This evidence established the secondary runtime mapping, 68 external
+relocations, 29 initializer executions, 11 exact MyJni registrations,
+`MyJni.cl` completion, `MyJni.load` entry, wrapper class loading, and
+`Application.attach` entry.
 
-- 68 external relocation slots captured;
-- 29 initializer targets executed;
-- two finalizer targets identified but not observed executing;
-- 14 registered methods across three classes;
-- exactly 11 methods attributed to `com.netease.nis.wrapper.MyJni`;
-- `MyJni.cl` entered and returned;
-- `MyJni.load` entered before the observed process exit;
-- `com.netease.nis.wrapper.MyApplication` loaded twice;
-- `Application.attach` entry observed.
-
-## Read in this order
-
-1. [Validated findings](r1.3.3.2.22.1.1-findings.md)
-2. [Loader architecture](loader-architecture.md)
-3. [Dynamically registered JNI map](jni-registration-map.md)
-4. [Six-blocker closure](six-blocker-closure.md)
-5. [Runtime event types](runtime-event-types.md)
-6. [Methodology](methodology.md)
-7. [Limitations](limitations.md)
-8. [Evidence hashes](evidence-hashes.txt)
-9. [Machine-readable status summary](runtime-status-summary.json)
-
-The raw Mermaid source for the main diagram is in
-[`loader-control-flow.mmd`](loader-control-flow.mmd).
-
-## Evidence labels
-
-- **Observed** — directly captured or reproduced.
-- **Inferred** — best-supported interpretation from observed evidence.
-- **Unresolved** — not established by the bounded evidence.
-
-## Public/private boundary
-
-This directory does **not** contain:
-
-- APKs or native libraries;
-- transformed or relocated binary snapshots;
-- recovered proprietary DEX files;
-- memory dumps or absolute runtime-address maps;
-- raw Frida events, logcat, tombstones or process maps;
-- account data, tokens, serials, Bluetooth addresses or precise location;
-- decrypted packet captures or SSL key logs.
-
-Private evidence remains outside the Git worktree. Public provenance is
-represented through hashes, counts, sanitized status records, diagrams and
-original generic tooling.
-
-<!-- BEGIN R23.5.1.7.1 ADDITIVE PUBLICATION -->
-## Later startup-materialization and injection-trigger publication
-
-The accepted historical native-runtime closure remains in
-[`r1.3.3.2.22.1.1-findings.md`](r1.3.3.2.22.1.1-findings.md), with its original
-loader diagram, 102-event inventory, six-blocker table, and runtime-status
-schema preserved.
-
-Later evidence is published additively:
+### Later startup-materialization and injection-trigger publication
 
 - [Current synthesis](protected-loader-runtime-findings.md)
 - [Injection-mode comparison](injection-mode-comparison.md)
 - [Trigger-status summary](runtime-trigger-status-summary.json)
-- [`publication/`](publication/) for the separate 647-event startup and trigger layer
-- [`tools/frida/`](../../../tools/frida/) for generic observation-only templates
+- [Machine-readable publication](publication/README.md)
+- [Generic observation-only Frida templates](../../../tools/frida/README.md)
 
-The later publication does not replace the historical evidence set.
-<!-- END R23.5.1.7.1 ADDITIVE PUBLICATION -->
+The later capture recorded 148 native DEX-source-open events, 12 hashed material
+candidates, 20,564 loaded classes, and 9 class loaders. Baseline and spawn/resume
+without an agent survived; zero-hook agent loading was followed by target death
+in both tested injection modes. The exact detection predicate and exit primitive
+remain unresolved.
+
+## Next research layer
+
+The r24/r24.1 APK-enhanced class-origin and caller analysis is published in the
+[protected-application directory](../protected-application/README.md).
+
+## Public/private boundary
+
+No APKs, native libraries, transformed snapshots, recovered proprietary DEX,
+memory dumps, raw Frida events, process maps, tokens, device identifiers, or
+absolute runtime addresses are published here. See [methodology](methodology.md),
+[limitations](limitations.md), and [evidence hashes](evidence-hashes.txt).
