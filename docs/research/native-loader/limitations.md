@@ -56,3 +56,14 @@ public report does not classify it as a crash or anti-instrumentation mechanism.
 Findings apply to the tested global Hi Rokid package and arm64 runtime. They
 must not be generalized automatically to China-region builds, display-equipped
 Rokid products, future app versions, iOS, or other smart-glasses vendors.
+
+<!-- BEGIN R23.5.1.7.1 LATER LIMITATIONS -->
+## Later trigger-boundary limitations
+
+- The exact anti-instrumentation predicate and exact exit primitive remain unresolved.
+- `/proc/self/maps` and dynamic-loader references are bounded candidates, not proof of the executed branch.
+- Frida-agent map-name visibility is timing-sensitive and was not reproduced in every accepted run.
+- The later MyJni counts are startup-only and do not assign business semantics to uninvoked methods.
+- The protected real application remains a static candidate without runtime lifecycle completion.
+- Remote deletion remained disabled; retained device spools require deliberate private cleanup after preservation.
+<!-- END R23.5.1.7.1 LATER LIMITATIONS -->

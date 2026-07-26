@@ -76,3 +76,22 @@ This directory does **not** contain:
 Private evidence remains outside the Git worktree. Public provenance is
 represented through hashes, counts, sanitized status records, diagrams and
 original generic tooling.
+
+<!-- BEGIN R23.5.1.7.1 ADDITIVE PUBLICATION -->
+## Later startup-materialization and injection-trigger publication
+
+The accepted historical native-runtime closure remains in
+[`r1.3.3.2.22.1.1-findings.md`](r1.3.3.2.22.1.1-findings.md), with its original
+loader diagram, 102-event inventory, six-blocker table, and runtime-status
+schema preserved.
+
+Later evidence is published additively:
+
+- [Current synthesis](protected-loader-runtime-findings.md)
+- [Injection-mode comparison](injection-mode-comparison.md)
+- [Trigger-status summary](runtime-trigger-status-summary.json)
+- [`publication/`](publication/) for the separate 647-event startup and trigger layer
+- [`tools/frida/`](../../../tools/frida/) for generic observation-only templates
+
+The later publication does not replace the historical evidence set.
+<!-- END R23.5.1.7.1 ADDITIVE PUBLICATION -->

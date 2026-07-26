@@ -1,0 +1,26 @@
+{
+  "lifecycle": {
+    "application_attach_enter_events": 2,
+    "application_attach_return_events": 0,
+    "callApplicationOnCreate_return_events": 0,
+    "loadedapk_makeApplicationInner_enter_events": 4
+  },
+  "myjni": {
+    "java_enter_events": 2,
+    "java_hook_installed_events": 66,
+    "java_hook_pass_events": 11,
+    "native_enter_events": 4,
+    "native_hook_installed_events": 22,
+    "native_leave_events": 2
+  },
+  "register_natives": {
+    "call_events": 6,
+    "candidate_count_events": 2,
+    "exact_expected_method_pairs": 11,
+    "hook_installed_events": 4,
+    "jni_registration_events": 28
+  },
+  "schema": "rokid.native-loader.callback-counts.v1",
+  "session_count": 2,
+  "source_event_count": 647
+}

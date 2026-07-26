@@ -66,3 +66,19 @@ The private evidence archives are referenced by SHA-256 in
 [`evidence-hashes.txt`](evidence-hashes.txt). Public scripts can verify this
 repository's sanitized-file manifest and summarize the machine-readable status
 without requiring private evidence.
+
+<!-- BEGIN R23.5.1.7.1 LATER METHODOLOGY -->
+## Later trigger-boundary methodology
+
+The later phase added four layers without altering the historical recovery
+method:
+
+1. non-injected controls for baseline and Frida spawn/resume;
+2. zero-hook agents tested early and against a running target;
+3. external dual-lane `/proc` identity/maps collection with root-stream retrieval, manifests, persistent audit, and disabled deletion;
+4. offline semantic replay, including a narrowly bounded post-injection death-race classifier.
+
+A death-race warning is accepted only after valid pre-injection identity,
+complete injection reachability, valid burst evidence, and later confirmed
+target death. Static strings and imports remain bounded candidates, not executed-control-flow proof.
+<!-- END R23.5.1.7.1 LATER METHODOLOGY -->

@@ -96,3 +96,20 @@ Rokid package. It is not a recommended dependency for a reusable smart-glasses
 platform. Future clean-room work should identify stable device, media,
 assistant, translation, account and firmware interfaces outside this
 protection boundary.
+
+<!-- BEGIN R23.5.1.7.1 TRIGGER OVERLAY -->
+## Later startup-materialization and trigger overlay
+
+A separate later evidence layer adds the following bounded sequence:
+
+1. wrapper `MyApplication.attachBaseContext` reaches `MyJni.load`;
+2. protected DEX/source accesses and class materialization are observed;
+3. `MyJni.cl` participates in class-loader setup and returns;
+4. baseline and Frida spawn/resume without an agent survive;
+5. loading a zero-hook agent reaches messaging and is followed by death of the injected target in both tested modes.
+
+The later diagram is
+[`publication/loader-control-flow.mmd`](publication/loader-control-flow.mmd).
+It supplements the original top-level native-runtime diagram rather than
+replacing it. The exact detection predicate and exit primitive remain unresolved.
+<!-- END R23.5.1.7.1 TRIGGER OVERLAY -->

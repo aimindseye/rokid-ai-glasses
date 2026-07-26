@@ -1,0 +1,65 @@
+{
+  "accepted_live_qualification": {
+    "standalone_injected_set": "PASS",
+    "trials": {
+      "empty-agent-early": {
+        "agent_message_received": true,
+        "attach_reached": true,
+        "initial_pid_alive_at_end": false,
+        "result": "PASS",
+        "script_loaded": true,
+        "spawn_reached": true,
+        "warnings": [
+          "POST_INJECTION_DEATH_RACE"
+        ]
+      },
+      "running-attach-empty": {
+        "agent_message_received": true,
+        "attach_reached": true,
+        "initial_pid_alive_at_end": false,
+        "result": "PASS",
+        "script_loaded": true,
+        "spawn_reached": false,
+        "warnings": []
+      }
+    }
+  },
+  "evidence_transport": {
+    "automatic_remote_deletion": "DISABLED",
+    "dual_lane_capture": "VALIDATED_ON_PIXEL",
+    "persistent_audit": "VALIDATED_ON_PIXEL",
+    "remote_spool_retention": "VALIDATED_ON_PIXEL",
+    "root_stream_retrieval": "VALIDATED_ON_PIXEL"
+  },
+  "overall_status": "ACCEPTED_ADDITIVE_TRIGGER_CLOSURE",
+  "relationship_to_legacy_status": {
+    "legacy_file": "runtime-status-summary.json",
+    "legacy_schema_preserved": true,
+    "replacement": false
+  },
+  "release": "r1.3.3.2.23.5.1.7.1",
+  "schema": "rokid.native-loader.trigger-status.v1",
+  "startup_materialization": {
+    "captured_expected_registration_count": 11,
+    "class_loader_count": 9,
+    "expected_myjni_count": 11,
+    "hashed_material_count": 12,
+    "loaded_class_count": 20564,
+    "native_dex_source_open_count": 148
+  },
+  "trigger_boundary": {
+    "agent_injection_sufficient_without_java_or_interceptor_hooks": "PROVEN",
+    "baseline_survival": "PROVEN",
+    "exact_detection_predicate": "UNRESOLVED",
+    "exact_exit_primitive": "UNRESOLVED",
+    "proc_self_maps_detection_path": "BOUNDED_CANDIDATE",
+    "spawn_resume_without_agent_survival": "PROVEN",
+    "zero_hook_early_injection_followed_by_target_death": "PROVEN",
+    "zero_hook_running_attach_followed_by_target_death": "PROVEN"
+  },
+  "unresolved": [
+    "exact anti-instrumentation predicate",
+    "exact exit primitive",
+    "runtime completion of the protected real application"
+  ]
+}

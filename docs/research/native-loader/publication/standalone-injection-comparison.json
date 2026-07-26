@@ -1,0 +1,128 @@
+{
+  "earlier_recovered_memfd_map_hit_count": 9,
+  "interpretation": {
+    "common": "Both zero-hook injection modes reached script load and agent messaging and were followed by death of the injected target.",
+    "early": "The detailed source run injected earlier and captured an explicit death transition; the accepted live qualification required a bounded post-injection death-race warning.",
+    "map_name_visibility": "A prior recovered run captured nine Frida-agent memfd map lines, but the reviewed standalone source run did not repeat a map-name hit. Visibility is therefore timing-dependent, not guaranteed.",
+    "running": "The detailed source run injected later and collected more identity/maps samples; the accepted live qualification passed without a warning."
+  },
+  "metric_source": "uploaded standalone private evidence; final qualification outcome from reviewed terminal transcript",
+  "schema": "rokid.native-loader.injection-comparison.v1",
+  "trials": {
+    "empty-agent-early": {
+      "qualification_run": {
+        "agent_message_received": true,
+        "attach_reached": true,
+        "initial_pid_alive_at_end": "NO",
+        "remote_deletion_disabled": true,
+        "remote_directory_retained": true,
+        "result": "PASS",
+        "script_loaded": true,
+        "spawn_reached": true,
+        "warnings": [
+          "POST_INJECTION_DEATH_RACE"
+        ]
+      },
+      "source_run": {
+        "capture_duration_ms": 7611,
+        "command_returncode": 0,
+        "death_transition_sample_count": 1,
+        "identity_sample_count": 3,
+        "identity_snapshot_count": 5,
+        "initial_pid_alive_at_end": false,
+        "injected_elapsed_ms": 1113,
+        "invalid_live_identity_snapshot_count": 0,
+        "live_identity_snapshot_count": 2,
+        "map_artifact_sample_count": 0,
+        "maps_read_states": [
+          "OK",
+          "READ_ERROR"
+        ],
+        "maps_sample_count": 2,
+        "observed_identity_cadence": {
+          "duration_maximum_ms": 380,
+          "duration_median_ms": 320,
+          "duration_minimum_ms": 310,
+          "interval_maximum_ms": 576,
+          "interval_median_ms": 576,
+          "interval_minimum_ms": 462
+        },
+        "observed_maps_cadence": {
+          "duration_maximum_ms": 340,
+          "duration_median_ms": 340,
+          "duration_minimum_ms": 120,
+          "interval_maximum_ms": 1247,
+          "interval_median_ms": 1247,
+          "interval_minimum_ms": 1247
+        },
+        "overall_duration_ms": 10624,
+        "remote_directory_retained": true,
+        "remote_done": true,
+        "sample_states": [
+          "LIVE_VALID",
+          "LIVE_VALID",
+          "DEATH_TRANSITION_VALID"
+        ],
+        "valid_sample_count": 3
+      }
+    },
+    "running-attach-empty": {
+      "qualification_run": {
+        "agent_message_received": true,
+        "attach_reached": true,
+        "initial_pid_alive_at_end": "NO",
+        "remote_deletion_disabled": true,
+        "remote_directory_retained": true,
+        "result": "PASS",
+        "script_loaded": true,
+        "spawn_reached": false,
+        "warnings": []
+      },
+      "source_run": {
+        "capture_duration_ms": 10694,
+        "command_returncode": 0,
+        "death_transition_sample_count": 0,
+        "identity_sample_count": 5,
+        "identity_snapshot_count": 5,
+        "initial_pid_alive_at_end": false,
+        "injected_elapsed_ms": 3650,
+        "invalid_live_identity_snapshot_count": 1,
+        "live_identity_snapshot_count": 2,
+        "map_artifact_sample_count": 0,
+        "maps_read_states": [
+          "OK",
+          "OK",
+          "OK"
+        ],
+        "maps_sample_count": 3,
+        "observed_identity_cadence": {
+          "duration_maximum_ms": 340,
+          "duration_median_ms": 330,
+          "duration_minimum_ms": 320,
+          "interval_maximum_ms": 520,
+          "interval_median_ms": 505,
+          "interval_minimum_ms": 447
+        },
+        "observed_maps_cadence": {
+          "duration_maximum_ms": 390,
+          "duration_median_ms": 350,
+          "duration_minimum_ms": 330,
+          "interval_maximum_ms": 1222,
+          "interval_median_ms": 1222,
+          "interval_minimum_ms": 1197
+        },
+        "overall_duration_ms": 16393,
+        "remote_directory_retained": true,
+        "remote_done": true,
+        "sample_states": [
+          "LIVE_VALID",
+          "LIVE_VALID",
+          "LIVE_VALID",
+          "LIVE_VALID",
+          "LIVE_VALID"
+        ],
+        "valid_sample_count": 5
+      }
+    }
+  }
+}

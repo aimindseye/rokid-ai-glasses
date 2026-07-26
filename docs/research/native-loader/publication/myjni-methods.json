@@ -1,0 +1,128 @@
+{
+  "class": "com.netease.nis.wrapper.MyJni",
+  "method_count": 11,
+  "methods": [
+    {
+      "evidence_class": "INVOKED_STARTUP",
+      "java_entry_count": 2,
+      "java_return_count": 0,
+      "name": "load",
+      "native_entry_count": 2,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Landroid/app/Application;Ljava/lang/String;)Z",
+      "startup_role": "BOOTSTRAP_HELPER_OBSERVED"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "run",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "d",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Ljava/lang/String;)V",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "e",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Ljava/lang/String;)V",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "cp",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "()V",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "ip",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Landroid/app/Application;)V",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "ra",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "getEnvInfo",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "()Ljava/lang/String;",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "cl",
+      "native_entry_count": 2,
+      "native_return_count": 2,
+      "registration_count": 2,
+      "signature": "(Ljava/lang/ClassLoader;Landroid/content/pm/ApplicationInfo;Ljava/lang/String;)Ljava/lang/ClassLoader;",
+      "startup_role": "BOOTSTRAP_HELPER_OBSERVED"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "rp",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Landroid/content/Context;Landroid/app/Application;)Z",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    },
+    {
+      "evidence_class": "REGISTERED_NOT_INVOKED_STARTUP",
+      "java_entry_count": 0,
+      "java_return_count": 0,
+      "name": "ed",
+      "native_entry_count": 0,
+      "native_return_count": 0,
+      "registration_count": 2,
+      "signature": "(Ljava/lang/String;)V",
+      "startup_role": "NOT_OBSERVED_STARTUP"
+    }
+  ],
+  "schema": "rokid.native-loader.myjni-public.v1"
+}

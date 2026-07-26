@@ -1,0 +1,7 @@
+id,blocker,status,evidence
+B1,Exact MyJni registration map,CLOSED,All 11 expected name/signature pairs were captured; no unexpected MyJni registration was reported.
+B2,Protected DEX/class materialization,CLOSED,"DEX-source events, 12 hashed material candidates, 20,564 loaded classes, and 9 class loaders were recorded."
+B3,Non-injected control stability,CLOSED,Baseline and Frida spawn/resume without agent survived in accepted control trials.
+B4,Zero-hook injection trigger boundary,CLOSED,Both early injection and attach-to-running injection reached agent messaging and were followed by target death.
+B5,External evidence transport,CLOSED,"Pixel dual-lane capture, root-stream retrieval, manifest verification, persistent audit, and no-delete retention passed."
+B6,Post-injection death-race semantics,CLOSED,A narrow classifier distinguishes teardown races from genuine pre-injection identity failures; the accepted injected set passed.

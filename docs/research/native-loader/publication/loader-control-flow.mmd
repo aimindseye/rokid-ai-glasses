@@ -1,0 +1,24 @@
+flowchart TD
+    A[Android ActivityThread startup] --> B[Wrapper Application: MyApplication]
+    B --> C[attachBaseContext]
+    C --> D[MyJni.load]
+    D --> E[libnesec.so protected-loader bootstrap]
+    E --> F[Native DEX/source opens]
+    F --> G[In-memory and file-backed class materialization]
+    G --> H[PathClassLoader / augmented class-loader state]
+    E --> I[MyJni.cl]
+    I --> H
+    H --> J[Static candidate: RealApplication]
+    J -. runtime lifecycle return not observed .-> K[Application onCreate boundary]
+
+    L[No-agent controls] --> M[Target survives]
+    N[Zero-hook Frida agent injection] --> O[Agent message received]
+    O --> P[Injected target terminates]
+    Q[/proc/self/maps and module-enumeration candidates] -. candidate detection surface .-> P
+
+    classDef proven fill:#e7f4ea,stroke:#2d6a4f,color:#111;
+    classDef bounded fill:#fff4d6,stroke:#8a6d1d,color:#111;
+    classDef unresolved fill:#f8dddd,stroke:#8b2f2f,color:#111;
+    class A,B,C,D,E,F,G,H,I,L,M,N,O,P proven;
+    class J,Q bounded;
+    class K unresolved;

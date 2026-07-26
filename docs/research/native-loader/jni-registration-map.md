@@ -39,3 +39,16 @@ A JNI name and signature establish the Java/native registration contract. They
 do not by themselves establish the method's internal semantics or its
 relationship to user-facing glasses functionality. Only `cl` completion and
 `load` entry were observed in this bounded startup window.
+
+<!-- BEGIN R23.5.1.7.1 LATER STARTUP CAPTURE -->
+## Later startup-materialization capture
+
+A separate two-session startup capture recorded each of the 11 expected MyJni
+name/signature pairs twice. `load` entered twice and did not return within the
+bounded capture; `cl` entered and returned twice. The other nine registered
+methods were not invoked during that startup window.
+
+This later count does not replace the original exact class-attribution record
+above. The machine-readable later table is in
+[`publication/myjni-methods.json`](publication/myjni-methods.json).
+<!-- END R23.5.1.7.1 LATER STARTUP CAPTURE -->

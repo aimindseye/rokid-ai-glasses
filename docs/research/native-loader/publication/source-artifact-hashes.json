@@ -1,0 +1,38 @@
+{
+  "apk_set": {
+    "artifacts": [
+      {
+        "label": "base.apk",
+        "sha256": "ad463b39543f4370b102b04ec8ee1d4bec98ee81a1421a05ad0851841095419c",
+        "size": 89530694
+      },
+      {
+        "label": "split_config.arm64_v8a.apk",
+        "sha256": "e5fbb717f71e9177abbd6632d895d07bc2af8f0ecfdc5bb756d5dc142676cf27",
+        "size": 228665836
+      },
+      {
+        "label": "split_config.xxhdpi.apk",
+        "sha256": "45955ddec8dae83a7e1bdf61d7a3552d791b1530c511e502e1391c9010eacada",
+        "size": 444541
+      },
+      {
+        "label": "split_install_time_asset_pack.apk",
+        "sha256": "61347dec85bd5f2f9cc9d96c05673bf8c56159a528a200bfefe44dfeefc76cad",
+        "size": 244367731
+      }
+    ],
+    "canonical_source_set_sha256": "0b1b08614ca3b53eed9bf7a8a7cba30ce287182bbff57558c675d32f304e5dd7"
+  },
+  "historical_lineage": {
+    "accepted_apk_set_aggregate_sha256": "7215996f9282f139390553ae590976057dac4107d2113c0d34e443ccf68b801c",
+    "status": "PRESERVED_IN_EVIDENCE_HASHES"
+  },
+  "native_library": {
+    "label": "libnesec.so",
+    "sha256": "58bab7c77df93962cceb7688d2f3de0daab7957906b32c97dacd263ea0b608c4",
+    "size": 990328
+  },
+  "note": "The historical accepted aggregate and later canonical source-set hash identify different lineage calculations; both are preserved. No binaries are included.",
+  "schema": "rokid.native-loader.source-artifact-hashes.v1"
+}
