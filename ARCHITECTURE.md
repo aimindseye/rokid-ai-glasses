@@ -18,6 +18,9 @@ flowchart LR
     P --> W[Protected wrapper and libnesec loader]
     W --> J[MyJni and wrapper class-loader handoff]
     J -. complete protected application unresolved .-> R[RealApplication candidate]
+
+    H[Strict private handoff] --> I[Independent connection-only RFCOMM client]
+    I --> T
 ```
 
 ## Proven boundaries
@@ -31,60 +34,61 @@ flowchart LR
   registration contract are documented.
 - The r24.1 review recovered eight logical DEX call sites for seven `MyJni`
   methods but did not prove business-feature semantics.
+- The r25.2.4 result proves an independent Android client-side RFCOMM
+  connection-only lifecycle with SCN `3`, DLCI `6`, MTU `990`, matching
+  open/close, and zero application bytes in both directions by HCI census.
 
-## Unresolved implementation boundary
+## Proven connection-only transport
 
-The repository does not yet contain an independent Android companion that can
-bind, authenticate, establish the stock command channel, read glasses state, or
-change Developer Mode. The glasses-side Developer Mode property changes are
-known statically; the remote invocation path is not.
+```mermaid
+flowchart LR
+    H[Strict private handoff] --> R[Ready connection-only probe]
+    R --> E[Runtime RFCOMM endpoint]
+    E --> P[SCN 3 / DLCI 6 / MTU 990]
+    P --> O[SABM / UA open]
+    O --> Z[TX 0 bytes / RX 0 bytes]
+    Z --> C[DISC / UA close]
+```
 
-See:
+The private handoff is validated before the measured interval, exactly one
+connection request is accepted, the bugreport is collected after close, and the
+handoff is revoked afterward. Dynamic endpoint, process, slot, and handle values
+remain private.
+
+## Current application boundary
+
+```mermaid
+flowchart LR
+    K[Known independent RFCOMM transport] --> F[Unknown CXR/application framing]
+    F --> A[Unknown authenticated ADB enable/disable command]
+    A --> D[Known glasses-side Developer Mode property executor]
+```
+
+The repository now contains an independent **transport client**, not a complete
+replacement companion. Application framing, authentication/integrity fields,
+request/reply semantics, the stock ADB enable/disable payloads, and a safe
+independent toggle remain unresolved.
+
+## Replacement-app readiness
+
+| Layer | Current status |
+|---|---|
+| Runtime endpoint attribution | Complete in accepted r25.2 scope |
+| RFCOMM service/channel identity | Complete: SCN 3, DLCI 6, MTU 990 |
+| Connection-only Android client | Implemented and device-qualified |
+| Same-attempt transport lifecycle | Proven |
+| HCI zero-payload census | Proven: TX 0 bytes, RX 0 bytes |
+| Binding/session authentication | General independent reproduction unresolved |
+| CXR/application framing | Unresolved |
+| ADB command/reply semantics | Unresolved |
+| Guarded independent Developer Mode toggle | Not implemented |
+
+## Read next
 
 - [Current project status](docs/project-status.md)
 - [Detailed architecture](docs/architecture/non-display-system-architecture.md)
+- [Connection-protocol index](docs/research/connection-protocol/README.md)
+- [Final RFCOMM closure](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
+- [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json)
+- [Android client](android-client/README.md)
 - [Test and research matrix](docs/tests/test-matrix.md)
-- [Protected-application review](docs/research/protected-application/README.md)
-
-<!-- BEGIN R1.3.3.2.25 STOCK CHANNEL ARCHITECTURE -->
-## r25 implementation boundary
-
-```mermaid
-flowchart LR
-    S[Stock Hi Rokid] --> P[Unknown authenticated phone-to-glasses session]
-    P --> G[Rokid glasses control plane]
-    G --> D[Known Developer Mode property executor]
-
-    R[Read-only r25 Android probe] --> A[BLE advertisements]
-    R --> U[Bonded SDP UUIDs]
-    R --> V[GATT service and read inventory]
-
-    A --> C[Candidate transport correlation]
-    U --> C
-    V --> C
-    S --> C
-    C -. writes disabled until closure .-> P
-```
-
-The read-only probe is not a replacement companion yet. It establishes transport visibility while keeping proprietary writes disabled.
-<!-- END R1.3.3.2.25 STOCK CHANNEL ARCHITECTURE -->
-<!-- BEGIN R1.3.3.2.25.1 STOCK SESSION ARCHITECTURE -->
-## r25.1 observed stock session architecture
-
-```mermaid
-flowchart LR
-    A[Hi Rokid] --> B[BLE GATT connect]
-    B --> C[Read characteristic 0x9301]
-    C --> D[Runtime UUID + Classic address + opaque account material]
-    D --> E[SDP resolve]
-    E --> F[RFCOMM SCN 3 / DLCI 6 / MTU 990]
-    F --> G[CXR BLUETOOTH_AVAILABLE]
-    G --> H[Initial CXR request burst]
-```
-
-The runtime endpoint is provisioned; cached UUID inventory alone is not sufficient to open the stock channel.
-<!-- END R1.3.3.2.25.1 STOCK SESSION ARCHITECTURE -->
-
-## r25.2 independent bootstrap boundary
-
-The minimal client now implements the BLE `0x9100/0x9301` provisioning boundary and a connection-only RFCOMM lifecycle. Runtime endpoint values remain private and in-memory; CXR framing and Developer Mode remain outside this release.

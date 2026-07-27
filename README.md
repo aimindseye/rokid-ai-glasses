@@ -2,19 +2,19 @@
 
 ![Product](https://img.shields.io/badge/Product-Rokid%20AI%20Glasses%20Style-111827)
 ![Form factor](https://img.shields.io/badge/Form%20factor-Display--free-0284c7)
-![Coverage](https://img.shields.io/badge/Coverage-Tests%2000%E2%80%9318%20%7C%20Research%20through%20r24.1-7c3aed)
+![Coverage](https://img.shields.io/badge/Coverage-Tests%2000%E2%80%9318%20%7C%20Research%20through%20r25.2.4-7c3aed)
 ![Evidence](https://img.shields.io/badge/Evidence-Sanitized%20and%20reproducible-16a34a)
 
 An independent, community-maintained guide to the **display-free Rokid AI
 Glasses Style**, the **Hi Rokid** Android companion application, and the
 validated research completed through **Test 18** and **research release
-r1.3.3.2.24.1**.
+r1.3.3.2.25.2.4**.
 
 > Unofficial community project. Not affiliated with Rokid.
 
 ## Current state in one page
 
-The project has established three complementary layers:
+The project has established four complementary layers:
 
 1. **Glasses and stock workflow behavior.** The tested US non-display glasses
    run Android 12, expose RSA-protected USB ADB when Developer Mode is enabled,
@@ -29,8 +29,11 @@ The project has established three complementary layers:
 3. **Protected companion startup.** The native-loader research recovered the
    wrapper/native handoff, exact `MyJni` registration map, startup
    materialization, zero-hook injection trigger boundary, and an APK-enhanced
-   caller census. It did not recover the complete protected application or an
-   independent phone-to-glasses protocol implementation.
+   caller census. It did not recover the complete protected application.
+4. **Independent transport foundation.** The r25.2 workstream attributed the
+   runtime endpoint, implemented a strict connection-only Android RFCOMM client,
+   correlated one client open/close attempt, and proved by a lossless HCI census
+   that the target DLCI carried zero application bytes in both directions.
 
 ### Replacement-app readiness
 
@@ -39,20 +42,29 @@ The project has established three complementary layers:
 | Stock pairing and cloud workflow observation | Substantially complete | [Test matrix](docs/tests/test-matrix.md) |
 | Glasses Android/ADB/local-service baseline | Complete in read-only scope | [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
 | Developer Mode property semantics | Complete statically | [USB ADB finding](docs/findings/glasses-android-os-and-adb.md#usb-adb-control-path-follow-up) |
-| Phone-to-glasses command/session framing | Partial | [Project status](docs/project-status.md) |
-| Remote Developer Mode invocation | Unresolved | [Architecture](docs/architecture/non-display-system-architecture.md#replacement-companion-readiness) |
-| Independent Android companion client | Not implemented | [Project status](docs/project-status.md) |
+| Runtime Bluetooth endpoint attribution | Complete in the accepted r25.2 scope | [Connection-protocol research](docs/research/connection-protocol/README.md) |
+| Independent connection-only RFCOMM client | Implemented and device-qualified | [Android client](android-client/README.md) |
+| Same-attempt RFCOMM open/close lifecycle | Proven | [Final closure publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
+| HCI application-payload census | Proven: TX 0 bytes, RX 0 bytes | [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
+| CXR/application framing and authentication | Unresolved | [Project status](docs/project-status.md) |
+| Stock ADB enable/disable command and reply | Unresolved | [Architecture](ARCHITECTURE.md) |
+| Guarded independent Developer Mode toggle | Not implemented | [Project status](docs/project-status.md) |
 
-The immediate engineering gap is therefore **not broad transport discovery**.
-It is exact stock pairing/session closure, command/reply attribution, and a
-minimal independent Android client that first reproduces a harmless read-only
-operation before any guarded Developer Mode toggle.
+The transport-feasibility question is closed for the accepted connection-only
+attempt. The immediate engineering gap is now **application-protocol recovery**:
+attribute the stock ADB enable/disable payloads, recover framing and
+request/reply semantics, build a decoder, and only then consider a guarded
+sender with rollback.
 
 ## Start here
 
 | Goal | Page |
 |---|---|
 | Understand what is proven and what remains | [Project status](docs/project-status.md) |
+| Review the final RFCOMM zero-payload proof | [Final closure publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
+| Inspect the machine-readable transport result | [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
+| Follow the connection-protocol research | [Connection-protocol index](docs/research/connection-protocol/README.md) |
+| Inspect the connection-only Android client | [Android client](android-client/README.md) |
 | Understand the product | [Product overview](docs/consumer/product-overview.md) |
 | Set up or troubleshoot the glasses | [Consumer documentation](docs/consumer/README.md) |
 | Understand the full system | [Architecture overview](ARCHITECTURE.md) |
@@ -98,6 +110,23 @@ operation before any guarded Developer Mode toggle.
   glasses connection, or WebSocket keepalives. Android force-stop did.
 - Firmware checks are connection-gated and produce fresh live OTA requests on
   cold launch, firmware-page entry, and manual checks.
+
+### Independent RFCOMM transport foundation
+
+The accepted r25.2.4 publication proves one independently initiated Android
+client-side RFCOMM connection-only lifecycle. A strict private handoff supplied
+the runtime endpoint; the client opened and closed exactly once with protocol
+invariants SCN `3`, DLCI `6`, and MTU `990`. The correlated HCI stream contained
+SABM/UA and DISC/UA control boundaries and no application-bearing UIH frames:
+TX `0` bytes and RX `0` bytes.
+
+This result proves transport reachability and a safe zero-payload lifecycle. It
+does **not** identify an application-layer protocol or authorize a Developer
+Mode command. See the [final publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md),
+[methodology](docs/research/connection-protocol/r1.3.3.2.25.2.4-methodology.md),
+[limitations](docs/research/connection-protocol/r1.3.3.2.25.2.4-limitations.md),
+[evidence hashes](docs/research/connection-protocol/r1.3.3.2.25.2.4-evidence-hashes.txt),
+and [supersession map](docs/research/connection-protocol/r1.3.3.2.25.2.4-supersession-map.json).
 
 ### Developer Mode and USB ADB control path
 
@@ -172,7 +201,7 @@ docs/
   experiments/           controlled comparison reports
   findings/              consolidated stock-app/device findings
   methodology/           evidence, privacy, and interpretation methods
-  research/              native-loader and protected-application publications
+  research/              protected startup and connection-protocol publications
   runbooks/              reproducible operator procedures
   tests/                 numbered test reports and master matrix
 
@@ -219,35 +248,25 @@ analysis, and protocol experimentation can cause data loss, service disruption,
 or warranty issues. Use only devices, accounts, applications, and evidence you
 are authorized to test.
 
-<!-- BEGIN R1.3.3.2.25 STOCK CHANNEL BOOTSTRAP -->
-## r25 stock-channel and minimal-client bootstrap
+<!-- BEGIN R1.3.3.2.25.2.4 CURRENT TRANSPORT STATUS -->
+## Current connection-protocol result — r1.3.3.2.25.2.4
 
-The repository now includes a deliberately read-only Android Bluetooth probe and synchronized stock-app capture tooling under:
+Documentation navigation and readiness status were aligned in
+`r1.3.3.2.25.2.4.1`. The authoritative connection-only result remains
+`RFCOMM_CLIENT_FULL_ZERO_PAYLOAD_RUNTIME_CLOSURE_PROVEN_BY_HCI_DLCI_CENSUS`.
+The independent Android client reached the runtime RFCOMM endpoint, completed
+one matching open/close lifecycle, and exchanged zero application bytes on the
+target DLCI. Earlier bounded r25.2 results remain historical evidence and are
+superseded for this qualification question.
 
-- [`android-client/`](android-client/)
-- [`docs/research/connection-protocol/`](docs/research/connection-protocol/)
-- [`scripts/research/connection-protocol/`](scripts/research/connection-protocol/)
+- [Final publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
+- [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json)
+- [Methodology](docs/research/connection-protocol/r1.3.3.2.25.2.4-methodology.md)
+- [Limitations](docs/research/connection-protocol/r1.3.3.2.25.2.4-limitations.md)
+- [Evidence identities](docs/research/connection-protocol/r1.3.3.2.25.2.4-evidence-hashes.txt)
+- [Supersession map](docs/research/connection-protocol/r1.3.3.2.25.2.4-supersession-map.json)
 
-The client can inventory BLE advertisements, bonded SDP UUIDs, GATT services and readable characteristics. It does not implement account binding, the proprietary CXR session, Bluetooth writes, or a Developer Mode toggle.
-
-Current live status remains:
-
-```text
-stock pairing channel closure:          pending device qualification
-Developer Mode remote invocation:       unresolved
-minimal client read-only bootstrap:      implemented
-minimal client stock session:            not implemented
-minimal client Developer Mode write:     disabled
-```
-<!-- END R1.3.3.2.25 STOCK CHANNEL BOOTSTRAP -->
-<!-- BEGIN R1.3.3.2.25.1 STOCK SESSION CLOSURE -->
-## r25.1 stock-session establishment closure
-
-The accepted stock capture now closes the transport establishment sequence: BLE GATT characteristic `0x9301` provisions a runtime RFCOMM endpoint, SDP resolves it to server channel 3, and the phone opens DLCI 6 with MTU 990. Application framing, authentication semantics, independent replay, and Developer Mode invocation remain unresolved.
-
-See [r25.1 findings](docs/research/connection-protocol/r1.3.3.2.25.1-findings.md).
-<!-- END R1.3.3.2.25.1 STOCK SESSION CLOSURE -->
-
-## Connection-only companion qualification — r1.3.3.2.25.2
-
-r25.2 implements a read-only BLE `0x9301` provisioning read followed by a runtime-UUID RFCOMM connect/close operation with no application payload I/O. See [r25.2 findings](docs/research/connection-protocol/r1.3.3.2.25.2-findings.md). Live qualification remains pending until device evidence passes.
+Application framing, command authentication, the stock ADB enable/disable
+payloads, reply semantics, and a guarded independent Developer Mode toggle
+remain unresolved.
+<!-- END R1.3.3.2.25.2.4 CURRENT TRANSPORT STATUS -->

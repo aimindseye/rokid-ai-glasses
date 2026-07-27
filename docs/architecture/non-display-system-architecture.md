@@ -420,6 +420,31 @@ reconnect may send a new `init_scene`; no reconnect occurred in those segments.
 **Inferred:** Hi Rokid is the orchestration bridge between the privileged
 on-glasses service stack, phone-private state, and Rokid's remote services.
 
+### Independent RFCOMM transport foundation
+
+The r25.2.4 result proves one independent Android client-side connection-only
+RFCOMM lifecycle. The strict host workflow validated a fresh private handoff and
+an enabled probe before measurement, allowed one connection request, collected
+the bugreport after explicit close, and revoked the handoff afterward.
+
+```mermaid
+flowchart LR
+    H[Strict private handoff] --> R[Ready connection-only probe]
+    R --> E[Runtime endpoint]
+    E --> P[SCN 3 / DLCI 6 / MTU 990]
+    P --> O[SABM / UA]
+    O --> Z[TX 0 bytes / RX 0 bytes]
+    Z --> C[DISC / UA]
+```
+
+The HCI proof window was lossless for the accepted target lifecycle: no dropped
+or truncated records and no application-bearing UIH information bytes on DLCI
+6. This proves transport reachability and safe zero-payload closure for the
+measured attempt. It does not identify an application-layer protocol.
+
+See the [final publication](../research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
+and [runtime status](../research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json).
+
 ### Developer Mode and USB ADB control boundary
 
 Static analysis recovered the glasses-side setting key and property effects:
@@ -431,26 +456,30 @@ enable:  persist.vendor.adb=true; Settings.Global.adb_enabled=1
 disable: persist.vendor.adb=false
 ```
 
-The exact phone-side method, transport message, authentication, device
-addressing, request correlation, reply semantics, and rollback behavior remain
-unresolved. No safe exported glasses-side component was proven to provide the
-same operation to a normal third-party APK.
+The independent RFCOMM transport is now proven, but the exact stock
+application message remains unresolved: framing, authentication or integrity
+fields, request correlation, reply semantics, and rollback behavior are not yet
+known. No safe exported glasses-side component was proven to provide the same
+operation to a normal third-party APK.
 
 ### Replacement companion readiness
 
 | Layer | Current status |
 |---|---|
 | Stock Bluetooth/media/control behavior | Observed across pairing, voice, visual, and OTA workflows |
-| Exact GATT/RFCOMM/channel framing | Partial; not independently implemented |
-| Binding/session authentication | Stock behavior observed; independent reproduction absent |
-| Read-only custom command | Not implemented |
-| Remote Developer Mode command | Unresolved |
-| Independent Android companion | Not built |
+| Runtime endpoint attribution | Complete in accepted r25.2 scope |
+| RFCOMM service/channel identity | Complete: SCN 3, DLCI 6, MTU 990 |
+| Independent connection-only client | Implemented and device-qualified |
+| Same-attempt open/close and HCI lifecycle | Proven |
+| Application payload in accepted connection-only attempt | Proven zero in both directions |
+| Binding/session authentication | General independent reproduction unresolved |
+| CXR/application framing | Unresolved |
+| Stock ADB command and reply | Unresolved |
+| Independent guarded Developer Mode toggle | Not implemented |
 
-The next practical architecture phase is a clean-room Rokid adapter that first
-implements discovery, binding/session establishment, reconnect, and one harmless
-read-only command. A guarded Developer Mode toggle should follow only after
-state query, positive reply, and rollback behavior are proven.
+The next practical architecture phase is a controlled stock ADB enable/disable
+payload capture. It should establish UIH frame attribution and an
+application-frame decoder before any custom sender or replay is enabled.
 
 ## Voice assistant sequence
 
@@ -700,13 +729,13 @@ prefer documented SDK or protocol boundaries where available.
 
 ### Phone-to-glasses protocol and replacement app
 
-- Exact Bluetooth service/profile selection and GATT/RFCOMM framing
-- Binding and session-authentication contract
+- CXR/application frame boundaries and message schema
+- Binding/session-authentication and integrity fields used above the proven transport
 - Request IDs, reply correlation, error handling, and reconnect state machine
-- A harmless read-only command suitable for independent validation
-- Exact phone-side Developer Mode command and glasses-side reply
-- Whether the stock Developer Mode path can be reproduced safely without
-  first-party privileges
+- Stock ADB-enable versus ADB-disable UIH payload differential
+- Exact phone-side Developer Mode command and glasses-side acknowledgment
+- A read-only decoder that explains multiple independent captures
+- Whether guarded replay can be performed safely with positive reply and rollback
 
 ### Glasses and cloud behavior
 
