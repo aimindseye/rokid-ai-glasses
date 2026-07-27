@@ -1,0 +1,56 @@
+{
+  "acceptance": "PASS_FULL_RFCOMM_HCI_ZERO_PAYLOAD_CLOSURE",
+  "authoritative_evidence_release": "r1.3.3.2.25.2.3.2",
+  "evidence_hashes_file": "r1.3.3.2.25.2.4-evidence-hashes.txt",
+  "gates": {
+    "android_client_lifecycle_proven": true,
+    "full_zero_payload_closure_proven": true,
+    "hci_dlci_lifecycle_proven": true,
+    "hci_lossless_window": true,
+    "matching_open_close_proven": true,
+    "positive_payload_observed": false,
+    "prior_bounded_result_superseded": true,
+    "rx_payload_bytes": 0,
+    "same_attempt_runtime_tuple_proven": true,
+    "tx_payload_bytes": 0
+  },
+  "hci": {
+    "datalink": 1002,
+    "disc_count": 1,
+    "drops": 0,
+    "frame_fingerprint_sha256": "91e05f7f40dec72634e791ce4f7cb0d7f0f7f1ee91c87bdd061539beac2fb119",
+    "member_sha256": "27cb93a807be414dd61f37e2a78b73490c948723eb4f8b6a1481fae8ce9504fd",
+    "record_count": 494,
+    "rx_payload_bytes": 0,
+    "rx_payload_frame_count": 0,
+    "sabm_count": 1,
+    "target_frame_count": 4,
+    "truncated_record_count": 0,
+    "tx_payload_bytes": 0,
+    "tx_payload_frame_count": 0,
+    "window_record_count": 137
+  },
+  "metadata_interval": {
+    "end_utc": "2026-07-27T18:05:33Z",
+    "start_utc": "2026-07-27T18:05:24Z"
+  },
+  "offline_publication_integration": true,
+  "protocol": {
+    "dlci": 6,
+    "mtu": 990,
+    "native_service_class_uuid": "0x1101",
+    "scn": 3
+  },
+  "qualification_outcome": "RFCOMM_CLIENT_FULL_ZERO_PAYLOAD_RUNTIME_CLOSURE_PROVEN_BY_HCI_DLCI_CENSUS",
+  "release": "r1.3.3.2.25.2.4",
+  "schema": "rokid.r25.2.4.final-publication.v1",
+  "strict_handoff": {
+    "bugreport_after_close": true,
+    "fresh_disabled_baseline_attested": true,
+    "post_attempt_revocation": true,
+    "ready_before_interval": true,
+    "single_connect_request": true,
+    "strict_runner_sha256": "79bc681fb92c28c6bf98c0bd43f5d315ce936bf76abcb3de48a2be6ab0a970cf"
+  },
+  "supersession_map_file": "r1.3.3.2.25.2.4-supersession-map.json"
+}

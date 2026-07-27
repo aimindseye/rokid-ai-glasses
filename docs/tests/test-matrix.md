@@ -82,3 +82,14 @@ See [project status](../project-status.md) for the current engineering boundary.
 <!-- BEGIN R1.3.3.2.25.1 RESEARCH RELEASE -->
 | r1.3.3.2.25.1 | SDP service attribution, RFCOMM SCN/DLCI reconstruction, stock-session establishment correlation | `PASS_STOCK_SESSION_ESTABLISHMENT_CLOSED` | SCN 3, DLCI 6, MTU 990; framing/authentication and Developer Mode remain unresolved |
 <!-- END R1.3.3.2.25.1 RESEARCH RELEASE -->
+
+### r1.3.3.2.25.2 — connection-only client qualification
+
+| Gate | Required result |
+|---|---|
+| Strict stock-app isolation | Hi Rokid disabled and stopped before/after |
+| Provisioning | `0x9301` read succeeds; raw value unpublished |
+| Runtime endpoint | UUID acquired; UUID/address/account unpublished |
+| RFCOMM | Socket opens and closes |
+| Payload boundary | zero reads and zero writes |
+| Developer Mode | out of scope |

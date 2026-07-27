@@ -1,0 +1,9 @@
+flowchart LR
+  A[Hi Rokid disabled] --> B[BLE connect]
+  B --> C[Discover 0x9100]
+  C --> D[Read 0x9301]
+  D --> E[Runtime endpoint retained in memory]
+  E --> F[Close GATT]
+  F --> G[Open RFCOMM by runtime UUID]
+  G --> H[No stream access / zero payload I/O]
+  H --> I[Close RFCOMM]

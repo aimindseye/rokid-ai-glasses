@@ -1,0 +1,35 @@
+{
+  "authoritative_result": "r1.3.3.2.25.2.3.2",
+  "entries": [
+    {
+      "preserved_scope": "historical socket-open and application-counter observation",
+      "prior_outcome": "PASS_SOCKET_OPEN_ZERO_PAYLOAD_RUNTIME_PARAMETERS_UNRESOLVED",
+      "release": "r1.3.3.2.25.2.2.2",
+      "status": "SUPERSEDED_FOR_FINAL_ZERO_PAYLOAD_QUALIFICATION"
+    },
+    {
+      "preserved_scope": "terminal archive-only census for the older evidence archive",
+      "prior_outcome": "PASS_BOUNDED_RFCOMM_CLIENT_LIFECYCLE_CLOSURE_ONLY",
+      "release": "r1.3.3.2.25.2.2.2.1.3",
+      "status": "SUPERSEDED_FOR_FINAL_ZERO_PAYLOAD_QUALIFICATION"
+    },
+    {
+      "preserved_scope": "initial HCI capture and frame-census design",
+      "release": "r1.3.3.2.25.2.3",
+      "status": "IMPLEMENTATION_HISTORY"
+    },
+    {
+      "preserved_scope": "Pixel/AOSP HCI readiness correction",
+      "release": "r1.3.3.2.25.2.3.1",
+      "status": "IMPLEMENTATION_HISTORY"
+    },
+    {
+      "preserved_scope": "strict-handoff, same-attempt lifecycle, and lossless HCI zero-payload proof",
+      "release": "r1.3.3.2.25.2.3.2",
+      "status": "AUTHORITATIVE_RUNTIME_EVIDENCE"
+    }
+  ],
+  "final_publication": "r1.3.3.2.25.2.4",
+  "release": "r1.3.3.2.25.2.4",
+  "schema": "rokid.connection-protocol.supersession.v1"
+}

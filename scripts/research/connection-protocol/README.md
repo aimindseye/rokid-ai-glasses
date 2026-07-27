@@ -21,3 +21,26 @@ The tooling never sends a proprietary command and never writes a Bluetooth chara
 - `verify_r25_1_publication.py` — rejects raw addresses, account material and runtime UUID publication;
 - `validate_r25_1_run.py` — enforces the exact closure boundary.
 <!-- END R1.3.3.2.25.1 SCRIPTS -->
+
+## r25.2 scripts
+
+- `run_r1_3_3_2_25_2.sh` — strict device runner and stock restoration.
+- `analyze_r25_2_client.py` — event-sequence, privacy, and zero-I/O validator.
+- `verify_r25_2_publication.py` — sanitized publication gate.
+- `finalize_r25_2.py` — private evidence manifest and archive.
+
+## r25.2.1 scripts
+
+- `run_r1_3_3_2_25_2_1.sh` — strict-isolation three-phase device runner;
+- `analyze_r25_2_1_power_state.py` — differential fingerprint clustering and fail-closed candidate gate;
+- `verify_r25_2_1_publication.py` — public privacy and zero-connection-scope gate;
+- `finalize_r25_2_1.py` — private manifest and evidence ZIP;
+- `test_r25_2_1_synthetic.py` — deterministic unique-candidate synthetic test.
+
+
+### r25.2.2 tools
+
+- `run_r1_3_3_2_25_2_2.sh`: stock-disabled baseline, bounded stock assist, post-stock handoff, logcat/optional bugreport collection, analysis, verification, and finalization.
+- `analyze_r25_2_2_stock_assist.py`: unique provisioning-GATT address attribution and scan-token correlation.
+- `verify_r25_2_2_publication.py`: fails on raw address or key disclosure.
+- `finalize_r25_2_2.py`: seals private evidence.

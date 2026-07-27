@@ -84,3 +84,7 @@ flowchart LR
 
 The runtime endpoint is provisioned; cached UUID inventory alone is not sufficient to open the stock channel.
 <!-- END R1.3.3.2.25.1 STOCK SESSION ARCHITECTURE -->
+
+## r25.2 independent bootstrap boundary
+
+The minimal client now implements the BLE `0x9100/0x9301` provisioning boundary and a connection-only RFCOMM lifecycle. Runtime endpoint values remain private and in-memory; CXR framing and Developer Mode remain outside this release.

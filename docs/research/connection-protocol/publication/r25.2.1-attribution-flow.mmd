@@ -1,0 +1,18 @@
+flowchart TD
+    A[Strictly disable and stop Hi Rokid] --> B[Glasses OFF]
+    B --> C[20 s OFF baseline scan]
+    C --> D[Automatic scan stop]
+    D --> E[Power glasses ON]
+    E --> F[30 s transition scan]
+    F --> G[Automatic scan stop]
+    G --> H[30 s steady-ON scan]
+    H --> I[Automatic scan stop]
+    I --> J[Exact payload fingerprint groups]
+    I --> K[Structure fingerprint groups]
+    J --> L[Power-state differential analysis]
+    K --> L
+    L --> M{Exactly one qualifying cluster\nand score margin >= 20?}
+    M -->|Yes| N[Unique BLE identity attributed]
+    M -->|No| O[Bounded capture accepted; attribution unresolved]
+    N --> P[Resume r25.2 in later deliverable]
+    O --> Q[No connection attempted]

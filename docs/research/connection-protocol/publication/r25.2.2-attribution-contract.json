@@ -1,0 +1,37 @@
+{
+  "accepted_input": {
+    "acceptance": "PASS_BOUNDED_CAPTURE_COMPLETE_ATTRIBUTION_UNRESOLVED",
+    "r25_2_1_private_evidence_sha256": "ef5760ebe2a7c5bccffca81f5aac8141788d19f807190ab05fc1f8b51bf029bd"
+  },
+  "phases": [
+    {
+      "duration_seconds": 20,
+      "hi_rokid_enabled": false,
+      "name": "stock_disabled_baseline"
+    },
+    {
+      "duration_seconds": 60,
+      "hi_rokid_enabled": true,
+      "name": "stock_assist_window"
+    },
+    {
+      "duration_seconds": 20,
+      "hi_rokid_enabled": false,
+      "name": "post_stock_handoff"
+    }
+  ],
+  "release": "r1.3.3.2.25.2.2",
+  "safety": {
+    "automatic_endpoint_connection": false,
+    "probe_gatt_attempted": false,
+    "probe_rfcomm_attempted": false,
+    "raw_endpoint_publication": false
+  },
+  "schema": "rokid.r25.2.2.attribution-contract.v1",
+  "unique_attribution_gate": {
+    "minimum_score_margin": 40,
+    "minimum_top_score": 160,
+    "requires_9301_observation": true,
+    "requires_stock_or_gatt_evidence": true
+  }
+}

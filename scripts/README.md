@@ -57,3 +57,7 @@ See [`research/connection-protocol/`](research/connection-protocol/) for the r25
 <!-- BEGIN R1.3.3.2.25.1 SCRIPT INDEX -->
 The r25.1 analyzer under [`research/connection-protocol/`](research/connection-protocol/) reconstructs the BLE-to-RFCOMM establishment sequence from a private r25 evidence ZIP while generating a sanitized public closure record.
 <!-- END R1.3.3.2.25.1 SCRIPT INDEX -->
+
+### r25.2 connection-only qualification
+
+Use `scripts/research/connection-protocol/run_r1_3_3_2_25_2.sh` to enforce strict Hi Rokid isolation, collect the private client log, validate zero payload I/O, and restore stock operation.

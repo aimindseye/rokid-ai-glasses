@@ -1,0 +1,23 @@
+{
+  "account_material_published": false,
+  "application_payload_reads": 0,
+  "application_payload_writes": 0,
+  "classic_address_published": false,
+  "descriptor_writes_implemented": false,
+  "developer_mode_in_scope": false,
+  "expected_mapping_from_r25_1": {
+    "rfcomm_dlci": 6,
+    "rfcomm_mtu": 990,
+    "rfcomm_scn": 3
+  },
+  "gatt_characteristic_uuid": "00009301-0000-1000-8000-00805f9b34fb",
+  "gatt_service_uuid": "00009100-0000-1000-8000-00805f9b34fb",
+  "gatt_writes_implemented": false,
+  "implementation_status": "READY_FOR_DEVICE_QUALIFICATION",
+  "live_qualification": "NO",
+  "release": "r1.3.3.2.25.2",
+  "rfcomm_input_stream_obtained": false,
+  "rfcomm_output_stream_obtained": false,
+  "runtime_uuid_published": false,
+  "schema": "rokid.r25.2.implementation-public.v1"
+}
