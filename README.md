@@ -247,3 +247,7 @@ The accepted stock capture now closes the transport establishment sequence: BLE 
 
 See [r25.1 findings](docs/research/connection-protocol/r1.3.3.2.25.1-findings.md).
 <!-- END R1.3.3.2.25.1 STOCK SESSION CLOSURE -->
+
+## Connection-only companion qualification — r1.3.3.2.25.2
+
+r25.2 implements a read-only BLE `0x9301` provisioning read followed by a runtime-UUID RFCOMM connect/close operation with no application payload I/O. See [r25.2 findings](docs/research/connection-protocol/r1.3.3.2.25.2-findings.md). Live qualification remains pending until device evidence passes.

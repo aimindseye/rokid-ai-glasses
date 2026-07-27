@@ -1,0 +1,8 @@
+5efaa9c38b8868fb7bc3ae3bb7253790a905d9b6e390df2843bbd00c5728df18  r25.2.3.2-strict-handoff-hci-20260727T140508-sanitized-publication.zip
+21a1b66de908d5284498c5e2868f1dc5b2666b5d2eb3aadfbb0832b7c870fac1  r25.2.3.2-strict-handoff-hci-20260727T140508-private-analysis.zip [PRIVATE; HASH ONLY]
+37fc0b5f2f8e77282c57dd030f779d2a3fbe60c06783d6c2c5d10af38f8ad54b  r25.2.3.2-strict-handoff-hci-20260727T140508-private-evidence.zip [PRIVATE; HASH ONLY]
+108d2330cf3ee85b791eec2b5e27118a14c731af26d12a8807a74b371414b82b  r25.2.2.1-cached-runtime-20260727T083553-private-evidence.zip [PRIVATE SOURCE; HASH ONLY]
+71294b92f2123927172c31a4fd98cad9e1c026c251853c4ecbb016f550ef0da7  accepted-r25.2.2.2-private-handoff [PRIVATE; HASH ONLY]
+27cb93a807be414dd61f37e2a78b73490c948723eb4f8b6a1481fae8ce9504fd  bugreport.zip!/FS/data/misc/bluetooth/logs/btsnoop_hci.log [PRIVATE MEMBER; HASH ONLY]
+91e05f7f40dec72634e791ce4f7cb0d7f0f7f1ee91c87bdd061539beac2fb119  target-dlci-frame-fingerprint
+79bc681fb92c28c6bf98c0bd43f5d315ce936bf76abcb3de48a2be6ab0a970cf  installed-run_r1_3_3_2_25_2_2_2.sh

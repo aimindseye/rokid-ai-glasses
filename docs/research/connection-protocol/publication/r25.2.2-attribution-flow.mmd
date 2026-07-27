@@ -1,0 +1,14 @@
+flowchart TD
+  A[Disable and stop Hi Rokid] --> B[20 s scan-only baseline]
+  B --> C[Start 60 s HMAC scan window]
+  C --> D[Enable and launch Hi Rokid]
+  D --> E[Power-cycle glasses and observe one stock reconnect]
+  E --> F[Capture stock/Bluetooth logcat and optional bugreport]
+  F --> G[Stop and disable Hi Rokid]
+  G --> H[20 s post-stock scan]
+  H --> I[Extract provisioning-GATT address and 0x9301 evidence]
+  I --> J[HMAC-correlate address to scan token]
+  J --> K{Unique endpoint gate}
+  K -->|pass| L[Private raw endpoint handoff and sanitized public hash]
+  K -->|unresolved| M[No handoff; retain bounded evidence]
+  L --> N[No automatic GATT or RFCOMM connection]

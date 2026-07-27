@@ -10,8 +10,8 @@ android {
         applicationId = "org.aimindseye.rokid.channelprobe"
         minSdk = 26
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0-r25"
+        versionCode = 7
+        versionName = "0.7.0-r25.2.2.2"
     }
 
     buildTypes {

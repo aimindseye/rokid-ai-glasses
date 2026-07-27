@@ -40,3 +40,7 @@ This track begins implementation without changing the accepted native-loader or 
 <!-- BEGIN R1.3.3.2.25.1 RESEARCH INDEX -->
 - [r25.1 stock-session establishment findings](connection-protocol/r1.3.3.2.25.1-findings.md)
 <!-- END R1.3.3.2.25.1 RESEARCH INDEX -->
+
+### r1.3.3.2.25.2
+
+[BLE 0x9301 provisioning and connection-only RFCOMM client](connection-protocol/r1.3.3.2.25.2-findings.md) adds the first independently controlled transport bootstrap while retaining a zero-payload boundary.

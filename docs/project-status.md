@@ -79,3 +79,10 @@ See [connection-protocol research](research/connection-protocol/README.md).
 
 See [r25.1 findings](research/connection-protocol/r1.3.3.2.25.1-findings.md).
 <!-- END R1.3.3.2.25.1 PROJECT STATUS -->
+
+## r25.2 status
+
+- BLE `0x9301` provisioning read: implemented, device qualification pending.
+- Runtime RFCOMM endpoint acquisition: implemented with hash-only evidence.
+- RFCOMM connect/close without payload I/O: implemented, device qualification pending.
+- CXR application session and Developer Mode invocation: not implemented.

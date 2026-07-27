@@ -1,0 +1,36 @@
+{
+  "schema": "rokid.r25.2.1.attribution-contract.v1",
+  "release": "r1.3.3.2.25.2.1",
+  "capture_phases": [
+    {"name": "off_baseline", "duration_seconds": 20},
+    {"name": "power_on_transition", "duration_seconds": 30},
+    {"name": "on_steady", "duration_seconds": 30}
+  ],
+  "scan_lifecycle": {
+    "duplicate_start_rejected_locally": true,
+    "phase_auto_stop": true,
+    "ordered_phases_required": true,
+    "aborted_phase_requires_reset": true
+  },
+  "attribution_gate": {
+    "off_baseline_observations": 0,
+    "minimum_transition_observations": 5,
+    "minimum_steady_observations": 5,
+    "maximum_first_transition_elapsed_ms": 15000,
+    "minimum_score_margin": 20,
+    "rssi_alone_is_sufficient": false,
+    "automatic_unnamed_device_selection": false
+  },
+  "privacy": {
+    "raw_bluetooth_addresses_published": false,
+    "raw_advertisement_bytes_published": false,
+    "private_device_ids_published": false,
+    "private_fingerprint_hashes_published": false
+  },
+  "connection_scope": {
+    "gatt_attempted": false,
+    "rfcomm_attempted": false,
+    "application_payload_reads": 0,
+    "application_payload_writes": 0
+  }
+}
