@@ -1,86 +1,101 @@
 # Rokid Channel Probe
 
-A bounded Android companion probe through r1.3.3.2.25.2.
+A bounded Android research companion through `r1.3.3.2.25.2.4`.
 
-## Capabilities
+## Current qualified capability
+
+The repository contains a device-qualified **connection-only RFCOMM client**.
+The accepted strict-handoff workflow:
+
+1. receives a private runtime endpoint handoff from the host runner;
+2. attests that the handoff is fresh and the probe is ready;
+3. opens exactly one Android client-side RFCOMM socket;
+4. uses the observed protocol invariants SCN `3`, DLCI `6`, and MTU `990`;
+5. obtains no application input/output streams and sends no payload;
+6. closes the socket and revokes the handoff;
+7. correlates the Android lifecycle with a lossless HCI DLCI census.
+
+The accepted result proves TX `0` application bytes and RX `0` application
+bytes for the measured connection-only attempt. See the
+[final publication](../docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md).
+
+## Supporting probe modes
 
 - BLE advertisement scan;
 - bonded-device inventory;
 - SDP UUID discovery for bonded devices;
 - BLE GATT connection and service/characteristic inventory;
 - reads only characteristics that advertise `PROPERTY_READ`;
+- power-state differential BLE attribution;
+- stock-assisted endpoint correlation using private per-run HMAC material;
 - JSONL evidence written to app-private storage;
-- device addresses pseudonymized with a per-run salt.
+- device addresses pseudonymized or kept private according to the run contract.
 
 ## Deliberately absent
 
 - Internet permission;
-- GATT or descriptor writes;
-- RFCOMM socket connection;
+- arbitrary GATT or descriptor writes;
+- application-payload RFCOMM reads or writes;
+- user-supplied raw payload transmission;
 - hidden APIs;
 - account login or binding bypass;
-- CXR message construction;
-- Developer Mode or USB toggle.
+- CXR message construction or replay;
+- Developer Mode or USB ADB toggle.
+
+This is a transport research client, not a complete replacement companion.
 
 ## Build
 
-Open this directory in Android Studio, install Android SDK 36, and build the `app` module.
-
-The project pins Android Gradle Plugin 8.13.0 and uses Java 17. With Gradle 8.13 available:
-
-```bash
-gradle :app:assembleDebug
-adb install -r app/build/outputs/apk/debug/app-debug.apk
-```
-
-## Evidence
-
-The app displays the generated JSONL path. Pull it with `run-as`; do not publish the raw log until it has passed the r25 sanitizer.
-
-
-## r25.2 connection-only qualification
-
-The r25.2 flow adds one explicitly bounded operation:
-
-1. read GATT service `0x9100`, characteristic `0x9301`;
-2. acquire the runtime RFCOMM UUID and Classic address in memory;
-3. log only hashes, lengths, and pseudonymous device identity;
-4. open RFCOMM using the runtime UUID;
-5. never obtain the socket input or output stream;
-6. send and read zero application payload bytes;
-7. close after approximately two seconds.
-
-Run it only while Hi Rokid is disabled for the current Android user. The device must remain bonded. See `scripts/research/connection-protocol/run_r1_3_3_2_25_2.sh`.
-
-Build with the committed wrapper:
+Open this directory in Android Studio, install Android SDK 36, and build the
+`app` module. The project pins Android Gradle Plugin 8.13.0 and uses Java 17.
+With the committed wrapper:
 
 ```bash
 ./gradlew clean :app:assembleDebug
+adb install -r app/build/outputs/apk/debug/app-debug.apk
 ```
 
-## r25.2.1 power-state BLE attribution mode
+## Evidence and privacy
 
-The r25.2.1 build temporarily replaces the connection-only UI with a
-capture-only identity-attribution workflow. It records three bounded BLE scan
-phases:
+The app writes private evidence to app-private storage. Pull it only through the
+strict host runners. Raw endpoint values, handoff material, logs, bugreports,
+and HCI captures must not be published.
 
-1. glasses powered off — 20 seconds;
-2. immediate power-on transition — 30 seconds;
-3. glasses powered on and steady — 30 seconds.
+Public status and evidence identities are available in:
 
-Each phase auto-stops. Duplicate scan starts are rejected before Android's
-scanner is called. The private JSONL records pseudonymous device IDs, RSSI,
-connectability, advertised UUIDs, manufacturer company IDs, lengths, and SHA-256
-fingerprints of advertisement material. Raw Bluetooth addresses and raw payload
-bytes are not written by the r25.2.1 attribution probe.
+- [connection-protocol index](../docs/research/connection-protocol/README.md);
+- [runtime status](../docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json);
+- [evidence hashes](../docs/research/connection-protocol/r1.3.3.2.25.2.4-evidence-hashes.txt).
 
-The r25.2.1 UI exposes no GATT or RFCOMM action. Run it with:
+## Historical modes
 
-```bash
-scripts/research/connection-protocol/run_r1_3_3_2_25_2_1.sh
-```
+### r25.2 connection-only bootstrap
 
+The initial r25.2 flow read GATT service `0x9100`, characteristic `0x9301`,
+acquired the runtime RFCOMM identity in memory, and implemented an intentionally
+zero-payload connect/close path. Later strict-handoff and HCI phases supplied the
+accepted hardware qualification.
 
-## r1.3.3.2.25.2.2 stock-assisted correlation mode
+### r25.2.1 power-state BLE attribution
 
-The r25.2.2 build remains connection-free. It captures three bounded BLE scan phases and writes a private per-run HMAC key so the host can correlate a raw stock-app GATT address to scan observations without logging that address in the application JSONL. Hi Rokid is enabled only by the host runner during the 60-second stock-assist window.
+This capture-only mode records bounded glasses-off, power-on-transition, and
+steady-on BLE scan phases. It exposes no GATT or RFCOMM action.
+
+### r25.2.2 stock-assisted correlation
+
+This connection-free mode uses Hi Rokid as a bounded attribution oracle and a
+private per-run HMAC key to correlate stock provisioning activity without
+publishing a raw address.
+
+### r25.2.3.2 strict-handoff HCI qualification
+
+This mode reuses the accepted strict private-handoff runner, starts measurement
+only after readiness, permits exactly one connection action, captures the
+bugreport after close, and revokes the handoff. Its evidence is authoritative
+for the final r25.2.4 publication.
+
+## Next implementation boundary
+
+The next phase must capture and decode the stock ADB-enable and ADB-disable
+application payloads. Custom payload transmission remains disabled until framing,
+authentication/integrity fields, reply correlation, and rollback are proven.

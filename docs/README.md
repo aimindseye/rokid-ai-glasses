@@ -1,14 +1,26 @@
 # Documentation Index
 
 The documentation covers numbered product/device tests through **Test 18** and
-protected-companion research through **r1.3.3.2.24.1**.
+research and implementation releases through **r1.3.3.2.25.2.4**.
 
 ## Current status and architecture
 
 - [Project status](project-status.md)
+- [Root architecture summary](../ARCHITECTURE.md)
 - [Architecture index](architecture/README.md)
 - [Detailed non-display architecture](architecture/non-display-system-architecture.md)
 - [Test and research matrix](tests/test-matrix.md)
+
+## Current connection-protocol result
+
+- [Connection-protocol research index](research/connection-protocol/README.md)
+- [Final RFCOMM zero-payload closure](research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
+- [Machine-readable runtime status](research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json)
+- [Methodology](research/connection-protocol/r1.3.3.2.25.2.4-methodology.md)
+- [Limitations](research/connection-protocol/r1.3.3.2.25.2.4-limitations.md)
+- [Evidence identities](research/connection-protocol/r1.3.3.2.25.2.4-evidence-hashes.txt)
+- [Supersession map](research/connection-protocol/r1.3.3.2.25.2.4-supersession-map.json)
+- [Connection-only Android client](../android-client/README.md)
 
 ## Consumer documentation
 

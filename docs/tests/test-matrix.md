@@ -49,47 +49,37 @@ reports and evidence are sanitized.
 | 18D | Repair-app and recovery boundaries | Static reachability/recovery | BOUNDED — no safe exported setter; phone replay blocked | [Finding](../findings/glasses-android-os-and-adb.md#repair-app-feasibility) |
 | 18 | USB ADB control-path follow-up | 18A–18D | PASS in static/offline scope; runtime invocation unresolved | [Sanitized summary](../../evidence/sanitized/glasses-os-services/usb-adb-control-summary.txt) |
 
-## Protected companion research releases
+## Research and implementation releases
 
 | Release | Scope | Accepted result | Public result |
 |---|---|---|---|
-| r1.3.3.2.22.1.1 | Native loader, secondary runtime, relocations, callbacks, exact RegisterNatives attribution, Java handoff | `PASS_RECOVERED`; original six blockers closed in their bounded definitions | [Validated findings](../research/native-loader/r1.3.3.2.22.1.1-findings.md) |
-| r1.3.3.2.23.5.1.6.3 | Standalone external probe and post-injection death-race semantics | Both injected trials accepted; collection/retrieval/retention validated | [Injection comparison](../research/native-loader/injection-mode-comparison.md) |
-| r1.3.3.2.23.5.1.7.1 | Historical preservation and additive startup/trigger publication | Native-runtime and later 647-event evidence sets preserved separately | [Native-loader index](../research/native-loader/README.md) |
-| r1.3.3.2.24 | RealApplication lifecycle, class origin, and MyJni caller classification | `PASS_BOUNDED_CLOSURE`; RealApplication runtime confirmation remained false | [Protected application](../research/protected-application/README.md) |
-| r1.3.3.2.24.1 | Six-APK differential and exact DEX caller census | `PASS_APK_ENHANCED_REVIEW`; 24 physical observations → 8 logical sites; 7/11 methods with exact DEX sites | [Accepted review](../research/protected-application/publication/accepted-evidence-review.json) |
+| `r1.3.3.2.22.1.1` | Native loader, secondary runtime, relocations, callbacks, exact RegisterNatives attribution, Java handoff | `PASS_RECOVERED`; original six blockers closed in their bounded definitions | [Validated findings](../research/native-loader/r1.3.3.2.22.1.1-findings.md) |
+| `r1.3.3.2.23.5.1.6.3` | Standalone external probe and post-injection death-race semantics | Both injected trials accepted; collection/retrieval/retention validated | [Injection comparison](../research/native-loader/injection-mode-comparison.md) |
+| `r1.3.3.2.23.5.1.7.1` | Historical preservation and additive startup/trigger publication | Native-runtime and later 647-event evidence sets preserved separately | [Native-loader index](../research/native-loader/README.md) |
+| `r1.3.3.2.24` | RealApplication lifecycle, class origin, and MyJni caller classification | `PASS_BOUNDED_CLOSURE`; RealApplication runtime confirmation remained false | [Protected application](../research/protected-application/README.md) |
+| `r1.3.3.2.24.1` | Six-APK differential and exact DEX caller census | `PASS_APK_ENHANCED_REVIEW`; 24 physical observations → 8 logical sites; 7/11 methods with exact DEX sites | [Accepted review](../research/protected-application/publication/accepted-evidence-review.json) |
+| `r1.3.3.2.25` | Stock capture and minimal-client bootstrap | `PASS_BOOTSTRAP_READY` | [Connection-protocol index](../research/connection-protocol/README.md) |
+| `r1.3.3.2.25.1` | Stock endpoint provisioning and RFCOMM establishment | `PASS_STOCK_SESSION_ESTABLISHMENT_CLOSED` | [r25.1 findings](../research/connection-protocol/r1.3.3.2.25.1-findings.md) |
+| `r1.3.3.2.25.2` | Independent BLE provisioning and connection-only RFCOMM client | Implementation accepted; later phases supplied final device proof | [r25.2 findings](../research/connection-protocol/r1.3.3.2.25.2-findings.md) |
+| `r1.3.3.2.25.2.2.2` | Strict private-handoff connection-only qualification | Historical bounded socket-open/zero-I/O result | [Qualification](../research/connection-protocol/r1.3.3.2.25.2.2.2-rfcomm-connection-only-qualification.md) |
+| `r1.3.3.2.25.2.3.2` | Strict private-handoff, single-tap lifecycle, and HCI DLCI census | `PASS_FULL_RFCOMM_HCI_ZERO_PAYLOAD_CLOSURE` | [Integration findings](../research/connection-protocol/r1.3.3.2.25.2.3.2-strict-private-handoff-integration.md) |
+| `r1.3.3.2.25.2.4` | Final publication, evidence-hash promotion, and prior bounded-result supersession | `PASS_FINAL_RFCOMM_ZERO_PAYLOAD_PUBLICATION_INTEGRATION` | [Final publication](../research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
 
-## Capability status after r24.1
+Repair-only `.1.x` releases remain in the detailed
+[connection-protocol index](../research/connection-protocol/README.md) and the
+[supersession map](../research/connection-protocol/r1.3.3.2.25.2.4-supersession-map.json).
+
+## Capability status after r1.3.3.2.25.2.4
 
 | Goal | Status |
 |---|---|
 | Observe stock pairing, AI, visual, OTA, lifecycle, and device behavior | Substantially complete in documented scope |
 | Know glasses-side Developer Mode key/property effects | Complete statically |
-| Independently reproduce stock pairing/session authentication | Not implemented |
-| Independently read glasses state through the stock command channel | Not implemented |
-| Attribute the remote Developer Mode command/reply | Unresolved |
-| Build a replacement Android companion | Not implemented |
+| Attribute the runtime Bluetooth endpoint | Complete in accepted r25.2 scope |
+| Open and close the target RFCOMM transport independently | Complete and device-qualified |
+| Prove zero application payload for the connection-only attempt | Complete by lossless HCI census |
+| Recover CXR/application framing and request/reply semantics | Unresolved |
+| Attribute stock ADB enable/disable command bytes | Unresolved |
+| Build a guarded independent Developer Mode toggle | Not implemented |
 
 See [project status](../project-status.md) for the current engineering boundary.
-
-<!-- BEGIN R1.3.3.2.25 RESEARCH RELEASE -->
-## r25 implementation release
-
-| Release | Scope | Package result | Live result |
-|---|---|---|---|
-| r1.3.3.2.25 | Stock pairing capture, Developer Mode attribution workflow, read-only Android client bootstrap | `PASS_BOOTSTRAP_READY` after package validation | Pending controlled phone/glasses qualification; no remote write closure claimed |
-<!-- END R1.3.3.2.25 RESEARCH RELEASE -->
-<!-- BEGIN R1.3.3.2.25.1 RESEARCH RELEASE -->
-| r1.3.3.2.25.1 | SDP service attribution, RFCOMM SCN/DLCI reconstruction, stock-session establishment correlation | `PASS_STOCK_SESSION_ESTABLISHMENT_CLOSED` | SCN 3, DLCI 6, MTU 990; framing/authentication and Developer Mode remain unresolved |
-<!-- END R1.3.3.2.25.1 RESEARCH RELEASE -->
-
-### r1.3.3.2.25.2 — connection-only client qualification
-
-| Gate | Required result |
-|---|---|
-| Strict stock-app isolation | Hi Rokid disabled and stopped before/after |
-| Provisioning | `0x9301` read succeeds; raw value unpublished |
-| Runtime endpoint | UUID acquired; UUID/address/account unpublished |
-| RFCOMM | Socket opens and closes |
-| Payload boundary | zero reads and zero writes |
-| Developer Mode | out of scope |
