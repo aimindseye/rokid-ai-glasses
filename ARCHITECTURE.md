@@ -45,3 +45,42 @@ See:
 - [Detailed architecture](docs/architecture/non-display-system-architecture.md)
 - [Test and research matrix](docs/tests/test-matrix.md)
 - [Protected-application review](docs/research/protected-application/README.md)
+
+<!-- BEGIN R1.3.3.2.25 STOCK CHANNEL ARCHITECTURE -->
+## r25 implementation boundary
+
+```mermaid
+flowchart LR
+    S[Stock Hi Rokid] --> P[Unknown authenticated phone-to-glasses session]
+    P --> G[Rokid glasses control plane]
+    G --> D[Known Developer Mode property executor]
+
+    R[Read-only r25 Android probe] --> A[BLE advertisements]
+    R --> U[Bonded SDP UUIDs]
+    R --> V[GATT service and read inventory]
+
+    A --> C[Candidate transport correlation]
+    U --> C
+    V --> C
+    S --> C
+    C -. writes disabled until closure .-> P
+```
+
+The read-only probe is not a replacement companion yet. It establishes transport visibility while keeping proprietary writes disabled.
+<!-- END R1.3.3.2.25 STOCK CHANNEL ARCHITECTURE -->
+<!-- BEGIN R1.3.3.2.25.1 STOCK SESSION ARCHITECTURE -->
+## r25.1 observed stock session architecture
+
+```mermaid
+flowchart LR
+    A[Hi Rokid] --> B[BLE GATT connect]
+    B --> C[Read characteristic 0x9301]
+    C --> D[Runtime UUID + Classic address + opaque account material]
+    D --> E[SDP resolve]
+    E --> F[RFCOMM SCN 3 / DLCI 6 / MTU 990]
+    F --> G[CXR BLUETOOTH_AVAILABLE]
+    G --> H[Initial CXR request burst]
+```
+
+The runtime endpoint is provisioned; cached UUID inventory alone is not sufficient to open the stock channel.
+<!-- END R1.3.3.2.25.1 STOCK SESSION ARCHITECTURE -->

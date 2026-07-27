@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant App as Hi Rokid
+    participant BLE as Glasses BLE GATT
+    participant SDP as Glasses SDP
+    participant RFC as Glasses RFCOMM
+    participant CXR as CXR runtime
+
+    App->>BLE: Connect and negotiate MTU
+    App->>BLE: Read characteristic 0x9301
+    BLE-->>App: Runtime UUID + Classic address + opaque account material
+    App-->>BLE: Close GATT client
+    App->>SDP: Resolve runtime UUID
+    SDP-->>App: RFCOMM SCN 3
+    App->>RFC: L2CAP 0x007f ↔ 0x0044
+    App->>RFC: Multiplexer SABM/UA
+    App->>RFC: DLCI 6 SABM/UA, MTU 990
+    RFC-->>App: Socket open
+    App->>CXR: BLUETOOTH_AVAILABLE
+    CXR->>RFC: Initial request burst

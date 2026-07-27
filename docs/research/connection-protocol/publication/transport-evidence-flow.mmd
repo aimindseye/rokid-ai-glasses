@@ -1,0 +1,14 @@
+flowchart LR
+    A[Stock Hi Rokid UI action] --> B[Phone logs and Bluetooth HCI]
+    B --> C[Privacy-minimized protocol metadata]
+    C --> D[Pairing and Developer Mode correlation]
+
+    E[Read-only Android probe] --> F[BLE advertisements]
+    E --> G[Bonded SDP UUIDs]
+    E --> H[GATT services and readable characteristics]
+
+    D --> I[Bounded candidate channel]
+    F --> I
+    G --> I
+    H --> I
+    I -. authenticated writes remain disabled .-> J[Future guarded replay]

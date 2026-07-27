@@ -49,3 +49,33 @@ A practical next phase should concentrate on:
 
 The protected-loader research should now be used as supporting context, not as
 the primary workstream.
+
+<!-- BEGIN R1.3.3.2.25 PROJECT STATUS -->
+## r25 bootstrap status
+
+| Deliverable | Status |
+|---|---|
+| Stock pairing/reconnect capture harness | Implemented; live evidence pending |
+| Bluetooth HCI metadata reduction | Implemented; requires phone bugreport/HCI snoop |
+| Developer Mode state/transport correlation | Implemented fail-closed; remote invocation unresolved |
+| Read-only Android client | Implemented source; device qualification pending |
+| Proprietary CXR session | Not implemented |
+| Independent Developer Mode toggle | Disabled and not implemented |
+
+See [connection-protocol research](research/connection-protocol/README.md).
+<!-- END R1.3.3.2.25 PROJECT STATUS -->
+<!-- BEGIN R1.3.3.2.25.1 PROJECT STATUS -->
+## r25.1 stock-session status
+
+| Boundary | Status |
+|---|---|
+| BLE connection-information source | Closed: characteristic `0x9301` |
+| Runtime SDP service attribution | Closed |
+| RFCOMM SCN / DLCI / MTU | Closed: 3 / 6 / 990 |
+| Stock session establishment sequence | Closed |
+| Application framing and authentication semantics | Unresolved |
+| Independent replacement-client RFCOMM session | Not implemented |
+| Developer Mode remote invocation | Not attempted in the source run |
+
+See [r25.1 findings](research/connection-protocol/r1.3.3.2.25.1-findings.md).
+<!-- END R1.3.3.2.25.1 PROJECT STATUS -->

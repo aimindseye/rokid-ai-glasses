@@ -59,3 +59,6 @@ raw-exports/
 # Python generated files
 __pycache__/
 *.py[cod]
+android-client/.gradle/
+android-client/build/
+android-client/app/build/

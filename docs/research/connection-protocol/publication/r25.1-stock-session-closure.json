@@ -1,0 +1,54 @@
+{
+  "ble_bootstrap": {
+    "account_material_published": false,
+    "account_material_sha256": "cfe2a3705e74ec11e7aa6293156a69579159ffc4030dd94779b93bea7e4fdfad",
+    "classification": "BLE_GATT_CONNECTION_INFO_PROVISIONS_CLASSIC_RFCOMM_ENDPOINT",
+    "connection_info_characteristic_uuid": "00009301-0000-1000-8000-00805f9b34fb",
+    "runtime_uuid_published": false,
+    "runtime_uuid_sha256": "38ac339a48aa7efcd3b309ac88092ac00947de388baed0e3e7ee780d8bce806f"
+  },
+  "closure": {
+    "application_message_framing_closed": false,
+    "ble_to_rfcomm_bootstrap_attributed": true,
+    "developer_mode_remote_invocation_closed": false,
+    "developer_mode_scope": "NOT_ATTEMPTED_AND_OUT_OF_SCOPE",
+    "independent_client_rfcomm_session_implemented": false,
+    "rfcomm_scn_dlci_reconstructed": true,
+    "sdp_service_channel_attributed": true,
+    "session_authentication_semantics_closed": false,
+    "stock_session_establishment_sequence_closed": true
+  },
+  "fixed_uuid_path": {
+    "classification": "CACHED_OR_FALLBACK_UUID_WITHOUT_ACTIVE_RFCOMM_SCN_IN_THIS_CAPTURE",
+    "cxr_connect_calls": 9,
+    "sdp_failure_scn_zero_count": 18,
+    "socket_attempts": 18,
+    "uuid_sha256": "4609ea45a8ddd6431eed924770ab4e616be8408b38f458103c0c4fcf79603008"
+  },
+  "public_safety": {
+    "account_material_published": false,
+    "bluetooth_address_published": false,
+    "raw_hci_published": false,
+    "runtime_uuid_published": false
+  },
+  "rfcomm_session": {
+    "dlci": 6,
+    "initiator": "PHONE_CLIENT",
+    "l2cap_local_cid": "0x007f",
+    "l2cap_remote_cid": "0x0044",
+    "mtu": 990,
+    "sdp_server_channel": 3
+  },
+  "schema": "rokid.r25.1.stock-session-public.v1",
+  "source_archive_sha256": "5a36349d3e18f8896fa8e6da728d4ad684852738b860d44156d53824b155df42",
+  "supplemental_sdp": null,
+  "timing_ms": {
+    "ble_open_to_connection_info_ms": 198.0,
+    "ble_open_to_socket_open_ms": 1591.0,
+    "connection_info_to_rfcomm_request_ms": 21.0,
+    "cxr_available_to_first_request_ms": 1.0,
+    "rfcomm_request_to_sdp_resolution_ms": 1296.0,
+    "sdp_resolution_to_socket_open_ms": 76.0,
+    "socket_open_to_cxr_available_ms": 30.0
+  }
+}

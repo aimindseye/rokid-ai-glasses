@@ -71,3 +71,14 @@ reports and evidence are sanitized.
 | Build a replacement Android companion | Not implemented |
 
 See [project status](../project-status.md) for the current engineering boundary.
+
+<!-- BEGIN R1.3.3.2.25 RESEARCH RELEASE -->
+## r25 implementation release
+
+| Release | Scope | Package result | Live result |
+|---|---|---|---|
+| r1.3.3.2.25 | Stock pairing capture, Developer Mode attribution workflow, read-only Android client bootstrap | `PASS_BOOTSTRAP_READY` after package validation | Pending controlled phone/glasses qualification; no remote write closure claimed |
+<!-- END R1.3.3.2.25 RESEARCH RELEASE -->
+<!-- BEGIN R1.3.3.2.25.1 RESEARCH RELEASE -->
+| r1.3.3.2.25.1 | SDP service attribution, RFCOMM SCN/DLCI reconstruction, stock-session establishment correlation | `PASS_STOCK_SESSION_ESTABLISHMENT_CLOSED` | SCN 3, DLCI 6, MTU 990; framing/authentication and Developer Mode remain unresolved |
+<!-- END R1.3.3.2.25.1 RESEARCH RELEASE -->

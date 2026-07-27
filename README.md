@@ -218,3 +218,32 @@ This project is independent research. Device modification, ADB use, firmware
 analysis, and protocol experimentation can cause data loss, service disruption,
 or warranty issues. Use only devices, accounts, applications, and evidence you
 are authorized to test.
+
+<!-- BEGIN R1.3.3.2.25 STOCK CHANNEL BOOTSTRAP -->
+## r25 stock-channel and minimal-client bootstrap
+
+The repository now includes a deliberately read-only Android Bluetooth probe and synchronized stock-app capture tooling under:
+
+- [`android-client/`](android-client/)
+- [`docs/research/connection-protocol/`](docs/research/connection-protocol/)
+- [`scripts/research/connection-protocol/`](scripts/research/connection-protocol/)
+
+The client can inventory BLE advertisements, bonded SDP UUIDs, GATT services and readable characteristics. It does not implement account binding, the proprietary CXR session, Bluetooth writes, or a Developer Mode toggle.
+
+Current live status remains:
+
+```text
+stock pairing channel closure:          pending device qualification
+Developer Mode remote invocation:       unresolved
+minimal client read-only bootstrap:      implemented
+minimal client stock session:            not implemented
+minimal client Developer Mode write:     disabled
+```
+<!-- END R1.3.3.2.25 STOCK CHANNEL BOOTSTRAP -->
+<!-- BEGIN R1.3.3.2.25.1 STOCK SESSION CLOSURE -->
+## r25.1 stock-session establishment closure
+
+The accepted stock capture now closes the transport establishment sequence: BLE GATT characteristic `0x9301` provisions a runtime RFCOMM endpoint, SDP resolves it to server channel 3, and the phone opens DLCI 6 with MTU 990. Application framing, authentication semantics, independent replay, and Developer Mode invocation remain unresolved.
+
+See [r25.1 findings](docs/research/connection-protocol/r1.3.3.2.25.1-findings.md).
+<!-- END R1.3.3.2.25.1 STOCK SESSION CLOSURE -->

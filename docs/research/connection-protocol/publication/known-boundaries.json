@@ -1,0 +1,34 @@
+{
+  "schema": "rokid.r25.known-boundaries.v1",
+  "repository_baseline_commit": "c8cfac19f2e996f30c375faf10cd43ab8ab7dfd0",
+  "stock_phone_package": "com.rokid.sprite.global.aiapp",
+  "glasses_model_match": "RG-glasses",
+  "known_pairing_control": {
+    "endpoint": "CXRControl",
+    "operation": "startBTPairing",
+    "argument_shape": "one unsigned integer",
+    "status": "STATICALLY_PROVEN_OUTBOUND_BOUNDARY"
+  },
+  "known_developer_mode": {
+    "setting_key": "settings_developer_mode",
+    "accepted_values": ["on", "off"],
+    "enable_effects": [
+      "persist.vendor.adb=true",
+      "Settings.Global.adb_enabled=1"
+    ],
+    "disable_effects": [
+      "persist.vendor.adb=false"
+    ],
+    "remote_operation": "UNRESOLVED",
+    "request_reply_contract": "UNRESOLVED"
+  },
+  "client_policy": {
+    "internet_permission": false,
+    "gatt_writes": false,
+    "descriptor_writes": false,
+    "rfcomm_connect": false,
+    "developer_mode_toggle": false,
+    "read_only_gatt_inventory": true,
+    "sdp_uuid_inventory": true
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "schema": "rokid.r25.client-safety-contract.v1",
+  "network": {
+    "internet_permission": false,
+    "cleartext_traffic": false
+  },
+  "bluetooth": {
+    "ble_scan": true,
+    "bonded_inventory": true,
+    "sdp_uuid_discovery": true,
+    "gatt_connect": true,
+    "gatt_service_inventory": true,
+    "gatt_read": true,
+    "gatt_write": false,
+    "descriptor_write": false,
+    "rfcomm_connect": false
+  },
+  "privileged_operations": {
+    "developer_mode_toggle": false,
+    "adb_property_write": false,
+    "root": false,
+    "hidden_api": false
+  }
+}

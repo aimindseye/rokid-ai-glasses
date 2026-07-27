@@ -28,3 +28,15 @@ unresolved.
 These publications characterize the protected wrapper and startup path. They do
 not implement the low-level stock pairing/session protocol or an independent
 Android companion application. See [project status](../project-status.md).
+
+<!-- BEGIN R1.3.3.2.25 RESEARCH INDEX -->
+## Connection protocol and minimal client
+
+- [Stock connection protocol research](connection-protocol/README.md)
+- [Read-only Android client](../../android-client/README.md)
+
+This track begins implementation without changing the accepted native-loader or protected-application histories.
+<!-- END R1.3.3.2.25 RESEARCH INDEX -->
+<!-- BEGIN R1.3.3.2.25.1 RESEARCH INDEX -->
+- [r25.1 stock-session establishment findings](connection-protocol/r1.3.3.2.25.1-findings.md)
+<!-- END R1.3.3.2.25.1 RESEARCH INDEX -->
