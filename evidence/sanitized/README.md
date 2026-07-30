@@ -15,6 +15,7 @@
 | `native-loader/` | public native-loader status summary |
 | `ota-firmware/` | OTA and firmware summary |
 | `boot-chain/` | live/OTA vbmeta correspondence and offline repaired-image status |
+| `stock-adb-toggle/` | accepted stock ADB-toggle semantic, target-pair HCI, differential, and exact observed-frame grammar summary |
 
 For r24/r24.1 machine-readable publications, see
 [`docs/research/protected-application/publication/`](../../docs/research/protected-application/publication/README.md).

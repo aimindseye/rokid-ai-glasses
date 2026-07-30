@@ -25,6 +25,7 @@ worktree.
 - `sanitized/glasses-os-services/` — Test 18 USB ADB control summary
 - `sanitized/ota-firmware/` — OTA/firmware summary
 - `sanitized/boot-chain/` — live/OTA boot-chain and offline repaired-image summary
+- `sanitized/stock-adb-toggle/` — accepted stock ADB-toggle semantic, HCI, differential, and grammar summary
 
 The protected-companion r22–r24.1 results are published primarily under
 [`docs/research/`](../docs/research/README.md). Hash-only native-loader

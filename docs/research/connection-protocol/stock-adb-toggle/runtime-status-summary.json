@@ -1,0 +1,117 @@
+{
+  "acceptance": "PASS_SANITIZED_STOCK_ADB_TOGGLE_LINEAGE_FINDINGS_METHODS_LIMITATIONS_RUNTIME_STATUS_HASHES_AND_REPOSITORY_INTEGRATION",
+  "authoritative_results": {
+    "exact_frame_grammar": "PASS_EXISTING_CAPTURE_EXACT_ADB_TOGGLE_APPLICATION_FRAME_GRAMMAR_NESTED_LENGTH_SEQUENCE_DISCRIMINATOR_AND_STRUCTURED_PAYLOAD_ROLE_CLOSURE",
+    "target_pair_qualification": "PASS_EXISTING_CAPTURE_TARGET_PAIR_SCOPED_RFCOMM_QUALIFICATION_UIH_DIFFERENTIAL_AND_BOUNDED_FRAMING_CLOSURE"
+  },
+  "boundaries": {
+    "captured_payload_replay_attempted": false,
+    "custom_transmission_attempted": false,
+    "device_contact": false,
+    "device_identifiers_included": false,
+    "private_analysis_zip_included": false,
+    "private_paths_included": false,
+    "raw_payload_publication": false,
+    "stock_toggle_attempted": false
+  },
+  "hci_and_rfcomm": {
+    "btsnoop_parse_error_count": 0,
+    "drops": 0,
+    "l2cap_reassembly_error_count": 0,
+    "lossless_capture_coverage": true,
+    "non_target_errors_excluded_from_target_qualification": true,
+    "non_target_errors_retained_privately": true,
+    "non_target_rfcomm_parse_error_count": 2,
+    "target_dlci6_frame_count": 8,
+    "target_dlci6_payload_frame_count": 7,
+    "target_pair_count": 2,
+    "target_rfcomm_parse_error_count": 0,
+    "truncated_record_count": 0
+  },
+  "lineage": [
+    {
+      "rejection_reason": "invalid requirement that existing authorized USB ADB transport disappear",
+      "release": "r1.3.3.2.25.3",
+      "retained_result": "stock local persist.vendor.adb disable and restore transition proven",
+      "standing": "rejected_pre_repair"
+    },
+    {
+      "analysis_blocker": "two RFCOMM parse errors on a non-target dynamic CID",
+      "release": "r1.3.3.2.25.3.1.1",
+      "retained_result": "two disable and two enable stock semantic transitions; final state restored; control channel remained usable",
+      "standing": "accepted_physical_source_capture_with_initial_offline_analysis_blocker"
+    },
+    {
+      "release": "r1.3.3.2.25.3.1.2",
+      "result": "PASS_EXISTING_CAPTURE_TARGET_PAIR_SCOPED_RFCOMM_QUALIFICATION_UIH_DIFFERENTIAL_AND_BOUNDED_FRAMING_CLOSURE",
+      "standing": "accepted_host_only_offline_salvage"
+    },
+    {
+      "release": "r1.3.3.2.25.3.1.3",
+      "result": "PASS_EXISTING_CAPTURE_EXACT_ADB_TOGGLE_APPLICATION_FRAME_GRAMMAR_NESTED_LENGTH_SEQUENCE_DISCRIMINATOR_AND_STRUCTURED_PAYLOAD_ROLE_CLOSURE",
+      "standing": "accepted_host_only_exact_grammar_closure"
+    },
+    {
+      "release": "r1.3.3.2.25.3.1.4",
+      "result": "repository navigation, findings, methodology, limitations, runtime status, evidence hashes, and generic verification tooling integrated",
+      "standing": "current_sanitized_publication_integration"
+    }
+  ],
+  "observed_application_message_family": {
+    "direction": "tx",
+    "disable": {
+      "discriminator": "1",
+      "observation_count": 2,
+      "repeat_equal_after_sequence_normalization": true,
+      "structured_state": "off"
+    },
+    "disable_message_length_bytes": 97,
+    "enable": {
+      "discriminator": "0",
+      "observation_count": 2,
+      "repeat_equal_after_sequence_normalization": true,
+      "structured_state": "on"
+    },
+    "enable_message_length_bytes": 96,
+    "field_order_constant_across_four_actions": true,
+    "nested_total_length_encoding": "u32be_self_inclusive_from_nested_length_field",
+    "outer_total_length_encoding": "u32be_self_inclusive",
+    "sequence_candidate": {
+      "offset": 12,
+      "role": "transaction_or_sequence_candidate_not_yet_code_correlated",
+      "steps_mod_256": [
+        1,
+        1,
+        1
+      ],
+      "width_bytes": 1
+    },
+    "structured_role_correlated_to_stock_ui_and_vendor_property": true
+  },
+  "release": "r1.3.3.2.25.3.1.4",
+  "schema": "rokid.stock-adb-toggle-publication-status.v1",
+  "semantic_capture": {
+    "adb_transport_disappearance_required": false,
+    "control_channel_usable_for_all_actions": true,
+    "disable_observation_count": 2,
+    "enable_observation_count": 2,
+    "final_semantic_state": "on",
+    "final_state_restored": true,
+    "initial_semantic_state": "on",
+    "qualified_stock_action_count": 4
+  },
+  "source_artifacts": {
+    "r25_3_1_2_private_analysis_zip_sha256": "14601a69b0893b4af5d9c0e7d7ae25d8c11e9f01a204352bf7c661c67d04d6de",
+    "r25_3_1_2_sanitized_publication_zip_sha256": "0fbe92102f68629dc97b36b1984b656babae8c0e888b7e8e02fb83aa20437051",
+    "r25_3_1_3_private_analysis_zip_sha256": "c948f672813e13974b2d6997df0f40cb69991f0ce18268fdb1f1213f48217aa9",
+    "r25_3_1_3_sanitized_publication_zip_sha256": "201f08a89751af6a446067331d42ae23e95a2c901e30af12dd73443099428bb5"
+  },
+  "standing": "accepted_sanitized_publication_integration",
+  "unresolved": [
+    "reply semantics and positive acknowledgement contract",
+    "authorization, integrity, checksum, and session-binding behavior",
+    "independent code correlation for the sequence candidate",
+    "generalization beyond the tested phone, glasses unit, firmware/app build, paired account, and setting",
+    "safe independent Developer Mode sender, rollback, and recovery behavior"
+  ]
+}

@@ -16,9 +16,10 @@ after Tests 00–18 and the protected-companion work through r24.1.
 | Lossless HCI DLCI lifecycle | Proven |
 | Application payload in accepted connection-only attempt | TX `0` bytes / RX `0` bytes |
 | Pairing/binding authentication contract | General independent reproduction unresolved |
-| CXR/application framing and request/reply correlation | Unresolved |
+| Observed stock ADB-toggle frame grammar | Closed for four qualified messages |
+| Reply, authorization, integrity, and broader CXR semantics | Unresolved |
 | Stock local disable/restore property transition | Proven; existing USB transport may remain alive |
-| Stock ADB enable/disable command bytes | Unresolved |
+| Stock ADB enable/disable outbound message family | Attributed and decoded in accepted r25.3.1.2/.3 scope |
 | r25.3 original physical qualification | Rejected due invalid transport-loss oracle |
 | Independent Developer Mode toggle | Disabled and not implemented |
 
@@ -38,17 +39,28 @@ no application-bearing UIH frames on DLCI 6.
 - [Supersession map](r1.3.3.2.25.2.4-supersession-map.json)
 - [Publication integration method](r1.3.3.2.25.2.4-publication-integration-method.md)
 
-## r25.3 pre-repair physical result
+## Accepted stock ADB-toggle publication
 
-The first r25.3 physical run proved the local stock
-`persist.vendor.adb=true → false → true` transition, while the secure global
-setting, `adbd`, the ADB-capable USB configuration, and the existing authorized
-transport remained present. The package was rejected because it incorrectly
-required transport disappearance before payload capture. No custom application
-payload was sent.
+The pre-repair r25.3 run remains a rejected historical result because its
+disable oracle required transport disappearance. The repaired r25.3.1.1 source
+capture completed two disable and two enable actions with semantic property/UI
+oracles, a usable control channel, and final-state restoration.
 
-- [Pre-repair findings](r1.3.3.2.25.3-pre-repair-findings.md)
-- [Machine-readable pre-repair status](r1.3.3.2.25.3-pre-repair-runtime-status-summary.json)
+The accepted r25.3.1.2 offline analysis scopes RFCOMM parser qualification to
+handle/CID pairs that actually yield DLCI 6 frames, retains two non-target-CID
+errors privately, attributes seven payload-bearing target frames, and proves the
+repeated enable/disable differential. The accepted r25.3.1.3 analysis closes the
+exact observed outbound grammar, length fields, one monotonic sequence candidate,
+action discriminator, and structured state role.
+
+- [Current stock ADB-toggle publication](stock-adb-toggle/README.md)
+- [Lineage](stock-adb-toggle/lineage.md)
+- [Findings](stock-adb-toggle/findings.md)
+- [Methodology](stock-adb-toggle/methodology.md)
+- [Limitations](stock-adb-toggle/limitations.md)
+- [Integrated runtime status](stock-adb-toggle/runtime-status-summary.json)
+- [Evidence hashes](stock-adb-toggle/evidence-hashes.txt)
+- [Historical pre-repair findings](r1.3.3.2.25.3-pre-repair-findings.md)
 
 ## Implementation and research history
 
@@ -64,6 +76,10 @@ payload was sent.
 - [r25.2.2.2 strict connection-only qualification](r1.3.3.2.25.2.2.2-rfcomm-connection-only-qualification.md)
 - [r25.2.3 HCI capture design](r1.3.3.2.25.2.3-instrumented-rfcomm-hci-zero-payload-capture.md)
 - [r25.2.3.2 strict-handoff integration](r1.3.3.2.25.2.3.2-strict-private-handoff-integration.md)
+- [r25.3.1 semantic-oracle repair](r1.3.3.2.25.3.1-stock-adb-toggle-semantic-oracle-repair-rfcomm-payload-capture.md)
+- [r25.3.1.1 operator-arm sequencing repair](r1.3.3.2.25.3.1.1-stock-adb-toggle-semantic-oracle-repair-rfcomm-payload-capture.md)
+- [r25.3.1.2 target-pair-scoped offline salvage](r1.3.3.2.25.3.1.2-target-pair-scoped-rfcomm-error-qualification-and-offline-salvage.md)
+- [r25.3.1.3 exact observed frame grammar](r1.3.3.2.25.3.1.3-exact-adb-toggle-frame-grammar-and-field-role-closure.md)
 - [`publication/`](publication/) for machine-readable contracts and flows
 
 Repair-only `.1.x` releases remain part of the audit trail and are summarized by
@@ -71,8 +87,9 @@ the final supersession map.
 
 ## Next boundary
 
-The next phase is the repaired r25.3.1 stock ADB-toggle payload capture and
-application-framing recovery. Its disable oracle must use the stock property/UI
-transition and must not require immediate USB transport loss. No custom
-application payload should be transmitted until a decoder explains independent
-enable and disable captures and request/reply correlation.
+The next phase is independent confirmation and code/reply correlation. Repeat
+the four-action stock capture on an independent session or build, correlate the
+observed envelope and sequence candidate with constructors or native transforms,
+and recover positive reply, authorization, integrity, session-binding, and
+rollback semantics. Custom RFCOMM transmission and captured-payload replay remain
+disabled.

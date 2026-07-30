@@ -189,29 +189,43 @@ Blind recovery navigation, sideload, fastboot, flashing, and slot changes
 remain outside the approved boundary.
 <!-- USB_ADB_CONTROL_STATIC_END -->
 
-## Runtime stock-toggle semantics
+## Runtime stock-toggle semantics and observed message grammar
 
-A controlled stock phone-UI run proved the local disable and restoration
-transition:
+The historical r25.3 pre-repair run proved the local stock transition but was
+rejected because it required the authorized USB ADB transport to disappear. The
+repaired source capture used the correct semantic oracle and completed two
+cycles:
 
 ```text
-before disable: persist.vendor.adb=true
-disabled:       persist.vendor.adb=false
-after restore:  persist.vendor.adb=true
+initial:   persist.vendor.adb=true  / stock switch on
+disable-1: persist.vendor.adb=false / stock switch off
+enable-1:  persist.vendor.adb=true  / stock switch on
+disable-2: persist.vendor.adb=false / stock switch off
+enable-2:  persist.vendor.adb=true  / stock switch on
+final:     restored to initial on state
 ```
 
-While disabled, `Settings.Global.adb_enabled` remained `1`, `adbd` remained
-running, the USB configuration remained ADB-capable, the existing authorized
-transport remained alive, and no USB re-enumeration occurred. The phone UI
-reported the Developer Mode switch as off.
+The control channel remained usable for all four actions. Transport
+disappearance was not required.
 
-The original r25.3 runner was rejected because it required disappearance from
-host ADB as the disable oracle. The corrected runner must validate the semantic
-property/UI transition and record transport continuity without treating it as a
-failure. Exact RFCOMM payload bytes, authentication, request/reply framing, and
-independent replay remain unresolved.
+Target-pair-scoped HCI analysis recovered eight target DLCI 6 frames, including
+seven payload-bearing frames. Two malformed RFCOMM candidates occurred on a
+non-target dynamic CID and outside the action windows; they remain private
+diagnostics and do not invalidate the clean target pairs.
 
-See the [r25.3 pre-repair findings](../research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md).
+Each action produced one action-specific outbound message after exact idle
+signature subtraction. Disable messages are 97 bytes and enable messages are 96
+bytes. Across all four observations, the exact observed family has self-inclusive
+32-bit big-endian outer and nested lengths, constant field order, a one-byte
+monotonic transaction/sequence candidate at offset 12, a repeat-stable action
+discriminator, and structured state correlated with the UI and
+`persist.vendor.adb`.
+
+This closes a decoder for the observed stock message family. It does not prove
+reply semantics, authorization, integrity, checksum behavior, broader CXR
+grammar, or safe independent transmission. No captured payload was replayed.
+
+See the [accepted stock ADB-toggle publication](../research/connection-protocol/stock-adb-toggle/README.md).
 
 ## Read-only OTA boot-chain audit
 

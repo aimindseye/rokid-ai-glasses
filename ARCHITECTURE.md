@@ -39,9 +39,10 @@ flowchart LR
 - The r25.2.4 result proves an independent Android client-side RFCOMM
   connection-only lifecycle with SCN `3`, DLCI `6`, MTU `990`, matching
   open/close, and zero application bytes in both directions by HCI census.
-- The rejected r25.3 pre-repair run proves the stock local
-  `persist.vendor.adb=true → false → true` transition, but not the RFCOMM
-  command bytes; its original transport-loss oracle was invalid.
+- The accepted repaired stock-toggle capture proves two disable and two enable
+  semantic transitions, a usable control channel, final-state restoration,
+  target DLCI 6 UIH attribution, and an exact observed outbound message grammar.
+  No custom transmission or captured-payload replay was attempted.
 - The live bootloader-reported 11,904-byte vbmeta chain matches the exact
   OTA-derived chain. Regular ADB shell access cannot read or write the active
   boot-chain partitions.
@@ -69,16 +70,17 @@ remain private.
 
 ```mermaid
 flowchart LR
-    K[Known independent RFCOMM transport] --> F[Unknown CXR/application framing]
-    F --> A[Unknown authenticated ADB enable/disable command]
-    A --> D[Known glasses-side Developer Mode property executor]
+    K[Known independent RFCOMM transport] --> F[Exact observed stock ADB-toggle frame grammar]
+    F --> Q[Unknown reply, authorization and integrity contract]
+    Q --> D[Known glasses-side Developer Mode property executor]
     D --> S[Known local disable semantics: vendor property false; existing ADB transport may remain]
 ```
 
-The repository now contains an independent **transport client**, not a complete
-replacement companion. Application framing, authentication/integrity fields,
-request/reply semantics, the stock ADB enable/disable payloads, and a safe
-independent toggle remain unresolved.
+The repository contains an independent **connection-only transport client** and
+a host-only decoder for the observed stock ADB-toggle message family. It does
+not contain a sender. Reply semantics, authorization/integrity fields, broader
+protocol generalization, independent sequence-field code correlation, and a
+safe rollback-capable toggle remain unresolved.
 
 ## Replacement-app readiness
 
@@ -90,9 +92,9 @@ independent toggle remain unresolved.
 | Same-attempt transport lifecycle | Proven |
 | HCI zero-payload census | Proven: TX 0 bytes, RX 0 bytes |
 | Binding/session authentication | General independent reproduction unresolved |
-| CXR/application framing | Unresolved |
+| Observed stock ADB-toggle frame grammar | Closed for four qualified messages; broader CXR protocol unresolved |
 | Stock local disable/restore semantics | Proven; transport loss is not a valid required oracle |
-| ADB command/reply payload semantics | Unresolved |
+| Stock outbound ADB-toggle message roles | Enable/disable differential and structured state role proven; replies unresolved |
 | Live/OTA vbmeta correspondence | Proven for the 11,904-byte chain |
 | Repaired Magisk candidate | Accepted offline only; not OEM-signed or device-tested |
 | Guarded independent Developer Mode toggle | Not implemented |
@@ -102,6 +104,7 @@ independent toggle remain unresolved.
 - [Current project status](docs/project-status.md)
 - [Detailed architecture](docs/architecture/non-display-system-architecture.md)
 - [Connection-protocol index](docs/research/connection-protocol/README.md)
+- [Accepted stock ADB-toggle publication](docs/research/connection-protocol/stock-adb-toggle/README.md)
 - [r25.3 pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md)
 - [Boot-chain research](docs/research/boot-chain/README.md)
 - [Final RFCOMM closure](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)

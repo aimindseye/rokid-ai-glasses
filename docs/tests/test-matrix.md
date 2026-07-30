@@ -64,14 +64,18 @@ reports and evidence are sanitized.
 | `r1.3.3.2.25.2.2.2` | Strict private-handoff connection-only qualification | Historical bounded socket-open/zero-I/O result | [Qualification](../research/connection-protocol/r1.3.3.2.25.2.2.2-rfcomm-connection-only-qualification.md) |
 | `r1.3.3.2.25.2.3.2` | Strict private-handoff, single-tap lifecycle, and HCI DLCI census | `PASS_FULL_RFCOMM_HCI_ZERO_PAYLOAD_CLOSURE` | [Integration findings](../research/connection-protocol/r1.3.3.2.25.2.3.2-strict-private-handoff-integration.md) |
 | `r1.3.3.2.25.2.4` | Final publication, evidence-hash promotion, and prior bounded-result supersession | `PASS_FINAL_RFCOMM_ZERO_PAYLOAD_PUBLICATION_INTEGRATION` | [Final publication](../research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
-| `r1.3.3.2.25.3` pre-repair | Stock ADB toggle physical run and semantic disable/restore observation | `REJECTED_INVALID_DISABLE_ORACLE`; property transition proven, payload qualification not reached | [Pre-repair findings](../research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| `r1.3.3.2.25.3` pre-repair | Stock ADB toggle physical run and semantic disable/restore observation | `REJECTED_INVALID_DISABLE_ORACLE`; property transition retained | [Pre-repair findings](../research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| `r1.3.3.2.25.3.1.1` | Repaired four-action source capture | Four semantic transitions passed; final state restored; initial HCI analysis blocked by unscoped non-target-CID errors | [Lineage](../research/connection-protocol/stock-adb-toggle/lineage.md) |
+| `r1.3.3.2.25.3.1.2` | Target-pair-scoped offline salvage and UIH differential | `PASS_EXISTING_CAPTURE_TARGET_PAIR_SCOPED_RFCOMM_QUALIFICATION_UIH_DIFFERENTIAL_AND_BOUNDED_FRAMING_CLOSURE` | [Runtime status](../research/connection-protocol/stock-adb-toggle/r25.3.1.2-runtime-status-summary.json) |
+| `r1.3.3.2.25.3.1.3` | Exact observed ADB-toggle frame grammar and field roles | `PASS_EXISTING_CAPTURE_EXACT_ADB_TOGGLE_APPLICATION_FRAME_GRAMMAR_NESTED_LENGTH_SEQUENCE_DISCRIMINATOR_AND_STRUCTURED_PAYLOAD_ROLE_CLOSURE` | [Runtime status](../research/connection-protocol/stock-adb-toggle/r25.3.1.3-runtime-status-summary.json) |
+| `r1.3.3.2.25.3.1.4` | Sanitized repository publication integration | Findings, lineage, methods, limitations, runtime contracts, hashes, and navigation integrated | [Publication](../research/connection-protocol/stock-adb-toggle/README.md) |
 | Boot-chain audit | Exact live/OTA vbmeta correspondence, shell partition boundary, and repaired Magisk image offline validation | `PASS_OFFLINE_REPAIRED_CANDIDATE`; no boot or flash | [Boot-chain findings](../research/boot-chain/ota-boot-chain-and-offline-magisk-validation.md) |
 
 Repair-only `.1.x` releases remain in the detailed
 [connection-protocol index](../research/connection-protocol/README.md) and the
 [supersession map](../research/connection-protocol/r1.3.3.2.25.2.4-supersession-map.json).
 
-## Capability status after r1.3.3.2.25.3 pre-repair
+## Capability status after r1.3.3.2.25.3.1.3
 
 | Goal | Status |
 |---|---|
@@ -80,11 +84,20 @@ Repair-only `.1.x` releases remain in the detailed
 | Attribute the runtime Bluetooth endpoint | Complete in accepted r25.2 scope |
 | Open and close the target RFCOMM transport independently | Complete and device-qualified |
 | Prove zero application payload for the connection-only attempt | Complete by lossless HCI census |
-| Recover CXR/application framing and request/reply semantics | Unresolved |
+| Recover observed stock ADB-toggle application framing | Complete for four qualified outbound messages; broader CXR and replies unresolved |
 | Prove stock local disable/restore property effects | Complete; transport disappearance is not required |
-| Attribute stock ADB enable/disable command bytes | Unresolved |
+| Attribute stock ADB enable/disable outbound messages | Complete for the observed family; independent acceptance and replies unresolved |
 | Match live vbmeta chain to exact OTA | Complete for the 11,904-byte chain |
 | Validate repaired Magisk boot candidate offline | Complete; no device boot or flash |
 | Build a guarded independent Developer Mode toggle | Not implemented |
 
 See [project status](../project-status.md) for the current engineering boundary.
+
+## r1.3.3.2.25.3.1.4.2 publication contract repair
+
+| Gate | Result |
+|---|---|
+| Exact 18-path preexisting lineage census | PASS |
+| Exact 42-path publication changed/staged set | PASS |
+| No private analysis archive included | PASS |
+| macOS Bash 3.2 package workflow | PASS |

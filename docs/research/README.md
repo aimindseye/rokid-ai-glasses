@@ -8,11 +8,12 @@
 
 ## Connection protocol and replacement-app foundation
 
-The current transport result is
-`RFCOMM_CLIENT_FULL_ZERO_PAYLOAD_RUNTIME_CLOSURE_PROVEN_BY_HCI_DLCI_CENSUS`.
 The accepted r25.2.4 publication proves one independent Android client RFCOMM
 open/close lifecycle with SCN `3`, DLCI `6`, MTU `990`, and zero application
-bytes in both directions. The rejected r25.3 pre-repair run later proved the local stock disable/restore property transition, but application framing and the ADB command bytes remain open.
+bytes in both directions. The accepted r25.3.1.2 and r25.3.1.3 publications
+then qualify the existing four-action stock ADB-toggle capture, attribute target
+DLCI 6 UIH payloads, prove the enable/disable differential, and close the exact
+observed outbound message grammar without replay.
 
 - [Connection-protocol research index](connection-protocol/README.md)
 - [Final RFCOMM zero-payload closure](connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
@@ -24,6 +25,9 @@ bytes in both directions. The rejected r25.3 pre-repair run later proved the loc
 - [Connection-only Android client](../../android-client/README.md)
 - [r25.3 pre-repair findings](connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md)
 - [r25.3 pre-repair status](connection-protocol/r1.3.3.2.25.3-pre-repair-runtime-status-summary.json)
+- [Accepted stock ADB-toggle publication](connection-protocol/stock-adb-toggle/README.md)
+- [Integrated stock ADB-toggle runtime status](connection-protocol/stock-adb-toggle/runtime-status-summary.json)
+- [Stock ADB-toggle evidence hashes](connection-protocol/stock-adb-toggle/evidence-hashes.txt)
 - [Current project status](../project-status.md)
 
 ### Current boundary
@@ -34,15 +38,14 @@ bytes in both directions. The rejected r25.3 pre-repair run later proved the loc
 | Independent RFCOMM connection-only client | Implemented and device-qualified |
 | Same-attempt matching open/close | Proven |
 | HCI application payload | Proven zero in both directions |
-| CXR/application framing | Unresolved |
+| Observed stock ADB-toggle frame grammar | Closed for four qualified messages; broader protocol unresolved |
 | Stock local ADB disable/restore property transition | Proven; original transport-loss oracle rejected |
-| Stock ADB enable/disable command bytes | Unresolved |
+| Stock ADB enable/disable outbound messages | Attributed and decoded for the observed family; replies and authorization unresolved |
 | Guarded custom Developer Mode toggle | Not implemented |
 
-The next research phase is the repaired r25.3.1 controlled stock ADB-toggle
-payload capture. It must use the semantic property/UI transition as the oracle,
-record transport continuity without requiring disappearance, and decode before
-any custom transmission.
+The next research phase is independent confirmation and code/reply correlation.
+Custom transmission and captured-payload replay remain disabled until positive
+reply, authorization/integrity, and rollback semantics are proven.
 
 ## OTA boot-chain and offline boot-image research
 
@@ -87,4 +90,9 @@ do not by themselves identify the stock ADB command.
 | `r1.3.3.2.25.2.3.2` | Authoritative instrumented HCI evidence |
 | `r1.3.3.2.25.2.4` | Final accepted connection-only publication and supersession |
 | `r1.3.3.2.25.3` pre-repair | Rejected physical qualification; local disable/restore semantics retained |
+| `r1.3.3.2.25.3.1.1` | Four-action source capture; initial offline parser qualification incomplete |
+| `r1.3.3.2.25.3.1.2` | Accepted target-pair qualification, UIH attribution, and differential |
+| `r1.3.3.2.25.3.1.3` | Accepted exact observed frame grammar and field-role closure |
+| `r1.3.3.2.25.3.1.4` | Sanitized publication integration |
+| `r1.3.3.2.25.3.1.4.2` | Full 18-path lineage publication-contract repair |
 | Boot-chain audit | Separate read-only live/OTA and offline boot-image validation track |
