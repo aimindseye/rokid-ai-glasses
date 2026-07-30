@@ -21,6 +21,10 @@ EXPECTED_ACCEPTANCE = (
 )
 ADDRESS_RE = re.compile(r"(?i)^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$")
 SHA_RE = re.compile(r"^[0-9a-f]{64}$")
+INVALID_ADDRESSES = {
+    ":".join(["00"] * 6),
+    ":".join(["FF"] * 6),
+}
 
 
 def digest_bytes(value: bytes) -> str:
@@ -113,9 +117,7 @@ def main() -> int:
         raise SystemExit("ERROR: source endpoint is not cached Classic runtime")
 
     address = str(handoff.get("runtime_address", "")).upper()
-    if not ADDRESS_RE.fullmatch(address) or address in {
-        "00:00:00:00:00:00", "FF:FF:FF:FF:FF:FF"
-    }:
+    if not ADDRESS_RE.fullmatch(address) or address in INVALID_ADDRESSES:
         raise SystemExit("ERROR: invalid runtime address")
     try:
         runtime_uuid = str(uuid.UUID(str(handoff.get("runtime_uuid")))).lower()
