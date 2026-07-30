@@ -1,0 +1,57 @@
+{
+  "schema": "rokid.boot_chain.offline_validation.v1",
+  "build_incremental": "1.22.009-20260710-150201",
+  "android_version": "12",
+  "security_patch": "2024-07-05",
+  "active_slot": "_b",
+  "verified_boot_state": "orange",
+  "bootloader_device_state": "unlocked",
+  "live_vbmeta": {
+    "hash_algorithm": "sha256",
+    "size_bytes": 11904,
+    "digest": "438ae266c9a636cb12bee30bf551f7aa78213ef7f9c1f360b9ef24d23172ffab",
+    "ota_chain_digest_match": true
+  },
+  "adb_shell_partition_access": {
+    "active_boot_chain_readable": false,
+    "active_boot_chain_writable": false
+  },
+  "stock_boot": {
+    "sha256": "31f071baf83381c78d007b4849944b2778e49899d28beae2734c55b93ec82d3e",
+    "size_bytes": 100663296,
+    "header_version": 3,
+    "kernel_size_bytes": 47331340,
+    "ramdisk_size_bytes": 1922154,
+    "os_version": "12.0.0",
+    "os_patch_level": "2024-07",
+    "command_line": ""
+  },
+  "rejected_candidate": {
+    "sha256": "943314b271e83c9298adc9f9451f1fc9ce135efab4a73c3a260d38f3cb4a127d",
+    "magisk_version": "30.7",
+    "magisk_version_code": 30700,
+    "preinitdevice": "sda8",
+    "preinitdevice_valid_for_glasses": false,
+    "false_positive_samsung_defex_kernel_patch": true,
+    "accepted": false
+  },
+  "repaired_candidate": {
+    "sha256": "83d046ce71f0378d6039f0c93c27845af099cb50760c80c7a305e9e192221482",
+    "size_bytes": 100663296,
+    "magisk_version": "30.7",
+    "magisk_version_code": 30700,
+    "preinitdevice": "metadata",
+    "kernel_equals_pristine": true,
+    "changed_cpio_member_count": 1,
+    "changed_cpio_member": ".backup/.magisk",
+    "legacy_lz4_roundtrip": true,
+    "local_avb_algorithm": "NONE",
+    "local_avb_content_validation": "pass",
+    "oem_signed": false,
+    "stock_top_level_vbmeta_authenticates_candidate": false,
+    "offline_validation": "accepted"
+  },
+  "device_boot_attempted": false,
+  "device_flash_attempted": false,
+  "flash_authorized": false
+}

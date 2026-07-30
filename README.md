@@ -2,13 +2,14 @@
 
 ![Product](https://img.shields.io/badge/Product-Rokid%20AI%20Glasses%20Style-111827)
 ![Form factor](https://img.shields.io/badge/Form%20factor-Display--free-0284c7)
-![Coverage](https://img.shields.io/badge/Coverage-Tests%2000%E2%80%9318%20%7C%20Research%20through%20r25.2.4-7c3aed)
+![Coverage](https://img.shields.io/badge/Coverage-Tests%2000%E2%80%9318%20%7C%20r25.3%20pre--repair-7c3aed)
 ![Evidence](https://img.shields.io/badge/Evidence-Sanitized%20and%20reproducible-16a34a)
 
 An independent, community-maintained guide to the **display-free Rokid AI
 Glasses Style**, the **Hi Rokid** Android companion application, and the
-validated research completed through **Test 18** and **research release
-r1.3.3.2.25.2.4**.
+validated research completed through **Test 18**, the accepted
+**r1.3.3.2.25.2.4** transport publication, the rejected **r1.3.3.2.25.3**
+pre-repair run, and the read-only OTA boot-chain audit.
 
 > Unofficial community project. Not affiliated with Rokid.
 
@@ -34,6 +35,11 @@ The project has established four complementary layers:
    runtime endpoint, implemented a strict connection-only Android RFCOMM client,
    correlated one client open/close attempt, and proved by a lossless HCI census
    that the target DLCI carried zero application bytes in both directions.
+5. **Stock-toggle and boot-chain qualification.** The rejected r25.3 pre-repair
+   run proved the local disable/restore property transition while exposing an
+   invalid transport-loss oracle. A separate read-only audit matched the live
+   11,904-byte vbmeta chain to the exact OTA and validated one repaired Magisk
+   boot image offline without booting or flashing it.
 
 ### Replacement-app readiness
 
@@ -41,13 +47,15 @@ The project has established four complementary layers:
 |---|---|---|
 | Stock pairing and cloud workflow observation | Substantially complete | [Test matrix](docs/tests/test-matrix.md) |
 | Glasses Android/ADB/local-service baseline | Complete in read-only scope | [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
-| Developer Mode property semantics | Complete statically | [USB ADB finding](docs/findings/glasses-android-os-and-adb.md#usb-adb-control-path-follow-up) |
+| Developer Mode property semantics | Static writes and runtime disable/restore transition proven | [USB ADB finding](docs/findings/glasses-android-os-and-adb.md#runtime-stock-toggle-semantics) |
 | Runtime Bluetooth endpoint attribution | Complete in the accepted r25.2 scope | [Connection-protocol research](docs/research/connection-protocol/README.md) |
 | Independent connection-only RFCOMM client | Implemented and device-qualified | [Android client](android-client/README.md) |
 | Same-attempt RFCOMM open/close lifecycle | Proven | [Final closure publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
 | HCI application-payload census | Proven: TX 0 bytes, RX 0 bytes | [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
 | CXR/application framing and authentication | Unresolved | [Project status](docs/project-status.md) |
-| Stock ADB enable/disable command and reply | Unresolved | [Architecture](ARCHITECTURE.md) |
+| Stock ADB enable/disable command and reply | Payload bytes unresolved; original r25.3 physical run rejected due invalid disable oracle | [Pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| Live/OTA boot-chain correspondence | Proven for the 11,904-byte vbmeta chain; active partitions remain unreadable to shell | [Boot-chain research](docs/research/boot-chain/README.md) |
+| Repaired Magisk boot candidate | Accepted offline only; pristine kernel, `PREINITDEVICE=metadata`, no device boot/flash | [Offline validation](docs/research/boot-chain/ota-boot-chain-and-offline-magisk-validation.md) |
 | Guarded independent Developer Mode toggle | Not implemented | [Project status](docs/project-status.md) |
 
 The transport-feasibility question is closed for the accepted connection-only
@@ -63,6 +71,8 @@ sender with rollback.
 | Understand what is proven and what remains | [Project status](docs/project-status.md) |
 | Review the final RFCOMM zero-payload proof | [Final closure publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
 | Inspect the machine-readable transport result | [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
+| Review the rejected r25.3 pre-repair run | [Pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| Review live/OTA boot-chain and offline Magisk validation | [Boot-chain research](docs/research/boot-chain/README.md) |
 | Follow the connection-protocol research | [Connection-protocol index](docs/research/connection-protocol/README.md) |
 | Inspect the connection-only Android client | [Android client](android-client/README.md) |
 | Understand the product | [Product overview](docs/consumer/product-overview.md) |
@@ -86,8 +96,10 @@ sender with rollback.
   `user/release-keys` build.
 - USB ADB uses Android RSA authorization; wireless/TCP ADB was disabled in the
   captured state.
-- Boot properties reported orange/unlocked state. This project did not unlock,
-  root, flash, relock, or modify partitions.
+- Boot properties reported orange/unlocked state. The live bootloader-reported
+  11,904-byte vbmeta digest matched the exact OTA-derived vbmeta chain. The
+  regular ADB shell could not read or write the active boot-chain partitions.
+  This project did not unlock, root, flash, relock, or modify partitions.
 - The on-glasses service stack includes assistant, system control, media, TTS,
   Bluetooth, Wi-Fi, payment, OTA, camera, and screen-stream components.
 - `GateServiced` is the very-high-confidence owner of a root/TEE-domain listener
@@ -144,8 +156,26 @@ disable:
 ```
 
 No matching `Settings.Global.adb_enabled=0` write was recovered in the bounded
-disable method. The exact phone-to-glasses invocation, authorization,
-request/reply framing, and safe independent replay remain unresolved.
+disable method. In the rejected r25.3 pre-repair physical run, the stock phone UI
+changed `persist.vendor.adb` to `false` while `Settings.Global.adb_enabled`
+remained `1`, `adbd` remained running, the USB configuration remained
+ADB-capable, and the already-authorized transport remained alive. Restoring the
+stock UI returned the property to `true` without re-enumeration. The original
+runner was rejected because it incorrectly required immediate transport loss.
+The exact phone-to-glasses payload, authorization, request/reply framing, and
+safe independent replay remain unresolved.
+
+### Read-only boot-chain and offline Magisk result
+
+The running build and exact full OTA matched, including a byte-identical
+11,904-byte vbmeta chain. The stock boot image is header version 3 and contains
+the generic ramdisk. A prior Magisk 30.7 candidate was rejected because it
+carried a foreign `PREINITDEVICE=sda8` value and a false-positive Samsung DEFEX
+kernel patch. The repaired offline candidate uses `PREINITDEVICE=metadata`,
+restores the pristine Rokid kernel byte-for-byte, and passes local hash-footer
+verification with AVB algorithm `NONE`. The repaired image is not OEM-signed,
+was not booted or flashed, and is not published. See the
+[boot-chain research](docs/research/boot-chain/README.md).
 
 ### Protected companion startup and r24.1 result
 
@@ -270,3 +300,21 @@ Application framing, command authentication, the stock ADB enable/disable
 payloads, reply semantics, and a guarded independent Developer Mode toggle
 remain unresolved.
 <!-- END R1.3.3.2.25.2.4 CURRENT TRANSPORT STATUS -->
+
+<!-- BEGIN R1.3.3.2.25.3 PRE-REPAIR STATUS -->
+## r1.3.3.2.25.3 pre-repair result
+
+The first physical r25.3 run is rejected as a qualification result because the
+runner required the existing USB ADB transport to disappear after stock disable.
+The stock UI did prove the local `persist.vendor.adb=true → false → true`
+transition while `adbd`, the ADB-capable USB configuration, and the authorized
+transport remained present. No custom transmission occurred and no RFCOMM
+application payload was qualified.
+
+- [Pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md)
+- [Machine-readable status](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-runtime-status-summary.json)
+- [Boot-chain and offline image audit](docs/research/boot-chain/README.md)
+
+The next runner is `r1.3.3.2.25.3.1`, with a semantic property/UI oracle and no
+requirement for immediate USB re-enumeration or transport loss.
+<!-- END R1.3.3.2.25.3 PRE-REPAIR STATUS -->

@@ -1,0 +1,27 @@
+{
+  "schema": "rokid.connection_protocol.r25_3_pre_repair_status.v1",
+  "release": "r1.3.3.2.25.3",
+  "standing": "rejected_pre_repair",
+  "package_static_validation": "pass",
+  "physical_run": "rejected_invalid_disable_oracle",
+  "stock_disable_semantic_transition": "proven",
+  "stock_enable_restoration": "proven",
+  "disabled_state": {
+    "persist_vendor_adb": false,
+    "settings_global_adb_enabled": 1,
+    "adbd_running": true,
+    "usb_configuration_remained_adb_capable": true,
+    "existing_usb_adb_transport_remained_alive": true,
+    "usb_reenumeration_observed": false
+  },
+  "payload_qualification": {
+    "rfcomm_application_payload": "not_reached",
+    "uih_frame_attribution": "not_reached",
+    "request_reply_framing": "unresolved",
+    "command_authentication": "unresolved",
+    "custom_transmission_attempted": false
+  },
+  "private_failure_addendum_sha256": "20cc312912fe2e3f3d5d443a9f16e8adcef805827fe525b1d19d95142a6bf480",
+  "next_runner": "r1.3.3.2.25.3.1",
+  "supersedes_r25_2_4": false
+}

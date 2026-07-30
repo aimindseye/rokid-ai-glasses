@@ -12,7 +12,7 @@ The current transport result is
 `RFCOMM_CLIENT_FULL_ZERO_PAYLOAD_RUNTIME_CLOSURE_PROVEN_BY_HCI_DLCI_CENSUS`.
 The accepted r25.2.4 publication proves one independent Android client RFCOMM
 open/close lifecycle with SCN `3`, DLCI `6`, MTU `990`, and zero application
-bytes in both directions. Application framing and the ADB command remain open.
+bytes in both directions. The rejected r25.3 pre-repair run later proved the local stock disable/restore property transition, but application framing and the ADB command bytes remain open.
 
 - [Connection-protocol research index](connection-protocol/README.md)
 - [Final RFCOMM zero-payload closure](connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
@@ -22,6 +22,8 @@ bytes in both directions. Application framing and the ADB command remain open.
 - [Evidence identities](connection-protocol/r1.3.3.2.25.2.4-evidence-hashes.txt)
 - [Supersession map](connection-protocol/r1.3.3.2.25.2.4-supersession-map.json)
 - [Connection-only Android client](../../android-client/README.md)
+- [r25.3 pre-repair findings](connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md)
+- [r25.3 pre-repair status](connection-protocol/r1.3.3.2.25.3-pre-repair-runtime-status-summary.json)
 - [Current project status](../project-status.md)
 
 ### Current boundary
@@ -33,11 +35,27 @@ bytes in both directions. Application framing and the ADB command remain open.
 | Same-attempt matching open/close | Proven |
 | HCI application payload | Proven zero in both directions |
 | CXR/application framing | Unresolved |
-| Stock ADB enable/disable command | Unresolved |
+| Stock local ADB disable/restore property transition | Proven; original transport-loss oracle rejected |
+| Stock ADB enable/disable command bytes | Unresolved |
 | Guarded custom Developer Mode toggle | Not implemented |
 
-The next research phase is a controlled stock ADB-toggle payload capture and
-enable/disable differential. It must decode before any custom transmission.
+The next research phase is the repaired r25.3.1 controlled stock ADB-toggle
+payload capture. It must use the semantic property/UI transition as the oracle,
+record transport continuity without requiring disappearance, and decode before
+any custom transmission.
+
+## OTA boot-chain and offline boot-image research
+
+The read-only boot-chain track matched the live 11,904-byte vbmeta chain to the
+exact full OTA and proved that regular ADB shell access cannot read or write the
+active boot-chain partitions. It also rejected one contaminated Magisk 30.7
+candidate and accepted a repaired candidate offline with the pristine Rokid
+kernel and `PREINITDEVICE=metadata`. No image was booted or flashed.
+
+- [Boot-chain research index](boot-chain/README.md)
+- [Validated findings](boot-chain/ota-boot-chain-and-offline-magisk-validation.md)
+- [Machine-readable status](boot-chain/runtime-status-summary.json)
+- [Hash-only provenance](boot-chain/evidence-hashes.txt)
 
 ## Protected companion startup
 
@@ -67,4 +85,6 @@ do not by themselves identify the stock ADB command.
 | `r1.3.3.2.25.2` | Independent connection-only client implementation |
 | `r1.3.3.2.25.2.2.2` | Historical bounded socket-open result |
 | `r1.3.3.2.25.2.3.2` | Authoritative instrumented HCI evidence |
-| `r1.3.3.2.25.2.4` | Final publication and supersession |
+| `r1.3.3.2.25.2.4` | Final accepted connection-only publication and supersession |
+| `r1.3.3.2.25.3` pre-repair | Rejected physical qualification; local disable/restore semantics retained |
+| Boot-chain audit | Separate read-only live/OTA and offline boot-image validation track |

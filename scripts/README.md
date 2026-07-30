@@ -52,7 +52,7 @@ run the [safety gates](safety/README.md) before publishing derived material.
 <!-- BEGIN R1.3.3.2.25 SCRIPT INDEX -->
 ## Stock connection protocol
 
-See [`research/connection-protocol/`](research/connection-protocol/) for the r25 stock capture, HCI metadata, client-log, attribution and finalization tools.
+See [`research/connection-protocol/`](research/connection-protocol/) for the r25 stock capture, HCI metadata, client-log, attribution and finalization tools. Use `research/verify_r25_3_pre_repair_publication.py` for the sanitized r25.3 pre-repair and boot-chain publication gate.
 <!-- END R1.3.3.2.25 SCRIPT INDEX -->
 <!-- BEGIN R1.3.3.2.25.1 SCRIPT INDEX -->
 The r25.1 analyzer under [`research/connection-protocol/`](research/connection-protocol/) reconstructs the BLE-to-RFCOMM establishment sequence from a private r25 evidence ZIP while generating a sanitized public closure record.

@@ -188,3 +188,42 @@ but the non-display gesture mapping and reliable exit sequence are unresolved.
 Blind recovery navigation, sideload, fastboot, flashing, and slot changes
 remain outside the approved boundary.
 <!-- USB_ADB_CONTROL_STATIC_END -->
+
+## Runtime stock-toggle semantics
+
+A controlled stock phone-UI run proved the local disable and restoration
+transition:
+
+```text
+before disable: persist.vendor.adb=true
+disabled:       persist.vendor.adb=false
+after restore:  persist.vendor.adb=true
+```
+
+While disabled, `Settings.Global.adb_enabled` remained `1`, `adbd` remained
+running, the USB configuration remained ADB-capable, the existing authorized
+transport remained alive, and no USB re-enumeration occurred. The phone UI
+reported the Developer Mode switch as off.
+
+The original r25.3 runner was rejected because it required disappearance from
+host ADB as the disable oracle. The corrected runner must validate the semantic
+property/UI transition and record transport continuity without treating it as a
+failure. Exact RFCOMM payload bytes, authentication, request/reply framing, and
+independent replay remain unresolved.
+
+See the [r25.3 pre-repair findings](../research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md).
+
+## Read-only OTA boot-chain audit
+
+The running build matched the exact full A/B OTA. The live bootloader-reported
+11,904-byte vbmeta chain digest matched the OTA-derived chain byte-for-byte.
+Regular ADB shell access could not read or write the active boot-chain block
+devices, so the OTA-derived `boot.img` remains the canonical offline source.
+
+The matching boot image uses header version 3 and contains the generic ramdisk.
+A prior Magisk 30.7 result was rejected because it carried a foreign
+`PREINITDEVICE=sda8` value and a false-positive Samsung DEFEX kernel patch. A
+repaired candidate was validated offline with `PREINITDEVICE=metadata` and the
+pristine Rokid kernel. It is not OEM-signed and was not booted or flashed.
+
+See the [boot-chain research](../research/boot-chain/README.md).

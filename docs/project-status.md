@@ -1,7 +1,7 @@
-# Project Status Through r1.3.3.2.25.2.4
+# Project Status Through r1.3.3.2.25.3 Pre-Repair
 
 This page separates completed observation and transport qualification from
-application-protocol and Developer Mode work that has not yet been delivered.
+application-protocol, Developer Mode, and device-modification work that has not yet been delivered.
 
 ## Completed or substantially closed
 
@@ -21,6 +21,9 @@ application-protocol and Developer Mode work that has not yet been delivered.
 | Independent Android connection-only RFCOMM client | Implemented and device-qualified | [Android client](../android-client/README.md) |
 | Same-attempt RFCOMM client lifecycle | PROVEN | [Final closure](research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
 | HCI zero-application-payload census | PROVEN: TX 0 bytes, RX 0 bytes | [Runtime status](research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
+| Stock ADB disable/restore local semantics | PROVEN; original r25.3 transport-loss oracle rejected | [Pre-repair findings](research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| Live/OTA vbmeta-chain correspondence | PASS for exact 11,904-byte chain | [Boot-chain research](research/boot-chain/README.md) |
+| Repaired Magisk boot candidate | ACCEPTED offline only; no boot or flash | [Offline validation](research/boot-chain/ota-boot-chain-and-offline-magisk-validation.md) |
 
 ## Current replacement-app boundary
 
@@ -34,7 +37,8 @@ application-protocol and Developer Mode work that has not yet been delivered.
 | Binding/session-authentication contract | Stock and strict-handoff behavior observed; general independent reproduction not established |
 | CXR/application framing | Unresolved |
 | Request IDs, integrity/authentication fields, and reply correlation | Unresolved |
-| Stock ADB enable/disable command bytes | Unresolved |
+| Stock ADB enable/disable command bytes | Unresolved; the local property effects are proven |
+| r25.3 original physical qualification | Rejected because the runner required transport disappearance after stock disable |
 | Read-only application command decoder/replay | Not implemented |
 | Guarded independent USB/Developer Mode toggle | Not implemented |
 | Full replacement Android companion | Not built; transport foundation is available |
@@ -51,14 +55,14 @@ it does not identify or authorize an application-layer command.
 
 ## Recommended next engineering phase
 
-The next phase is
-`r1.3.3.2.25.3 — Stock ADB Toggle RFCOMM Payload Capture, UIH Frame Attribution, Enable/Disable Differential, and Application-Framing Recovery`.
+The next phase is the repaired
+`r1.3.3.2.25.3.1 — Stock ADB Toggle RFCOMM Payload Capture with a Semantic Disable Oracle`.
 It should:
 
 1. capture one controlled stock ADB-enable and ADB-disable pair;
 2. attribute nonzero RFCOMM UIH payload frames to the exact stock session;
 3. establish frame boundaries and stable versus variable fields;
-4. prove the enable/disable differential without custom transmission;
+4. prove the enable/disable differential without requiring immediate USB transport loss;
 5. correlate the frames with recovered Java/native constructors and transforms;
 6. implement a decoder before any sender or replay;
 7. keep independent Developer Mode writes disabled until positive reply and
@@ -74,8 +78,19 @@ It should:
 | `r1.3.3.2.25.2.2.2` | Historical bounded socket-open/zero-I/O result |
 | `r1.3.3.2.25.2.2.2.1.3` | Historical bounded lifecycle-only conclusion for the older archive |
 | `r1.3.3.2.25.2.3.2` | Authoritative instrumented runtime evidence |
-| `r1.3.3.2.25.2.4` | Final publication and evidentiary supersession |
+| `r1.3.3.2.25.2.4` | Final accepted connection-only publication and evidentiary supersession |
+| `r1.3.3.2.25.3` pre-repair | Physical run rejected due invalid disable oracle; local property transition retained as proven evidence |
+| Boot-chain audit | Read-only live/OTA correspondence and offline repaired-image validation; separate from connection-protocol qualification |
 
 Earlier results remain preserved as historical evidence. The final r25.2.4
 publication is authoritative for the RFCOMM connection-only zero-payload
 qualification.
+
+## Boot-chain and modification boundary
+
+The exact running build matched the full OTA. The live 11,904-byte vbmeta digest
+matched the OTA-derived chain, while regular ADB shell access to active
+boot-chain partitions remained denied. A repaired Magisk 30.7 image was accepted
+for offline research only with the pristine kernel and
+`PREINITDEVICE=metadata`. It is not OEM-signed, was not booted or flashed, and
+does not authorize a device-modification step.

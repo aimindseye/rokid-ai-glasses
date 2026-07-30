@@ -64,12 +64,14 @@ reports and evidence are sanitized.
 | `r1.3.3.2.25.2.2.2` | Strict private-handoff connection-only qualification | Historical bounded socket-open/zero-I/O result | [Qualification](../research/connection-protocol/r1.3.3.2.25.2.2.2-rfcomm-connection-only-qualification.md) |
 | `r1.3.3.2.25.2.3.2` | Strict private-handoff, single-tap lifecycle, and HCI DLCI census | `PASS_FULL_RFCOMM_HCI_ZERO_PAYLOAD_CLOSURE` | [Integration findings](../research/connection-protocol/r1.3.3.2.25.2.3.2-strict-private-handoff-integration.md) |
 | `r1.3.3.2.25.2.4` | Final publication, evidence-hash promotion, and prior bounded-result supersession | `PASS_FINAL_RFCOMM_ZERO_PAYLOAD_PUBLICATION_INTEGRATION` | [Final publication](../research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
+| `r1.3.3.2.25.3` pre-repair | Stock ADB toggle physical run and semantic disable/restore observation | `REJECTED_INVALID_DISABLE_ORACLE`; property transition proven, payload qualification not reached | [Pre-repair findings](../research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| Boot-chain audit | Exact live/OTA vbmeta correspondence, shell partition boundary, and repaired Magisk image offline validation | `PASS_OFFLINE_REPAIRED_CANDIDATE`; no boot or flash | [Boot-chain findings](../research/boot-chain/ota-boot-chain-and-offline-magisk-validation.md) |
 
 Repair-only `.1.x` releases remain in the detailed
 [connection-protocol index](../research/connection-protocol/README.md) and the
 [supersession map](../research/connection-protocol/r1.3.3.2.25.2.4-supersession-map.json).
 
-## Capability status after r1.3.3.2.25.2.4
+## Capability status after r1.3.3.2.25.3 pre-repair
 
 | Goal | Status |
 |---|---|
@@ -79,7 +81,10 @@ Repair-only `.1.x` releases remain in the detailed
 | Open and close the target RFCOMM transport independently | Complete and device-qualified |
 | Prove zero application payload for the connection-only attempt | Complete by lossless HCI census |
 | Recover CXR/application framing and request/reply semantics | Unresolved |
+| Prove stock local disable/restore property effects | Complete; transport disappearance is not required |
 | Attribute stock ADB enable/disable command bytes | Unresolved |
+| Match live vbmeta chain to exact OTA | Complete for the 11,904-byte chain |
+| Validate repaired Magisk boot candidate offline | Complete; no device boot or flash |
 | Build a guarded independent Developer Mode toggle | Not implemented |
 
 See [project status](../project-status.md) for the current engineering boundary.

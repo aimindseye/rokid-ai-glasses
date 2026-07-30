@@ -24,6 +24,7 @@ worktree.
 - `sanitized/17/` — glasses Android, ADB, local service, and network assertions
 - `sanitized/glasses-os-services/` — Test 18 USB ADB control summary
 - `sanitized/ota-firmware/` — OTA/firmware summary
+- `sanitized/boot-chain/` — live/OTA boot-chain and offline repaired-image summary
 
 The protected-companion r22–r24.1 results are published primarily under
 [`docs/research/`](../docs/research/README.md). Hash-only native-loader
@@ -36,4 +37,4 @@ provenance is also present in `manifests/` and `sanitized/native-loader/`.
 - account tokens, IDs, serials, Bluetooth addresses, and location
 - APKs, native libraries, decompiled trees, and proprietary DEX
 - memory dumps, absolute runtime addresses, and process maps
-- ADB host keys, authorization files, block maps, and partition images
+- ADB host keys, authorization files, block maps, partition images, and patched boot images

@@ -17,7 +17,9 @@ after Tests 00–18 and the protected-companion work through r24.1.
 | Application payload in accepted connection-only attempt | TX `0` bytes / RX `0` bytes |
 | Pairing/binding authentication contract | General independent reproduction unresolved |
 | CXR/application framing and request/reply correlation | Unresolved |
-| Stock ADB enable/disable command | Unresolved |
+| Stock local disable/restore property transition | Proven; existing USB transport may remain alive |
+| Stock ADB enable/disable command bytes | Unresolved |
+| r25.3 original physical qualification | Rejected due invalid transport-loss oracle |
 | Independent Developer Mode toggle | Disabled and not implemented |
 
 ## Final r25.2.4 publication
@@ -35,6 +37,18 @@ no application-bearing UIH frames on DLCI 6.
 - [Evidence identities](r1.3.3.2.25.2.4-evidence-hashes.txt)
 - [Supersession map](r1.3.3.2.25.2.4-supersession-map.json)
 - [Publication integration method](r1.3.3.2.25.2.4-publication-integration-method.md)
+
+## r25.3 pre-repair physical result
+
+The first r25.3 physical run proved the local stock
+`persist.vendor.adb=true → false → true` transition, while the secure global
+setting, `adbd`, the ADB-capable USB configuration, and the existing authorized
+transport remained present. The package was rejected because it incorrectly
+required transport disappearance before payload capture. No custom application
+payload was sent.
+
+- [Pre-repair findings](r1.3.3.2.25.3-pre-repair-findings.md)
+- [Machine-readable pre-repair status](r1.3.3.2.25.3-pre-repair-runtime-status-summary.json)
 
 ## Implementation and research history
 
@@ -57,6 +71,8 @@ the final supersession map.
 
 ## Next boundary
 
-The next phase is stock ADB-toggle payload capture and application-framing
-recovery. No custom application payload should be transmitted until a decoder
-explains independent enable and disable captures and request/reply correlation.
+The next phase is the repaired r25.3.1 stock ADB-toggle payload capture and
+application-framing recovery. Its disable oracle must use the stock property/UI
+transition and must not require immediate USB transport loss. No custom
+application payload should be transmitted until a decoder explains independent
+enable and disable captures and request/reply correlation.
