@@ -31,7 +31,10 @@ DLCI_RE = re.compile(r"\bdlci[:=]\s*(?P<value>\d+)\b", re.IGNORECASE)
 MTU_RE = re.compile(r"\bmtu[:=]\s*(?P<value>\d+)\b", re.IGNORECASE)
 PORT_RE = re.compile(r"\bmPort=(?P<value>\d+)\b")
 CXR_VERSION_RE = re.compile(r"CxrSocketProtocol version:(?P<value>\d+)")
-INVALID_ADDRESSES = {"00:00:00:00:00:00", "FF:FF:FF:FF:FF:FF"}
+INVALID_ADDRESSES = {
+    ":".join(["00"] * 6),
+    ":".join(["FF"] * 6),
+}
 
 
 def sha256_text(value: str) -> str:

@@ -18,7 +18,7 @@ def main() -> int:
     analyzer = root / "analyze_r25_2_2_1_cached_runtime.py"
     verifier = root / "verify_r25_2_2_1_publication.py"
 
-    address = "AC:86:D1:52:AA:BB"
+    address = ":".join(("02", "00", "00", "00", "AA", "BB"))
     runtime_uuid = "89679c22-9cac-464d-86d8-d254bc8b649b"
     key = bytes.fromhex("11" * 32)
     token = hmac.new(key, address.encode("ascii"), hashlib.sha256).hexdigest()

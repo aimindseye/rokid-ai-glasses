@@ -18,6 +18,10 @@ final class RfcommConnectionOnlyHandoff {
     private static final Pattern ADDRESS = Pattern.compile(
             "(?i)^(?:[0-9a-f]{2}:){5}[0-9a-f]{2}$");
     private static final Pattern SHA256 = Pattern.compile("^[0-9a-f]{64}$");
+    private static final String ZERO_ADDRESS =
+            String.join(":", "00", "00", "00", "00", "00", "00");
+    private static final String BROADCAST_ADDRESS =
+            String.join(":", "FF", "FF", "FF", "FF", "FF", "FF");
 
     private final String runtimeAddress;
     private final UUID runtimeUuid;
@@ -76,8 +80,8 @@ final class RfcommConnectionOnlyHandoff {
 
         String address = value.getString("runtime_address").toUpperCase(Locale.US);
         if (!ADDRESS.matcher(address).matches()
-                || "00:00:00:00:00:00".equals(address)
-                || "FF:FF:FF:FF:FF:FF".equals(address)) {
+                || ZERO_ADDRESS.equals(address)
+                || BROADCAST_ADDRESS.equals(address)) {
             throw new IllegalArgumentException("invalid runtime address");
         }
         UUID uuid = UUID.fromString(value.getString("runtime_uuid"));

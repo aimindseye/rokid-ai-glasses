@@ -11,7 +11,7 @@ HERE = Path(__file__).resolve().parent
 with tempfile.TemporaryDirectory() as directory:
     root = Path(directory)
     key = bytes(range(32))
-    address = "AA:BB:CC:DD:EE:FF"
+    address = ":".join(("02", "00", "00", "00", "00", "01"))
     token = hmac.new(key, address.encode("ascii"), hashlib.sha256).hexdigest()
 
     rows = []

@@ -11,6 +11,8 @@ flowchart LR
     U[Wearer] --> G[Glasses hardware]
     G --> GO[Glasses Android 12 and Rokid services]
     GO <--> T[Bluetooth media/control transport]
+    GO --> B[Verified boot and A/B boot-chain state]
+    B -. exact read-only comparison .-> O[Matching full OTA image set]
     T <--> P[Hi Rokid Android app]
     P <--> C[Rokid account, AI, object storage and OTA services]
     P --> L[Phone-local cache and settings]
@@ -37,6 +39,14 @@ flowchart LR
 - The r25.2.4 result proves an independent Android client-side RFCOMM
   connection-only lifecycle with SCN `3`, DLCI `6`, MTU `990`, matching
   open/close, and zero application bytes in both directions by HCI census.
+- The rejected r25.3 pre-repair run proves the stock local
+  `persist.vendor.adb=true → false → true` transition, but not the RFCOMM
+  command bytes; its original transport-loss oracle was invalid.
+- The live bootloader-reported 11,904-byte vbmeta chain matches the exact
+  OTA-derived chain. Regular ADB shell access cannot read or write the active
+  boot-chain partitions.
+- One repaired Magisk 30.7 boot candidate is accepted offline with the pristine
+  Rokid kernel and `PREINITDEVICE=metadata`; it has not been booted or flashed.
 
 ## Proven connection-only transport
 
@@ -62,6 +72,7 @@ flowchart LR
     K[Known independent RFCOMM transport] --> F[Unknown CXR/application framing]
     F --> A[Unknown authenticated ADB enable/disable command]
     A --> D[Known glasses-side Developer Mode property executor]
+    D --> S[Known local disable semantics: vendor property false; existing ADB transport may remain]
 ```
 
 The repository now contains an independent **transport client**, not a complete
@@ -80,7 +91,10 @@ independent toggle remain unresolved.
 | HCI zero-payload census | Proven: TX 0 bytes, RX 0 bytes |
 | Binding/session authentication | General independent reproduction unresolved |
 | CXR/application framing | Unresolved |
-| ADB command/reply semantics | Unresolved |
+| Stock local disable/restore semantics | Proven; transport loss is not a valid required oracle |
+| ADB command/reply payload semantics | Unresolved |
+| Live/OTA vbmeta correspondence | Proven for the 11,904-byte chain |
+| Repaired Magisk candidate | Accepted offline only; not OEM-signed or device-tested |
 | Guarded independent Developer Mode toggle | Not implemented |
 
 ## Read next
@@ -88,6 +102,8 @@ independent toggle remain unresolved.
 - [Current project status](docs/project-status.md)
 - [Detailed architecture](docs/architecture/non-display-system-architecture.md)
 - [Connection-protocol index](docs/research/connection-protocol/README.md)
+- [r25.3 pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md)
+- [Boot-chain research](docs/research/boot-chain/README.md)
 - [Final RFCOMM closure](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
 - [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json)
 - [Android client](android-client/README.md)

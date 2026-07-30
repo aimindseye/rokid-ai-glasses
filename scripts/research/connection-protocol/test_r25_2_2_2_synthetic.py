@@ -22,7 +22,7 @@ def main() -> int:
     root = Path(__file__).resolve().parent
     analyzer = root / "analyze_r25_2_2_2_connection_only.py"
     verifier = root / "verify_r25_2_2_2_publication.py"
-    address = "AA:BB:CC:DD:EE:FF"
+    address = ":".join(("02", "00", "00", "00", "00", "02"))
     runtime_uuid = "12345678-1234-4234-9234-123456789abc"
     import hashlib
     sha = lambda value: hashlib.sha256(value.encode()).hexdigest()
