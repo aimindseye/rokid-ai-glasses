@@ -2,14 +2,15 @@
 
 ![Product](https://img.shields.io/badge/Product-Rokid%20AI%20Glasses%20Style-111827)
 ![Form factor](https://img.shields.io/badge/Form%20factor-Display--free-0284c7)
-![Coverage](https://img.shields.io/badge/Coverage-Tests%2000%E2%80%9318%20%7C%20r25.3%20pre--repair-7c3aed)
+![Coverage](https://img.shields.io/badge/Coverage-Tests%2000%E2%80%9318%20%7C%20r25.3.1.3%20accepted-7c3aed)
 ![Evidence](https://img.shields.io/badge/Evidence-Sanitized%20and%20reproducible-16a34a)
 
 An independent, community-maintained guide to the **display-free Rokid AI
 Glasses Style**, the **Hi Rokid** Android companion application, and the
 validated research completed through **Test 18**, the accepted
-**r1.3.3.2.25.2.4** transport publication, the rejected **r1.3.3.2.25.3**
-pre-repair run, and the read-only OTA boot-chain audit.
+**r1.3.3.2.25.2.4** transport publication, the accepted **r1.3.3.2.25.3.1.2** target-pair qualification, the accepted
+**r1.3.3.2.25.3.1.3** exact observed-frame grammar, and the read-only OTA
+boot-chain audit.
 
 > Unofficial community project. Not affiliated with Rokid.
 
@@ -35,9 +36,11 @@ The project has established four complementary layers:
    runtime endpoint, implemented a strict connection-only Android RFCOMM client,
    correlated one client open/close attempt, and proved by a lossless HCI census
    that the target DLCI carried zero application bytes in both directions.
-5. **Stock-toggle and boot-chain qualification.** The rejected r25.3 pre-repair
-   run proved the local disable/restore property transition while exposing an
-   invalid transport-loss oracle. A separate read-only audit matched the live
+5. **Stock-toggle protocol and boot-chain qualification.** The repaired stock
+   capture completed two disable and two enable actions, preserved a usable
+   control channel, restored the final state, attributed seven payload-bearing
+   target DLCI 6 frames, and closed the exact observed outbound ADB-toggle
+   grammar without replay. A separate read-only audit matched the live
    11,904-byte vbmeta chain to the exact OTA and validated one repaired Magisk
    boot image offline without booting or flashing it.
 
@@ -47,22 +50,22 @@ The project has established four complementary layers:
 |---|---|---|
 | Stock pairing and cloud workflow observation | Substantially complete | [Test matrix](docs/tests/test-matrix.md) |
 | Glasses Android/ADB/local-service baseline | Complete in read-only scope | [Test 17](docs/tests/17-glasses-os-adb-and-network-exposure.md) |
-| Developer Mode property semantics | Static writes and runtime disable/restore transition proven | [USB ADB finding](docs/findings/glasses-android-os-and-adb.md#runtime-stock-toggle-semantics) |
+| Developer Mode property semantics | Static writes and runtime disable/restore transition proven | [USB ADB finding](docs/findings/glasses-android-os-and-adb.md#runtime-stock-toggle-semantics-and-observed-message-grammar) |
 | Runtime Bluetooth endpoint attribution | Complete in the accepted r25.2 scope | [Connection-protocol research](docs/research/connection-protocol/README.md) |
 | Independent connection-only RFCOMM client | Implemented and device-qualified | [Android client](android-client/README.md) |
 | Same-attempt RFCOMM open/close lifecycle | Proven | [Final closure publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
 | HCI application-payload census | Proven: TX 0 bytes, RX 0 bytes | [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
-| CXR/application framing and authentication | Unresolved | [Project status](docs/project-status.md) |
-| Stock ADB enable/disable command and reply | Payload bytes unresolved; original r25.3 physical run rejected due invalid disable oracle | [Pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| Observed stock ADB-toggle application framing | Exact four-message grammar closed; broader authentication and reply semantics unresolved | [Stock ADB-toggle publication](docs/research/connection-protocol/stock-adb-toggle/README.md) |
+| Stock ADB enable/disable outbound message family | UIH attribution, repeated differential, lengths, discriminator, and structured state role proven; reply/authorization unresolved | [Stock ADB-toggle findings](docs/research/connection-protocol/stock-adb-toggle/findings.md) |
 | Live/OTA boot-chain correspondence | Proven for the 11,904-byte vbmeta chain; active partitions remain unreadable to shell | [Boot-chain research](docs/research/boot-chain/README.md) |
 | Repaired Magisk boot candidate | Accepted offline only; pristine kernel, `PREINITDEVICE=metadata`, no device boot/flash | [Offline validation](docs/research/boot-chain/ota-boot-chain-and-offline-magisk-validation.md) |
 | Guarded independent Developer Mode toggle | Not implemented | [Project status](docs/project-status.md) |
 
 The transport-feasibility question is closed for the accepted connection-only
-attempt. The immediate engineering gap is now **application-protocol recovery**:
-attribute the stock ADB enable/disable payloads, recover framing and
-request/reply semantics, build a decoder, and only then consider a guarded
-sender with rollback.
+attempt. The immediate engineering gap is now **independent protocol confirmation and
+reply safety**: correlate the observed grammar with code, recover positive reply
+and authorization/integrity semantics, repeat the capture independently, and
+only then consider a guarded sender with explicit rollback.
 
 ## Start here
 
@@ -71,7 +74,8 @@ sender with rollback.
 | Understand what is proven and what remains | [Project status](docs/project-status.md) |
 | Review the final RFCOMM zero-payload proof | [Final closure publication](docs/research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
 | Inspect the machine-readable transport result | [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
-| Review the rejected r25.3 pre-repair run | [Pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| Review the accepted stock ADB-toggle protocol result | [Stock ADB-toggle publication](docs/research/connection-protocol/stock-adb-toggle/README.md) |
+| Review the rejected r25.3 pre-repair lineage | [Pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
 | Review live/OTA boot-chain and offline Magisk validation | [Boot-chain research](docs/research/boot-chain/README.md) |
 | Follow the connection-protocol research | [Connection-protocol index](docs/research/connection-protocol/README.md) |
 | Inspect the connection-only Android client | [Android client](android-client/README.md) |
@@ -156,14 +160,19 @@ disable:
 ```
 
 No matching `Settings.Global.adb_enabled=0` write was recovered in the bounded
-disable method. In the rejected r25.3 pre-repair physical run, the stock phone UI
-changed `persist.vendor.adb` to `false` while `Settings.Global.adb_enabled`
-remained `1`, `adbd` remained running, the USB configuration remained
-ADB-capable, and the already-authorized transport remained alive. Restoring the
-stock UI returned the property to `true` without re-enumeration. The original
-runner was rejected because it incorrectly required immediate transport loss.
-The exact phone-to-glasses payload, authorization, request/reply framing, and
-safe independent replay remain unresolved.
+disable method. The accepted repaired capture completed two stock disable and
+two stock enable actions. The semantic oracle used `persist.vendor.adb` plus the
+stock UI switch, did not require transport disappearance, kept the control
+channel usable, and restored the final state to `on`.
+
+Offline HCI analysis attributed one outbound action-specific message to each
+window. Disable messages are 97 bytes; enable messages are 96 bytes. The exact
+observed family has self-inclusive outer and nested lengths, stable field order,
+a one-byte monotonic transaction/sequence candidate, a repeat-stable action
+discriminator, and structured `on`/`off` state correlated with the stock UI and
+vendor property. Reply semantics, authorization/integrity behavior, safe custom
+transmission, and rollback remain unresolved. See the
+[accepted stock ADB-toggle publication](docs/research/connection-protocol/stock-adb-toggle/README.md).
 
 ### Read-only boot-chain and offline Magisk result
 
@@ -301,20 +310,28 @@ payloads, reply semantics, and a guarded independent Developer Mode toggle
 remain unresolved.
 <!-- END R1.3.3.2.25.2.4 CURRENT TRANSPORT STATUS -->
 
-<!-- BEGIN R1.3.3.2.25.3 PRE-REPAIR STATUS -->
-## r1.3.3.2.25.3 pre-repair result
+<!-- BEGIN R1.3.3.2.25.3.1.4 CURRENT STOCK-TOGGLE STATUS -->
+## Current stock ADB-toggle result — r1.3.3.2.25.3.1.2 and r1.3.3.2.25.3.1.3
 
-The first physical r25.3 run is rejected as a qualification result because the
-runner required the existing USB ADB transport to disappear after stock disable.
-The stock UI did prove the local `persist.vendor.adb=true → false → true`
-transition while `adbd`, the ADB-capable USB configuration, and the authorized
-transport remained present. No custom transmission occurred and no RFCOMM
-application payload was qualified.
+The accepted repaired stock capture completed two disable and two enable
+transitions, restored the final state, and retained a usable control channel.
+Target-pair-scoped HCI qualification recovered eight target DLCI 6 frames,
+including seven payload-bearing frames. Two malformed candidates on a non-target
+dynamic CID remain private diagnostics and do not invalidate the clean target
+pairs.
 
-- [Pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md)
-- [Machine-readable status](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-runtime-status-summary.json)
-- [Boot-chain and offline image audit](docs/research/boot-chain/README.md)
+The four action-specific outbound messages prove an enable/disable differential
+and one exact observed message family: 97-byte disable, 96-byte enable,
+self-inclusive outer and nested lengths, stable field order, a one-byte
+monotonic transaction/sequence candidate, repeat-stable discriminator, and
+structured state correlated with the stock UI and `persist.vendor.adb`.
 
-The next runner is `r1.3.3.2.25.3.1`, with a semantic property/UI oracle and no
-requirement for immediate USB re-enumeration or transport loss.
-<!-- END R1.3.3.2.25.3 PRE-REPAIR STATUS -->
+No custom transmission or captured-payload replay was attempted. Reply semantics,
+authorization/integrity behavior, independent code correlation, and guarded
+rollback remain unresolved.
+
+- [Accepted publication](docs/research/connection-protocol/stock-adb-toggle/README.md)
+- [Integrated runtime status](docs/research/connection-protocol/stock-adb-toggle/runtime-status-summary.json)
+- [Evidence hashes](docs/research/connection-protocol/stock-adb-toggle/evidence-hashes.txt)
+- [Historical pre-repair findings](docs/research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md)
+<!-- END R1.3.3.2.25.3.1.4 CURRENT STOCK-TOGGLE STATUS -->

@@ -1,0 +1,123 @@
+{
+  "acceptance": "PASS_EXISTING_CAPTURE_EXACT_ADB_TOGGLE_APPLICATION_FRAME_GRAMMAR_NESTED_LENGTH_SEQUENCE_DISCRIMINATOR_AND_STRUCTURED_PAYLOAD_ROLE_CLOSURE",
+  "boundaries": {
+    "captured_payload_replay_attempted": false,
+    "custom_transmission_attempted": false,
+    "device_contact": false,
+    "raw_payload_publication": false,
+    "stock_toggle_attempted": false
+  },
+  "gates": {
+    "captured_payload_replay_attempted": false,
+    "constant_envelope_and_operation_grammar": true,
+    "custom_transmission_attempted": false,
+    "device_contact": false,
+    "disable_repeat_equal_after_sequence_normalization": true,
+    "distinct_enable_disable_discriminator": true,
+    "enable_repeat_equal_after_sequence_normalization": true,
+    "four_semantically_qualified_action_messages": true,
+    "monotonic_sequence_candidate_step_one": true,
+    "nested_total_length_closed": true,
+    "outer_total_length_closed": true,
+    "source_r25_3_1_2_acceptance_bound": true,
+    "structured_payload_json_decoded": true,
+    "structured_role_correlated_to_ui_and_property": true
+  },
+  "grammar": {
+    "action_roles": {
+      "disable": {
+        "discriminator": "1",
+        "observation_count": 2,
+        "persist_vendor_adb_state": "off",
+        "structured_value": "off",
+        "ui_switch_state": "off"
+      },
+      "enable": {
+        "discriminator": "0",
+        "observation_count": 2,
+        "persist_vendor_adb_state": "on",
+        "structured_value": "on",
+        "ui_switch_state": "on"
+      }
+    },
+    "constant_identifiers": {
+      "nested_magic": {
+        "sha256": "0e6fac6a3ad129a64c2b9d6eaf6680e4b5f95dcd36949dad585415b017633875",
+        "utf8_length": 2
+      },
+      "operation": {
+        "sha256": "85a8f1fdd778d3339525a4ef9366adb5defd474495a2f723da00e1024f0f1500",
+        "utf8_length": 15
+      },
+      "outer_magic": {
+        "sha256": "ee6824d425323cdc98efa199bdb73336e1c54d035308f6317c8aac5c3870d0f5",
+        "utf8_length": 4
+      },
+      "structured_key": {
+        "sha256": "ab7e9769dc42b297ce16b308114b9c0d0c8225fffa99051e5e4226f7ba0f4b81",
+        "utf8_length": 23
+      },
+      "subsystem": {
+        "sha256": "74a883a037bc227f91891ab654a753d3a99f31ab06ae5b5d2b6e594a692b41f8",
+        "utf8_length": 8
+      }
+    },
+    "field_order": [
+      "outer_total_length",
+      "outer_marker",
+      "outer_magic_length",
+      "outer_magic",
+      "envelope_class",
+      "sequence_candidate",
+      "subsystem_marker",
+      "subsystem_length",
+      "subsystem",
+      "nested_total_length",
+      "nested_marker",
+      "nested_magic_length",
+      "nested_magic",
+      "operation_length",
+      "operation",
+      "action_discriminator",
+      "structured_payload"
+    ],
+    "message_lengths": {
+      "disable": [
+        97
+      ],
+      "enable": [
+        96
+      ]
+    },
+    "nested_total_length_encoding": "u32be_self_inclusive_from_nested_length_field",
+    "outer_total_length_encoding": "u32be_self_inclusive",
+    "repeat_normalization": {
+      "disable_equal_except_sequence_candidate": true,
+      "enable_equal_except_sequence_candidate": true
+    },
+    "sequence_candidate": {
+      "monotonic_step_one": true,
+      "observation_count": 4,
+      "offset": 12,
+      "role": "transaction_or_sequence_candidate_not_yet_code_correlated",
+      "steps_mod_256": [
+        1,
+        1,
+        1
+      ],
+      "width_bytes": 1
+    }
+  },
+  "privacy": {
+    "bluetooth_address_present": false,
+    "device_serial_present": false,
+    "exact_application_identifiers_present": false,
+    "private_home_path_present": false,
+    "raw_payload_hex_present": false
+  },
+  "qualification_outcome": "EXACT_SELF_INCLUSIVE_OUTER_AND_NESTED_LENGTHS_CONSTANT_ENVELOPE_MONOTONIC_SEQUENCE_DISTINCT_ACTION_DISCRIMINATOR_AND_STRUCTURED_ROLE_PROVEN",
+  "release": "r1.3.3.2.25.3.1.3",
+  "schema": "rokid.r25.3.1.3.public-status.v1",
+  "source_private_zip_sha256": "14601a69b0893b4af5d9c0e7d7ae25d8c11e9f01a204352bf7c661c67d04d6de",
+  "source_release": "r1.3.3.2.25.3.1.2"
+}

@@ -52,7 +52,7 @@ run the [safety gates](safety/README.md) before publishing derived material.
 <!-- BEGIN R1.3.3.2.25 SCRIPT INDEX -->
 ## Stock connection protocol
 
-See [`research/connection-protocol/`](research/connection-protocol/) for the r25 stock capture, HCI metadata, client-log, attribution and finalization tools. Use `research/verify_r25_3_pre_repair_publication.py` for the sanitized r25.3 pre-repair and boot-chain publication gate.
+See [`research/connection-protocol/`](research/connection-protocol/) for the r25 stock capture, HCI metadata, client-log, attribution and finalization tools. Use `research/verify_r25_3_pre_repair_publication.py` for the historical r25.3 pre-repair and boot-chain publication gate. Use `research/verify_r25_3_1_4_publication.py` for the accepted stock ADB-toggle publication integration.
 <!-- END R1.3.3.2.25 SCRIPT INDEX -->
 <!-- BEGIN R1.3.3.2.25.1 SCRIPT INDEX -->
 The r25.1 analyzer under [`research/connection-protocol/`](research/connection-protocol/) reconstructs the BLE-to-RFCOMM establishment sequence from a private r25 evidence ZIP while generating a sanitized public closure record.
@@ -61,3 +61,8 @@ The r25.1 analyzer under [`research/connection-protocol/`](research/connection-p
 ### r25.2 connection-only qualification
 
 Use `scripts/research/connection-protocol/run_r1_3_3_2_25_2.sh` to enforce strict Hi Rokid isolation, collect the private client log, validate zero payload I/O, and restore stock operation.
+
+
+### r25.3.1.2 and r25.3.1.3 host-only analyzers
+
+The `research/connection-protocol/` directory includes the accepted target-pair-scoped RFCOMM qualification analyzer and the exact observed-frame grammar analyzer. They read explicit private source archives supplied by the operator, write private output outside the repository, generate separate sanitized publication artifacts, and contain no device command or captured-payload replay path.

@@ -1,4 +1,4 @@
-# Project Status Through r1.3.3.2.25.3 Pre-Repair
+# Project Status Through r1.3.3.2.25.3.1.3
 
 This page separates completed observation and transport qualification from
 application-protocol, Developer Mode, and device-modification work that has not yet been delivered.
@@ -21,7 +21,9 @@ application-protocol, Developer Mode, and device-modification work that has not 
 | Independent Android connection-only RFCOMM client | Implemented and device-qualified | [Android client](../android-client/README.md) |
 | Same-attempt RFCOMM client lifecycle | PROVEN | [Final closure](research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md) |
 | HCI zero-application-payload census | PROVEN: TX 0 bytes, RX 0 bytes | [Runtime status](research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json) |
-| Stock ADB disable/restore local semantics | PROVEN; original r25.3 transport-loss oracle rejected | [Pre-repair findings](research/connection-protocol/r1.3.3.2.25.3-pre-repair-findings.md) |
+| Stock ADB disable/restore local semantics | PROVEN across two cycles; final state restored; transport disappearance not required | [Stock ADB-toggle findings](research/connection-protocol/stock-adb-toggle/findings.md) |
+| Target-pair-scoped RFCOMM UIH attribution | ACCEPTED; 8 target DLCI 6 frames, 7 payload frames, 0 target-pair parse errors | [r25.3.1.2 runtime status](research/connection-protocol/stock-adb-toggle/r25.3.1.2-runtime-status-summary.json) |
+| Exact observed ADB-toggle frame grammar | ACCEPTED; lengths, field order, sequence candidate, discriminator, and structured state role closed | [r25.3.1.3 runtime status](research/connection-protocol/stock-adb-toggle/r25.3.1.3-runtime-status-summary.json) |
 | Live/OTA vbmeta-chain correspondence | PASS for exact 11,904-byte chain | [Boot-chain research](research/boot-chain/README.md) |
 | Repaired Magisk boot candidate | ACCEPTED offline only; no boot or flash | [Offline validation](research/boot-chain/ota-boot-chain-and-offline-magisk-validation.md) |
 
@@ -35,11 +37,11 @@ application-protocol, Developer Mode, and device-modification work that has not 
 | Lossless HCI lifecycle correlation | Complete: SABM/UA and DISC/UA |
 | Application bytes during accepted connection-only attempt | Proven zero in both directions |
 | Binding/session-authentication contract | Stock and strict-handoff behavior observed; general independent reproduction not established |
-| CXR/application framing | Unresolved |
-| Request IDs, integrity/authentication fields, and reply correlation | Unresolved |
-| Stock ADB enable/disable command bytes | Unresolved; the local property effects are proven |
+| Observed stock ADB-toggle frame grammar | Closed for the four qualified messages; broader CXR grammar unresolved |
+| Reply correlation, authorization, integrity, checksum, and session binding | Unresolved |
+| Stock ADB enable/disable outbound messages | Attributed and decoded for the observed family; independent acceptance and replies unresolved |
 | r25.3 original physical qualification | Rejected because the runner required transport disappearance after stock disable |
-| Read-only application command decoder/replay | Not implemented |
+| Read-only application command decoder | Implemented host-only for the observed family; replay remains prohibited and unimplemented |
 | Guarded independent USB/Developer Mode toggle | Not implemented |
 | Full replacement Android companion | Not built; transport foundation is available |
 
@@ -47,26 +49,25 @@ application-protocol, Developer Mode, and device-modification work that has not 
 
 ```text
 RFCOMM_CLIENT_FULL_ZERO_PAYLOAD_RUNTIME_CLOSURE_PROVEN_BY_HCI_DLCI_CENSUS
+PASS_EXISTING_CAPTURE_TARGET_PAIR_SCOPED_RFCOMM_QUALIFICATION_UIH_DIFFERENTIAL_AND_BOUNDED_FRAMING_CLOSURE
+PASS_EXISTING_CAPTURE_EXACT_ADB_TOGGLE_APPLICATION_FRAME_GRAMMAR_NESTED_LENGTH_SEQUENCE_DISCRIMINATOR_AND_STRUCTURED_PAYLOAD_ROLE_CLOSURE
 ```
 
-The result is scoped to one connection-only Android client attempt. It proves
-that the custom client can reach and safely close the target RFCOMM transport;
-it does not identify or authorize an application-layer command.
+The connection-only result remains authoritative for independent zero-payload
+transport qualification. The later accepted stock capture establishes the
+outbound ADB-toggle message family for four qualified actions. Neither result
+authorizes an independent command sender.
 
 ## Recommended next engineering phase
 
-The next phase is the repaired
-`r1.3.3.2.25.3.1 — Stock ADB Toggle RFCOMM Payload Capture with a Semantic Disable Oracle`.
-It should:
+The next phase should remain read-only and correlation-first:
 
-1. capture one controlled stock ADB-enable and ADB-disable pair;
-2. attribute nonzero RFCOMM UIH payload frames to the exact stock session;
-3. establish frame boundaries and stable versus variable fields;
-4. prove the enable/disable differential without requiring immediate USB transport loss;
-5. correlate the frames with recovered Java/native constructors and transforms;
-6. implement a decoder before any sender or replay;
-7. keep independent Developer Mode writes disabled until positive reply and
-   rollback behavior are proven.
+1. repeat the four-action stock capture on an independent session or build;
+2. correlate the observed envelope, discriminator, and sequence candidate with recovered constructors or native transforms;
+3. recover positive reply and acknowledgement semantics;
+4. identify authorization, integrity, checksum, and session-binding fields;
+5. prove a deterministic failure and rollback model before implementing any sender;
+6. keep custom RFCOMM transmission and captured-payload replay disabled until those gates pass.
 
 ## Research progression and supersession
 
@@ -79,12 +80,17 @@ It should:
 | `r1.3.3.2.25.2.2.2.1.3` | Historical bounded lifecycle-only conclusion for the older archive |
 | `r1.3.3.2.25.2.3.2` | Authoritative instrumented runtime evidence |
 | `r1.3.3.2.25.2.4` | Final accepted connection-only publication and evidentiary supersession |
-| `r1.3.3.2.25.3` pre-repair | Physical run rejected due invalid disable oracle; local property transition retained as proven evidence |
+| `r1.3.3.2.25.3` pre-repair | Historical rejected run; local property transition retained |
+| `r1.3.3.2.25.3.1.1` | Accepted four-action physical source capture; initial offline analysis blocked by unscoped non-target-CID errors |
+| `r1.3.3.2.25.3.1.2` | Accepted target-pair-scoped offline salvage, UIH attribution, and enable/disable differential |
+| `r1.3.3.2.25.3.1.3` | Accepted exact observed frame grammar and field-role closure |
+| `r1.3.3.2.25.3.1.4` | Current sanitized repository publication integration |
 | Boot-chain audit | Read-only live/OTA correspondence and offline repaired-image validation; separate from connection-protocol qualification |
 
 Earlier results remain preserved as historical evidence. The final r25.2.4
-publication is authoritative for the RFCOMM connection-only zero-payload
-qualification.
+publication is authoritative for the independent connection-only zero-payload
+qualification. The accepted r25.3.1.2 and r25.3.1.3 publications are
+authoritative for the observed stock ADB-toggle message family.
 
 ## Boot-chain and modification boundary
 

@@ -8,6 +8,7 @@ public research files.
 - `native-loader-public-files.sha256` — public native-loader file manifest
 - `ota-firmware-analysis.sha256` — OTA/firmware analysis provenance
 - `boot-chain-offline-validation-evidence-hashes.txt` — hash-only OTA boot-chain and repaired-image provenance
+- `stock-adb-toggle-evidence-hashes.txt` — hash-only r25.3.1.2/.3 source, private-analysis, HCI, and grammar provenance
 
 A manifest proves byte identity of the referenced input; it does not make the
 input suitable for publication.

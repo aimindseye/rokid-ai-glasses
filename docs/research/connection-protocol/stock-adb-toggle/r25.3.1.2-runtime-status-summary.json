@@ -1,0 +1,346 @@
+{
+  "acceptance": "PASS_EXISTING_CAPTURE_TARGET_PAIR_SCOPED_RFCOMM_QUALIFICATION_UIH_DIFFERENTIAL_AND_BOUNDED_FRAMING_CLOSURE",
+  "action_observations": [
+    {
+      "action": "disable",
+      "action_id": "disable-1",
+      "action_specific_message_count": 1,
+      "action_specific_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:50:33.361404Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            97
+          ],
+          "length": 97,
+          "message_index": 0,
+          "relative_start_ms": 1930.15,
+          "sha256": "62c392a03ed8b5af9923b355fd7b61f2e265b512e2fdb0e13cd18bd67b90a855",
+          "start_utc": "2026-07-30T19:50:33.361404Z"
+        }
+      ],
+      "adb_transport_disappearance_required": false,
+      "all_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:50:33.361404Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            97
+          ],
+          "length": 97,
+          "message_index": 0,
+          "relative_start_ms": 1930.15,
+          "sha256": "62c392a03ed8b5af9923b355fd7b61f2e265b512e2fdb0e13cd18bd67b90a855",
+          "start_utc": "2026-07-30T19:50:33.361404Z"
+        }
+      ],
+      "control_channel_usable": true,
+      "cycle": 1,
+      "end_utc": "2026-07-30T19:50:39.506908Z",
+      "host_glasses_transport_present": true,
+      "payload_byte_count": 97,
+      "payload_frame_count": 1,
+      "persist_vendor_adb_state": "off",
+      "semantic_oracle_passed": true,
+      "start_utc": "2026-07-30T19:50:31.431254Z",
+      "ui_switch_state": "off"
+    },
+    {
+      "action": "enable",
+      "action_id": "enable-1",
+      "action_specific_message_count": 1,
+      "action_specific_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:51:00.146713Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            96
+          ],
+          "length": 96,
+          "message_index": 0,
+          "relative_start_ms": 3202.983,
+          "sha256": "d771a40ba71807c303a162d59c69f4e69a18b4ad6e09f553c0ad41c836dcad54",
+          "start_utc": "2026-07-30T19:51:00.146713Z"
+        }
+      ],
+      "adb_transport_disappearance_required": false,
+      "all_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:51:00.146713Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            96
+          ],
+          "length": 96,
+          "message_index": 0,
+          "relative_start_ms": 3202.983,
+          "sha256": "d771a40ba71807c303a162d59c69f4e69a18b4ad6e09f553c0ad41c836dcad54",
+          "start_utc": "2026-07-30T19:51:00.146713Z"
+        }
+      ],
+      "control_channel_usable": true,
+      "cycle": 1,
+      "end_utc": "2026-07-30T19:51:05.076535Z",
+      "host_glasses_transport_present": true,
+      "payload_byte_count": 96,
+      "payload_frame_count": 1,
+      "persist_vendor_adb_state": "on",
+      "semantic_oracle_passed": true,
+      "start_utc": "2026-07-30T19:50:56.943730Z",
+      "ui_switch_state": "on"
+    },
+    {
+      "action": "disable",
+      "action_id": "disable-2",
+      "action_specific_message_count": 1,
+      "action_specific_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:51:18.513174Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            97
+          ],
+          "length": 97,
+          "message_index": 0,
+          "relative_start_ms": 1948.745,
+          "sha256": "9668d3d9c498e251249e00751d3b46f0600457e47e2f37adff47397ab64a0551",
+          "start_utc": "2026-07-30T19:51:18.513174Z"
+        }
+      ],
+      "adb_transport_disappearance_required": false,
+      "all_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:51:18.513174Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            97
+          ],
+          "length": 97,
+          "message_index": 0,
+          "relative_start_ms": 1948.745,
+          "sha256": "9668d3d9c498e251249e00751d3b46f0600457e47e2f37adff47397ab64a0551",
+          "start_utc": "2026-07-30T19:51:18.513174Z"
+        }
+      ],
+      "control_channel_usable": true,
+      "cycle": 2,
+      "end_utc": "2026-07-30T19:51:24.670178Z",
+      "host_glasses_transport_present": true,
+      "payload_byte_count": 97,
+      "payload_frame_count": 1,
+      "persist_vendor_adb_state": "off",
+      "semantic_oracle_passed": true,
+      "start_utc": "2026-07-30T19:51:16.564429Z",
+      "ui_switch_state": "off"
+    },
+    {
+      "action": "enable",
+      "action_id": "enable-2",
+      "action_specific_message_count": 1,
+      "action_specific_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:51:39.660804Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            96
+          ],
+          "length": 96,
+          "message_index": 0,
+          "relative_start_ms": 2898.154,
+          "sha256": "9a0213c4582f95414639bfa36da5a5e927e43c72be055fc6f36b5e8cf1252540",
+          "start_utc": "2026-07-30T19:51:39.660804Z"
+        }
+      ],
+      "adb_transport_disappearance_required": false,
+      "all_messages": [
+        {
+          "baseline_signature_match": false,
+          "direction": "tx",
+          "end_utc": "2026-07-30T19:51:39.660804Z",
+          "frame_count": 1,
+          "frame_lengths": [
+            96
+          ],
+          "length": 96,
+          "message_index": 0,
+          "relative_start_ms": 2898.154,
+          "sha256": "9a0213c4582f95414639bfa36da5a5e927e43c72be055fc6f36b5e8cf1252540",
+          "start_utc": "2026-07-30T19:51:39.660804Z"
+        }
+      ],
+      "control_channel_usable": true,
+      "cycle": 2,
+      "end_utc": "2026-07-30T19:51:44.907206Z",
+      "host_glasses_transport_present": true,
+      "payload_byte_count": 96,
+      "payload_frame_count": 1,
+      "persist_vendor_adb_state": "on",
+      "semantic_oracle_passed": true,
+      "start_utc": "2026-07-30T19:51:36.762650Z",
+      "ui_switch_state": "on"
+    }
+  ],
+  "capture": {
+    "action_count": 4,
+    "adb_transport_disappearance_required": false,
+    "control_channel_usable_required": true,
+    "custom_transmission_attempted": false,
+    "cycle_count": 2,
+    "final_semantic_state": "on",
+    "initial_semantic_state": "on"
+  },
+  "differential": {
+    "differential_proven": true,
+    "disable_observation_count": 2,
+    "disable_sequence_shape": [
+      [
+        "tx",
+        97
+      ]
+    ],
+    "disable_sequence_shape_consistent": true,
+    "enable_observation_count": 2,
+    "enable_sequence_shape": [
+      [
+        "tx",
+        96
+      ]
+    ],
+    "enable_sequence_shape_consistent": true,
+    "framing_candidate_status": "SEQUENCE_SHAPE_DIFFERENTIAL",
+    "paired_message_comparisons": [],
+    "sequence_shape_consistent": true
+  },
+  "gates": {
+    "adb_transport_disappearance_not_required": true,
+    "capture_semantic_transitions_complete": true,
+    "control_channel_usable_for_all_actions": true,
+    "custom_transmission_attempted": false,
+    "disable_semantic_oracle_proven": true,
+    "enable_disable_differential_proven": true,
+    "enable_semantic_oracle_proven": true,
+    "final_semantic_state_restored": true,
+    "hci_member_unique_and_lossless": true,
+    "hci_uih_payload_attributed": true,
+    "non_target_rfcomm_errors_retained": true,
+    "repeated_enable_disable_observations": true,
+    "source_capture_release_is_r25_3_1_1": true,
+    "target_pair_scoped_rfcomm_error_qualification": true,
+    "target_rfcomm_parse_errors_absent": true
+  },
+  "qualification_outcome": "EXISTING_R25_3_1_1_CAPTURE_SALVAGED_TARGET_PAIR_SCOPED_RFCOMM_QUALIFICATION_UIH_DIFFERENTIAL_PROVEN",
+  "release": "r1.3.3.2.25.3.1.2",
+  "schema": "rokid.r25.3.1.2.public-status.v1",
+  "selected_hci_member": {
+    "coverage": true,
+    "datalink": 1002,
+    "drops": 0,
+    "errors": [],
+    "first_window_timestamp_utc": "2026-07-30T19:49:39.289411Z",
+    "frame_fingerprint_sha256": "8483ba88a07f8a75d50d77a56db2cc5ebf7d229805c1b35e225f6beba23aa152",
+    "last_window_timestamp_utc": "2026-07-30T19:51:57.859561Z",
+    "member_sha256": "472a35eea8887401860af7c87fc8248b7cf1a7171e8fd1ab84c7ba6b8991ec6b",
+    "non_target_rfcomm_errors_excluded_from_qualification": true,
+    "non_target_rfcomm_parse_error_count": 2,
+    "parse_errors": [],
+    "payload_frame_count": 7,
+    "qualifies": true,
+    "reassembly_errors": [],
+    "record_count": 25403,
+    "rfcomm_cids": {
+      "11": [
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        99,
+        100,
+        102,
+        104,
+        105,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        125,
+        126,
+        127
+      ]
+    },
+    "target_frame_count": 8,
+    "target_handle_candidates": [
+      11
+    ],
+    "target_pair_scoped_rfcomm_error_qualification": true,
+    "target_pairs": [
+      {
+        "cid": 68,
+        "handle": 11
+      },
+      {
+        "cid": 72,
+        "handle": 11
+      }
+    ],
+    "target_rfcomm_parse_error_count": 0,
+    "truncated_record_count": 0,
+    "window_record_count": 159
+  }
+}
