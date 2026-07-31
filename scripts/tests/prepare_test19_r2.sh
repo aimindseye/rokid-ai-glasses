@@ -8,6 +8,10 @@ CXR_L_VERSION="1.0.1"
 EXPECTED_HI_ROKID_VERSION="G1.11.11.0727"
 RESET_APP_DATA="NO"
 REPO=""
+RESOLVE_SUCCEEDED="NO"
+BUILD_SUCCEEDED="NO"
+INSTALL_SUCCEEDED="NO"
+DATA_CLEAR_SUCCEEDED="NO"
 
 usage() {
   cat <<'TXT'
@@ -103,7 +107,12 @@ python3 "$REPO/scripts/research/cxr/resolve_cxr_l_maven.py" \
   --output "$PRIVATE_ROOT"
 RESOLVE_RC=$?
 echo "CXR_L_RESOLVER_EXIT_CODE=$RESOLVE_RC"
-if [ "$RESOLVE_RC" -eq 0 ]; then pass "CXR-L artifact resolved and attested"; else fail "CXR-L artifact resolution failed"; fi
+if [ "$RESOLVE_RC" -eq 0 ]; then
+  RESOLVE_SUCCEEDED="YES"
+  pass "CXR-L artifact resolved and attested"
+else
+  fail "CXR-L artifact resolution failed"
+fi
 
 LOCAL_PROPERTIES="$REPO/android-client/local.properties"
 printf 'sdk.dir=%s\n' "$ANDROID_HOME" >"$LOCAL_PROPERTIES"
@@ -127,6 +136,7 @@ if [ "$RESULT" -eq 0 ]; then
   BUILD_RC=$?
   echo "GRADLE_BUILD_EXIT_CODE=$BUILD_RC"
   if [ "$BUILD_RC" -eq 0 ] && [ -s "$APK" ]; then
+    BUILD_SUCCEEDED="YES"
     pass "Test 19 r2 APK built"
     shasum -a 256 "$APK"
   else
@@ -140,34 +150,74 @@ if [ "$RESULT" -eq 0 ]; then
   INSTALL_RC=$?
   cat "$INSTALL_LOG"
   echo "ADB_INSTALL_EXIT_CODE=$INSTALL_RC"
-  if [ "$INSTALL_RC" -eq 0 ]; then pass "Test 19 r2 APK installed"; else fail "APK installation failed"; fi
+  if [ "$INSTALL_RC" -eq 0 ]; then
+    INSTALL_SUCCEEDED="YES"
+    pass "Test 19 r2 APK installed"
+  else
+    fail "APK installation failed"
+  fi
 fi
 
 if [ "$RESULT" -eq 0 ] && [ "$RESET_APP_DATA" = "YES" ]; then
   "$ADB" -s "$PHONE_SERIAL" shell pm clear "$APP_PACKAGE" >/dev/null 2>&1
   CLEAR_RC=$?
   echo "TEST_APP_DATA_CLEAR_EXIT_CODE=$CLEAR_RC"
-  if [ "$CLEAR_RC" -eq 0 ]; then pass "only Test 19 r2 app data was cleared"; else fail "Test 19 r2 data clear failed"; fi
+  if [ "$CLEAR_RC" -eq 0 ]; then
+    DATA_CLEAR_SUCCEEDED="YES"
+    pass "only Test 19 r2 app data was cleared"
+  else
+    fail "Test 19 r2 data clear failed"
+  fi
 fi
 
-PACKAGE_PATH="$($ADB -s "$PHONE_SERIAL" shell pm path "$APP_PACKAGE" 2>/dev/null | tr -d '\r')"
-if printf '%s\n' "$PACKAGE_PATH" | grep -q '^package:'; then pass "installed package identity verified"; else fail "installed package not found"; fi
+if [ "$INSTALL_SUCCEEDED" = "YES" ]; then
+  PACKAGE_PATH="$($ADB -s "$PHONE_SERIAL" shell pm path "$APP_PACKAGE" 2>/dev/null | tr -d '\r')"
+  if printf '%s\n' "$PACKAGE_PATH" | grep -q '^package:'; then
+    pass "installed package identity verified"
+  else
+    fail "installed package identity could not be verified after successful adb install"
+  fi
+else
+  echo "TEST19_R2_PACKAGE_IDENTITY_CHECK=NOT_ATTEMPTED"
+fi
 
 echo
 echo "CXR_L_PRIVATE_ARTIFACT_DIRECTORY=$PRIVATE_ROOT"
 echo "BUILD_LOG=$BUILD_LOG"
 echo "INSTALL_LOG=$INSTALL_LOG"
 echo "APK=$APK"
-if [ "$RESULT" -eq 0 ]; then
+if [ "$RESOLVE_SUCCEEDED" = "YES" ]; then
   echo "TEST19_R2_CXR_L_ARTIFACT_AND_API_SURFACE=PASS"
+else
+  echo "TEST19_R2_CXR_L_ARTIFACT_AND_API_SURFACE=FAIL"
+fi
+if [ "$BUILD_SUCCEEDED" = "YES" ]; then
   echo "TEST19_R2_APK_BUILD=PASS"
+else
+  echo "TEST19_R2_APK_BUILD=NOT_COMPLETED"
+fi
+if [ "$INSTALL_SUCCEEDED" = "YES" ]; then
   echo "TEST19_R2_APK_INSTALL=PASS"
+else
+  echo "TEST19_R2_APK_INSTALL=NOT_ATTEMPTED"
+fi
+
+if [ "$INSTALL_SUCCEEDED" = "YES" ] && [ "$DATA_CLEAR_SUCCEEDED" = "YES" ]; then
+  PHONE_MUTATION_VALUE="TEST19_R2_DEBUG_APK_INSTALL_AND_TEST_APP_DATA_CLEAR"
+elif [ "$INSTALL_SUCCEEDED" = "YES" ]; then
+  PHONE_MUTATION_VALUE="TEST19_R2_DEBUG_APK_INSTALL_ONLY"
+else
+  PHONE_MUTATION_VALUE="NONE"
+fi
+
+if [ "$RESULT" -eq 0 ]; then
   echo "TEST19_R2_READY_FOR_CONNECTION_RUN=YES"
   echo "TEST19_R2_PREPARE=PASS"
 else
+  echo "TEST19_R2_READY_FOR_CONNECTION_RUN=NO"
   echo "TEST19_R2_PREPARE=FAIL"
 fi
-echo "PHONE_MUTATION=TEST19_R2_DEBUG_APK_INSTALL_ONLY"
+echo "PHONE_MUTATION=$PHONE_MUTATION_VALUE"
 echo "HI_ROKID_DATA_MUTATION=NONE"
 echo "BLUETOOTH_PAIRING_MUTATION=NONE"
 echo "GLASSES_OPERATION=NONE"

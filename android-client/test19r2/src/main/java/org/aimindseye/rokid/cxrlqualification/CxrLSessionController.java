@@ -10,7 +10,6 @@ import android.os.Looper;
 import com.rokid.cxr.link.CXRLink;
 import com.rokid.cxr.link.callbacks.ICXRLinkCbk;
 import com.rokid.cxr.link.utils.CxrDefs;
-import com.rokid.cxr.link.utils.GlassInfo;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -84,23 +83,6 @@ final class CxrLSessionController {
                     logger.event("callback_ai_assist_stop", EvidenceLogger.details());
                 }
 
-                @Override
-                public void onGlassDeviceInfo(GlassInfo info) {
-                    logger.event("callback_glass_device_info", EvidenceLogger.details(
-                            "value_present", info != null,
-                            "value_serialized", false
-                    ));
-                }
-
-                @Override
-                public void onGlassWearingStatus(boolean wearing) {
-                    logger.event("callback_wearing_status", EvidenceLogger.details("wearing", wearing));
-                }
-
-                @Override
-                public void onGlassAiInterrupt(boolean interrupted) {
-                    logger.event("callback_ai_interrupt", EvidenceLogger.details("interrupted", interrupted));
-                }
             });
 
             boolean configured = link.configCXRSession(

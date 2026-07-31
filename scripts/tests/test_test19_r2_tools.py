@@ -81,9 +81,8 @@ class Test19R2Tools(unittest.TestCase):
             classes.mkdir()
             java_sources = {
                 "android/content/Context.java": "package android.content; public class Context {}",
-                "com/rokid/cxr/link/utils/GlassInfo.java": "package com.rokid.cxr.link.utils; public class GlassInfo {}",
                 "com/rokid/cxr/link/utils/CxrDefs.java": "package com.rokid.cxr.link.utils; public class CxrDefs { public enum CXRSessionType { CUSTOMAPP } public static class CXRSession { public CXRSession(CXRSessionType t,String p){} } }",
-                "com/rokid/cxr/link/callbacks/ICXRLinkCbk.java": "package com.rokid.cxr.link.callbacks; import com.rokid.cxr.link.utils.GlassInfo; public interface ICXRLinkCbk { void onCXRLConnected(boolean b); void onGlassBtConnected(boolean b); void onGlassAiAssistStart(); void onGlassAiAssistStop(); void onGlassDeviceInfo(GlassInfo i); void onGlassWearingStatus(boolean b); void onGlassAiInterrupt(boolean b); }",
+                "com/rokid/cxr/link/callbacks/ICXRLinkCbk.java": "package com.rokid.cxr.link.callbacks; public interface ICXRLinkCbk { void onCXRLConnected(boolean b); void onGlassBtConnected(boolean b); void onGlassAiAssistStart(); void onGlassAiAssistStop(); }",
                 "com/rokid/cxr/link/CXRLink.java": "package com.rokid.cxr.link; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class CXRLink { public CXRLink(Context c){} public void setCXRLinkCbk(ICXRLinkCbk c){} public boolean configCXRSession(CxrDefs.CXRSession s){return true;} public boolean connect(String t){return true;} public void disconnect(){} }",
             }
             files=[]
@@ -115,10 +114,26 @@ class Test19R2Tools(unittest.TestCase):
                 result=json.loads((output/"cxr-l-artifact-attestation.json").read_text())
                 self.assertTrue(result["required_classes_complete"])
                 self.assertTrue(result["required_methods_complete"])
+                self.assertFalse(result["glass_info_class_present"])
+                self.assertEqual(
+                    set(result["required_callback_methods"]),
+                    {
+                        "onCXRLConnected",
+                        "onGlassBtConnected",
+                        "onGlassAiAssistStart",
+                        "onGlassAiAssistStop",
+                    },
+                )
+                self.assertNotIn("onGlassDeviceInfo", result["callback_methods"])
             finally:
                 server.shutdown()
                 server.server_close()
                 thread.join(timeout=5)
+
+    def test_prepare_does_not_report_false_install_failure_after_resolver_failure(self) -> None:
+        text = (ROOT / "scripts/tests/prepare_test19_r2.sh").read_text(encoding="utf-8")
+        self.assertIn('if [ "$INSTALL_SUCCEEDED" = "YES" ]; then', text)
+        self.assertIn('echo "PHONE_MUTATION=$PHONE_MUTATION_VALUE"', text)
 
     def test_source_has_no_media_or_upload_calls(self) -> None:
         text = "\n".join(path.read_text(encoding="utf-8") for path in APP.glob("*.java"))

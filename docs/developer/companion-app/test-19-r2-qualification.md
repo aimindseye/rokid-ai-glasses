@@ -235,3 +235,13 @@ A pass proves authorization, CXR-L service binding, the glasses-Bluetooth
 callback, clean disconnect, and stock coexistence for the tested stack. It does
 not prove camera, microphone, speaker, display, APK installation, custom AI,
 offline operation, phone/glasses reboot recovery, or replacement of Hi Rokid.
+
+## r2.1 exact client-l 1.0.1 API-surface repair
+
+The first physical preparation run proved that the published `client-l:1.0.1`
+AAR does not contain `com.rokid.cxr.link.utils.GlassInfo`. The original r2
+synthetic stubs incorrectly invented that class and three callback methods.
+r2.1 removes the unsupported callbacks, attests the real four-method
+`ICXRLinkCbk` surface, preserves a private class inventory and `javap` report,
+and prevents resolver failures from being misreported as APK-install failures.
+No glasses or Hi Rokid operation occurs during this repair.

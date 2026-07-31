@@ -36,9 +36,8 @@ STUBS = {
     "android/widget/ScrollView.java": 'package android.widget; public class ScrollView extends android.view.View { public ScrollView(android.content.Context c){} public void addView(android.view.View v){} }',
     "org/json/JSONException.java": 'package org.json; public class JSONException extends Exception { public JSONException(){} }',
     "org/json/JSONObject.java": 'package org.json; public class JSONObject { public JSONObject(){} public JSONObject put(String k,Object v) throws JSONException{return this;} public String toString(){return "{}";} }',
-    "com/rokid/cxr/link/utils/GlassInfo.java": 'package com.rokid.cxr.link.utils; public class GlassInfo {}',
     "com/rokid/cxr/link/utils/CxrDefs.java": '''package com.rokid.cxr.link.utils; public class CxrDefs { public enum CXRSessionType { NONE,CUSTOMVIEW,CUSTOMAPP } public static class CXRSession { public CXRSession(CXRSessionType t,String p){} } }''',
-    "com/rokid/cxr/link/callbacks/ICXRLinkCbk.java": '''package com.rokid.cxr.link.callbacks; import com.rokid.cxr.link.utils.GlassInfo; public interface ICXRLinkCbk { void onCXRLConnected(boolean b); void onGlassBtConnected(boolean b); void onGlassAiAssistStart(); void onGlassAiAssistStop(); void onGlassDeviceInfo(GlassInfo i); void onGlassWearingStatus(boolean b); void onGlassAiInterrupt(boolean b); }''',
+    "com/rokid/cxr/link/callbacks/ICXRLinkCbk.java": '''package com.rokid.cxr.link.callbacks; public interface ICXRLinkCbk { void onCXRLConnected(boolean b); void onGlassBtConnected(boolean b); void onGlassAiAssistStart(); void onGlassAiAssistStop(); }''',
     "com/rokid/cxr/link/CXRLink.java": '''package com.rokid.cxr.link; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class CXRLink { public CXRLink(Context c){} public void setCXRLinkCbk(ICXRLinkCbk c){} public boolean configCXRSession(CxrDefs.CXRSession s){return true;} public boolean connect(String t){return true;} public void disconnect(){} }''',
 }
 

@@ -50,7 +50,7 @@ public final class MainActivity extends Activity {
         HiRokidInspector inspector = new HiRokidInspector(this);
         logger.event("run_started", EvidenceLogger.details(
                 "app_package", getPackageName(),
-                "app_version", "2.0-test19-r2",
+                "app_version", "2.1-test19-r2.1",
                 "sdk_int", Build.VERSION.SDK_INT,
                 "firmware_label_operator_supplied", !firmwareLabel.equals("unspecified"),
                 "evidence_path", logger.getOutputFile().getAbsolutePath(),
