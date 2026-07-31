@@ -95,6 +95,14 @@ def parse_members(text: str, class_name: str, header: dict[str, Any]) -> list[di
         stripped = line.strip()
         if stripped.startswith("descriptor:") and pending is not None:
             pending["descriptor"] = stripped.split(":", 1)[1].strip()
+            expected_enum_descriptor = pending.pop("enum_descriptor_expected", "")
+            if (
+                pending.get("kind") == "enum_constant"
+                and expected_enum_descriptor
+                and pending["descriptor"] != expected_enum_descriptor
+            ):
+                pending["kind"] = "field"
+                pending["normalization"] = "enum-backing-storage-reclassified-as-field"
             members.append(pending)
             pending = None
             continue
@@ -127,9 +135,19 @@ def parse_members(text: str, class_name: str, header: dict[str, Any]) -> list[di
             name = before_value.rsplit(" ", 1)[-1]
             value = raw.split(" = ", 1)[1] if " = " in raw else None
             type_part = before_value[: -len(name)].strip()
-            is_enum_constant = bool(enum_class and " static " in f" {raw} " and " final " in f" {raw} " and class_name in raw)
+            # A real enum constant has the enum instance descriptor. Kotlin/Java
+            # compiler backing arrays (for example an obfuscated `a` field with
+            # descriptor `[L...;`) are ordinary fields, not supported values.
+            expected_enum_descriptor = f"L{class_name.replace('.', '/')};"
+            candidate_enum_constant = bool(
+                enum_class
+                and " static " in f" {raw} "
+                and " final " in f" {raw} "
+                and class_name in raw
+            )
             pending = {
-                "kind": "enum_constant" if is_enum_constant else "field",
+                "kind": "enum_constant" if candidate_enum_constant else "field",
+                "enum_descriptor_expected": expected_enum_descriptor if candidate_enum_constant else "",
                 "name": name,
                 "signature": raw,
                 "descriptor": "",

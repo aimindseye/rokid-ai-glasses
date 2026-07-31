@@ -77,21 +77,72 @@ class Test20R1Tools(unittest.TestCase):
         self.assertEqual(components[0]["actions"], ["com.rokid.sprite.aiapp.externalapp.AUTHORIZATION"])
         self.assertFalse(components[2]["exported"])
 
-    def test_classification_runtime_and_untested(self) -> None:
+    def test_classification_is_descriptor_exact(self) -> None:
         qualified = classify.member_tags(
             "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
             "class",
-            {"kind": "method", "name": "connect"},
+            {
+                "kind": "method",
+                "name": "connect",
+                "descriptor": "(Ljava/lang/String;)Z",
+            },
         )
         self.assertIn("runtime-qualified", qualified)
         self.assertNotIn("untested", qualified)
-        media = classify.member_tags(
-            "com.rokid.cxr.link.callbacks.IImageStreamCbk",
-            "interface",
-            {"kind": "method", "name": "onImage"},
+        wrong_overload = classify.member_tags(
+            "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+            "class",
+            {
+                "kind": "method",
+                "name": "connect",
+                "descriptor": "()Z",
+            },
         )
-        self.assertIn("callback-only", media)
+        self.assertNotIn("runtime-qualified", wrong_overload)
+        self.assertIn("untested", wrong_overload)
+
+    def test_class_participation_does_not_propagate(self) -> None:
+        media = classify.member_tags(
+            "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+            "class",
+            {"kind": "method", "name": "takePhoto", "descriptor": "(III)Z"},
+        )
+        self.assertNotIn("runtime-qualified", media)
         self.assertIn("untested", media)
+
+    def test_callback_boundary(self) -> None:
+        observed = classify.member_tags(
+            "com.rokid.cxr.link.callbacks.ICXRLinkCbk",
+            "interface",
+            {"kind": "method", "name": "onCXRLConnected", "descriptor": "(Z)V"},
+        )
+        self.assertIn("callback-only", observed)
+        self.assertIn("runtime-qualified", observed)
+        ai = classify.member_tags(
+            "com.rokid.cxr.link.callbacks.ICXRLinkCbk",
+            "interface",
+            {"kind": "method", "name": "onGlassAiAssistStart", "descriptor": "()V"},
+        )
+        self.assertIn("callback-only", ai)
+        self.assertNotIn("runtime-qualified", ai)
+        self.assertIn("untested", ai)
+
+    def test_enum_backing_array_normalization(self) -> None:
+        member = classify.normalize_member(
+            "com.rokid.cxr.link.utils.CxrDefs$CXRSessionType",
+            {
+                "kind": "enum_constant",
+                "name": "a",
+                "descriptor": "[Lcom/rokid/cxr/link/utils/CxrDefs$CXRSessionType;",
+            },
+        )
+        self.assertEqual(member["kind"], "field")
+        self.assertIn("enum-backing-array", member["normalization"])
+        tags = classify.member_tags(
+            "com.rokid.cxr.link.utils.CxrDefs$CXRSessionType", "class", member
+        )
+        self.assertIn("synthetic-or-obfuscated", tags)
+        self.assertIn("untested", tags)
 
     def test_markdown_report_contains_no_private_paths(self) -> None:
         publication = {
@@ -102,11 +153,19 @@ class Test20R1Tools(unittest.TestCase):
                 "native_libraries": [],
             },
             "hi_rokid": {"package": "com.rokid.sprite.global.aiapp", "version_name": "G1.11.11.0727", "components": []},
-            "runtime_qualification": {"classification": "ACCEPTED"},
             "summary": {
                 "public_class_count": 1, "public_constructor_count": 1, "public_method_count": 1,
                 "public_field_count": 0, "public_enum_constant_count": 3, "callback_class_count": 1,
-                "native_library_count": 0, "jni_export_count": 0, "member_classification_counts": {"untested": 1},
+                "native_library_count": 0, "jni_export_count": 0,
+                "runtime_qualified_member_count": 0,
+                "runtime_qualified_component_count": 0,
+                "synthetic_or_obfuscated_member_count": 0,
+                "member_classification_counts": {"untested": 1},
+            },
+            "runtime_qualification": {
+                "classification": "ACCEPTED",
+                "qualified_members": [],
+                "qualified_components": [],
             },
             "conclusion": "Bounded conclusion.",
         }
@@ -115,11 +174,23 @@ class Test20R1Tools(unittest.TestCase):
         self.assertIn("CUSTOMAPP", text)
 
     def test_runner_has_no_interactive_shell_strict_mode(self) -> None:
-        text = (ROOT / "scripts/tests/run_test20_r1_census.sh").read_text(encoding="utf-8")
-        self.assertNotIn("set -e", text)
-        self.assertNotIn("set -u", text)
-        self.assertNotIn("pipefail", text.splitlines()[0:10])
-        self.assertIn("ADB_OPERATION=NONE", text)
+        for relative in (
+            "scripts/tests/run_test20_r1_census.sh",
+            "scripts/tests/run_test20_r1_1_repair.sh",
+        ):
+            text = (ROOT / relative).read_text(encoding="utf-8")
+            self.assertNotIn("set -e", text)
+            self.assertNotIn("set -u", text)
+            self.assertNotIn("pipefail", text.splitlines()[0:10])
+            self.assertIn("ADB_OPERATION=NONE", text)
+
+    def test_runtime_allowlist_has_exact_nine_members(self) -> None:
+        self.assertEqual(len(classify.RUNTIME_MEMBERS), 9)
+        names = {key[2] for key in classify.RUNTIME_MEMBERS}
+        self.assertNotIn("takePhoto", names)
+        self.assertNotIn("onGlassAiAssistStart", names)
+        self.assertIn("connect", names)
+        self.assertIn("CUSTOMAPP", names)
 
 
 if __name__ == "__main__":

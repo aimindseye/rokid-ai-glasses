@@ -1,4 +1,4 @@
-# Project Status Through Test 19 r2 and Test 20 r1 Readiness
+# Project Status Through Test 20 r1.1 Classification Repair
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -40,6 +40,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 |---|---|
 | Direct CXR-M connection | Diagnostic r1 run retained; ownership result withdrawn |
 | Hi Rokid CXR-L authorization and connection | PASS on firmware 1.22 and 1.23 through fallback-assisted service bind; r2.4 identity and disconnect repairs physically validated |
+| CXR-L 1.0.1 static capability census | API/component/native/JNI inventory accepted; first r1 classification withdrawn; r1.1 offline member-level repair ready |
 | Hi Rokid coexistence | PASS after both controlled firmware runs |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
@@ -52,7 +53,11 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 ## Immediate next phase
 
-Test 19 r2 is complete and publication-closed. Test 20 r1 census tooling is ready. Run the exact CXR-L 1.0.1 SDK, native/JNI, session-type, and Hi Rokid exported-component census before selecting bounded camera, audio, control, local-AI, privacy, or lifecycle experiments on the validated Hi Rokid/CXR-L coexistence path. See [Test 20 r1](tests/test-20-r1-cxr-l-capability-census.md).
+Test 19 r2 is complete and publication-closed. The Test 20 r1 static census is
+accepted, but its first sanitized classification is withdrawn. Run the offline
+[Test 20 r1.1 classification repair](tests/test-20-r1-1-cxr-l-classification-repair.md)
+and publish only the repaired nine-member runtime boundary before selecting any
+bounded camera, audio, control, local-AI, privacy, or lifecycle experiment.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before any persistent firmware

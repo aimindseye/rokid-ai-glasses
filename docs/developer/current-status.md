@@ -44,11 +44,19 @@
 
 ## Recommended next gate
 
-Test 19 r2 is complete and publication-closed. Test 20 r1 tooling is ready for an exact, read-only CXR-L 1.0.1 capability and runtime-surface census before any media or control command is attempted. The census performs no ADB or device operation and generates a private evidence set plus a separately reviewable sanitized publication. Subsequent Test 20 stages may qualify bounded control-plane callbacks and then media only where the attested surface supports it. Custom firmware is not the critical path unless supported APIs and an ordinary on-glasses application cannot provide those capabilities.
+Test 19 r2 is complete and publication-closed. Test 20 r1 completed the exact
+read-only CXR-L 1.0.1 static census, but its first sanitized classification is
+withdrawn because class participation was propagated to unrelated members.
+Test 20 r1.1 repairs that output offline with a nine-member descriptor-exact
+runtime allowlist, two qualified Hi Rokid components, and explicit synthetic and
+obfuscated surface labels. No device or Maven rerun is required. Subsequent
+Test 20 stages may qualify bounded control-plane callbacks and then media only
+where the attested surface supports it.
 
 ## Evidence
 
 - [Project status](../project-status.md)
 - [Test 20 r1 census guide](../tests/test-20-r1-cxr-l-capability-census.md)
+- [Test 20 r1.1 classification repair](../tests/test-20-r1-1-cxr-l-classification-repair.md)
 - [Connection-protocol research](../research/connection-protocol/README.md)
 - [Boot-chain research](../research/boot-chain/README.md)

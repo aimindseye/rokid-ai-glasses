@@ -23,3 +23,14 @@ its public Java and native/JNI surfaces, compares the exported Hi Rokid CXR-L
 components, and generates a sanitized publication outside the repository. No
 Test 20 result is promoted here until the generated publication is reviewed in
 a separate publication-only closure.
+
+## Test 20 r1 classification status
+
+The first Test 20 r1 sanitized census is **withdrawn from publication**. Its
+static API, component, native, JNI, and artifact inventories remain valid, but
+class-level runtime participation was incorrectly propagated to unrelated
+members. Test 20 r1.1 repairs the publication offline using descriptor-exact
+member qualification and explicit synthetic/obfuscated origin labels.
+
+- [Test 20 r1 census guide](../../../tests/test-20-r1-cxr-l-capability-census.md)
+- [Test 20 r1.1 classification repair](../../../tests/test-20-r1-1-cxr-l-classification-repair.md)
