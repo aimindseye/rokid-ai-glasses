@@ -27,6 +27,7 @@ final class CxrLSessionController {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final AtomicBoolean started = new AtomicBoolean(false);
     private final AtomicBoolean terminal = new AtomicBoolean(false);
+    private final AtomicBoolean disconnectStarted = new AtomicBoolean(false);
 
     private CXRLink link;
     private ServiceConnection manualConnection;
@@ -125,10 +126,24 @@ final class CxrLSessionController {
 
     void disconnect(String reason) {
         handler.removeCallbacksAndMessages(null);
-        logger.event("disconnect_invoked", EvidenceLogger.details("reason", reason));
+        if (!disconnectStarted.compareAndSet(false, true)) {
+            logger.event("disconnect_skipped", EvidenceLogger.details(
+                    "reason", reason,
+                    "disposition", "ALREADY_COMPLETED"
+            ));
+            return;
+        }
+
+        boolean manualBindStarted = manualBound && manualConnection != null;
+        logger.event("disconnect_invoked", EvidenceLogger.details(
+                "reason", reason,
+                "manual_bind_started", manualBindStarted
+        ));
+
+        boolean sdkAttempted = link != null;
         boolean sdkReturned = false;
         String sdkError = "";
-        if (link != null) {
+        if (sdkAttempted) {
             try {
                 link.disconnect();
                 sdkReturned = true;
@@ -137,23 +152,37 @@ final class CxrLSessionController {
             }
         }
 
+        boolean unbindAttempted = false;
         boolean unbindReturned = false;
         String unbindError = "";
-        if (manualBound && manualConnection != null) {
+        String unbindDisposition;
+        if (!manualBindStarted) {
+            unbindDisposition = "NOT_BOUND";
+        } else if (sdkReturned) {
+            unbindDisposition = "SKIPPED_SDK_DISCONNECT_SUCCEEDED";
+        } else {
+            unbindAttempted = true;
             try {
                 activity.getApplicationContext().unbindService(manualConnection);
                 unbindReturned = true;
+                unbindDisposition = "UNBOUND_AFTER_SDK_NOT_COMPLETED";
             } catch (Throwable error) {
                 unbindError = error.getClass().getName();
+                unbindDisposition = "UNBIND_FAILED_AFTER_SDK_NOT_COMPLETED";
             }
         }
+
         manualBound = false;
         manualConnection = null;
         link = null;
         logger.event("disconnect_result", EvidenceLogger.details(
+                "sdk_disconnect_attempted", sdkAttempted,
                 "sdk_disconnect_returned", sdkReturned,
                 "sdk_disconnect_error_class", sdkError,
-                "manual_unbind_required", unbindReturned || !unbindError.isEmpty(),
+                "manual_bind_started", manualBindStarted,
+                "manual_unbind_required", unbindAttempted,
+                "manual_unbind_attempted", unbindAttempted,
+                "manual_unbind_disposition", unbindDisposition,
                 "manual_unbind_returned", unbindReturned,
                 "manual_unbind_error_class", unbindError
         ));

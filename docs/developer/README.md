@@ -49,3 +49,5 @@ roadmap for three goals:
 - [Current project status](../project-status.md)
 - [Public scripts](../../scripts/README.md)
 - [Shared reference](../reference/README.md)
+
+- [Test 19 r2 final findings](companion-app/test-19-r2-final-findings.md)

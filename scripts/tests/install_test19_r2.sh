@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Test 19 r2.3.2 Stage 2: verify a preserved Stage 1 build and install it.
+# Test 19 r2.4 Stage 2: verify a preserved Stage 1 build and install it.
 # This stage performs no Maven resolution and no Gradle build.
 # It never enables errexit, nounset, or pipefail.
 
@@ -16,8 +16,8 @@ DATA_CLEAR_SUCCEEDED="NO"
 INSTALL_EVIDENCE_SUCCEEDED="NO"
 
 EXPECTED_APP_PACKAGE="org.aimindseye.rokid.cxrlqualification"
-EXPECTED_APP_VERSION_CODE="6"
-EXPECTED_APP_VERSION_NAME="2.3.2-test19-r2.3.2"
+EXPECTED_APP_VERSION_CODE="7"
+EXPECTED_APP_VERSION_NAME="2.4-test19-r2.4"
 
 usage() {
   cat <<'TXT'
@@ -121,7 +121,7 @@ finalize_install_hashes() {
   return 0
 }
 
-echo "Test 19 r2.3.2 Stage 2 — governed APK installation resume"
+echo "Test 19 r2.4 Stage 2 — governed APK installation resume"
 echo "=========================================================="
 echo "REPO=$REPO"
 echo "PHONE_SERIAL=$PHONE_SERIAL"
@@ -172,14 +172,14 @@ if [ "$RESULT" -eq 0 ]; then
   echo "RESUME_APP_VERSION_CODE=$RESUME_APP_VERSION_CODE"
   echo "RESUME_APP_VERSION_NAME=$RESUME_APP_VERSION_NAME"
 
-  if [ "$RESUME_SCHEMA" != "rokid.test19.r2.3.2.build-resume.v1" ] ||
+  if [ "$RESUME_SCHEMA" != "rokid.test19.r2.4.build-resume.v1" ] ||
      [ "$RESUME_CXR_L_VERSION" != "1.0.1" ] ||
      [ "$RESUME_APP_PACKAGE" != "$EXPECTED_APP_PACKAGE" ] ||
      [ "$RESUME_APP_VERSION_CODE" != "$EXPECTED_APP_VERSION_CODE" ] ||
      [ "$RESUME_APP_VERSION_NAME" != "$EXPECTED_APP_VERSION_NAME" ] ||
      [ "$RESUME_BUILD_PASS" != "true" ] ||
      [ "$RESUME_INSTALL_ATTEMPTED" != "false" ]; then
-    fail "build resume contract does not match r2.3.2"
+    fail "build resume contract does not match r2.4"
   else
     pass "build resume contract verified"
   fi
@@ -243,7 +243,7 @@ if [ "$RESULT" -eq 0 ]; then
   echo "ADB_INSTALL_EXIT_CODE=$INSTALL_RC"
   if [ "$INSTALL_RC" -eq 0 ]; then
     INSTALL_SUCCEEDED="YES"
-    pass "Test 19 r2.3.2 APK installed"
+    pass "Test 19 r2.4 APK installed"
   else
     fail "APK installation failed"
   fi
@@ -255,7 +255,7 @@ if [ "$INSTALL_SUCCEEDED" = "YES" ]; then
   echo "INSTALLED_TEST_APP_VERSION=$INSTALLED_TEST_APP_VERSION"
   if printf '%s\n' "$PACKAGE_PATH" | grep -q '^package:' && [ "$INSTALLED_TEST_APP_VERSION" = "$EXPECTED_APP_VERSION_NAME" ]; then
     PACKAGE_IDENTITY_SUCCEEDED="YES"
-    pass "installed Test 19 r2.3.2 package identity verified"
+    pass "installed Test 19 r2.4 package identity verified"
   else
     fail "installed package identity or version could not be verified"
   fi
@@ -277,7 +277,7 @@ fi
 
 if [ -d "$INSTALL_EVIDENCE_DIR" ]; then
   cat >"$INSTALL_EVIDENCE_DIR/installation-identity.txt" <<IDENTITY
-SCHEMA=rokid.test19.r2.3.2.governed-install.v1
+SCHEMA=rokid.test19.r2.4.governed-install.v1
 CAPTURE_UTC=$STAMP
 PHONE_SERIAL=$PHONE_SERIAL
 EXPECTED_HI_ROKID_VERSION=$EXPECTED_HI_ROKID_VERSION
@@ -326,9 +326,9 @@ else
 fi
 
 if [ "$INSTALL_SUCCEEDED" = "YES" ] && [ "$DATA_CLEAR_SUCCEEDED" = "YES" ]; then
-  echo "PHONE_MUTATION=TEST19_R2_3_2_DEBUG_APK_INSTALL_AND_TEST_APP_DATA_CLEAR"
+  echo "PHONE_MUTATION=TEST19_R2_4_DEBUG_APK_INSTALL_AND_TEST_APP_DATA_CLEAR"
 elif [ "$INSTALL_SUCCEEDED" = "YES" ]; then
-  echo "PHONE_MUTATION=TEST19_R2_3_2_DEBUG_APK_INSTALL_ONLY"
+  echo "PHONE_MUTATION=TEST19_R2_4_DEBUG_APK_INSTALL_ONLY"
 else
   echo "PHONE_MUTATION=NONE"
 fi

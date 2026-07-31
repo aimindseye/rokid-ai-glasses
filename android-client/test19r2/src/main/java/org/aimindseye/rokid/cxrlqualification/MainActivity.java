@@ -3,6 +3,7 @@ package org.aimindseye.rokid.cxrlqualification;
 import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,9 +49,12 @@ public final class MainActivity extends Activity {
 
         buildUi(runId, firmwareLabel);
         HiRokidInspector inspector = new HiRokidInspector(this);
+        RuntimeAppIdentity appIdentity = runtimeAppIdentity();
         logger.event("run_started", EvidenceLogger.details(
                 "app_package", getPackageName(),
-                "app_version", "2.2-test19-r2.2",
+                "app_version", appIdentity.versionName,
+                "app_version_code", appIdentity.versionCode,
+                "app_version_source", "package_manager",
                 "sdk_int", Build.VERSION.SDK_INT,
                 "firmware_label_operator_supplied", !firmwareLabel.equals("unspecified"),
                 "evidence_path", logger.getOutputFile().getAbsolutePath(),
@@ -189,6 +193,32 @@ public final class MainActivity extends Activity {
                 && checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT)
                 != PackageManager.PERMISSION_GRANTED) {
             requestPermissions(new String[]{Manifest.permission.BLUETOOTH_CONNECT}, 1902);
+        }
+    }
+
+
+    private RuntimeAppIdentity runtimeAppIdentity() {
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(getPackageName(), 0);
+            String versionName = info.versionName == null || info.versionName.isBlank()
+                    ? "unknown"
+                    : info.versionName;
+            return new RuntimeAppIdentity(versionName, info.getLongVersionCode());
+        } catch (PackageManager.NameNotFoundException impossible) {
+            logger.event("runtime_app_identity_error", EvidenceLogger.details(
+                    "error_class", impossible.getClass().getName()
+            ));
+            return new RuntimeAppIdentity("unknown", -1L);
+        }
+    }
+
+    private static final class RuntimeAppIdentity {
+        private final String versionName;
+        private final long versionCode;
+
+        private RuntimeAppIdentity(String versionName, long versionCode) {
+            this.versionName = versionName;
+            this.versionCode = versionCode;
         }
     }
 

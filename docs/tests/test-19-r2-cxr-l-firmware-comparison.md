@@ -7,6 +7,24 @@ Hi Rokid active and qualifies one CXR-L `CUSTOMAPP` session on YodaOS-Sprite
 Canonical execution instructions are in the
 [Test 19 r2 developer runbook](../developer/companion-app/test-19-r2-qualification.md).
 
+
+## Final result
+
+Both controlled connection runs passed. No CXR-L compatibility regression was
+observed between firmware `1.22.009-20260710-151201` and
+`1.23.009-20260725-153201` for Hi Rokid `G1.11.11.0727` and CXR-L
+`client-l:1.0.1`. The event-type sequence and normalized behavioral signature
+were the same in both runs.
+
+The successful path was fallback-service-bind assisted in both cases:
+`CXRLink.connect()` returned `false`, the exported CXR-L service bind started,
+and both required callbacks arrived. Stock Hi Rokid recovery passed after SDK
+disconnect.
+
+- [Final findings](../developer/companion-app/test-19-r2-final-findings.md)
+- [Machine-readable comparison](../research/connection-protocol/publication/test19-r2-cxr-l-firmware-comparison.json)
+- [Public evidence hashes](../research/connection-protocol/publication/test19-r2-cxr-l-evidence-hashes.txt)
+
 ## Acceptance boundary
 
 - exact Hi Rokid `G1.11.11.0727`;
@@ -71,3 +89,10 @@ only a successfully hashed Stage 1 evidence directory, repeats APK hash and
 identity checks, verifies the exact Hi Rokid baseline, and then installs the
 preserved APK. Stage 2 performs no Maven or Gradle operation. The governed APK
 identity is `2.3.2-test19-r2.3.2`, version code 6.
+## r2.4 publication and runtime repairs
+
+r2.4 publishes the sanitized firmware comparison and exact private-evidence
+hashes without committing private ZIP bytes. It replaces the stale hardcoded
+runtime app-version label with `PackageManager` identity and makes disconnect
+cleanup state-aware. The repair APK is `2.4-test19-r2.4`, version code 7; the
+accepted firmware comparison remains the r2.3.2 APK run and is not rewritten.

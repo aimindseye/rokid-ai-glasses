@@ -1,6 +1,6 @@
 # Test 19 r2: Hi Rokid CXR-L Firmware Comparison
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=planned; last_reviewed=2026-07-31 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
 ## Page status
 
@@ -8,8 +8,32 @@
 |---|---|
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
-| Evidence status | Planned |
+| Evidence status | Validated |
 | Last reviewed | 2026-07-31 |
+
+
+## Final accepted result
+
+Run A on firmware `1.22.009-20260710-151201` and Run B on firmware
+`1.23.009-20260725-153201` both passed authorization, `CUSTOMAPP`
+configuration, `onCXRLConnected(true)`, `onGlassBtConnected(true)`, SDK
+disconnect, and stock Hi Rokid recovery. No CXR-L compatibility regression was
+observed in this one-run-per-firmware comparison.
+
+Both runs used the same fallback-assisted path: `CXRLink.connect()` returned
+`false`, the client bound the exported CXR-L service with the SDK-owned
+`ServiceConnection`, and both required callbacks arrived. This is not evidence
+that the direct SDK call completed the connection by itself.
+
+See the [final findings](test-19-r2-final-findings.md) and the
+[machine-readable publication](../../research/connection-protocol/publication/test19-r2-cxr-l-firmware-comparison.json).
+
+The accepted private evidence ZIP identities are:
+
+- firmware 1.22: `ffdf8a254bb25a7714a4759ae16b2ccf985c341329504d7590a8d47163be5385`;
+- firmware 1.23: `a684c51ce794365f848aff448865a4653a6678859c47f308d733b0af00e8e8fc`.
+
+Private ZIP bytes are not committed.
 
 ## Purpose
 
@@ -23,11 +47,12 @@ actions constant.
 
 | Variable | Required value |
 |---|---|
-| Phone | Pixel 7, ADB serial `2C160DLH20007H` |
+| Phone | Pixel 7, ADB serial `<PIXEL_ADB_SERIAL>` |
 | Hi Rokid package | `com.rokid.sprite.global.aiapp` |
 | Hi Rokid version | `G1.11.11.0727` / version code `10110011` |
 | CXR-L artifact | `com.rokid.cxr:client-l:1.0.1` |
-| Test app | `org.aimindseye.rokid.cxrlqualification` / `2.3.2-test19-r2.3.2` |
+| Qualification app used for accepted runs | `org.aimindseye.rokid.cxrlqualification` / `2.3.2-test19-r2.3.2` |
+| Current repaired app | `org.aimindseye.rokid.cxrlqualification` / `2.4-test19-r2.4` |
 | Run A firmware | `1.22.009-20260710-151201` |
 | Run B firmware | `1.23.009-20260725-153201` |
 
@@ -86,8 +111,8 @@ CXR_L_GRADLE_PROPERTY_SUPPLIED=YES
 CXR_L_RESOLVER_EXIT_CODE=0
 GRADLE_BUILD_EXIT_CODE=0
 APK_PACKAGE=org.aimindseye.rokid.cxrlqualification
-APK_VERSION_CODE=6
-APK_VERSION_NAME=2.3.2-test19-r2.3.2
+APK_VERSION_CODE=7
+APK_VERSION_NAME=2.4-test19-r2.4
 TEST19_R2_APK_BUILD=PASS
 TEST19_R2_GOVERNED_BUILD_EVIDENCE=PASS
 TEST19_R2_BUILD_OUTPUT_CLEANUP=PASS
@@ -110,7 +135,7 @@ any phone mutation. It never contacts Maven and never invokes Gradle.
 
 ```bash
 REPO="$HOME/Documents/projects/rokid-ai-glasses"
-PHONE_SERIAL="2C160DLH20007H"
+PHONE_SERIAL="<PIXEL_ADB_SERIAL>"
 
 cd "$REPO"
 
@@ -131,15 +156,15 @@ A successful installation stage ends with:
 
 ```text
 BUILD_EVIDENCE_HASH_VERIFICATION_EXIT_CODE=0
-RESUME_SCHEMA=rokid.test19.r2.3.2.build-resume.v1
+RESUME_SCHEMA=rokid.test19.r2.4.build-resume.v1
 APK_PACKAGE=org.aimindseye.rokid.cxrlqualification
-APK_VERSION_CODE=6
-APK_VERSION_NAME=2.3.2-test19-r2.3.2
+APK_VERSION_CODE=7
+APK_VERSION_NAME=2.4-test19-r2.4
 MAVEN_OPERATION=NONE
 GRADLE_OPERATION=NONE
 ADB_INSTALL_EXIT_CODE=0
 TEST19_R2_APK_INSTALL=PASS
-INSTALLED_TEST_APP_VERSION=2.3.2-test19-r2.3.2
+INSTALLED_TEST_APP_VERSION=2.4-test19-r2.4
 TEST19_R2_PACKAGE_IDENTITY=PASS
 TEST19_R2_GOVERNED_INSTALL_EVIDENCE=PASS
 TEST19_R2_READY_FOR_CONNECTION_RUN=YES
@@ -161,7 +186,7 @@ Do not start PCAPdroid yet.
 
 ```bash
 REPO="$HOME/Documents/projects/rokid-ai-glasses"
-PHONE_SERIAL="2C160DLH20007H"
+PHONE_SERIAL="<PIXEL_ADB_SERIAL>"
 FIRMWARE_SCREENSHOT="$HOME/Downloads/test19-r2-firmware-1.22.jpg"
 OUTPUT="$HOME/rokid-nettest/tests/test19-r2-cxrl-fw-1.22-$(date -u +%Y%m%dT%H%M%SZ)"
 
@@ -215,7 +240,7 @@ Run this only if Run A returned 0. Configure PCAPdroid to include both the Test
 
 ```bash
 REPO="$HOME/Documents/projects/rokid-ai-glasses"
-PHONE_SERIAL="2C160DLH20007H"
+PHONE_SERIAL="<PIXEL_ADB_SERIAL>"
 CONNECTION_SUMMARY="$OUTPUT/summary.json"
 PCAPDROID_CSV="$HOME/Downloads/test19-r2-fw-1.22-connections.csv"
 PRIVACY_OUTPUT="$HOME/rokid-nettest/tests/test19-r2-privacy-fw-1.22-$(date -u +%Y%m%dT%H%M%SZ)"
@@ -250,7 +275,7 @@ Record the transition:
 
 ```bash
 REPO="$HOME/Documents/projects/rokid-ai-glasses"
-PHONE_SERIAL="2C160DLH20007H"
+PHONE_SERIAL="<PIXEL_ADB_SERIAL>"
 BEFORE_SUMMARY="$OUTPUT/summary.json"
 BEFORE_SCREENSHOT="$HOME/Downloads/test19-r2-firmware-1.22.jpg"
 AFTER_SCREENSHOT="$HOME/Downloads/test19-r2-firmware-1.23.jpg"
@@ -277,7 +302,7 @@ Repeat the same client and procedure:
 
 ```bash
 REPO="$HOME/Documents/projects/rokid-ai-glasses"
-PHONE_SERIAL="2C160DLH20007H"
+PHONE_SERIAL="<PIXEL_ADB_SERIAL>"
 FIRMWARE_SCREENSHOT="$HOME/Downloads/test19-r2-firmware-1.23.jpg"
 OUTPUT_B="$HOME/rokid-nettest/tests/test19-r2-cxrl-fw-1.23-$(date -u +%Y%m%dT%H%M%SZ)"
 
@@ -344,3 +369,17 @@ APK, verifies package version `2.3.1-test19-r2.3.1`, optionally clears only this
 test app's data, and removes generated build output after preservation. The
 repository ignores `android-client/*/build/` as a defense-in-depth hygiene
 rule. Hi Rokid data, Bluetooth pairing, and glasses firmware remain unchanged.
+## r2.4 final publication and runtime cleanup repair
+
+The accepted r2.3.2 event files exposed two non-qualifying implementation
+defects. The `run_started.app_version` value was a stale hardcoded string, and
+the automatic cleanup attempted a redundant manual unbind after
+`CXRLink.disconnect()` returned successfully. Both accepted runs still passed
+SDK disconnect and stock recovery.
+
+r2.4 reads version name and version code from Android `PackageManager`. It also
+guards duplicate disconnect calls, skips manual unbind after successful SDK
+disconnect, and attempts manual unbind only when a fallback bind started and
+SDK disconnect did not complete. The current governed repair APK identity is
+`2.4-test19-r2.4`, version code 7. These forward-looking changes do not rewrite
+the accepted r2.3.2 evidence.

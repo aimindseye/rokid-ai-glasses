@@ -1,0 +1,95 @@
+{
+  "comparison": {
+    "behavioral_signature_equal_after_run_specific_normalization": true,
+    "bounded_conclusion": "No CXR-L compatibility regression was observed between the tested 1.22 and 1.23 firmware builds.",
+    "connection_path": "FALLBACK_SERVICE_BIND_ASSISTED",
+    "event_type_sequence_equal": true,
+    "firmware_regression_observed": false
+  },
+  "limitations": [
+    "One controlled connection run was performed per firmware version.",
+    "The successful path required fallback binding after CXRLink.connect() returned false.",
+    "The comparison does not qualify media, AI, APK upload, reboot recovery, or Hi Rokid replacement.",
+    "The r2.4 runtime repairs are forward-looking and do not rewrite the accepted private evidence."
+  ],
+  "privacy": {
+    "authorization_token_value_published": false,
+    "media_payload_published": false,
+    "phone_serial_published": false,
+    "private_zip_bytes_committed": false,
+    "raw_bluetooth_address_published": false
+  },
+  "publication": "Test 19 r2.4",
+  "qualification_app": {
+    "governed_install_apk_sha256": "8d34e9332bc2ab730d9c5a802f9efcb4ec4a940453470f260539ef9370665aa2",
+    "governed_install_version_code": 6,
+    "governed_install_version_name": "2.3.2-test19-r2.3.2",
+    "package": "org.aimindseye.rokid.cxrlqualification",
+    "runtime_event_label_consistent": false,
+    "runtime_event_label_observed": "2.2-test19-r2.2",
+    "runtime_event_label_repair": "dynamic_package_manager_identity_in_r2.4"
+  },
+  "runs": [
+    {
+      "authorization_token_value_logged": false,
+      "classification": "CXR_L_CONNECTION_AND_STOCK_RECOVERY_PASS",
+      "cxrl_callback_connected": true,
+      "event_count": 15,
+      "fallback_service_bind_reason": "sdk_connect_returned_false",
+      "fallback_service_bind_started": true,
+      "firmware": "1.22.009-20260710-151201",
+      "firmware_screenshot_sha256": "a0cf4590e398b86978b21f85737d6330102724bfe6f0603566d840ee46320e2d",
+      "glass_bt_callback_connected": true,
+      "hi_rokid_recovery_confirmed": true,
+      "hi_rokid_version": "G1.11.11.0727",
+      "internal_hash_manifest_verified": true,
+      "legacy_manual_unbind_error_class": "java.lang.IllegalArgumentException",
+      "private_evidence_zip_sha256": "ffdf8a254bb25a7714a4759ae16b2ccf985c341329504d7590a8d47163be5385",
+      "qualification_pass": true,
+      "runtime_event_app_version": "2.2-test19-r2.2",
+      "sdk_connect_return_value": false,
+      "sdk_disconnect_returned": true,
+      "terminal_outcome": "CONNECTED_BOTH_CALLBACKS"
+    },
+    {
+      "authorization_token_value_logged": false,
+      "classification": "CXR_L_CONNECTION_AND_STOCK_RECOVERY_PASS",
+      "cxrl_callback_connected": true,
+      "event_count": 15,
+      "fallback_service_bind_reason": "sdk_connect_returned_false",
+      "fallback_service_bind_started": true,
+      "firmware": "1.23.009-20260725-153201",
+      "firmware_screenshot_sha256": "919a5970e4d6216277563b809437ecda46b00d54f060f90485055dff753c3315",
+      "glass_bt_callback_connected": true,
+      "hi_rokid_recovery_confirmed": true,
+      "hi_rokid_version": "G1.11.11.0727",
+      "internal_hash_manifest_verified": true,
+      "legacy_manual_unbind_error_class": "java.lang.IllegalArgumentException",
+      "private_evidence_zip_sha256": "a684c51ce794365f848aff448865a4653a6678859c47f308d733b0af00e8e8fc",
+      "qualification_pass": true,
+      "runtime_event_app_version": "2.2-test19-r2.2",
+      "sdk_connect_return_value": false,
+      "sdk_disconnect_returned": true,
+      "terminal_outcome": "CONNECTED_BOTH_CALLBACKS"
+    }
+  ],
+  "runtime_repairs": {
+    "disconnect_cleanup": {
+      "duplicate_disconnect_guard": true,
+      "problem": "redundant manual unbind after successful SDK disconnect",
+      "repair": "skip manual unbind when SDK disconnect succeeds; attempt manual unbind only when a fallback bind started and SDK disconnect did not complete"
+    },
+    "evidence_label": {
+      "problem": "hardcoded stale app_version field",
+      "repair": "derive versionName and versionCode from PackageManager at runtime"
+    },
+    "retroactive_effect_on_accepted_runs": false
+  },
+  "schema": "rokid.test19-r2.cxrl-firmware-comparison.v1",
+  "stack": {
+    "cxr_l_coordinate": "com.rokid.cxr:client-l:1.0.1",
+    "hi_rokid_package": "com.rokid.sprite.global.aiapp",
+    "hi_rokid_version": "G1.11.11.0727"
+  },
+  "status": "FINAL_COMPARISON_PUBLISHED"
+}

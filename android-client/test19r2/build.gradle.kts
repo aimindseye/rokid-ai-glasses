@@ -10,8 +10,8 @@ android {
         applicationId = "org.aimindseye.rokid.cxrlqualification"
         minSdk = 31
         targetSdk = 36
-        versionCode = 6
-        versionName = "2.3.2-test19-r2.3.2"
+        versionCode = 7
+        versionName = "2.4-test19-r2.4"
     }
 
     buildTypes {

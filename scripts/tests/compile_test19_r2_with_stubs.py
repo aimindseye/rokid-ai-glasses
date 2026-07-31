@@ -38,9 +38,77 @@ STUBS = {
     "org/json/JSONObject.java": 'package org.json; public class JSONObject { public JSONObject(){} public JSONObject put(String k,Object v) throws JSONException{return this;} public String toString(){return "{}";} }',
     "com/rokid/cxr/link/utils/CxrDefs.java": '''package com.rokid.cxr.link.utils; public class CxrDefs { public enum CXRSessionType { NONE,CUSTOMVIEW,CUSTOMAPP } public static class CXRSession { public CXRSession(CXRSessionType t,String p){} } }''',
     "com/rokid/cxr/link/callbacks/ICXRLinkCbk.java": '''package com.rokid.cxr.link.callbacks; public interface ICXRLinkCbk { void onCXRLConnected(boolean b); void onGlassBtConnected(boolean b); void onGlassAiAssistStart(); void onGlassAiAssistStop(); }''',
-    "com/rokid/sprite/aiapp/externalapp/example/ExternalAppClient.java": '''package com.rokid.sprite.aiapp.externalapp.example; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class ExternalAppClient { public ExternalAppClient(Context c){} public final void setCXRLinkCbk(ICXRLinkCbk c){} public final boolean configCXRSession(CxrDefs.CXRSession s){return true;} public final boolean connect(String t){return true;} public final void disconnect(){} }''',
+    "com/rokid/sprite/aiapp/externalapp/example/ExternalAppClient.java": '''package com.rokid.sprite.aiapp.externalapp.example; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class ExternalAppClient { public static int disconnectCalls=0; public static boolean throwOnDisconnect=false; public ExternalAppClient(Context c){} public final void setCXRLinkCbk(ICXRLinkCbk c){} public final boolean configCXRSession(CxrDefs.CXRSession s){return true;} public final boolean connect(String t){return true;} public final void disconnect(){disconnectCalls++; if(throwOnDisconnect) throw new RuntimeException("synthetic");} }''',
     "com/rokid/cxr/link/CXRLink.java": '''package com.rokid.cxr.link; import android.content.Context; import com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient; public class CXRLink extends ExternalAppClient { public CXRLink(Context c){super(c);} }''',
 }
+
+RUNTIME_HARNESS = r'''
+package org.aimindseye.rokid.cxrlqualification;
+
+import android.app.Activity;
+import android.content.ServiceConnection;
+import com.rokid.cxr.link.CXRLink;
+import com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient;
+import java.lang.reflect.Field;
+
+public final class RuntimeRepairHarness {
+    private static final class CountingActivity extends Activity {
+        int unbindCalls;
+        @Override
+        public void unbindService(ServiceConnection connection) {
+            unbindCalls++;
+        }
+    }
+
+    private static void set(Object target, String name, Object value) throws Exception {
+        Field field = target.getClass().getDeclaredField(name);
+        field.setAccessible(true);
+        field.set(target, value);
+    }
+
+    private static CxrLSessionController controller(CountingActivity activity) throws Exception {
+        EvidenceLogger logger = new EvidenceLogger(activity, "runtime-repair", "synthetic");
+        return new CxrLSessionController(activity, logger, new CxrLSessionController.Callback() {
+            @Override public void onStatus(String status) {}
+            @Override public void onTerminal(String outcome, boolean success) {}
+        });
+    }
+
+    public static void main(String[] args) throws Exception {
+        CountingActivity firstActivity = new CountingActivity();
+        CxrLSessionController first = controller(firstActivity);
+        set(first, "link", new CXRLink(firstActivity));
+        set(first, "manualConnection", new ServiceConnection() {});
+        set(first, "manualBound", true);
+        ExternalAppClient.disconnectCalls = 0;
+        ExternalAppClient.throwOnDisconnect = false;
+        first.disconnect("first");
+        first.disconnect("duplicate");
+        if (ExternalAppClient.disconnectCalls != 1) {
+            throw new IllegalStateException("duplicate SDK disconnect was not suppressed");
+        }
+        if (firstActivity.unbindCalls != 0) {
+            throw new IllegalStateException("manual unbind ran after successful SDK disconnect");
+        }
+
+        CountingActivity secondActivity = new CountingActivity();
+        CxrLSessionController second = controller(secondActivity);
+        set(second, "link", new CXRLink(secondActivity));
+        set(second, "manualConnection", new ServiceConnection() {});
+        set(second, "manualBound", true);
+        ExternalAppClient.disconnectCalls = 0;
+        ExternalAppClient.throwOnDisconnect = true;
+        second.disconnect("sdk-failure");
+        if (ExternalAppClient.disconnectCalls != 1) {
+            throw new IllegalStateException("SDK disconnect failure path was not attempted once");
+        }
+        if (secondActivity.unbindCalls != 1) {
+            throw new IllegalStateException("manual unbind did not run after SDK disconnect failure");
+        }
+        System.out.println("TEST19_R2_RUNTIME_DISCONNECT_POLICY=PASS");
+    }
+}
+'''
 
 
 def main() -> int:
@@ -55,10 +123,14 @@ def main() -> int:
             path = stub_root / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(source, encoding="utf-8")
+        harness_path = temp / "harness/org/aimindseye/rokid/cxrlqualification/RuntimeRepairHarness.java"
+        harness_path.parent.mkdir(parents=True, exist_ok=True)
+        harness_path.write_text(RUNTIME_HARNESS, encoding="utf-8")
         out = temp / "classes"
         out.mkdir()
         sources = [str(path) for path in stub_root.rglob("*.java")]
         sources.extend(str(path) for path in sorted(APP.glob("*.java")))
+        sources.append(str(harness_path))
         completed = subprocess.run(
             [javac, "-Xlint:all", "-d", str(out), *sources],
             check=False,
@@ -71,6 +143,16 @@ def main() -> int:
             print(completed.stderr, end="")
             print("TEST19_R2_JAVA_COMPILE=FAIL")
             return completed.returncode
+        runtime = subprocess.run(
+            [shutil.which("java") or "java", "-cp", str(out),
+             "org.aimindseye.rokid.cxrlqualification.RuntimeRepairHarness"],
+            check=False, text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, cwd=temp,
+        )
+        print(runtime.stdout, end="")
+        if runtime.returncode != 0:
+            print(runtime.stderr, end="")
+            print("TEST19_R2_RUNTIME_DISCONNECT_POLICY=FAIL")
+            return runtime.returncode
     print("TEST19_R2_JAVA_COMPILE=PASS")
     return 0
 

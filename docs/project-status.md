@@ -1,6 +1,6 @@
 # Project Status Through Test 19 r2
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=observed; last_reviewed=2026-07-30 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
 ## Page status
 
@@ -8,8 +8,8 @@
 |---|---|
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
-| Evidence status | Observed |
-| Last reviewed | 2026-07-30 |
+| Evidence status | Validated |
+| Last reviewed | 2026-07-31 |
 
 
 This page separates completed stock-workflow and transport qualification from
@@ -39,8 +39,8 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Capability | Current result |
 |---|---|
 | Direct CXR-M connection | Diagnostic r1 run retained; ownership result withdrawn |
-| Hi Rokid CXR-L authorization and connection | r2 harness implemented; 1.22/1.23 physical comparison pending |
-| Hi Rokid coexistence | Included as stock-recovery gate in r2; physical result pending |
+| Hi Rokid CXR-L authorization and connection | PASS on firmware 1.22 and 1.23 through fallback-assisted service bind |
+| Hi Rokid coexistence | PASS after both controlled firmware runs |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
 | Physical control events in a custom app | Not yet tested |
@@ -52,8 +52,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 ## Immediate next phase
 
-Proceed with [Test 19 r2: Hi Rokid CXR-L firmware comparison](developer/companion-app/test-19-r2-qualification.md), then camera,
-audio, controls, local AI, privacy, and lifecycle qualification.
+Test 19 r2 is complete. Proceed with camera, audio, controls, local AI, privacy, and lifecycle qualification using the validated Hi Rokid/CXR-L coexistence path.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before any persistent firmware

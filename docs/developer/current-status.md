@@ -1,6 +1,6 @@
 # Developer Current Status
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=observed; last_reviewed=2026-07-30 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
 ## Page status
 
@@ -8,8 +8,8 @@
 |---|---|
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
-| Evidence status | Observed |
-| Last reviewed | 2026-07-30 |
+| Evidence status | Validated |
+| Last reviewed | 2026-07-31 |
 
 
 ## Replacement companion boundary
@@ -25,7 +25,7 @@
 | Reply, authorization, integrity, and session binding | Unresolved |
 | Independent Developer Mode sender | Not implemented; replay prohibited |
 | Direct CXR-M experiment | r1 evidence retained; ownership classification withdrawn; runner disabled |
-| Hi Rokid CXR-L client | Test 19 r2 implemented; physical 1.22/1.23 qualification pending |
+| Hi Rokid CXR-L client | Test 19 r2 PASS on firmware 1.22 and 1.23; no tested regression observed |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -44,11 +44,7 @@
 
 ## Recommended next gate
 
-The immediate next engineering gate is
-[Test 19 r2: Hi Rokid CXR-L firmware comparison](companion-app/test-19-r2-qualification.md).
-Custom firmware is not the critical path unless supported APIs and an ordinary
-on-glasses application cannot provide the required camera, microphone, speaker,
-input, and offline-control capabilities.
+Test 19 r2 is complete. The immediate next engineering gate is a bounded CXR-L media and control vertical slice: camera receipt, microphone/speaker paths, physical controls, privacy attribution, and lifecycle recovery. Custom firmware is not the critical path unless supported APIs and an ordinary on-glasses application cannot provide those capabilities.
 
 ## Evidence
 

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Test 19 r2.3.2 Stage 1: resolve, attest, build, preserve, and clean.
+# Test 19 r2.4 Stage 1: resolve, attest, build, preserve, and clean.
 # This script performs no ADB, phone, Hi Rokid, Bluetooth, or glasses operation.
 # It never enables errexit, nounset, or pipefail.
 
@@ -8,8 +8,8 @@ REPO=""
 CXR_L_VERSION="1.0.1"
 OUTPUT=""
 EXPECTED_APP_PACKAGE="org.aimindseye.rokid.cxrlqualification"
-EXPECTED_APP_VERSION_CODE="6"
-EXPECTED_APP_VERSION_NAME="2.3.2-test19-r2.3.2"
+EXPECTED_APP_VERSION_CODE="7"
+EXPECTED_APP_VERSION_NAME="2.4-test19-r2.4"
 BUILD_SUCCEEDED="NO"
 EVIDENCE_SUCCEEDED="NO"
 CLEANUP_SUCCEEDED="NO"
@@ -133,7 +133,7 @@ cleanup_build_output() {
   fi
 }
 
-echo "Test 19 r2.3.2 Stage 1 — governed CXR-L build"
+echo "Test 19 r2.4 Stage 1 — governed CXR-L build"
 echo "================================================"
 echo "REPO=$REPO"
 echo "CXR_L_VERSION=$CXR_L_VERSION"
@@ -221,9 +221,9 @@ if [ "$RESULT" -eq 0 ]; then
   echo "GRADLE_BUILD_EXIT_CODE=$BUILD_RC"
   if [ "$BUILD_RC" -eq 0 ] && [ -s "$APK" ]; then
     BUILD_SUCCEEDED="YES"
-    pass "Test 19 r2.3.2 APK built with the CXR-L property only"
+    pass "Test 19 r2.4 APK built with the CXR-L property only"
   else
-    fail "Test 19 r2.3.2 APK build failed"
+    fail "Test 19 r2.4 APK build failed"
     print_gradle_failure "$BUILD_LOG"
   fi
 fi
@@ -260,7 +260,7 @@ if [ "$BUILD_SUCCEEDED" = "YES" ]; then
      [ "$AAPT_PACKAGE" != "$EXPECTED_APP_PACKAGE" ] ||
      [ "$AAPT_VERSION_CODE" != "$EXPECTED_APP_VERSION_CODE" ] ||
      [ "$AAPT_VERSION_NAME" != "$EXPECTED_APP_VERSION_NAME" ]; then
-    fail "built APK identity does not match the governed r2.3.2 identity"
+    fail "built APK identity does not match the governed r2.4 identity"
   else
     pass "built APK identity verified before installation"
   fi
@@ -268,7 +268,7 @@ if [ "$BUILD_SUCCEEDED" = "YES" ]; then
   SOURCE_BRANCH="$(git -C "$REPO" branch --show-current)"
   SOURCE_HEAD="$(git -C "$REPO" rev-parse HEAD)"
   cat >"$EVIDENCE_DIR/build-identity.txt" <<IDENTITY
-SCHEMA=rokid.test19.r2.3.2.governed-build.v1
+SCHEMA=rokid.test19.r2.4.governed-build.v1
 CAPTURE_UTC=$STAMP
 SOURCE_BRANCH=$SOURCE_BRANCH
 SOURCE_HEAD=$SOURCE_HEAD
@@ -291,7 +291,7 @@ import json, sys
 from pathlib import Path
 out=Path(sys.argv[1])
 value={
-    "schema":"rokid.test19.r2.3.2.build-resume.v1",
+    "schema":"rokid.test19.r2.4.build-resume.v1",
     "source_branch":sys.argv[2],
     "source_head":sys.argv[3],
     "cxr_l_version":sys.argv[4],

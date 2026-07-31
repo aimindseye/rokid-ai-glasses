@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 FIX = ROOT / "fixtures/synthetic/test19-r2"
 EVENT_ANALYZER = ROOT / "scripts/tests/analyze_test19_r2_events.py"
 NETWORK_ANALYZER = ROOT / "scripts/tests/analyze_test19_r2_network.py"
+COMPARISON_PUBLISHER = ROOT / "scripts/tests/publish_test19_r2_comparison.py"
 RESOLVER = ROOT / "scripts/research/cxr/resolve_cxr_l_maven.py"
 APP = ROOT / "android-client/test19r2/src/main/java/org/aimindseye/rokid/cxrlqualification"
 
@@ -201,8 +202,8 @@ class Test19R2Tools(unittest.TestCase):
 
         self.assertIn('implementation("com.rokid.cxr:client-m:$cxrVersion")', cxrm)
         self.assertIn('implementation("com.rokid.cxr:client-l:$cxrLVersion")', cxrl)
-        self.assertIn('versionCode = 6', cxrl)
-        self.assertIn('versionName = "2.3.2-test19-r2.3.2"', cxrl)
+        self.assertIn('versionCode = 7', cxrl)
+        self.assertIn('versionName = "2.4-test19-r2.4"', cxrl)
         self.assertIn('"-ProkidCxrLVersion=$CXR_L_VERSION"', build)
         self.assertNotIn("-ProkidCxrVersion=", build)
         self.assertNotIn("platform-tools/adb", build)
@@ -243,7 +244,7 @@ class Test19R2Tools(unittest.TestCase):
             aapt = sdk / "build-tools/36.0.0/aapt"
             aapt.write_text(
                 "#!/usr/bin/env bash\n"
-                "echo \"package: name='org.aimindseye.rokid.cxrlqualification' versionCode='6' versionName='2.3.2-test19-r2.3.2'\"\n",
+                "echo \"package: name='org.aimindseye.rokid.cxrlqualification' versionCode='7' versionName='2.4-test19-r2.4'\"\n",
                 encoding="utf-8",
             )
             aapt.chmod(0o755)
@@ -330,13 +331,13 @@ class Test19R2Tools(unittest.TestCase):
             apk_hash = hashlib.sha256(apk.read_bytes()).hexdigest()
             (build_dir / "build-resume.json").write_text(
                 json.dumps({
-                    "schema": "rokid.test19.r2.3.2.build-resume.v1",
+                    "schema": "rokid.test19.r2.4.build-resume.v1",
                     "source_branch": "synthetic",
                     "source_head": "0" * 40,
                     "cxr_l_version": "1.0.1",
                     "app_package": "org.aimindseye.rokid.cxrlqualification",
-                    "app_version_code": 6,
-                    "app_version_name": "2.3.2-test19-r2.3.2",
+                    "app_version_code": 7,
+                    "app_version_name": "2.4-test19-r2.4",
                     "apk_relative_path": "test19r2-debug.apk",
                     "apk_sha256": apk_hash,
                     "build_stage_pass": True,
@@ -361,7 +362,7 @@ class Test19R2Tools(unittest.TestCase):
             aapt = sdk / "build-tools/36.0.0/aapt"
             aapt.write_text(
                 "#!/usr/bin/env bash\n"
-                "echo \"package: name='org.aimindseye.rokid.cxrlqualification' versionCode='6' versionName='2.3.2-test19-r2.3.2'\"\n",
+                "echo \"package: name='org.aimindseye.rokid.cxrlqualification' versionCode='7' versionName='2.4-test19-r2.4'\"\n",
                 encoding="utf-8",
             )
             aapt.chmod(0o755)
@@ -375,7 +376,7 @@ class Test19R2Tools(unittest.TestCase):
                 "case \"$args\" in\n"
                 "  *'get-state'*) echo device ;;\n"
                 "  *'dumpsys package com.rokid.sprite.global.aiapp'*) echo 'versionName=G1.11.11.0727' ;;\n"
-                "  *'dumpsys package org.aimindseye.rokid.cxrlqualification'*) echo 'versionName=2.3.2-test19-r2.3.2' ;;\n"
+                "  *'dumpsys package org.aimindseye.rokid.cxrlqualification'*) echo 'versionName=2.4-test19-r2.4' ;;\n"
                 "  *'pm path org.aimindseye.rokid.cxrlqualification'*) echo 'package:/data/app/test19r2/base.apk' ;;\n"
                 "  *'pm clear org.aimindseye.rokid.cxrlqualification'*) echo Success ;;\n"
                 "  *'install -r'*) echo Success ;;\n"
@@ -425,6 +426,55 @@ class Test19R2Tools(unittest.TestCase):
         )
         self.assertEqual(completed.returncode, 64)
         self.assertIn("TEST19_R2_BUILD_FIRST_RESUME_REQUIRED=YES", completed.stdout)
+
+
+    def test_r2_4_runtime_identity_and_disconnect_cleanup_contract(self) -> None:
+        main = (APP / "MainActivity.java").read_text(encoding="utf-8")
+        session = (APP / "CxrLSessionController.java").read_text(encoding="utf-8")
+        gradle = (ROOT / "android-client/test19r2/build.gradle.kts").read_text(encoding="utf-8")
+        self.assertIn("getPackageInfo(getPackageName(), 0)", main)
+        self.assertIn('"app_version_source", "package_manager"', main)
+        self.assertIn('"app_version_code", appIdentity.versionCode', main)
+        self.assertNotIn('"app_version", "2.2-test19-r2.2"', main)
+        self.assertIn("disconnectStarted.compareAndSet(false, true)", session)
+        self.assertIn("SKIPPED_SDK_DISCONNECT_SUCCEEDED", session)
+        self.assertIn("UNBOUND_AFTER_SDK_NOT_COMPLETED", session)
+        self.assertIn('"manual_unbind_attempted", unbindAttempted', session)
+        self.assertIn('versionCode = 7', gradle)
+        self.assertIn('versionName = "2.4-test19-r2.4"', gradle)
+
+    def test_r2_4_publication_is_sanitized_and_records_exact_hashes(self) -> None:
+        publication = json.loads((
+            ROOT / "docs/research/connection-protocol/publication/"
+            "test19-r2-cxr-l-firmware-comparison.json"
+        ).read_text(encoding="utf-8"))
+        hashes = (ROOT / "docs/research/connection-protocol/publication/"
+                  "test19-r2-cxr-l-evidence-hashes.txt").read_text(encoding="utf-8")
+        self.assertEqual(publication["schema"], "rokid.test19-r2.cxrl-firmware-comparison.v1")
+        self.assertFalse(publication["comparison"]["firmware_regression_observed"])
+        self.assertTrue(publication["comparison"]["event_type_sequence_equal"])
+        self.assertEqual(publication["comparison"]["connection_path"], "FALLBACK_SERVICE_BIND_ASSISTED")
+        self.assertEqual(
+            publication["runs"][0]["private_evidence_zip_sha256"],
+            "ffdf8a254bb25a7714a4759ae16b2ccf985c341329504d7590a8d47163be5385",
+        )
+        self.assertEqual(
+            publication["runs"][1]["private_evidence_zip_sha256"],
+            "a684c51ce794365f848aff448865a4653a6678859c47f308d733b0af00e8e8fc",
+        )
+        combined = json.dumps(publication, sort_keys=True) + hashes
+        self.assertNotIn("2C160DLH20007H", combined)
+        self.assertNotIn("/Users/", combined)
+        self.assertNotIn("auth_token", combined.lower())
+
+    def test_comparison_publisher_rejects_behavioral_drift(self) -> None:
+        text = COMPARISON_PUBLISHER.read_text(encoding="utf-8")
+        self.assertIn("SHA256SUMS-private.txt", text)
+        self.assertIn("behavioral_signature_equal_after_run_specific_normalization", text)
+        self.assertIn("private_zip_bytes_committed", text)
+        self.assertIn("phone_serial_published", text)
+        self.assertIn("TEST19_R2_4_COMPARISON_PUBLICATION=PASS", text)
+
 
 
 if __name__ == "__main__":

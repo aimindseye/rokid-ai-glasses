@@ -40,5 +40,6 @@ There is no independent companion-app or Developer Mode replay runner yet.
 - `record_test19_r2_firmware_transition.sh` — read-only transition evidence assembly
 - `analyze_test19_r2_events.py` — sanitized connection classification
 - `analyze_test19_r2_network.py` — custom-app versus stock-app destination classification
+- `publish_test19_r2_comparison.py` — private-ZIP verification and sanitized final comparison publication
 - `test_test19_r2_tools.py` — synthetic stage, privacy, and source-contract tests
 - `run_test19_cxr_qualification.sh` — disabled historical r1 CXR-M runner

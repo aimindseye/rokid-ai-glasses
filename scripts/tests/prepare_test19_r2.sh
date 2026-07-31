@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Test 19 r2.3.2 compatibility dispatcher. Build and installation are separate
+# Test 19 r2.4 compatibility dispatcher. Build and installation are separate
 # governed stages. No default combined path is permitted.
 
 STAGE=""
@@ -12,7 +12,7 @@ Usage:
   bash scripts/tests/prepare_test19_r2.sh --stage build [build options]
   bash scripts/tests/prepare_test19_r2.sh --stage install [install options]
 
-The r2.3.2 workflow intentionally has no implicit or combined preparation mode.
+The r2.4 workflow intentionally has no implicit or combined preparation mode.
 Run Stage 1 first, review its PASS markers, then pass its evidence directory to
 Stage 2. Direct scripts are also available:
 
