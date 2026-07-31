@@ -27,7 +27,7 @@ actions constant.
 | Hi Rokid package | `com.rokid.sprite.global.aiapp` |
 | Hi Rokid version | `G1.11.11.0727` / version code `10110011` |
 | CXR-L artifact | `com.rokid.cxr:client-l:1.0.1` |
-| Test app | `org.aimindseye.rokid.cxrlqualification` / `2.3.1-test19-r2.3.1` |
+| Test app | `org.aimindseye.rokid.cxrlqualification` / `2.3.2-test19-r2.3.2` |
 | Run A firmware | `1.22.009-20260710-151201` |
 | Run B firmware | `1.23.009-20260725-153201` |
 
@@ -53,7 +53,60 @@ Every command below invokes a script as a child Bash process. The scripts do
 not enable `set -e`, `set -u`, or `set -o pipefail`. Their exit status is
 captured after the child returns, so the interactive zsh terminal remains open.
 
-## Stage 0 — prepare
+## Stage 0A — build, attest, preserve, and clean
+
+Stage 0 is intentionally split. The build stage performs no ADB or device
+operation. It resolves and attests CXR-L 1.0.1, builds with the physically
+validated anonymous Gradle `Action<TaskExecutionGraph>` implementation,
+verifies the APK identity with `aapt`, preserves immutable private evidence,
+and removes generated build output.
+
+```bash
+REPO="$HOME/Documents/projects/rokid-ai-glasses"
+BUILD_EVIDENCE="$HOME/rokid-nettest/private/test19-r2-cxr-l-build-$(date -u +%Y%m%dT%H%M%SZ)"
+
+cd "$REPO"
+
+bash scripts/tests/build_test19_r2.sh \
+  --repo "$REPO" \
+  --sdk-version 1.0.1 \
+  --output "$BUILD_EVIDENCE"
+
+BUILD_RC=$?
+
+echo "TEST19_R2_BUILD_STAGE_EXIT_CODE=$BUILD_RC"
+echo "TEST19_R2_BUILD_EVIDENCE=$BUILD_EVIDENCE"
+```
+
+A successful build stage ends with:
+
+```text
+CXR_M_GRADLE_PROPERTY_SUPPLIED=NO
+CXR_L_GRADLE_PROPERTY_SUPPLIED=YES
+CXR_L_RESOLVER_EXIT_CODE=0
+GRADLE_BUILD_EXIT_CODE=0
+APK_PACKAGE=org.aimindseye.rokid.cxrlqualification
+APK_VERSION_CODE=6
+APK_VERSION_NAME=2.3.2-test19-r2.3.2
+TEST19_R2_APK_BUILD=PASS
+TEST19_R2_GOVERNED_BUILD_EVIDENCE=PASS
+TEST19_R2_BUILD_OUTPUT_CLEANUP=PASS
+TEST19_R2_READY_FOR_INSTALL_STAGE=YES
+TEST19_R2_BUILD_STAGE=PASS
+APK_INSTALL_ATTEMPTED=NO
+PHONE_OPERATION=NONE
+TEST19_R2_BUILD_STAGE_EXIT_CODE=0
+```
+
+Do not proceed if Stage 0A fails. The evidence directory contains a
+`governed-build/build-resume.json` record and the preserved APK. Proprietary
+SDK bytes remain under the private evidence root and must not be committed.
+
+## Stage 0B — resume from immutable evidence and install
+
+Run this only after Stage 0A returned 0. This stage re-verifies the complete
+build hash manifest, the resume contract, APK SHA-256, and APK identity before
+any phone mutation. It never contacts Maven and never invokes Gradle.
 
 ```bash
 REPO="$HOME/Documents/projects/rokid-ai-glasses"
@@ -61,36 +114,46 @@ PHONE_SERIAL="2C160DLH20007H"
 
 cd "$REPO"
 
-bash scripts/tests/prepare_test19_r2.sh \
+bash scripts/tests/install_test19_r2.sh \
+  --repo "$REPO" \
   --phone "$PHONE_SERIAL" \
-  --sdk-version 1.0.1 \
+  --evidence-dir "$BUILD_EVIDENCE" \
   --expected-hi-rokid-version G1.11.11.0727 \
   --reset-app-data
 
-PREPARE_RC=$?
+INSTALL_RC=$?
 
-echo "TEST19_R2_PREPARE_EXIT_CODE=$PREPARE_RC"
+echo "TEST19_R2_INSTALL_STAGE_EXIT_CODE=$INSTALL_RC"
+echo "TEST19_R2_BUILD_EVIDENCE=$BUILD_EVIDENCE"
 ```
 
-A successful preparation ends with:
+A successful installation stage ends with:
 
 ```text
-CXR_M_GRADLE_PROPERTY_SUPPLIED=NO
-CXR_L_GRADLE_PROPERTY_SUPPLIED=YES
-TEST19_R2_CXR_L_ARTIFACT_AND_API_SURFACE=PASS
-TEST19_R2_APK_BUILD=PASS
-TEST19_R2_GOVERNED_BUILD_EVIDENCE=PASS
+BUILD_EVIDENCE_HASH_VERIFICATION_EXIT_CODE=0
+RESUME_SCHEMA=rokid.test19.r2.3.2.build-resume.v1
+APK_PACKAGE=org.aimindseye.rokid.cxrlqualification
+APK_VERSION_CODE=6
+APK_VERSION_NAME=2.3.2-test19-r2.3.2
+MAVEN_OPERATION=NONE
+GRADLE_OPERATION=NONE
+ADB_INSTALL_EXIT_CODE=0
 TEST19_R2_APK_INSTALL=PASS
-INSTALLED_TEST_APP_VERSION=2.3.1-test19-r2.3.1
+INSTALLED_TEST_APP_VERSION=2.3.2-test19-r2.3.2
 TEST19_R2_PACKAGE_IDENTITY=PASS
-TEST19_R2_BUILD_OUTPUT_CLEANUP=PASS
+TEST19_R2_GOVERNED_INSTALL_EVIDENCE=PASS
 TEST19_R2_READY_FOR_CONNECTION_RUN=YES
-TEST19_R2_PREPARE=PASS
-TEST19_R2_PREPARE_EXIT_CODE=0
+TEST19_R2_INSTALL_STAGE=PASS
+TEST19_R2_INSTALL_STAGE_EXIT_CODE=0
 ```
 
-Downloaded proprietary SDK bytes remain under `~/rokid-nettest/private/` and
-must not be committed.
+The compatibility dispatcher requires an explicit stage and never defaults to
+a combined operation:
+
+```bash
+bash scripts/tests/prepare_test19_r2.sh --stage build --repo "$REPO" --output "$BUILD_EVIDENCE"
+bash scripts/tests/prepare_test19_r2.sh --stage install --repo "$REPO" --phone "$PHONE_SERIAL" --evidence-dir "$BUILD_EVIDENCE" --reset-app-data
+```
 
 ## Run A — firmware 1.22 connection only
 
