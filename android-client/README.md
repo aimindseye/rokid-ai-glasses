@@ -14,3 +14,15 @@ contains no media, APK upload, reboot, unpair, or Hi Rokid force-stop action.
 Build through `scripts/tests/prepare_test19_r2.sh`; do not invoke Gradle without
 the exact `-ProkidCxrLVersion=1.0.1` property. See the
 [Test 19 r2 runbook](../docs/developer/companion-app/test-19-r2-qualification.md).
+
+## Test 20 r2 safe event observer
+
+The `test20r2` module reuses the qualified CXR-L authorization and `CUSTOMAPP`
+connection lifecycle but does not invoke an AI assistant, camera, microphone,
+media stream, custom command, custom view, app-management operation, or cloud
+client. It passively observes exactly two ordered
+`onGlassAiAssistStart()`/`onGlassAiAssistStop()` cycles generated through the
+ordinary stock glasses interaction, then disconnects.
+
+Build, install, and run only through the governed Test 20 r2 scripts. See the
+[Test 20 r2 runbook](../docs/tests/test-20-r2-cxr-l-event-control-plane-qualification.md).

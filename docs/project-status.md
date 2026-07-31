@@ -1,4 +1,4 @@
-# Project Status Through Test 20 r1.2 Final Census Publication
+# Project Status Through Test 20 r2.1 Implementation Readiness
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -45,7 +45,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Hi Rokid coexistence | PASS after both controlled firmware runs |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
-| Physical control events in a custom app | Not yet tested |
+| CXR-L AI-assist start/stop callbacks in a custom app | Test 20 r2.1 repaired implementation prepared; physical qualification not yet performed |
 | Offline local AI round trip | Not yet tested |
 | Minimal on-glasses APK | Not yet tested |
 | Proven custom-firmware recovery | Not established |
@@ -58,11 +58,12 @@ Test 20 r1 is complete through the corrected r1.2 GitHub publication. The first
 r1 sanitized publication remains withdrawn; only the r1.1 repaired census is
 authoritative.
 
-The next phase is a separately approved Test 20 r2 control-plane qualification.
-Prioritize bounded callback or status behavior and retain explicit stop gates.
-Do not infer support from public method presence alone. Camera, audio, custom
-commands, custom views, provider access, glass-app management, and native/JNI
-behavior remain untested.
+Test 20 r2.1 closes the public-artifact fixture and rollback-cleanup defects. Test 20 r2 remains one bounded CXR-L `CUSTOMAPP` attempt that passively
+observes exactly two ordered AI-assist start/stop callback cycles. It remains
+`READY_FOR_CONTROLLED_PHYSICAL_RUN`, not accepted, until the governed build,
+install, callback-order, timeout, clean-disconnect, privacy, and Hi Rokid recovery
+gates pass. Camera, audio streaming, custom commands, custom views, provider
+access, glass-app management, and native/JNI behavior remain untested.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before persistent firmware
