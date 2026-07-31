@@ -19,3 +19,7 @@ rewriting historical test paths.
 
 Use the [Research index](README.md) for connection protocol, boot-chain,
 native-loader, and protected-application release history.
+
+## Current implementation gate
+
+- [Test 19 r1 — Maven-resolved CXR-M compatibility, ownership, and privacy](../tests/test-19-r1-cxr-m-maven-and-ownership.md): harness implemented; physical qualification pending.

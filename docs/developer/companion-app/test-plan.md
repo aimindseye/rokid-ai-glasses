@@ -12,20 +12,28 @@
 | Last reviewed | 2026-07-30 |
 
 
-## Test 19 — CXR-M compatibility gate
+## Test 19 r1 — Maven-resolved CXR-M compatibility, ownership, and privacy gate
 
-Qualify initialization, discovery, connection, device-status queries, clean
-disconnect, and reconnect after phone and glasses restarts.
+Qualify the authorized SDK artifact and runtime surface, initialization,
+discovery, connection, safe status queries, clean disconnect, glasses and phone
+reconnect, Hi Rokid foreground/background/force-stop ownership, and stock
+recovery.
+
+Use the governed [Test 19 qualification runbook](test-19-r1-qualification.md). The runner resolves the version from live Maven metadata, records hashes, and does not redistribute downloaded SDK bytes.
 
 Required terminal outcomes:
 
 ```text
-CUSTOM_APP_CXR_M_INITIALIZATION=PASS
+CUSTOM_APP_CXR_M_ARTIFACT_AND_API_SURFACE=PASS
 CUSTOM_APP_DEVICE_DISCOVERY=PASS
 CUSTOM_APP_DEVICE_CONNECTION=PASS
 CUSTOM_APP_HARDWARE_STATUS_QUERY=PASS
 CUSTOM_APP_CLEAN_DISCONNECT=PASS
-CUSTOM_APP_RECONNECT_AFTER_REBOOT=PASS
+CUSTOM_APP_RECONNECT_AFTER_GLASSES_REBOOT=PASS
+CUSTOM_APP_RECONNECT_AFTER_PHONE_REBOOT=PASS
+HI_ROKID_STOCK_RECOVERY=PASS
+LOCAL_NETWORK_PRIVACY_GATE=PASS
+TEST19_R1_CXR_M_QUALIFICATION=PASS
 ```
 
 ## Test 20 — Hi Rokid ownership and coexistence

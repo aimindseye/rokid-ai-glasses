@@ -17,3 +17,5 @@ jobs:
         run: python3 scripts/safety/check_documentation_governance.py --repo .
       - name: Run documentation governance tests
         run: python3 -m unittest scripts.tests.test_documentation_governance
+      - name: Run Test 19 synthetic qualification tests
+        run: python3 -m unittest scripts.tests.test_test19_cxr_tools

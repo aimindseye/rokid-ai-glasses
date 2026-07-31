@@ -38,7 +38,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 | Capability | Current result |
 |---|---|
-| Style-qualified CXR-M connection and status | Not yet tested |
+| Style-qualified CXR-M connection and status | Qualification harness implemented; physical run pending |
 | Hi Rokid coexistence and session ownership | Not yet tested |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
@@ -51,7 +51,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 ## Immediate next phase
 
-Proceed with [Test 19: CXR-M compatibility](developer/companion-app/test-plan.md#test-19-cxr-m-compatibility-gate), then connection ownership, camera,
+Proceed with [Test 19 r1: Maven-resolved CXR-M qualification](developer/companion-app/test-19-r1-qualification.md), then camera,
 audio, controls, local AI, privacy, and lifecycle qualification.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a

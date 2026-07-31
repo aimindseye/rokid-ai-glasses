@@ -1,0 +1,18 @@
+{"details": {"connect_bluetooth_overload_count": 1, "deinit_bluetooth_found": true, "init_bluetooth_found": true, "safe_status_method_count": 1, "sdk_class_found": true}, "event_type": "sdk_inventory", "phase": "unassigned", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"likely_rokid": true}, "event_type": "candidate_discovered", "phase": "custom_only", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"error_value": "busy"}, "event_type": "cxr_failed", "phase": "baseline_stock_connected", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"error_value": "busy"}, "event_type": "cxr_failed", "phase": "stock_background", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {}, "event_type": "cxr_connected", "phase": "stock_force_stopped", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"qualified": true}, "event_type": "hardware_status_query_completed", "phase": "stock_force_stopped", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"connected": false}, "event_type": "cxr_disconnect_returned", "phase": "stock_force_stopped", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {}, "event_type": "cxr_connected", "phase": "custom_only", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"qualified": true}, "event_type": "hardware_status_query_completed", "phase": "custom_only", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"connected": false}, "event_type": "cxr_disconnect_returned", "phase": "custom_only", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {}, "event_type": "cxr_connected", "phase": "glasses_reboot_reconnect", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"qualified": true}, "event_type": "hardware_status_query_completed", "phase": "glasses_reboot_reconnect", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"connected": false}, "event_type": "cxr_disconnect_returned", "phase": "glasses_reboot_reconnect", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {}, "event_type": "cxr_connected", "phase": "phone_reboot_reconnect", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"qualified": true}, "event_type": "hardware_status_query_completed", "phase": "phone_reboot_reconnect", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"connected": false}, "event_type": "cxr_disconnect_returned", "phase": "phone_reboot_reconnect", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {"confirmed": true}, "event_type": "stock_recovery_confirmed", "phase": "stock_recovery", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}
+{"details": {}, "event_type": "network_privacy_gate_pass", "phase": "unassigned", "schema": "rokid.test19.host-event.v1", "time_epoch_ms": 2}

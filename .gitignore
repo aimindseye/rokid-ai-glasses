@@ -62,3 +62,11 @@ __pycache__/
 android-client/.gradle/
 android-client/build/
 android-client/app/build/
+
+# Test 19 local CXR-M inputs and build outputs
+android-client/test19/build/
+android-client/test19/local-libs/
+android-client/test19/local-sdk.properties
+*.lc
+*.aar
+android-client/test19/maven-private/

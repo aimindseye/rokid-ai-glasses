@@ -42,6 +42,7 @@ without depending on Hi Rokid for qualified workflows.
 
 - [Requirements](requirements.md)
 - [Test plan](test-plan.md)
+- [Test 19 r1: Maven-resolved CXR-M qualification](test-19-r1-qualification.md)
 - [Lifecycle and recovery](lifecycle.md)
 - [SDK/CXR qualification](../sdk-and-cxr/README.md)
 - [Bluetooth and media](../bluetooth-and-media/README.md)

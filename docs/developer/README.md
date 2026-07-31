@@ -31,6 +31,7 @@ roadmap for three goals:
 - [Companion application](companion-app/README.md)
   - [Requirements](companion-app/requirements.md)
   - [Qualification test plan](companion-app/test-plan.md)
+  - [Test 19 r1: Maven-resolved CXR-M qualification](companion-app/test-19-r1-qualification.md)
   - [Lifecycle and recovery](companion-app/lifecycle.md)
 - [On-glasses application](on-glasses-app/README.md)
 - [Bluetooth and media](bluetooth-and-media/README.md)

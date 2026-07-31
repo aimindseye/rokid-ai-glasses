@@ -1,0 +1,1 @@
+{"details": {"connect_bluetooth_overload_count": 0, "deinit_bluetooth_found": false, "init_bluetooth_found": false, "safe_status_method_count": 0, "sdk_class_found": false}, "event_type": "sdk_inventory", "phase": "unassigned", "run_id": "run-1", "schema": "rokid.test19.cxr-client-event.v1", "time_epoch_ms": 1}

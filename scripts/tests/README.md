@@ -31,3 +31,10 @@
 
 Consult the matching [runbook index](../../docs/runbooks/README.md) before use.
 There is no independent companion-app or Developer Mode replay runner yet.
+
+## Replacement companion qualification
+
+- `run_test19_cxr_qualification.sh` — Maven-resolved CXR-M compatibility, reboot, stock-recovery, ownership, and privacy qualification
+- `analyze_test19_network.py` — PCAPdroid CSV local/public destination gate
+- `analyze_test19_cxr_evidence.py` — sanitized result and classification generator
+- `test_test19_cxr_tools.py` — synthetic resolver, artifact, network, evidence, and source-contract tests
