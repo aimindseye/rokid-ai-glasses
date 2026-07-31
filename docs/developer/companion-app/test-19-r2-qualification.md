@@ -35,6 +35,12 @@ The accepted private evidence ZIP identities are:
 
 Private ZIP bytes are not committed.
 
+The r2.4 repair APK was subsequently built and smoke-tested on firmware 1.23.
+The smoke run passed the full connection qualification while reporting the
+installed identity from `PackageManager` and skipping redundant manual unbind
+after successful SDK disconnect. Its private ZIP SHA-256 is
+`35e75e6e98933436e7799cfceb8a47e71e31d95ac17b73c1a87516de1257593e`.
+
 ## Purpose
 
 Qualify the supported consumer-coexistence path in which a third-party Android
@@ -383,3 +389,25 @@ disconnect, and attempts manual unbind only when a fallback bind started and
 SDK disconnect did not complete. The current governed repair APK identity is
 `2.4-test19-r2.4`, version code 7. These forward-looking changes do not rewrite
 the accepted r2.3.2 evidence.
+
+
+## r2.4.1 publication-only closure
+
+r2.4.1 records the completed physical smoke result without changing runtime
+code or rewriting the accepted firmware 1.22/1.23 evidence. The r2.4 APK
+identity was `2.4-test19-r2.4`, version code `7`, SHA-256
+`c72f72303d1f29c08ae9faab94bb6fde54ff8a3ab31fc56664eff84c5c174e25`.
+
+The smoke event stream reported:
+
+```text
+app_version=2.4-test19-r2.4
+app_version_code=7
+app_version_source=package_manager
+manual_unbind_attempted=false
+manual_unbind_disposition=SKIPPED_SDK_DISCONNECT_SUCCEEDED
+manual_unbind_error_class=
+```
+
+Final status: Test 19 r2 is complete and accepted. No additional firmware run,
+APK reinstall, or firmware downgrade is required before Test 20.

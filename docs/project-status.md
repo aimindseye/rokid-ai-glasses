@@ -39,7 +39,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Capability | Current result |
 |---|---|
 | Direct CXR-M connection | Diagnostic r1 run retained; ownership result withdrawn |
-| Hi Rokid CXR-L authorization and connection | PASS on firmware 1.22 and 1.23 through fallback-assisted service bind |
+| Hi Rokid CXR-L authorization and connection | PASS on firmware 1.22 and 1.23 through fallback-assisted service bind; r2.4 identity and disconnect repairs physically validated |
 | Hi Rokid coexistence | PASS after both controlled firmware runs |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
@@ -52,7 +52,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 ## Immediate next phase
 
-Test 19 r2 is complete. Proceed with camera, audio, controls, local AI, privacy, and lifecycle qualification using the validated Hi Rokid/CXR-L coexistence path.
+Test 19 r2 is complete and publication-closed. Proceed with Test 20 r1, an exact CXR-L 1.0.1 capability census, before selecting bounded camera, audio, control, local-AI, privacy, or lifecycle experiments on the validated Hi Rokid/CXR-L coexistence path.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before any persistent firmware

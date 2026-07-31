@@ -96,3 +96,21 @@ hashes without committing private ZIP bytes. It replaces the stale hardcoded
 runtime app-version label with `PackageManager` identity and makes disconnect
 cleanup state-aware. The repair APK is `2.4-test19-r2.4`, version code 7; the
 accepted firmware comparison remains the r2.3.2 APK run and is not rewritten.
+
+
+## r2.4.1 physical smoke closure
+
+The r2.4 repair APK was built with package
+`org.aimindseye.rokid.cxrlqualification`, version code `7`, version name
+`2.4-test19-r2.4`, and SHA-256
+`c72f72303d1f29c08ae9faab94bb6fde54ff8a3ab31fc56664eff84c5c174e25`.
+A bounded smoke run on firmware `1.23.009-20260725-153201` passed the same
+connection and stock-recovery gates. The runtime event identity was sourced
+from `PackageManager`, and cleanup recorded
+`SKIPPED_SDK_DISCONNECT_SUCCEEDED` with no manual-unbind attempt or error.
+
+The private smoke ZIP SHA-256 is
+`35e75e6e98933436e7799cfceb8a47e71e31d95ac17b73c1a87516de1257593e`.
+The private ZIP is not committed. This closure changes publication status only;
+it does not change runtime code or replace the accepted firmware-comparison
+runs.

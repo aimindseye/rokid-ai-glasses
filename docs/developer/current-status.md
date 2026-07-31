@@ -25,7 +25,7 @@
 | Reply, authorization, integrity, and session binding | Unresolved |
 | Independent Developer Mode sender | Not implemented; replay prohibited |
 | Direct CXR-M experiment | r1 evidence retained; ownership classification withdrawn; runner disabled |
-| Hi Rokid CXR-L client | Test 19 r2 PASS on firmware 1.22 and 1.23; no tested regression observed |
+| Hi Rokid CXR-L client | Test 19 r2 accepted: firmware 1.22/1.23 PASS, no tested regression, r2.4 runtime repairs physically validated |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -44,7 +44,7 @@
 
 ## Recommended next gate
 
-Test 19 r2 is complete. The immediate next engineering gate is a bounded CXR-L media and control vertical slice: camera receipt, microphone/speaker paths, physical controls, privacy attribution, and lifecycle recovery. Custom firmware is not the critical path unless supported APIs and an ordinary on-glasses application cannot provide those capabilities.
+Test 19 r2 is complete and publication-closed. The immediate next gate is Test 20 r1: an exact CXR-L 1.0.1 capability and runtime-surface census before any media or control command is attempted. Subsequent Test 20 stages may qualify bounded control-plane callbacks and then media only where the attested surface supports it. Custom firmware is not the critical path unless supported APIs and an ordinary on-glasses application cannot provide those capabilities.
 
 ## Evidence
 

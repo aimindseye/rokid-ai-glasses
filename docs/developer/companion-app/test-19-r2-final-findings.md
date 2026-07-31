@@ -1,4 +1,4 @@
-# Test 19 r2.4 — Final CXR-L Firmware Comparison
+# Test 19 r2.4.1 — Final CXR-L Firmware Comparison Closure
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -54,6 +54,24 @@ duplicate disconnect calls.
 
 These repairs do not rewrite or reinterpret the accepted private evidence.
 
+## r2.4.1 physical smoke closure
+
+A bounded repair-only smoke run was completed on firmware
+`1.23.009-20260725-153201` with the r2.4 APK. It repeated the accepted
+authorization and fallback-assisted connection path, preserved stock Hi Rokid
+recovery, and physically validated both runtime repairs:
+
+- runtime identity came from `PackageManager` as version
+  `2.4-test19-r2.4`, version code `7`;
+- SDK disconnect returned successfully;
+- manual unbind was not attempted;
+- the disposition was `SKIPPED_SDK_DISCONNECT_SUCCEEDED`;
+- no manual-unbind error class was recorded.
+
+The smoke run passed all Test 19 r2 qualification markers. Firmware 1.22 was
+not restored or rerun because the smoke scope was limited to validating the
+r2.4 runtime repairs, not repeating the already accepted firmware comparison.
+
 ## Evidence identities
 
 - Firmware 1.22 private ZIP SHA-256: `ffdf8a254bb25a7714a4759ae16b2ccf985c341329504d7590a8d47163be5385`
@@ -61,13 +79,16 @@ These repairs do not rewrite or reinterpret the accepted private evidence.
 - Firmware 1.23 private ZIP SHA-256: `a684c51ce794365f848aff448865a4653a6678859c47f308d733b0af00e8e8fc`
 - Firmware 1.23 screenshot SHA-256: `919a5970e4d6216277563b809437ecda46b00d54f060f90485055dff753c3315`
 - Governed r2.3.2 APK SHA-256: `8d34e9332bc2ab730d9c5a802f9efcb4ec4a940453470f260539ef9370665aa2`
+- Governed r2.4 APK SHA-256: `c72f72303d1f29c08ae9faab94bb6fde54ff8a3ab31fc56664eff84c5c174e25`
+- r2.4 runtime-smoke private ZIP SHA-256: `35e75e6e98933436e7799cfceb8a47e71e31d95ac17b73c1a87516de1257593e`
 
 Private ZIP bytes, authorization-token values, phone serials, raw Bluetooth
 addresses, and media payloads are not committed.
 
 ## Boundaries
 
-- one connection run per firmware;
+- one accepted firmware-comparison connection run per firmware;
+- one repair-only r2.4 smoke run on firmware 1.23;
 - exact Hi Rokid `G1.11.11.0727` and CXR-L `client-l:1.0.1`;
 - no media, AI, upload, reboot-recovery, or independent-Hi-Rokid qualification;
 - no performance conclusion from operator-driven timing.
