@@ -45,11 +45,10 @@ The sanitized publication omits proprietary binary bytes, full non-JNI native
 symbol tables, local paths, device serials, Bluetooth addresses, authorization
 tokens, and media payloads.
 
-> Publication status: the first r1 sanitized output is withdrawn because its
-> class-level participation tags propagated `runtime-qualified` to unrelated
-> members. Use the [Test 20 r1.1 repair](test-20-r1-1-cxr-l-classification-repair.md)
-> before publication. The static API, component, native, JNI, and artifact
-> inventories remain accepted.
+> Publication status: **complete through Test 20 r1.2**. The first r1 sanitized
+> output remains withdrawn. The reviewed descriptor-exact r1.1 repair is the
+> authoritative [published capability census](../research/connection-protocol/publication/test20-r1-cxr-l-capability-census.md).
+> See the [r1.2 publication closure](test-20-r1-2-cxr-l-final-publication.md).
 
 ## Run
 
@@ -103,9 +102,9 @@ The `sanitized-publication` subdirectory contains only:
 - `test20-r1-cxr-l-capability-census.md`;
 - `test20-r1-cxr-l-evidence-hashes.txt`.
 
-Review the sanitized files before publication. The initial r1 output must not be
-promoted. Run Test 20 r1.1 to create the descriptor-exact repaired publication,
-then review and promote only that repaired ZIP.
+The initial r1 output must not be promoted. The descriptor-exact r1.1 repair
+was reviewed and promoted through the
+[Test 20 r1.2 publication closure](test-20-r1-2-cxr-l-final-publication.md).
 
 ## Interpretation boundary
 

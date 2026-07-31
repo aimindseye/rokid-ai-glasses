@@ -99,5 +99,6 @@ CLOUD_AI_REQUEST=NONE
 GLASSES_COMMAND_EXECUTION=NONE
 ```
 
-The repaired ZIP is reviewable for later publication. Do not publish the
-withdrawn Test 20 r1 sanitized ZIP.
+The repaired ZIP was independently reviewed and promoted through the
+[Test 20 r1.2 final publication closure](test-20-r1-2-cxr-l-final-publication.md).
+Do not publish the withdrawn Test 20 r1 sanitized ZIP.
