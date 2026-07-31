@@ -1,0 +1,30 @@
+name: Developer experiment
+description: Propose or report a controlled Style development experiment.
+title: "[Developer] "
+labels: ["developer", "research"]
+body:
+  - type: textarea
+    attributes:
+      label: Purpose and controlled variable
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Exact device, phone, app, and firmware scope
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Preconditions, procedure, acceptance, and rollback
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Safety
+      options:
+        - label: The experiment begins read-only or explains why that is impossible.
+          required: true
+        - label: No captured command replay or firmware flash is proposed without separate safety gates.
+          required: true
+        - label: Raw evidence will remain private.
+          required: true

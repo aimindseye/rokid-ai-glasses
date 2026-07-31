@@ -1,8 +1,6 @@
-# References
+# References — Moved
 
-- [Official and community resources](resources.md)
-- [SDK and development options](../development/sdk-and-development-options.md)
-- [Community ecosystem](../development/community-ecosystem.md)
+<!-- wiki-redirect: docs/reference/README.md -->
 
-A listed resource is not automatically validated for the non-display consumer
-model. Check the evidence label and compatibility notes on the linked page.
+The canonical shared reference is now
+[docs/reference](../reference/README.md).

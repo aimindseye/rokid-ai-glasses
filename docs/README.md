@@ -1,61 +1,55 @@
-# Documentation Index
+# Documentation Home
 
-The documentation covers numbered product/device tests through **Test 18** and
-research and implementation releases through **r1.3.3.2.25.2.4**.
+<!-- wiki-status: audience=all; applies_to=rokid-ai-glasses-style-non-display; evidence=mixed; last_reviewed=2026-07-30 -->
 
-## Current status and architecture
+## Page status
 
-- [Project status](project-status.md)
-- [Root architecture summary](../ARCHITECTURE.md)
-- [Architecture index](architecture/README.md)
-- [Detailed non-display architecture](architecture/non-display-system-architecture.md)
-- [Test and research matrix](tests/test-matrix.md)
+| Field | Value |
+|---|---|
+| Audience | All |
+| Applies to | Rokid AI Glasses Style (non-display) |
+| Evidence status | Mixed |
+| Last reviewed | 2026-07-30 |
 
-## Current connection-protocol result
 
-- [Connection-protocol research index](research/connection-protocol/README.md)
-- [Final RFCOMM zero-payload closure](research/connection-protocol/r1.3.3.2.25.2.4-final-rfcomm-client-zero-payload-closure.md)
-- [Machine-readable runtime status](research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json)
-- [Methodology](research/connection-protocol/r1.3.3.2.25.2.4-methodology.md)
-- [Limitations](research/connection-protocol/r1.3.3.2.25.2.4-limitations.md)
-- [Evidence identities](research/connection-protocol/r1.3.3.2.25.2.4-evidence-hashes.txt)
-- [Supersession map](research/connection-protocol/r1.3.3.2.25.2.4-supersession-map.json)
-- [Connection-only Android client](../android-client/README.md)
+This wiki is organized by **audience first**. Research chronology and release
+numbers are preserved, but they are no longer the default path for owners who
+only need product guidance.
 
-## Consumer documentation
+## Consumer
 
-- [Consumer index](consumer/README.md)
-- [Product overview](consumer/product-overview.md)
-- [Getting started](consumer/getting-started.md)
-- [Features and limitations](consumer/features-and-limitations.md)
-- [Phone and local-model compatibility](consumer/phone-and-local-model-compatibility.md)
-- [Troubleshooting](consumer/troubleshooting.md)
+Start with the [Consumer guide](consumer/README.md) for model identification,
+setup, everyday use, phone compatibility, AI behavior, media, privacy, firmware,
+and troubleshooting.
 
-## Development and references
+## Developer
 
-- [Development index](development/README.md)
-- [SDK and development options](development/sdk-and-development-options.md)
-- [Community ecosystem](development/community-ecosystem.md)
-- [References](references/README.md)
+Start with the [Developer guide](developer/README.md) for the replacement-app
+roadmap, CXR/SDK qualification, Bluetooth and media boundaries, on-glasses APK
+work, firmware research, and the common device–hub–brain platform.
 
-## Tests and findings
+## Research and evidence
 
-- [Tests index](tests/README.md)
-- [Master test and research matrix](tests/test-matrix.md)
-- [Findings index](findings/README.md)
-- [Experiments index](experiments/README.md)
+Start with the [Research library](research/README.md) for validated numbered
+tests, protocol releases, protected-application research, methodology,
+limitations, sanitized evidence, and supersession history.
 
-## Protected companion research
+## Shared reference
 
-- [Research index](research/README.md)
-- [Evidence levels](research/evidence-levels.md)
-- [Native-loader research](research/native-loader/README.md)
-- [Protected-application and r24.1 caller review](research/protected-application/README.md)
+The [Reference library](reference/README.md) holds the common device profile,
+firmware inventory, Android services, Bluetooth profile, network endpoints,
+terminology, claim registry, and external resources used by all audiences.
 
-## Reproduction and evidence
+## Contributing
 
-- [Runbooks](runbooks/README.md)
-- [Methodology](methodology/README.md)
-- [Public scripts](../scripts/README.md)
-- [Public evidence](../evidence/README.md)
-- [Public assets](assets/README.md)
+- [Contribution overview](contributing/README.md)
+- [Consumer and compatibility reports](contributing/consumer-reports.md)
+- [Developer experiments](contributing/developer-experiments.md)
+- [Evidence submission](contributing/evidence-submission.md)
+
+## Historical paths
+
+Existing tests, findings, experiments, runbooks, methodology, scripts, and
+research publications remain at their established paths. Compatibility
+forwarders preserve the former `docs/development/`, `docs/references/`, and
+consumer phone-compatibility links.

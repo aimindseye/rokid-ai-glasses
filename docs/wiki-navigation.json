@@ -1,0 +1,130 @@
+{
+  "schema": "rokid-ai-glasses.wiki-navigation.v1",
+  "device_scope": "rokid-ai-glasses-style-non-display",
+  "last_reviewed": "2026-07-30",
+  "landing_pages": [
+    {
+      "path": "README.md",
+      "audience": "all"
+    },
+    {
+      "path": "docs/README.md",
+      "audience": "all"
+    }
+  ],
+  "sections": [
+    {
+      "id": "consumer",
+      "label": "Consumer",
+      "landing": "docs/consumer/README.md",
+      "pages": [
+        "docs/consumer/README.md",
+        "docs/consumer/identify-your-model.md",
+        "docs/consumer/product-overview.md",
+        "docs/consumer/getting-started.md",
+        "docs/consumer/everyday-use.md",
+        "docs/consumer/features-and-limitations.md",
+        "docs/consumer/phone-compatibility.md",
+        "docs/consumer/ai-models.md",
+        "docs/consumer/photos-video-and-audio.md",
+        "docs/consumer/privacy-and-cloud-services.md",
+        "docs/consumer/firmware-updates.md",
+        "docs/consumer/troubleshooting.md",
+        "docs/consumer/faq.md"
+      ]
+    },
+    {
+      "id": "developer",
+      "label": "Developer",
+      "landing": "docs/developer/README.md",
+      "pages": [
+        "docs/developer/README.md",
+        "docs/developer/current-status.md",
+        "docs/developer/roadmap.md",
+        "docs/developer/device-architecture.md",
+        "docs/developer/sdk-and-cxr/README.md",
+        "docs/developer/companion-app/README.md",
+        "docs/developer/companion-app/requirements.md",
+        "docs/developer/companion-app/test-plan.md",
+        "docs/developer/companion-app/lifecycle.md",
+        "docs/developer/on-glasses-app/README.md",
+        "docs/developer/bluetooth-and-media/README.md",
+        "docs/developer/adb-and-developer-mode/README.md",
+        "docs/developer/firmware/README.md",
+        "docs/developer/platform/README.md",
+        "docs/developer/platform/device-hub-brain-architecture.md",
+        "docs/developer/platform/cross-device-abstraction.md",
+        "docs/developer/platform/security-and-privacy.md"
+      ]
+    },
+    {
+      "id": "reference",
+      "label": "Reference",
+      "landing": "docs/reference/README.md",
+      "pages": [
+        "docs/reference/README.md",
+        "docs/reference/device-profile.md",
+        "docs/reference/firmware-inventory.md",
+        "docs/reference/android-services.md",
+        "docs/reference/bluetooth-profile.md",
+        "docs/reference/network-endpoints.md",
+        "docs/reference/terminology.md",
+        "docs/reference/claim-registry.md",
+        "docs/reference/external-resources.md"
+      ]
+    },
+    {
+      "id": "contributor",
+      "label": "Contributor",
+      "landing": "docs/contributing/README.md",
+      "pages": [
+        "docs/contributing/README.md",
+        "docs/contributing/consumer-reports.md",
+        "docs/contributing/developer-experiments.md",
+        "docs/contributing/evidence-submission.md"
+      ]
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "landing": "docs/research/README.md",
+      "pages": [
+        "docs/research/README.md",
+        "docs/research/test-matrix.md"
+      ]
+    }
+  ],
+  "legacy_redirects": [
+    {
+      "from": "docs/development/README.md",
+      "to": "docs/developer/README.md"
+    },
+    {
+      "from": "docs/development/sdk-and-development-options.md",
+      "to": "docs/developer/sdk-and-cxr/README.md"
+    },
+    {
+      "from": "docs/development/community-ecosystem.md",
+      "to": "docs/reference/external-resources.md"
+    },
+    {
+      "from": "docs/references/README.md",
+      "to": "docs/reference/README.md"
+    },
+    {
+      "from": "docs/references/resources.md",
+      "to": "docs/reference/external-resources.md"
+    },
+    {
+      "from": "docs/consumer/phone-and-local-model-compatibility.md",
+      "to": "docs/consumer/phone-compatibility.md"
+    }
+  ],
+  "canonical_roots": [
+    "docs/consumer",
+    "docs/developer",
+    "docs/reference",
+    "docs/contributing"
+  ],
+  "consumer_technical_boundary_heading": "Technical evidence"
+}

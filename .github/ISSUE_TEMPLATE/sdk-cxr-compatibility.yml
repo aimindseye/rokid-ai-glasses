@@ -1,0 +1,36 @@
+name: SDK or CXR compatibility report
+description: Qualify one SDK/package/capability on the exact non-display Style model.
+title: "[SDK/CXR] "
+labels: ["developer", "sdk"]
+body:
+  - type: input
+    attributes:
+      label: SDK/package name and version
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Source, license, or access method
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Phone, app, glasses firmware, and region
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Capability and exact result
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Qualification label
+      options:
+        - Supported
+        - Works experimentally
+        - Reference only
+        - Blocked
+        - Unverified
+    validations:
+      required: true

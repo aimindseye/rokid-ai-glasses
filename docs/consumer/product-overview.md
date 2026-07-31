@@ -1,64 +1,61 @@
-# Product Overview — Rokid AI Glasses Style
+# Product Overview
 
-## Identity
+<!-- wiki-status: audience=consumer; applies_to=rokid-ai-glasses-style-non-display; evidence=mixed; last_reviewed=2026-07-30 -->
 
-This repository focuses on **Rokid AI Glasses Style**, Rokid's display-free,
-voice-first glasses. It differs from the display-equipped **Rokid Glasses**.
+## Page status
 
-## Officially described functions
-
-Rokid describes functions including:
-
-- AI assistant interaction;
-- real-time translation;
-- first-person photo/video;
-- visual recognition;
-- meeting notes and transcription;
-- voice-guided navigation;
-- open-ear audio and calling;
-- prescription-lens customization.
-
-Because Style has no display, output is primarily audio and phone-based.
-
-## Published hardware snapshot
-
-| Component | Published specification |
+| Field | Value |
 |---|---|
-| Weight | 38.5 g |
+| Audience | Consumer |
+| Applies to | Rokid AI Glasses Style (non-display) |
+| Evidence status | Mixed |
+| Last reviewed | 2026-07-30 |
+
+
+## What it is
+
+Rokid AI Glasses Style is a display-free, audio-first pair of smart glasses with
+a camera, microphones, open-ear speakers, wireless connectivity, and a phone
+companion application.
+
+## Typical consumer uses
+
+- voice assistant interaction;
+- first-person photo and video capture;
+- visual questions about the current scene;
+- translation and transcription workflows;
+- calls and open-ear audio;
+- device settings, media review, and firmware updates through Hi Rokid.
+
+Feature availability can vary by app version, firmware, region, account, phone,
+and selected mode.
+
+## Published hardware snapshot retained by this project
+
+| Component | Repository snapshot |
+|---|---|
 | Main compute | Qualcomm AR1 Gen 1 |
 | Low-power compute | NXP RT600 family |
 | Memory | 2 GB RAM |
 | Storage | 32 GB |
 | Camera | 12 MP Sony IMX681 |
-| Wireless | Wi-Fi 6, Bluetooth 5.3 |
+| Wireless | Wi-Fi 6 and Bluetooth 5.3 |
 | Input | Four directional microphones |
 | Output | Dual open-ear speakers |
 | Battery | 210 mAh |
 | Display | None |
 
-Specifications can change by region or revision.
+Treat this as a documented snapshot, not a guarantee for every regional or
+hardware revision.
 
-## Hi Rokid companion app
+## Role of Hi Rokid
 
-Hi Rokid manages:
+In the tested stock workflow, Hi Rokid handled pairing and binding, device
+settings, model selection, visual uploads, AI sessions, retained conversation
+state, and firmware checks.
 
-- pairing and device binding;
-- AI model selection;
-- media browsing and transfer;
-- translation/navigation settings;
-- device interaction settings;
-- firmware updates;
-- account and cloud-service state.
+## Technical evidence
 
-## Independent observations
-
-- assistant requests use a Rokid-managed WebSocket;
-- ChatGPT/Gemini selections produce different opaque route IDs;
-- firmware checks submit the installed version to Rokid's OTA service;
-- firmware controls are unavailable while disconnected.
-
-## Sources
-
-- [Official Style product page](https://global.rokid.com/products/rokid-ai-glasses-style)
-- [Rokid Academy](https://global.rokid.com/pages/academy)
-- [Rokid support](https://global.rokid.com/pages/support)
+- [Device profile](../reference/device-profile.md)
+- [System architecture](../reference/device-profile.md#observed-system-role)
+- [Detailed observed architecture](../architecture/non-display-system-architecture.md)

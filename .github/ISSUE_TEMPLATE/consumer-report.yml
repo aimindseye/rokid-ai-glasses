@@ -1,0 +1,30 @@
+name: Consumer setup or troubleshooting report
+description: Report a reproducible Style setup, usage, or troubleshooting result.
+title: "[Consumer] "
+labels: ["consumer"]
+body:
+  - type: checkboxes
+    attributes:
+      label: Product scope
+      options:
+        - label: I confirmed this is Rokid AI Glasses Style (non-display).
+          required: true
+        - label: I removed serials, account IDs, Bluetooth addresses, tokens, and precise location.
+          required: true
+  - type: input
+    attributes:
+      label: Phone, region, and OS
+      placeholder: Samsung Galaxy S25 Ultra, US, Android version
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Hi Rokid and glasses firmware
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: What happened?
+      description: Include exact steps, expected result, actual result, and repeatability.
+    validations:
+      required: true
