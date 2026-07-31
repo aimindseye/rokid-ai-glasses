@@ -38,7 +38,8 @@ STUBS = {
     "org/json/JSONObject.java": 'package org.json; public class JSONObject { public JSONObject(){} public JSONObject put(String k,Object v) throws JSONException{return this;} public String toString(){return "{}";} }',
     "com/rokid/cxr/link/utils/CxrDefs.java": '''package com.rokid.cxr.link.utils; public class CxrDefs { public enum CXRSessionType { NONE,CUSTOMVIEW,CUSTOMAPP } public static class CXRSession { public CXRSession(CXRSessionType t,String p){} } }''',
     "com/rokid/cxr/link/callbacks/ICXRLinkCbk.java": '''package com.rokid.cxr.link.callbacks; public interface ICXRLinkCbk { void onCXRLConnected(boolean b); void onGlassBtConnected(boolean b); void onGlassAiAssistStart(); void onGlassAiAssistStop(); }''',
-    "com/rokid/cxr/link/CXRLink.java": '''package com.rokid.cxr.link; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class CXRLink { public CXRLink(Context c){} public void setCXRLinkCbk(ICXRLinkCbk c){} public boolean configCXRSession(CxrDefs.CXRSession s){return true;} public boolean connect(String t){return true;} public void disconnect(){} }''',
+    "com/rokid/sprite/aiapp/externalapp/example/ExternalAppClient.java": '''package com.rokid.sprite.aiapp.externalapp.example; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class ExternalAppClient { public ExternalAppClient(Context c){} public final void setCXRLinkCbk(ICXRLinkCbk c){} public final boolean configCXRSession(CxrDefs.CXRSession s){return true;} public final boolean connect(String t){return true;} public final void disconnect(){} }''',
+    "com/rokid/cxr/link/CXRLink.java": '''package com.rokid.cxr.link; import android.content.Context; import com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient; public class CXRLink extends ExternalAppClient { public CXRLink(Context c){super(c);} }''',
 }
 
 

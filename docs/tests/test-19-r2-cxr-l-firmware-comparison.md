@@ -28,3 +28,11 @@ r2.1 removes the unsupported callbacks, attests the real four-method
 `ICXRLinkCbk` surface, preserves a private class inventory and `javap` report,
 and prevents resolver failures from being misreported as APK-install failures.
 No glasses or Hi Rokid operation occurs during this repair.
+
+## r2.2 preparation correction
+
+The r2.1 resolver incorrectly searched only methods declared directly by
+`CXRLink`. Exact artifact inspection showed that all four required connection
+methods are inherited from `ExternalAppClient`. r2.2 attests the superclass,
+method owners, exact descriptors, callback set, constructors, and immutable
+artifact hashes before Gradle is allowed to run.

@@ -245,3 +245,16 @@ r2.1 removes the unsupported callbacks, attests the real four-method
 `ICXRLinkCbk` surface, preserves a private class inventory and `javap` report,
 and prevents resolver failures from being misreported as APK-install failures.
 No glasses or Hi Rokid operation occurs during this repair.
+
+## r2.2 exact inherited API-surface repair
+
+The physical `client-l:1.0.1` artifact diagnostic established that
+`com.rokid.cxr.link.CXRLink` declares no connection methods itself. It extends
+`com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient`, which declares
+`setCXRLinkCbk`, `configCXRSession`, `connect(String)`, and `disconnect()`.
+
+The r2.2 resolver therefore validates the exact AAR/POM hashes, walks this class
+hierarchy with the selected JDK's `javap`, and checks exact JVM descriptors. A
+zero direct-method count is expected and no longer treated as a failure. The
+physical connection run remains blocked until preparation builds, installs, and
+verifies the r2.2 APK.

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import functools
+import hashlib
 import http.server
 import json
 import shutil
@@ -83,7 +84,8 @@ class Test19R2Tools(unittest.TestCase):
                 "android/content/Context.java": "package android.content; public class Context {}",
                 "com/rokid/cxr/link/utils/CxrDefs.java": "package com.rokid.cxr.link.utils; public class CxrDefs { public enum CXRSessionType { CUSTOMAPP } public static class CXRSession { public CXRSession(CXRSessionType t,String p){} } }",
                 "com/rokid/cxr/link/callbacks/ICXRLinkCbk.java": "package com.rokid.cxr.link.callbacks; public interface ICXRLinkCbk { void onCXRLConnected(boolean b); void onGlassBtConnected(boolean b); void onGlassAiAssistStart(); void onGlassAiAssistStop(); }",
-                "com/rokid/cxr/link/CXRLink.java": "package com.rokid.cxr.link; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class CXRLink { public CXRLink(Context c){} public void setCXRLinkCbk(ICXRLinkCbk c){} public boolean configCXRSession(CxrDefs.CXRSession s){return true;} public boolean connect(String t){return true;} public void disconnect(){} }",
+                "com/rokid/sprite/aiapp/externalapp/example/ExternalAppClient.java": "package com.rokid.sprite.aiapp.externalapp.example; import android.content.Context; import com.rokid.cxr.link.callbacks.ICXRLinkCbk; import com.rokid.cxr.link.utils.CxrDefs; public class ExternalAppClient { public ExternalAppClient(Context c){} public final void setCXRLinkCbk(ICXRLinkCbk c){} public final boolean configCXRSession(CxrDefs.CXRSession s){return true;} public final boolean connect(String t){return true;} public final void disconnect(){} }",
+                "com/rokid/cxr/link/CXRLink.java": "package com.rokid.cxr.link; import android.content.Context; import com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient; public class CXRLink extends ExternalAppClient { public CXRLink(Context c){super(c);} }",
             }
             files=[]
             for relative, text in java_sources.items():
@@ -109,11 +111,25 @@ class Test19R2Tools(unittest.TestCase):
                     "python3", str(RESOLVER), "--version", "1.0.1",
                     "--repository", f"http://127.0.0.1:{server.server_port}",
                     "--output", str(output),
+                    "--javap", shutil.which("javap"),
+                    "--expected-aar-sha256", hashlib.sha256((repo/"client-l-1.0.1.aar").read_bytes()).hexdigest(),
+                    "--expected-pom-sha256", hashlib.sha256((repo/"client-l-1.0.1.pom").read_bytes()).hexdigest(),
                 ], check=False, text=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
                 self.assertEqual(completed.returncode, 0, completed.stdout)
                 result=json.loads((output/"cxr-l-artifact-attestation.json").read_text())
                 self.assertTrue(result["required_classes_complete"])
                 self.assertTrue(result["required_methods_complete"])
+                self.assertTrue(result["exact_artifact_hashes_complete"])
+                self.assertEqual(
+                    result["cxr_link_superclass"],
+                    "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+                )
+                self.assertEqual(result["direct_cxr_link_required_method_count"], 0)
+                self.assertEqual(result["required_effective_method_count"], 4)
+                self.assertEqual(
+                    set(result["method_declaring_classes"].values()),
+                    {"com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient"},
+                )
                 self.assertFalse(result["glass_info_class_present"])
                 self.assertEqual(
                     set(result["required_callback_methods"]),
@@ -129,6 +145,16 @@ class Test19R2Tools(unittest.TestCase):
                 server.shutdown()
                 server.server_close()
                 thread.join(timeout=5)
+
+
+    def test_resolver_attests_inherited_methods_and_exact_descriptors(self) -> None:
+        text = RESOLVER.read_text(encoding="utf-8")
+        self.assertIn("EXPECTED_AAR_SHA256", text)
+        self.assertIn("EXPECTED_POM_SHA256", text)
+        self.assertIn("parse_superclass", text)
+        self.assertIn("method_declaring_classes", text)
+        self.assertIn("(Ljava/lang/String;)Z", text)
+        self.assertIn("(Lcom/rokid/cxr/link/callbacks/ICXRLinkCbk;)V", text)
 
     def test_prepare_does_not_report_false_install_failure_after_resolver_failure(self) -> None:
         text = (ROOT / "scripts/tests/prepare_test19_r2.sh").read_text(encoding="utf-8")

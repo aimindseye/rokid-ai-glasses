@@ -66,7 +66,7 @@ extract_version() {
     head -n 1
 }
 
-echo "Test 19 r2 CXR-L preparation"
+echo "Test 19 r2.2 CXR-L preparation"
 echo "================================"
 echo "REPO=$REPO"
 echo "PHONE_SERIAL=$PHONE_SERIAL"
@@ -104,7 +104,8 @@ fi
 mkdir -p "$PRIVATE_ROOT"
 python3 "$REPO/scripts/research/cxr/resolve_cxr_l_maven.py" \
   --version "$CXR_L_VERSION" \
-  --output "$PRIVATE_ROOT"
+  --output "$PRIVATE_ROOT" \
+  --javap "$JAVA_CANDIDATE/bin/javap"
 RESOLVE_RC=$?
 echo "CXR_L_RESOLVER_EXIT_CODE=$RESOLVE_RC"
 if [ "$RESOLVE_RC" -eq 0 ]; then
