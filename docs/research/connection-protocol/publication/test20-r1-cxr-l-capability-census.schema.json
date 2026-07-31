@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aimindseye/rokid-ai-glasses/schemas/test20-r1-cxr-l-capability-census.public.v1.json",
+  "title": "Test 20 r1 sanitized CXR-L capability census",
+  "type": "object",
+  "required": [
+    "schema",
+    "scope",
+    "sdk",
+    "hi_rokid",
+    "runtime_qualification",
+    "summary",
+    "privacy",
+    "conclusion"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rokid.test20.r1.cxr-l-capability-census.public.v1"
+    },
+    "scope": {"type": "string"},
+    "sdk": {
+      "type": "object",
+      "required": ["coordinate", "artifact", "dependencies", "classes", "native_libraries"]
+    },
+    "hi_rokid": {
+      "type": "object",
+      "required": ["package", "version_code", "version_name", "baseline_zip_sha256", "components"]
+    },
+    "runtime_qualification": {
+      "type": "object",
+      "required": ["classification", "firmware_1_22", "firmware_1_23", "regression_observed", "connection_path"]
+    },
+    "summary": {"type": "object"},
+    "privacy": {
+      "type": "object",
+      "required": [
+        "proprietary_binaries_included",
+        "authorization_tokens_included",
+        "device_serials_included",
+        "bluetooth_addresses_included",
+        "media_payloads_included",
+        "cloud_requests_performed",
+        "phone_mutation",
+        "glasses_command_execution"
+      ]
+    },
+    "conclusion": {"type": "string"}
+  },
+  "additionalProperties": true
+}

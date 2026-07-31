@@ -1,4 +1,4 @@
-# Project Status Through Test 19 r2
+# Project Status Through Test 19 r2 and Test 20 r1 Readiness
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -52,7 +52,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 ## Immediate next phase
 
-Test 19 r2 is complete and publication-closed. Proceed with Test 20 r1, an exact CXR-L 1.0.1 capability census, before selecting bounded camera, audio, control, local-AI, privacy, or lifecycle experiments on the validated Hi Rokid/CXR-L coexistence path.
+Test 19 r2 is complete and publication-closed. Test 20 r1 census tooling is ready. Run the exact CXR-L 1.0.1 SDK, native/JNI, session-type, and Hi Rokid exported-component census before selecting bounded camera, audio, control, local-AI, privacy, or lifecycle experiments on the validated Hi Rokid/CXR-L coexistence path. See [Test 20 r1](tests/test-20-r1-cxr-l-capability-census.md).
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before any persistent firmware
