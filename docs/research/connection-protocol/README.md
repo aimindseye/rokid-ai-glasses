@@ -62,6 +62,18 @@ action discriminator, and structured state role.
 - [Evidence hashes](stock-adb-toggle/evidence-hashes.txt)
 - [Historical pre-repair findings](r1.3.3.2.25.3-pre-repair-findings.md)
 
+## Accepted CXR-L capability census publication
+
+Test 20 r1.2 publishes the reviewed and corrected static census for
+`com.rokid.cxr:client-l:1.0.1`. The authoritative runtime boundary contains
+nine descriptor-exact members and two Hi Rokid components. The original
+over-broad Test 20 r1 classification remains withdrawn.
+
+- [Corrected machine-readable census](publication/test20-r1-cxr-l-capability-census.json)
+- [Corrected human-readable census](publication/test20-r1-cxr-l-capability-census.md)
+- [Evidence identities](publication/test20-r1-cxr-l-evidence-hashes.txt)
+- [Final publication closure](../../tests/test-20-r1-2-cxr-l-final-publication.md)
+
 ## Implementation and research history
 
 - [Known boundaries](known-boundaries.md)

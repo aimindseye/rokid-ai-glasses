@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aimindseye/rokid-ai-glasses/schemas/test20-r1-1-cxr-l-capability-census.public.v1.json",
+  "title": "Test 20 r1.1 sanitized CXR-L member-level capability census",
+  "type": "object",
+  "required": [
+    "schema",
+    "scope",
+    "sdk",
+    "hi_rokid",
+    "runtime_qualification",
+    "repair",
+    "summary",
+    "privacy",
+    "conclusion"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rokid.test20.r1.1.cxr-l-capability-census.public.v1"
+    },
+    "scope": {"type": "string"},
+    "sdk": {
+      "type": "object",
+      "required": [
+        "coordinate",
+        "artifact",
+        "dependencies",
+        "session_types",
+        "session_storage_fields",
+        "classes",
+        "native_libraries"
+      ]
+    },
+    "hi_rokid": {
+      "type": "object",
+      "required": [
+        "package",
+        "version_code",
+        "version_name",
+        "baseline_zip_sha256",
+        "components"
+      ]
+    },
+    "runtime_qualification": {
+      "type": "object",
+      "required": [
+        "classification",
+        "firmware_1_22",
+        "firmware_1_23",
+        "regression_observed",
+        "connection_path",
+        "granularity",
+        "propagation_from_class_to_members",
+        "qualified_member_count",
+        "qualified_members",
+        "qualified_component_count",
+        "qualified_components",
+        "explicitly_unobserved_callbacks"
+      ],
+      "properties": {
+        "granularity": {"const": "descriptor-exact-member-and-component"},
+        "propagation_from_class_to_members": {"const": false},
+        "qualified_member_count": {"const": 9},
+        "qualified_component_count": {"const": 2}
+      }
+    },
+    "repair": {
+      "type": "object",
+      "required": [
+        "repair_id",
+        "source_publication_schema",
+        "source_sanitized_zip_sha256",
+        "source_publication_json_sha256",
+        "defects_closed",
+        "device_rerun_required",
+        "maven_operation_required",
+        "proprietary_binary_required"
+      ],
+      "properties": {
+        "repair_id": {"const": "test20-r1.1"},
+        "device_rerun_required": {"const": false},
+        "maven_operation_required": {"const": false},
+        "proprietary_binary_required": {"const": false}
+      }
+    },
+    "summary": {
+      "type": "object",
+      "required": [
+        "public_class_count",
+        "public_member_count",
+        "public_constructor_count",
+        "public_method_count",
+        "public_field_count",
+        "public_enum_constant_count",
+        "runtime_qualified_member_count",
+        "runtime_qualified_component_count",
+        "synthetic_or_obfuscated_member_count"
+      ],
+      "properties": {
+        "public_class_count": {"const": 72},
+        "public_member_count": {"const": 594},
+        "public_constructor_count": {"const": 56},
+        "public_method_count": {"const": 429},
+        "public_field_count": {"const": 106},
+        "public_enum_constant_count": {"const": 3},
+        "runtime_qualified_member_count": {"const": 9},
+        "runtime_qualified_component_count": {"const": 2}
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "required": [
+        "proprietary_binaries_included",
+        "authorization_tokens_included",
+        "device_serials_included",
+        "bluetooth_addresses_included",
+        "media_payloads_included",
+        "cloud_requests_performed",
+        "phone_mutation",
+        "glasses_command_execution"
+      ],
+      "properties": {
+        "proprietary_binaries_included": {"const": false},
+        "authorization_tokens_included": {"const": false},
+        "device_serials_included": {"const": false},
+        "bluetooth_addresses_included": {"const": false},
+        "media_payloads_included": {"const": false},
+        "cloud_requests_performed": {"const": false},
+        "phone_mutation": {"const": "NONE"},
+        "glasses_command_execution": {"const": "NONE"}
+      }
+    },
+    "conclusion": {"type": "string"}
+  },
+  "additionalProperties": true
+}

@@ -11,7 +11,6 @@
 | Evidence status | Validated |
 | Last reviewed | 2026-07-31 |
 
-
 ## Replacement companion boundary
 
 | Capability | Current status |
@@ -26,6 +25,7 @@
 | Independent Developer Mode sender | Not implemented; replay prohibited |
 | Direct CXR-M experiment | r1 evidence retained; ownership classification withdrawn; runner disabled |
 | Hi Rokid CXR-L client | Test 19 r2 accepted: firmware 1.22/1.23 PASS, no tested regression, r2.4 runtime repairs physically validated |
+| CXR-L 1.0.1 capability census | Test 20 r1.2 accepted: static census and corrected member-level publication complete |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -44,10 +44,23 @@
 
 ## Recommended next gate
 
-Test 19 r2 is complete and publication-closed. The immediate next gate is Test 20 r1: an exact CXR-L 1.0.1 capability and runtime-surface census before any media or control command is attempted. Subsequent Test 20 stages may qualify bounded control-plane callbacks and then media only where the attested surface supports it. Custom firmware is not the critical path unless supported APIs and an ordinary on-glasses application cannot provide those capabilities.
+Test 19 r2 is complete and publication-closed. Test 20 r1.2 publishes the
+reviewed CXR-L 1.0.1 census with nine descriptor-exact runtime-qualified members,
+two qualified Hi Rokid components, and explicit synthetic and obfuscated origin
+labels. The original overbroad Test 20 r1 publication remains withdrawn.
+
+The next bounded phase is Test 20 r2 control-plane qualification. Start with
+read-only or callback-only behavior that is explicitly present in the accepted
+census. Camera, audio, custom commands, custom views, provider access, glass-app
+management, and native/JNI behavior remain untested and require separate
+approval.
 
 ## Evidence
 
 - [Project status](../project-status.md)
+- [Test 20 r1 census guide](../tests/test-20-r1-cxr-l-capability-census.md)
+- [Test 20 r1.1 classification repair](../tests/test-20-r1-1-cxr-l-classification-repair.md)
+- [Test 20 r1.2 final publication](../tests/test-20-r1-2-cxr-l-final-publication.md)
+- [Published capability census](../research/connection-protocol/publication/test20-r1-cxr-l-capability-census.md)
 - [Connection-protocol research](../research/connection-protocol/README.md)
 - [Boot-chain research](../research/boot-chain/README.md)
