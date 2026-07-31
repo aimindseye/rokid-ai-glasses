@@ -1,5 +1,7 @@
 # Test 19 r1 — Maven-Resolved CXR-M Qualification
 
+> **Withdrawn:** This CXR-M workflow is retained for historical evidence only. Its ownership classification was invalidated by overlapping attempts and phase-attribution defects. Do not run it; use [Test 19 r2](test-19-r2-qualification.md).
+
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=planned; last_reviewed=2026-07-30 -->
 
 ## Page status

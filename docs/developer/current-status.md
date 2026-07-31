@@ -24,7 +24,8 @@
 | Stock ADB-toggle outbound message family | Four qualified messages attributed and decoded |
 | Reply, authorization, integrity, and session binding | Unresolved |
 | Independent Developer Mode sender | Not implemented; replay prohibited |
-| Style-qualified CXR-M client | Test 19 harness implemented; physical qualification pending |
+| Direct CXR-M experiment | r1 evidence retained; ownership classification withdrawn; runner disabled |
+| Hi Rokid CXR-L client | Test 19 r2 implemented; physical 1.22/1.23 qualification pending |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -44,7 +45,7 @@
 ## Recommended next gate
 
 The immediate next engineering gate is
-[Test 19 r1: Maven-resolved CXR-M qualification](companion-app/test-19-r1-qualification.md).
+[Test 19 r2: Hi Rokid CXR-L firmware comparison](companion-app/test-19-r2-qualification.md).
 Custom firmware is not the critical path unless supported APIs and an ordinary
 on-glasses application cannot provide the required camera, microphone, speaker,
 input, and offline-control capabilities.

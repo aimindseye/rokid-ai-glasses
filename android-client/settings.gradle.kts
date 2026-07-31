@@ -18,3 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "RokidChannelProbe"
 include(":app")
 include(":test19")
+include(":test19r2")

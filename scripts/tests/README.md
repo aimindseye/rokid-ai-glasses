@@ -34,7 +34,11 @@ There is no independent companion-app or Developer Mode replay runner yet.
 
 ## Replacement companion qualification
 
-- `run_test19_cxr_qualification.sh` — Maven-resolved CXR-M compatibility, reboot, stock-recovery, ownership, and privacy qualification
-- `analyze_test19_network.py` — PCAPdroid CSV local/public destination gate
-- `analyze_test19_cxr_evidence.py` — sanitized result and classification generator
-- `test_test19_cxr_tools.py` — synthetic resolver, artifact, network, evidence, and source-contract tests
+- `prepare_test19_r2.sh` — exact CXR-L 1.0.1 resolution, build, and install
+- `run_test19_r2_connection.sh` — one authorization/connection/stock-recovery run
+- `run_test19_r2_privacy.sh` — separate PCAPdroid metadata gate
+- `record_test19_r2_firmware_transition.sh` — read-only transition evidence assembly
+- `analyze_test19_r2_events.py` — sanitized connection classification
+- `analyze_test19_r2_network.py` — custom-app versus stock-app destination classification
+- `test_test19_r2_tools.py` — synthetic stage, privacy, and source-contract tests
+- `run_test19_cxr_qualification.sh` — disabled historical r1 CXR-M runner

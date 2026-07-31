@@ -1,4 +1,4 @@
-# Project Status Through r26.0
+# Project Status Through Test 19 r2
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=observed; last_reviewed=2026-07-30 -->
 
@@ -38,8 +38,9 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 | Capability | Current result |
 |---|---|
-| Style-qualified CXR-M connection and status | Qualification harness implemented; physical run pending |
-| Hi Rokid coexistence and session ownership | Not yet tested |
+| Direct CXR-M connection | Diagnostic r1 run retained; ownership result withdrawn |
+| Hi Rokid CXR-L authorization and connection | r2 harness implemented; 1.22/1.23 physical comparison pending |
+| Hi Rokid coexistence | Included as stock-recovery gate in r2; physical result pending |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
 | Physical control events in a custom app | Not yet tested |
@@ -51,7 +52,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 ## Immediate next phase
 
-Proceed with [Test 19 r1: Maven-resolved CXR-M qualification](developer/companion-app/test-19-r1-qualification.md), then camera,
+Proceed with [Test 19 r2: Hi Rokid CXR-L firmware comparison](developer/companion-app/test-19-r2-qualification.md), then camera,
 audio, controls, local AI, privacy, and lifecycle qualification.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a

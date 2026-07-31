@@ -1,5 +1,7 @@
 # Test 19 r1 — Maven-Resolved CXR-M Build and Ownership Qualification
 
+> **Withdrawn:** The r1 ownership classification is withdrawn and its runner is disabled. Use [Test 19 r2](test-19-r2-cxr-l-firmware-comparison.md).
+
 <!-- wiki-status: audience=research; applies_to=rokid-ai-glasses-style-non-display; evidence=planned; last_reviewed=2026-07-30 -->
 
 ## Page status

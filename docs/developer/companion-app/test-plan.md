@@ -12,28 +12,28 @@
 | Last reviewed | 2026-07-30 |
 
 
-## Test 19 r1 — Maven-resolved CXR-M compatibility, ownership, and privacy gate
+## Test 19 r2 — Hi Rokid CXR-L authorization and firmware comparison
 
-Qualify the authorized SDK artifact and runtime surface, initialization,
-discovery, connection, safe status queries, clean disconnect, glasses and phone
-reconnect, Hi Rokid foreground/background/force-stop ownership, and stock
-recovery.
+Qualify the consumer-coexistence path through Hi Rokid `G1.11.11.0727` and
+CXR-L `client-l:1.0.1`. Run the identical connection-only APK on firmware
+`1.22.009-20260710-151201`, preserve evidence, update manually, and repeat on
+`1.23.009-20260725-153201`.
 
-Use the governed [Test 19 qualification runbook](test-19-r1-qualification.md). The runner resolves the version from live Maven metadata, records hashes, and does not redistribute downloaded SDK bytes.
+Use the governed [Test 19 r2 runbook](test-19-r2-qualification.md). Ownership,
+reboot, media, and APK-upload work is excluded. The old CXR-M Test 19 r1 runner
+is disabled because its overlapping phases did not support a valid ownership
+classification.
 
-Required terminal outcomes:
+Required connection outcomes for each firmware are:
 
 ```text
-CUSTOM_APP_CXR_M_ARTIFACT_AND_API_SURFACE=PASS
-CUSTOM_APP_DEVICE_DISCOVERY=PASS
-CUSTOM_APP_DEVICE_CONNECTION=PASS
-CUSTOM_APP_HARDWARE_STATUS_QUERY=PASS
-CUSTOM_APP_CLEAN_DISCONNECT=PASS
-CUSTOM_APP_RECONNECT_AFTER_GLASSES_REBOOT=PASS
-CUSTOM_APP_RECONNECT_AFTER_PHONE_REBOOT=PASS
-HI_ROKID_STOCK_RECOVERY=PASS
-LOCAL_NETWORK_PRIVACY_GATE=PASS
-TEST19_R1_CXR_M_QUALIFICATION=PASS
+TEST19_R2_AUTHORIZATION=PASS
+TEST19_R2_CUSTOMAPP_SESSION_CONFIG=PASS
+TEST19_R2_CXR_L_SERVICE_CONNECTION=PASS
+TEST19_R2_GLASS_BLUETOOTH_CALLBACK=PASS
+TEST19_R2_CLEAN_DISCONNECT=PASS
+TEST19_R2_HI_ROKID_RECOVERY=PASS
+TEST19_R2_QUALIFICATION=PASS
 ```
 
 ## Test 20 — Hi Rokid ownership and coexistence

@@ -1,25 +1,16 @@
 # Android Client Experiments
 
-The existing `app` module contains the historical channel probe. The `test19`
-module is a separate CXR-M connection-only qualification client.
+The historical `app` module contains the RFCOMM channel probe. The historical
+`test19` CXR-M module and evidence remain for research traceability, but its
+monolithic runner is disabled.
 
-## Test 19 r1 module
+## Test 19 r2 CXR-L module
 
-The module resolves `com.rokid.cxr:client-m:<version>` from Rokid's Maven
-repository. Supply the exact version selected by the committed resolver:
+The `test19r2` module resolves exactly `com.rokid.cxr:client-l:1.0.1`, requests
+authorization through Hi Rokid, configures one `CUSTOMAPP` session, waits for
+`onCXRLConnected(true)` and `onGlassBtConnected(true)`, and disconnects. It
+contains no media, APK upload, reboot, unpair, or Hi Rokid force-stop action.
 
-```bash
-./gradlew :test19:assembleDebug -ProkidCxrVersion='<VERSION>'
-```
-
-The app dynamically attests the CXR API surface, discovers devices advertising
-service UUID `00009100-0000-1000-8000-00805f9b34fb`, invokes the documented
-initial Bluetooth connection path, queries allowlisted status methods, and
-calls `deinitBluetooth()`.
-
-Network and Wi-Fi permissions are present because the documented SDK requires
-them. The test's privacy boundary is enforced by capture-based destination
-analysis, not by deleting required Android permissions. No proprietary SDK
-artifact is committed.
-
-See the [Test 19 r1 runbook](../docs/developer/companion-app/test-19-r1-qualification.md).
+Build through `scripts/tests/prepare_test19_r2.sh`; do not invoke Gradle without
+the exact `-ProkidCxrLVersion=1.0.1` property. See the
+[Test 19 r2 runbook](../docs/developer/companion-app/test-19-r2-qualification.md).
