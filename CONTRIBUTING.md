@@ -2,48 +2,29 @@
 
 Contributions are welcome for the display-free Rokid AI Glasses Style.
 
+## Choose the correct path
+
+- [Consumer and compatibility reports](docs/contributing/consumer-reports.md)
+- [Developer experiments](docs/contributing/developer-experiments.md)
+- [Evidence submission](docs/contributing/evidence-submission.md)
+
 ## Before submitting
 
-1. Identify whether the material applies to **Style (display-free)**,
-   **Rokid Glasses (display)**, or another product.
+1. Identify the exact product family.
 2. Label claims as **Official**, **Observed**, **Inferred**, or **Unverified**.
-3. Remove account IDs, serials, Bluetooth addresses, tokens, and location.
-4. Do not commit PCAPs, TLS keys, bugreports, raw logcat, HCI logs, APKs,
-   native libraries, or decrypted payload exports.
-5. Link primary sources for current product and SDK claims.
-6. Keep consumer guidance separate from research interpretation.
-
-## Compatibility reports
-
-Include:
-
-- phone and region;
-- OS version;
-- Hi Rokid version;
-- glasses firmware;
-- feature tested;
-- exact result and repeatability;
-- evidence type.
-
-Do not publish serial numbers, MAC addresses, account IDs, or authorization
-headers.
-
-## Test reports
-
-Include:
-
-- purpose and controlled variable;
-- preconditions;
-- exact procedure;
-- acceptance and rejection rules;
-- evidence completeness;
-- limitations;
-- sanitized findings.
+3. Keep consumer guidance separate from developer procedures.
+4. Preserve historical tests and research rather than rewriting accepted
+   evidence in place.
+5. Remove serials, Bluetooth addresses, account IDs, tokens, and precise
+   location.
+6. Do not commit PCAPs, TLS keys, bugreports, HCI logs, APKs, native libraries,
+   firmware images, or decrypted payload exports.
+7. Link primary or authoritative sources for current external claims.
 
 ## Validation
 
-Run:
-
 ```bash
 bash scripts/safety/validate_public_repo.sh
+python3 scripts/safety/check_markdown_links.py --repo .
+python3 scripts/safety/check_documentation_governance.py --repo .
 ```

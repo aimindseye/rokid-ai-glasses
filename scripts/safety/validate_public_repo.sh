@@ -114,7 +114,7 @@ PYV
 PYCACHE_DIR="$(mktemp -d)"
 trap 'rm -rf "$PYCACHE_DIR"' EXIT
 PYTHONPYCACHEPREFIX="$PYCACHE_DIR" \
-  python3 -m py_compile scripts/tests/*.py scripts/recovery/*.py
+  python3 -m py_compile scripts/tests/*.py scripts/recovery/*.py scripts/safety/*.py
 
 for script in scripts/tests/*.sh scripts/safety/*.sh; do
   [[ -f "$script" ]] || continue
@@ -129,6 +129,8 @@ import pathlib
 for path in pathlib.Path("evidence").rglob("*.json"):
     json.loads(path.read_text(encoding="utf-8"))
 PYJSON
+
+python3 scripts/safety/check_documentation_governance.py --repo .
 
 git diff --check
 

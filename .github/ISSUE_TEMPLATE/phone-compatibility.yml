@@ -1,0 +1,40 @@
+name: Phone compatibility report
+description: Report pairing, operation, or feature-gate compatibility for one phone.
+title: "[Compatibility] "
+labels: ["compatibility"]
+body:
+  - type: input
+    attributes:
+      label: Phone model, region, and OS
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: Hi Rokid and glasses firmware
+    validations:
+      required: true
+  - type: dropdown
+    attributes:
+      label: Capability tested
+      options:
+        - Install and launch Hi Rokid
+        - Pair and connect
+        - Voice assistant
+        - Visual assistant
+        - Translation
+        - Local-model gate
+        - Firmware page
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Exact result and repeatability
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Privacy
+      options:
+        - label: I removed device and account identifiers.
+          required: true

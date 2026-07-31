@@ -1,7 +1,19 @@
 # Research Index
 
+<!-- wiki-status: audience=research; applies_to=rokid-ai-glasses-style-non-display; evidence=historical; last_reviewed=2026-07-30 -->
+
+## Page status
+
+| Field | Value |
+|---|---|
+| Audience | Research |
+| Applies to | Rokid AI Glasses Style (non-display) |
+| Evidence status | Historical |
+| Last reviewed | 2026-07-30 |
+
 ## Evidence rules
 
+- [Research test matrix](test-matrix.md)
 - [Evidence levels](evidence-levels.md)
 - [General evidence handling](../methodology/evidence-handling.md)
 - [Interpretation boundaries](../methodology/interpretation-boundaries.md)

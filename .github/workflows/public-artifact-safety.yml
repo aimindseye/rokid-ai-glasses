@@ -13,3 +13,7 @@ jobs:
         run: bash scripts/safety/validate_public_repo.sh
       - name: Validate documentation links
         run: python3 scripts/safety/check_markdown_links.py --repo .
+      - name: Validate documentation governance
+        run: python3 scripts/safety/check_documentation_governance.py --repo .
+      - name: Run documentation governance tests
+        run: python3 -m unittest scripts.tests.test_documentation_governance
