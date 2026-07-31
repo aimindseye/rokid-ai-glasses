@@ -9,6 +9,7 @@ pluginManagement {
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
+        maven { url = uri("https://maven.rokid.com/repository/maven-public/") }
         google()
         mavenCentral()
     }
@@ -16,3 +17,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "RokidChannelProbe"
 include(":app")
+include(":test19")
+include(":test19r2")

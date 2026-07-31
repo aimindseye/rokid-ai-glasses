@@ -1,0 +1,6 @@
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-fail","firmware_label":"1.22.009-20260710-151201","event_type":"run_started","details":{}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-fail","firmware_label":"1.22.009-20260710-151201","event_type":"hi_rokid_environment","details":{"package_name":"com.rokid.sprite.global.aiapp","version_name":"G1.11.11.0727","authorization_resolved":true,"media_service_resolved":true}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-fail","firmware_label":"1.22.009-20260710-151201","event_type":"authorization_result","details":{"token_present":false,"token_value_logged":false}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-fail","firmware_label":"1.22.009-20260710-151201","event_type":"qualification_terminal","details":{"outcome":"AUTHORIZATION_TOKEN_MISSING","success":false}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-fail","firmware_label":"1.22.009-20260710-151201","event_type":"disconnect_result","details":{"sdk_disconnect_returned":false}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-fail","firmware_label":"1.22.009-20260710-151201","event_type":"run_completed","details":{"terminal_success":false}}

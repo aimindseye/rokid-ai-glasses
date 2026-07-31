@@ -19,3 +19,8 @@ rewriting historical test paths.
 
 Use the [Research index](README.md) for connection protocol, boot-chain,
 native-loader, and protected-application release history.
+
+## Current implementation gate
+
+- [Test 19 r2 — CXR-L authorization and firmware comparison](../tests/test-19-r2-cxr-l-firmware-comparison.md): harness implemented; physical 1.22/1.23 qualification pending.
+- [Test 19 r1 — withdrawn CXR-M ownership experiment](../tests/test-19-r1-cxr-m-maven-and-ownership.md): diagnostic evidence retained; ownership classification withdrawn.

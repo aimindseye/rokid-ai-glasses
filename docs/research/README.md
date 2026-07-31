@@ -59,6 +59,17 @@ The next research phase is independent confirmation and code/reply correlation.
 Custom transmission and captured-payload replay remain disabled until positive
 reply, authorization/integrity, and rollback semantics are proven.
 
+
+## CXR-M companion qualification
+
+Test 19 moves the replacement-app work from transport reachability to an
+authorized SDK compatibility and ownership qualification. The public repository
+contains the harness and interpretation contract; physical results remain
+pending until a reviewed run is completed.
+
+- [Test 19 research record](../tests/test-19-r1-cxr-m-maven-and-ownership.md)
+- [Developer qualification runbook](../developer/companion-app/test-19-r1-qualification.md)
+
 ## OTA boot-chain and offline boot-image research
 
 The read-only boot-chain track matched the live 11,904-byte vbmeta chain to the

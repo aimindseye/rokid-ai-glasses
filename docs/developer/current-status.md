@@ -1,6 +1,6 @@
 # Developer Current Status
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=observed; last_reviewed=2026-07-30 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
 ## Page status
 
@@ -8,8 +8,8 @@
 |---|---|
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
-| Evidence status | Observed |
-| Last reviewed | 2026-07-30 |
+| Evidence status | Validated |
+| Last reviewed | 2026-07-31 |
 
 
 ## Replacement companion boundary
@@ -24,7 +24,8 @@
 | Stock ADB-toggle outbound message family | Four qualified messages attributed and decoded |
 | Reply, authorization, integrity, and session binding | Unresolved |
 | Independent Developer Mode sender | Not implemented; replay prohibited |
-| Style-qualified CXR-M client | Not yet tested |
+| Direct CXR-M experiment | r1 evidence retained; ownership classification withdrawn; runner disabled |
+| Hi Rokid CXR-L client | Test 19 r2 accepted: firmware 1.22/1.23 PASS, no tested regression, r2.4 runtime repairs physically validated |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -43,11 +44,7 @@
 
 ## Recommended next gate
 
-The immediate next engineering gate is
-[Test 19: CXR-M non-display compatibility](companion-app/test-plan.md#test-19-cxr-m-compatibility-gate).
-Custom firmware is not the critical path unless supported APIs and an ordinary
-on-glasses application cannot provide the required camera, microphone, speaker,
-input, and offline-control capabilities.
+Test 19 r2 is complete and publication-closed. The immediate next gate is Test 20 r1: an exact CXR-L 1.0.1 capability and runtime-surface census before any media or control command is attempted. Subsequent Test 20 stages may qualify bounded control-plane callbacks and then media only where the attested surface supports it. Custom firmware is not the critical path unless supported APIs and an ordinary on-glasses application cannot provide those capabilities.
 
 ## Evidence
 

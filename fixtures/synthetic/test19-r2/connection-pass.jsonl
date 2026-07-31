@@ -1,0 +1,9 @@
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"run_started","details":{}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"hi_rokid_environment","details":{"package_name":"com.rokid.sprite.global.aiapp","version_name":"G1.11.11.0727","authorization_resolved":true,"media_service_resolved":true}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"authorization_result","details":{"token_present":true,"token_value_logged":false}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"session_config_result","details":{"configured":true}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"callback_cxrl_connected","details":{"connected":true}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"callback_glass_bt_connected","details":{"connected":true}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"qualification_terminal","details":{"outcome":"CONNECTED_BOTH_CALLBACKS","success":true}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"disconnect_result","details":{"sdk_disconnect_returned":true}}
+{"schema":"rokid.test19-r2.cxrl-event.v1","run_id":"synthetic-pass","firmware_label":"1.22.009-20260710-151201","event_type":"run_completed","details":{"terminal_success":true}}

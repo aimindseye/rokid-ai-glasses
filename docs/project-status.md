@@ -1,6 +1,6 @@
-# Project Status Through r26.0
+# Project Status Through Test 19 r2
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=observed; last_reviewed=2026-07-30 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
 ## Page status
 
@@ -8,8 +8,8 @@
 |---|---|
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
-| Evidence status | Observed |
-| Last reviewed | 2026-07-30 |
+| Evidence status | Validated |
+| Last reviewed | 2026-07-31 |
 
 
 This page separates completed stock-workflow and transport qualification from
@@ -38,8 +38,9 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 | Capability | Current result |
 |---|---|
-| Style-qualified CXR-M connection and status | Not yet tested |
-| Hi Rokid coexistence and session ownership | Not yet tested |
+| Direct CXR-M connection | Diagnostic r1 run retained; ownership result withdrawn |
+| Hi Rokid CXR-L authorization and connection | PASS on firmware 1.22 and 1.23 through fallback-assisted service bind; r2.4 identity and disconnect repairs physically validated |
+| Hi Rokid coexistence | PASS after both controlled firmware runs |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
 | Physical control events in a custom app | Not yet tested |
@@ -51,8 +52,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 ## Immediate next phase
 
-Proceed with [Test 19: CXR-M compatibility](developer/companion-app/test-plan.md#test-19-cxr-m-compatibility-gate), then connection ownership, camera,
-audio, controls, local AI, privacy, and lifecycle qualification.
+Test 19 r2 is complete and publication-closed. Proceed with Test 20 r1, an exact CXR-L 1.0.1 capability census, before selecting bounded camera, audio, control, local-AI, privacy, or lifecycle experiments on the validated Hi Rokid/CXR-L coexistence path.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before any persistent firmware

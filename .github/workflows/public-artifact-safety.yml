@@ -17,3 +17,9 @@ jobs:
         run: python3 scripts/safety/check_documentation_governance.py --repo .
       - name: Run documentation governance tests
         run: python3 -m unittest scripts.tests.test_documentation_governance
+      - name: Run historical Test 19 tool tests
+        run: python3 -m unittest scripts.tests.test_test19_cxr_tools
+      - name: Run Test 19 r2 CXR-L tests
+        run: python3 -m unittest scripts.tests.test_test19_r2_tools
+      - name: Compile Test 19 r2 against bounded stubs
+        run: python3 scripts/tests/compile_test19_r2_with_stubs.py
