@@ -24,9 +24,21 @@ android {
     }
 }
 
-val cxrVersion = providers.gradleProperty("rokidCxrVersion").orNull?.trim()
-    ?: throw GradleException("Pass -ProkidCxrVersion=<resolved client-m version>")
+val cxrVersion = providers.gradleProperty("rokidCxrVersion")
+    .orNull
+    ?.trim()
+    ?.takeIf { it.isNotEmpty() }
 
-dependencies {
-    implementation("com.rokid.cxr:client-m:$cxrVersion")
+if (cxrVersion != null) {
+    dependencies {
+        implementation("com.rokid.cxr:client-m:$cxrVersion")
+    }
+}
+
+val modulePath = project.path
+gradle.taskGraph.whenReady { graph ->
+    val test19TaskSelected = graph.allTasks.any { task -> task.project.path == modulePath }
+    if (test19TaskSelected && cxrVersion == null) {
+        throw GradleException("Pass -ProkidCxrVersion=<resolved client-m version>")
+    }
 }

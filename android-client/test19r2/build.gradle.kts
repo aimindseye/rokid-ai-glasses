@@ -10,8 +10,8 @@ android {
         applicationId = "org.aimindseye.rokid.cxrlqualification"
         minSdk = 31
         targetSdk = 36
-        versionCode = 3
-        versionName = "2.2-test19-r2.2"
+        versionCode = 4
+        versionName = "2.3-test19-r2.3"
     }
 
     buildTypes {
@@ -24,13 +24,24 @@ android {
     }
 }
 
-val cxrLVersion = providers.gradleProperty("rokidCxrLVersion").orNull?.trim()
-    ?: throw GradleException("Pass -ProkidCxrLVersion=<resolved client-l version>")
+val cxrLVersion = providers.gradleProperty("rokidCxrLVersion")
+    .orNull
+    ?.trim()
+    ?.takeIf { it.isNotEmpty() }
 
-if (cxrLVersion != "1.0.1") {
-    throw GradleException("Test 19 r2 is attested only for com.rokid.cxr:client-l:1.0.1")
+if (cxrLVersion != null) {
+    dependencies {
+        implementation("com.rokid.cxr:client-l:$cxrLVersion")
+    }
 }
 
-dependencies {
-    implementation("com.rokid.cxr:client-l:$cxrLVersion")
+val modulePath = project.path
+gradle.taskGraph.whenReady { graph ->
+    val test19r2TaskSelected = graph.allTasks.any { task -> task.project.path == modulePath }
+    if (test19r2TaskSelected && cxrLVersion == null) {
+        throw GradleException("Pass -ProkidCxrLVersion=<resolved client-l version>")
+    }
+    if (test19r2TaskSelected && cxrLVersion != "1.0.1") {
+        throw GradleException("Test 19 r2 is attested only for com.rokid.cxr:client-l:1.0.1")
+    }
 }

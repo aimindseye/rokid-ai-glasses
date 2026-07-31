@@ -5,6 +5,7 @@ import functools
 import hashlib
 import http.server
 import json
+import os
 import shutil
 import subprocess
 import tempfile
@@ -172,6 +173,132 @@ class Test19R2Tools(unittest.TestCase):
     def test_old_runner_is_disabled(self) -> None:
         text = (ROOT / "scripts/tests/run_test19_cxr_qualification.sh").read_text(encoding="utf-8")
         self.assertIn("TEST19_R1_WITHDRAWN", text)
+
+
+    def test_gradle_modules_require_only_their_own_properties(self) -> None:
+        cxrm = (ROOT / "android-client/test19/build.gradle.kts").read_text(encoding="utf-8")
+        cxrl = (ROOT / "android-client/test19r2/build.gradle.kts").read_text(encoding="utf-8")
+        prepare = (ROOT / "scripts/tests/prepare_test19_r2.sh").read_text(encoding="utf-8")
+        gitignore = (ROOT / ".gitignore").read_text(encoding="utf-8")
+
+        self.assertNotIn('?: throw GradleException("Pass -ProkidCxrVersion', cxrm)
+        self.assertNotIn('?: throw GradleException("Pass -ProkidCxrLVersion', cxrl)
+        self.assertIn("gradle.taskGraph.whenReady", cxrm)
+        self.assertIn("gradle.taskGraph.whenReady", cxrl)
+        self.assertIn("task.project.path == modulePath", cxrm)
+        self.assertIn("task.project.path == modulePath", cxrl)
+        self.assertIn('implementation("com.rokid.cxr:client-m:$cxrVersion")', cxrm)
+        self.assertIn('implementation("com.rokid.cxr:client-l:$cxrLVersion")', cxrl)
+        self.assertIn('"-ProkidCxrLVersion=$CXR_L_VERSION"', prepare)
+        self.assertNotIn("-ProkidCxrVersion=", prepare)
+        self.assertIn("android-client/*/build/", gitignore)
+
+    def test_governed_prepare_uses_cxrl_property_only_and_cleans_build_output(self) -> None:
+        prepare_script = ROOT / "scripts/tests/prepare_test19_r2.sh"
+        with tempfile.TemporaryDirectory() as temp_value:
+            temp = Path(temp_value)
+            repo = temp / "repo"
+            (repo / ".git/info").mkdir(parents=True)
+            (repo / "android-client/test19r2").mkdir(parents=True)
+            (repo / "android-client").mkdir(exist_ok=True)
+            (repo / "scripts/research/cxr").mkdir(parents=True)
+
+            sdk = temp / "sdk"
+            (sdk / "platforms/android-36").mkdir(parents=True)
+            (sdk / "platforms/android-36/android.jar").write_bytes(b"synthetic")
+            (sdk / "platform-tools").mkdir(parents=True)
+
+            java_home = temp / "java"
+            (java_home / "bin").mkdir(parents=True)
+            for name in ("java", "javap"):
+                tool = java_home / "bin" / name
+                tool.write_text("#!/usr/bin/env bash\nexit 0\n", encoding="utf-8")
+                tool.chmod(0o755)
+
+            adb = sdk / "platform-tools/adb"
+            adb.write_text(
+                "#!/usr/bin/env bash\n"
+                "args=\"$*\"\n"
+                "case \"$args\" in\n"
+                "  *'get-state'*) echo device ;;\n"
+                "  *'dumpsys package com.rokid.sprite.global.aiapp'*) echo 'versionName=G1.11.11.0727' ;;\n"
+                "  *'dumpsys package org.aimindseye.rokid.cxrlqualification'*) echo 'versionName=2.3-test19-r2.3' ;;\n"
+                "  *'pm path org.aimindseye.rokid.cxrlqualification'*) echo 'package:/data/app/test19r2/base.apk' ;;\n"
+                "  *'pm clear org.aimindseye.rokid.cxrlqualification'*) echo Success ;;\n"
+                "  *'install -r'*) echo Success ;;\n"
+                "  *) exit 0 ;;\n"
+                "esac\n",
+                encoding="utf-8",
+            )
+            adb.chmod(0o755)
+
+            resolver = temp / "resolver.py"
+            resolver.write_text(
+                "from pathlib import Path\n"
+                "import sys\n"
+                "out=Path(sys.argv[sys.argv.index('--output')+1])\n"
+                "out.mkdir(parents=True, exist_ok=True)\n"
+                "(out/'cxr-l-artifact-attestation.json').write_text('{}')\n"
+                "print('TEST19_R2_CXR_L_MAVEN_RESOLUTION=PASS')\n"
+                "print('TEST19_R2_CXR_L_API_SURFACE=PASS')\n",
+                encoding="utf-8",
+            )
+
+            gradle_args = temp / "gradle-args.txt"
+            gradlew = repo / "android-client/gradlew"
+            gradlew.write_text(
+                "#!/usr/bin/env bash\n"
+                f"printf '%s\\n' \"$@\" > {gradle_args}\n"
+                "mkdir -p test19r2/build/outputs/apk/debug\n"
+                "mkdir -p test19r2/build/outputs/logs\n"
+                "printf 'synthetic-apk' > test19r2/build/outputs/apk/debug/test19r2-debug.apk\n"
+                "printf '{}' > test19r2/build/outputs/apk/debug/output-metadata.json\n"
+                "printf 'manifest' > test19r2/build/outputs/logs/manifest-merger-debug-report.txt\n"
+                "exit 0\n",
+                encoding="utf-8",
+            )
+            gradlew.chmod(0o755)
+
+            private_root = temp / "private"
+            build_log = temp / "build.log"
+            install_log = temp / "install.log"
+            env = os.environ.copy()
+            env.update({
+                "ANDROID_HOME": str(sdk),
+                "ANDROID_SDK_ROOT": str(sdk),
+                "ADB": str(adb),
+                "TEST19_JAVA_HOME": str(java_home),
+                "TEST19_CXR_L_RESOLVER": str(resolver),
+                "TEST19_GRADLEW": str(gradlew),
+                "TEST19_PRIVATE_ROOT": str(private_root),
+                "TEST19_BUILD_LOG": str(build_log),
+                "TEST19_INSTALL_LOG": str(install_log),
+            })
+            completed = subprocess.run(
+                [
+                    "bash", str(prepare_script),
+                    "--repo", str(repo),
+                    "--phone", "SYNTHETIC",
+                    "--sdk-version", "1.0.1",
+                    "--expected-hi-rokid-version", "G1.11.11.0727",
+                    "--reset-app-data",
+                ],
+                check=False,
+                text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                env=env,
+            )
+            self.assertEqual(completed.returncode, 0, completed.stdout)
+            self.assertIn("TEST19_R2_PREPARE=PASS", completed.stdout)
+            self.assertIn("TEST19_R2_PACKAGE_IDENTITY=PASS", completed.stdout)
+            self.assertIn("TEST19_R2_BUILD_OUTPUT_CLEANUP=PASS", completed.stdout)
+            args = gradle_args.read_text(encoding="utf-8")
+            self.assertIn("-ProkidCxrLVersion=1.0.1", args)
+            self.assertNotIn("-ProkidCxrVersion=", args)
+            self.assertFalse((repo / "android-client/test19r2/build").exists())
+            self.assertTrue((private_root / "governed-build/test19r2-debug.apk").is_file())
+            self.assertTrue((private_root / "governed-build/SHA256SUMS-private.txt").is_file())
 
 
 if __name__ == "__main__":

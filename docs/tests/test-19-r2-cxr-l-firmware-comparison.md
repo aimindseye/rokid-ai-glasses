@@ -36,3 +36,20 @@ The r2.1 resolver incorrectly searched only methods declared directly by
 methods are inherited from `ExternalAppClient`. r2.2 attests the superclass,
 method owners, exact descriptors, callback set, constructors, and immutable
 artifact hashes before Gradle is allowed to run.
+
+
+## r2.3 Gradle module-isolation and governed-install repair
+
+A physical build probe proved that the CXR-L module compiles when Gradle is
+given both `rokidCxrVersion=1.2.2` and `rokidCxrLVersion=1.0.1`, but the CXR-M
+property was required only because the unrelated `test19` project threw during
+configuration. r2.3 makes each SDK property task-scoped: a CXR-M task requires
+only `rokidCxrVersion`, and a CXR-L task requires only `rokidCxrLVersion`.
+
+The governed preparation command now invokes `:test19r2:clean` and
+`:test19r2:assembleDebug` with only `-ProkidCxrLVersion=1.0.1`, preserves the
+APK and build records under the private Maven evidence directory, installs the
+APK, verifies package version `2.3-test19-r2.3`, optionally clears only this
+test app's data, and removes generated build output after preservation. The
+repository ignores `android-client/*/build/` as a defense-in-depth hygiene
+rule. Hi Rokid data, Bluetooth pairing, and glasses firmware remain unchanged.

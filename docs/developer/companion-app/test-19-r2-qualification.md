@@ -27,7 +27,7 @@ actions constant.
 | Hi Rokid package | `com.rokid.sprite.global.aiapp` |
 | Hi Rokid version | `G1.11.11.0727` / version code `10110011` |
 | CXR-L artifact | `com.rokid.cxr:client-l:1.0.1` |
-| Test app | `org.aimindseye.rokid.cxrlqualification` |
+| Test app | `org.aimindseye.rokid.cxrlqualification` / `2.3-test19-r2.3` |
 | Run A firmware | `1.22.009-20260710-151201` |
 | Run B firmware | `1.23.009-20260725-153201` |
 
@@ -75,9 +75,15 @@ echo "TEST19_R2_PREPARE_EXIT_CODE=$PREPARE_RC"
 A successful preparation ends with:
 
 ```text
+CXR_M_GRADLE_PROPERTY_SUPPLIED=NO
+CXR_L_GRADLE_PROPERTY_SUPPLIED=YES
 TEST19_R2_CXR_L_ARTIFACT_AND_API_SURFACE=PASS
 TEST19_R2_APK_BUILD=PASS
+TEST19_R2_GOVERNED_BUILD_EVIDENCE=PASS
 TEST19_R2_APK_INSTALL=PASS
+INSTALLED_TEST_APP_VERSION=2.3-test19-r2.3
+TEST19_R2_PACKAGE_IDENTITY=PASS
+TEST19_R2_BUILD_OUTPUT_CLEANUP=PASS
 TEST19_R2_READY_FOR_CONNECTION_RUN=YES
 TEST19_R2_PREPARE=PASS
 TEST19_R2_PREPARE_EXIT_CODE=0
@@ -258,3 +264,20 @@ hierarchy with the selected JDK's `javap`, and checks exact JVM descriptors. A
 zero direct-method count is expected and no longer treated as a failure. The
 physical connection run remains blocked until preparation builds, installs, and
 verifies the r2.2 APK.
+
+
+## r2.3 Gradle module-isolation and governed-install repair
+
+A physical build probe proved that the CXR-L module compiles when Gradle is
+given both `rokidCxrVersion=1.2.2` and `rokidCxrLVersion=1.0.1`, but the CXR-M
+property was required only because the unrelated `test19` project threw during
+configuration. r2.3 makes each SDK property task-scoped: a CXR-M task requires
+only `rokidCxrVersion`, and a CXR-L task requires only `rokidCxrLVersion`.
+
+The governed preparation command now invokes `:test19r2:clean` and
+`:test19r2:assembleDebug` with only `-ProkidCxrLVersion=1.0.1`, preserves the
+APK and build records under the private Maven evidence directory, installs the
+APK, verifies package version `2.3-test19-r2.3`, optionally clears only this
+test app's data, and removes generated build output after preservation. The
+repository ignores `android-client/*/build/` as a defense-in-depth hygiene
+rule. Hi Rokid data, Bluetooth pairing, and glasses firmware remain unchanged.
