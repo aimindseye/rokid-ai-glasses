@@ -183,8 +183,14 @@ class Test19R2Tools(unittest.TestCase):
 
         self.assertNotIn('?: throw GradleException("Pass -ProkidCxrVersion', cxrm)
         self.assertNotIn('?: throw GradleException("Pass -ProkidCxrLVersion', cxrl)
-        self.assertIn("gradle.taskGraph.whenReady", cxrm)
-        self.assertIn("gradle.taskGraph.whenReady", cxrl)
+        self.assertIn("import org.gradle.api.Action", cxrm)
+        self.assertIn("import org.gradle.api.execution.TaskExecutionGraph", cxrm)
+        self.assertIn("import org.gradle.api.Action", cxrl)
+        self.assertIn("import org.gradle.api.execution.TaskExecutionGraph", cxrl)
+        self.assertIn("Action<TaskExecutionGraph>", cxrm)
+        self.assertIn("Action<TaskExecutionGraph>", cxrl)
+        self.assertNotIn("whenReady { graph ->", cxrm)
+        self.assertNotIn("whenReady { graph ->", cxrl)
         self.assertIn("task.project.path == modulePath", cxrm)
         self.assertIn("task.project.path == modulePath", cxrl)
         self.assertIn('implementation("com.rokid.cxr:client-m:$cxrVersion")', cxrm)
@@ -192,6 +198,9 @@ class Test19R2Tools(unittest.TestCase):
         self.assertIn('"-ProkidCxrLVersion=$CXR_L_VERSION"', prepare)
         self.assertNotIn("-ProkidCxrVersion=", prepare)
         self.assertIn("android-client/*/build/", gitignore)
+        self.assertIn('versionName = "2.3.1-test19-r2.3.1"', cxrl)
+        self.assertIn("First Gradle failure section:", prepare)
+        self.assertIn("Script compilation errors", prepare)
 
     def test_governed_prepare_uses_cxrl_property_only_and_cleans_build_output(self) -> None:
         prepare_script = ROOT / "scripts/tests/prepare_test19_r2.sh"
@@ -222,7 +231,7 @@ class Test19R2Tools(unittest.TestCase):
                 "case \"$args\" in\n"
                 "  *'get-state'*) echo device ;;\n"
                 "  *'dumpsys package com.rokid.sprite.global.aiapp'*) echo 'versionName=G1.11.11.0727' ;;\n"
-                "  *'dumpsys package org.aimindseye.rokid.cxrlqualification'*) echo 'versionName=2.3-test19-r2.3' ;;\n"
+                "  *'dumpsys package org.aimindseye.rokid.cxrlqualification'*) echo 'versionName=2.3.1-test19-r2.3.1' ;;\n"
                 "  *'pm path org.aimindseye.rokid.cxrlqualification'*) echo 'package:/data/app/test19r2/base.apk' ;;\n"
                 "  *'pm clear org.aimindseye.rokid.cxrlqualification'*) echo Success ;;\n"
                 "  *'install -r'*) echo Success ;;\n"

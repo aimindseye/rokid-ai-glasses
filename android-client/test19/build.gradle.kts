@@ -1,3 +1,6 @@
+import org.gradle.api.Action
+import org.gradle.api.execution.TaskExecutionGraph
+
 plugins {
     id("com.android.application")
 }
@@ -36,9 +39,11 @@ if (cxrVersion != null) {
 }
 
 val modulePath = project.path
-gradle.taskGraph.whenReady { graph ->
-    val test19TaskSelected = graph.allTasks.any { task -> task.project.path == modulePath }
-    if (test19TaskSelected && cxrVersion == null) {
-        throw GradleException("Pass -ProkidCxrVersion=<resolved client-m version>")
-    }
-}
+gradle.taskGraph.whenReady(
+    Action<TaskExecutionGraph> { graph ->
+        val test19TaskSelected = graph.allTasks.any { task -> task.project.path == modulePath }
+        if (test19TaskSelected && cxrVersion == null) {
+            throw GradleException("Pass -ProkidCxrVersion=<resolved client-m version>")
+        }
+    },
+)

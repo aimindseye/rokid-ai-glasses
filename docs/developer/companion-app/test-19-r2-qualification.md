@@ -27,7 +27,7 @@ actions constant.
 | Hi Rokid package | `com.rokid.sprite.global.aiapp` |
 | Hi Rokid version | `G1.11.11.0727` / version code `10110011` |
 | CXR-L artifact | `com.rokid.cxr:client-l:1.0.1` |
-| Test app | `org.aimindseye.rokid.cxrlqualification` / `2.3-test19-r2.3` |
+| Test app | `org.aimindseye.rokid.cxrlqualification` / `2.3.1-test19-r2.3.1` |
 | Run A firmware | `1.22.009-20260710-151201` |
 | Run B firmware | `1.23.009-20260725-153201` |
 
@@ -81,7 +81,7 @@ TEST19_R2_CXR_L_ARTIFACT_AND_API_SURFACE=PASS
 TEST19_R2_APK_BUILD=PASS
 TEST19_R2_GOVERNED_BUILD_EVIDENCE=PASS
 TEST19_R2_APK_INSTALL=PASS
-INSTALLED_TEST_APP_VERSION=2.3-test19-r2.3
+INSTALLED_TEST_APP_VERSION=2.3.1-test19-r2.3.1
 TEST19_R2_PACKAGE_IDENTITY=PASS
 TEST19_R2_BUILD_OUTPUT_CLEANUP=PASS
 TEST19_R2_READY_FOR_CONNECTION_RUN=YES
@@ -277,7 +277,7 @@ only `rokidCxrVersion`, and a CXR-L task requires only `rokidCxrLVersion`.
 The governed preparation command now invokes `:test19r2:clean` and
 `:test19r2:assembleDebug` with only `-ProkidCxrLVersion=1.0.1`, preserves the
 APK and build records under the private Maven evidence directory, installs the
-APK, verifies package version `2.3-test19-r2.3`, optionally clears only this
+APK, verifies package version `2.3.1-test19-r2.3.1`, optionally clears only this
 test app's data, and removes generated build output after preservation. The
 repository ignores `android-client/*/build/` as a defense-in-depth hygiene
 rule. Hi Rokid data, Bluetooth pairing, and glasses firmware remain unchanged.

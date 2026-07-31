@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Governed build/install preparation for Test 19 r2.3. This script never
+# Governed build/install preparation for Test 19 r2.3.1. This script never
 # enables errexit, nounset, or pipefail. Invoke it as a child Bash process.
 
 RESULT=0
 PHONE_SERIAL=""
 CXR_L_VERSION="1.0.1"
 EXPECTED_HI_ROKID_VERSION="G1.11.11.0727"
-EXPECTED_TEST_APP_VERSION="2.3-test19-r2.3"
+EXPECTED_TEST_APP_VERSION="2.3.1-test19-r2.3.1"
 RESET_APP_DATA="NO"
 REPO=""
 RESOLVE_SUCCEEDED="NO"
@@ -94,7 +94,7 @@ preserve_build_evidence() {
 
   APK_SHA256="$(shasum -a 256 "$APK" | awk '{print $1}')"
   cat >"$EVIDENCE_DIR/preparation-identity.txt" <<IDENTITY
-SCHEMA=rokid.test19.r2.3.governed-preparation.v1
+SCHEMA=rokid.test19.r2.3.1.governed-preparation.v1
 CAPTURE_UTC=$STAMP
 CXR_L_VERSION=$CXR_L_VERSION
 EXPECTED_HI_ROKID_VERSION=$EXPECTED_HI_ROKID_VERSION
@@ -128,7 +128,7 @@ finalize_build_evidence() {
   return 0
 }
 
-echo "Test 19 r2.3 CXR-L governed preparation"
+echo "Test 19 r2.3.1 CXR-L governed preparation"
 echo "========================================="
 echo "REPO=$REPO"
 echo "PHONE_SERIAL=$PHONE_SERIAL"
@@ -208,12 +208,19 @@ if [ "$RESULT" -eq 0 ]; then
   echo "GRADLE_BUILD_EXIT_CODE=$BUILD_RC"
   if [ "$BUILD_RC" -eq 0 ] && [ -s "$APK" ]; then
     BUILD_SUCCEEDED="YES"
-    pass "Test 19 r2.3 APK built with the CXR-L property only"
+    pass "Test 19 r2.3.1 APK built with the CXR-L property only"
     APK_SHA256="$(shasum -a 256 "$APK" | awk '{print $1}')"
     echo "TEST19_R2_APK_SHA256=$APK_SHA256"
   else
-    fail "Test 19 r2.3 APK build failed"
-    grep -nE 'FAILURE:|What went wrong|Caused by:|error:|Could not resolve|Could not find|Compilation failed|Pass -P' "$BUILD_LOG" | head -n 120
+    fail "Test 19 r2.3.1 APK build failed"
+    echo "First Gradle failure section:"
+    awk '
+      /^\* What went wrong:/ { printing = 1; remaining = 35 }
+      printing { print NR ":" $0; remaining--; if (remaining <= 0) printing = 0 }
+    ' "$BUILD_LOG"
+    echo "Targeted failure lines:"
+    grep -nE 'FAILURE:|What went wrong|Script compilation errors|Caused by:|error:|Could not resolve|Could not find|Compilation failed|Pass -P|build\.gradle\.kts:[0-9]+' "$BUILD_LOG" | head -n 160
+    echo "Last 120 build-log lines:"
     tail -n 120 "$BUILD_LOG"
   fi
 fi
@@ -236,7 +243,7 @@ if [ "$RESULT" -eq 0 ]; then
   echo "ADB_INSTALL_EXIT_CODE=$INSTALL_RC"
   if [ "$INSTALL_RC" -eq 0 ]; then
     INSTALL_SUCCEEDED="YES"
-    pass "Test 19 r2.3 APK installed"
+    pass "Test 19 r2.3.1 APK installed"
   else
     fail "APK installation failed"
   fi
@@ -248,7 +255,7 @@ if [ "$INSTALL_SUCCEEDED" = "YES" ]; then
   echo "INSTALLED_TEST_APP_VERSION=$INSTALLED_TEST_APP_VERSION"
   if printf '%s\n' "$PACKAGE_PATH" | grep -q '^package:' && [ "$INSTALLED_TEST_APP_VERSION" = "$EXPECTED_TEST_APP_VERSION" ]; then
     PACKAGE_IDENTITY_SUCCEEDED="YES"
-    pass "installed Test 19 r2.3 package identity verified"
+    pass "installed Test 19 r2.3.1 package identity verified"
   else
     fail "installed package identity or version could not be verified"
   fi
@@ -335,9 +342,9 @@ else
 fi
 
 if [ "$INSTALL_SUCCEEDED" = "YES" ] && [ "$DATA_CLEAR_SUCCEEDED" = "YES" ]; then
-  PHONE_MUTATION_VALUE="TEST19_R2_3_DEBUG_APK_INSTALL_AND_TEST_APP_DATA_CLEAR"
+  PHONE_MUTATION_VALUE="TEST19_R2_3_1_DEBUG_APK_INSTALL_AND_TEST_APP_DATA_CLEAR"
 elif [ "$INSTALL_SUCCEEDED" = "YES" ]; then
-  PHONE_MUTATION_VALUE="TEST19_R2_3_DEBUG_APK_INSTALL_ONLY"
+  PHONE_MUTATION_VALUE="TEST19_R2_3_1_DEBUG_APK_INSTALL_ONLY"
 else
   PHONE_MUTATION_VALUE="NONE"
 fi
