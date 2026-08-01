@@ -14,6 +14,7 @@
 | 16 | Android lifecycle, package lineage, and privacy |
 | 17 | Glasses Android, USB ADB, local services, and passive networking |
 | 18 | Developer Mode and USB ADB control-path static/offline follow-up |
+| 19–20 | CXR-L companion SDK qualification, one-shot photo control, and image-callback closure |
 
 Tests 18A–18D are represented in the master matrix and consolidated findings;
 there is not yet a standalone `18-*.md` test report.

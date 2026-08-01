@@ -1,0 +1,62 @@
+{
+  "TEST20_R3_2_1_3_RESULT": "PASS",
+  "TEST20_R3_2_1_RESULT": "PASS",
+  "audio": {
+    "audio_event_hits": 0,
+    "audio_operation": "NONE",
+    "reported_audio_counts": []
+  },
+  "base_app_version": "1.0-test20-r3.2.1.3",
+  "callback_result": {
+    "classification": "NO_IMAGE_CALLBACK",
+    "image_callback_count": 0,
+    "image_error_callback_count": 0,
+    "terminal_callback_count": 0
+  },
+  "control_path_prerequisite": {
+    "authorization": "PASS",
+    "callback_registration": "PASS",
+    "cxrl_connected": "PASS",
+    "glass_bt_connected": "PASS",
+    "operator_gate": {
+      "capture_dispatch": "ACCEPTED_ONCE",
+      "phase": "HOST_ARMED_ONE_SHOT",
+      "photo_control_disabled_after_click": true,
+      "run_id_match": true,
+      "token_match": true
+    },
+    "pre_photo_gate_was_separately_enforced": "PASS",
+    "service_status": "PASS",
+    "session": "PASS"
+  },
+  "firmware": "1.23.009-20260725-151201",
+  "firmware_attestation": {
+    "ocr_used": false,
+    "operator_exact_match": true,
+    "screenshot_bytes": 2808728,
+    "screenshot_sha256": "919a5970e4d6216277563b809437ecda46b00d54f060f90485055dff753c3315"
+  },
+  "mode": "final",
+  "operator_gate": {
+    "additional_media_action": "NO",
+    "apk_armed_ui_confirmed": "PASS",
+    "bounded_test_target_derived": "PASS",
+    "decision_source": "MACHINE_EVIDENCE_PLUS_TWO_PHASE_HOST_APK_GATE_PLUS_CONCRETE_OPERATOR_ATTESTATION",
+    "hi_rokid_recovery": "PASS",
+    "host_arm_gate": "PASS"
+  },
+  "package": "org.aimindseye.rokid.cxrphotoqualification",
+  "photo_request": {
+    "direct_event_count": 0,
+    "machine_signal_present": true,
+    "reported_counts": [
+      1,
+      1,
+      1
+    ],
+    "resolved_count": 1,
+    "result_event_count": 1
+  },
+  "run_id_sha256": "5ff406dbfa7ce35e77126ed0ffe5b61f63138f5c943ceaac5cd4dfe7845a9dd9",
+  "schema": "rokid.test20-r3.2.1.sanitized-summary.v1"
+}

@@ -1,6 +1,6 @@
 # Developer Current Status
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-08-01 -->
 
 ## Page status
 
@@ -9,7 +9,7 @@
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
 | Evidence status | Validated |
-| Last reviewed | 2026-07-31 |
+| Last reviewed | 2026-08-01 |
 
 ## Replacement companion boundary
 
@@ -29,8 +29,8 @@
 | CXR-L AI-assist event callbacks | Test 20 r2.2 accepted: two ordered start/stop cycles, clean disconnect, and Hi Rokid recovery PASS |
 | CXR-L media-plane feasibility | Test 20 r3.0.1 accepted: 23 descriptor-exact image/audio/service surfaces statically confirmed; runtime qualification not granted |
 | CXR-L media no-payload preflight | Test 20 r3.1.1 accepted: service status, Bluetooth status, image/audio callback registration, 15-second quiet window, zero unsolicited media callbacks, clean disconnect, and Hi Rokid recovery PASS |
-| CXR-L one-shot photo qualification | Not started; requires a separately governed r3.2 single-operation design |
-| Independent camera capture | Not yet tested |
+| CXR-L one-shot photo qualification | Test 20 final accepted: two-phase one-shot gate and image callback path proven; post-service-status callback re-registration is the canonical tested lifecycle |
+| Independent camera capture | Qualified only through the custom CXR-L + Hi Rokid authorization/media-service path; direct/no-Hi-Rokid capture remains unqualified |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
 
@@ -74,14 +74,24 @@ Bluetooth status, and completed a 15-second quiet window with zero unsolicited
 image payload/error callbacks and zero audio payload/error/active-state
 callbacks. Clean disconnect and Hi Rokid recovery passed.
 
-The accepted runtime-qualified delta is limited to
-`setCXRImageCbk(IImageStreamCbk)`, `setCXRAudioCbk(IAudioStreamCbk)`,
-`getServiceVersion()`, `getServiceVersionCode()`, and
-`isGlassBtConnected()`. Photo capture, audio streaming, payload formats,
-parameter semantics, and media transport behavior remain unqualified. The next
-bounded gate is Test 20 r3.2, a separately governed one-shot photo design.
+Test 20 r3.2 implements the separately governed one-shot photo stage. It
+uses one explicit operator-controlled `takePhoto(1920, 1080, 80)` request after
+the accepted connection and service-status gates. Callback bytes are inspected
+in memory for non-empty encoded-image metadata and a private digest, are never
+written or previewed, and are followed by a bounded duplicate-callback window.
+The argument semantics remain a working hypothesis; a pass qualifies only this
+exact triplet and one callback lifecycle.
+
+Test 20 r3.2.1.3 subsequently proves the synchronized two-phase host-tokenized one-shot photo gate: zero requests before arm, zero before the operator tap, exactly one accepted request afterward, no audio operation, and successful Hi Rokid recovery.
+Test 20 r3.3 closes the remaining image-callback boundary. A strong callback retained and registered only before connection still timed out with the service stable; re-registering the same retained callback after successful connection/service-status qualification delivered one image payload callback with the unchanged `takePhoto(1920,1080,80)` request.
+The accepted implementation rule for the tested firmware/Hi Rokid/`client-l:1.0.1` environment is therefore strong callback retention plus mandatory post-service-status re-registration before photo readiness. This is a behavioral qualification and does not prove the SDK internal mechanism. Audio streaming, direct/no-Hi-Rokid camera capture, and generalized third-argument semantics remain unqualified.
+`TEST20_FINAL_STATUS=ACCEPTED_CLOSED_IMPLEMENTATION_RULE_PUBLISHED`
 
 ## Evidence
+- [Test 20 r3.2.1.3 two-phase one-shot qualification](../tests/test-20-r3-2-1-3-two-phase-one-shot-photo-qualification.md)
+- [Test 20 r3.3 callback non-delivery closure](../tests/test-20-r3-3-post-takephoto-image-callback-closure.md)
+- [Test 20 final photo publication](../tests/test-20-final-photo-control-callback-publication.md)
+- [Published final photo/callback summary](../research/connection-protocol/publication/test20-final-cxr-l-one-shot-photo-and-callback-closure.md)
 
 - [Project status](../project-status.md)
 - [Test 20 r1 census guide](../tests/test-20-r1-cxr-l-capability-census.md)
@@ -98,5 +108,6 @@ bounded gate is Test 20 r3.2, a separately governed one-shot photo design.
 - [Test 20 r3.1 no-payload preflight](../tests/test-20-r3-1-cxr-l-media-service-no-payload-preflight.md)
 - [Published no-payload preflight summary](../research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.md)
 - [Test 20 r3.1.1 publication closure](../tests/test-20-r3-1-1-final-no-payload-preflight-publication.md)
+- [Test 20 r3.2 one-shot photo qualification](../tests/test-20-r3-2-cxr-l-one-shot-photo-qualification.md)
 - [Connection-protocol research](../research/connection-protocol/README.md)
 - [Boot-chain research](../research/boot-chain/README.md)

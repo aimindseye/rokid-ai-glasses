@@ -42,7 +42,11 @@ observed outbound message grammar without replay.
 - [Stock ADB-toggle evidence hashes](connection-protocol/stock-adb-toggle/evidence-hashes.txt)
 - [Current project status](../project-status.md)
 
-### Current boundary
+#### Test 20 final photo path
+
+[Test 20 final photo control and callback publication](../tests/test-20-final-photo-control-callback-publication.md) closes the governed CXR-L one-shot photo work. The accepted implementation retains the image callback strongly and re-registers the same callback after successful service-status qualification before allowing photo arming.
+
+## Current boundary
 
 | Capability | Status |
 |---|---|

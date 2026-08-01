@@ -38,3 +38,18 @@ Camera, and Record Audio permissions.
 
 Build, install, and run only through the governed Test 20 r3.1 scripts. See the
 [Test 20 r3.1 runbook](../docs/tests/test-20-r3-1-cxr-l-media-service-no-payload-preflight.md).
+
+## Test 20 r3.2 one-shot photo qualification
+
+The `test20r32` module reuses the accepted CXR-L authorization and `CUSTOMAPP`
+connection lifecycle, registers one image callback, and waits for an explicit
+operator-controlled one-shot request. It invokes `takePhoto(1920, 1080, 80)` at
+most once, never persists or previews the callback bytes, records only bounded
+metadata and a private digest, observes a duplicate-callback quiet window, and
+disconnects automatically.
+
+The three integer arguments are a bounded working triplet for this test. A pass
+qualifies only that exact triplet and does not generalize all parameter semantics.
+The merged APK removes Internet, Camera, and Record Audio permissions. Build,
+install, and run only through the governed Test 20 r3.2 scripts. See the
+[Test 20 r3.2 runbook](../docs/tests/test-20-r3-2-cxr-l-one-shot-photo-qualification.md).
