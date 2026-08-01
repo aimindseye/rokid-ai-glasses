@@ -26,3 +26,15 @@ ordinary stock glasses interaction, then disconnects.
 
 Build, install, and run only through the governed Test 20 r2 scripts. See the
 [Test 20 r2 runbook](../docs/tests/test-20-r2-cxr-l-event-control-plane-qualification.md).
+
+## Test 20 r3.1 media-service no-payload preflight
+
+The `test20r31` module reuses the qualified CXR-L authorization and `CUSTOMAPP`
+connection lifecycle, registers the declared image and audio callback interfaces,
+queries service version/version-code and glasses Bluetooth status, then observes a
+bounded quiet window. It does not call `takePhoto()`, `startAudioStream()`,
+`stopAudioStream()`, or any media-producing API. The merged APK removes Internet,
+Camera, and Record Audio permissions.
+
+Build, install, and run only through the governed Test 20 r3.1 scripts. See the
+[Test 20 r3.1 runbook](../docs/tests/test-20-r3-1-cxr-l-media-service-no-payload-preflight.md).

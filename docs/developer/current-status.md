@@ -28,6 +28,8 @@
 | CXR-L 1.0.1 capability census | Test 20 r1.2 accepted: static census and corrected member-level publication complete |
 | CXR-L AI-assist event callbacks | Test 20 r2.2 accepted: two ordered start/stop cycles, clean disconnect, and Hi Rokid recovery PASS |
 | CXR-L media-plane feasibility | Test 20 r3.0.1 accepted: 23 descriptor-exact image/audio/service surfaces statically confirmed; runtime qualification not granted |
+| CXR-L media no-payload preflight | Test 20 r3.1.1 accepted: service status, Bluetooth status, image/audio callback registration, 15-second quiet window, zero unsolicited media callbacks, clean disconnect, and Hi Rokid recovery PASS |
+| CXR-L one-shot photo qualification | Not started; requires a separately governed r3.2 single-operation design |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -65,10 +67,19 @@ present, but parameter semantics and payload formats remain unresolved.
 No media API was invoked, no payload was collected, and runtime qualification
 was not granted.
 
-The next bounded gate is Test 20 r3.1 service-status and no-payload preflight.
-It may inspect service version, Bluetooth status, and callback registration
-lifecycle only. Photo capture and audio streaming remain prohibited until a
-later separately approved stage.
+Test 20 r3.1.1 publishes the accepted bounded service-status and no-payload
+preflight. One governed physical attempt registered image and audio callback
+interfaces, queried service version and version code, confirmed glasses
+Bluetooth status, and completed a 15-second quiet window with zero unsolicited
+image payload/error callbacks and zero audio payload/error/active-state
+callbacks. Clean disconnect and Hi Rokid recovery passed.
+
+The accepted runtime-qualified delta is limited to
+`setCXRImageCbk(IImageStreamCbk)`, `setCXRAudioCbk(IAudioStreamCbk)`,
+`getServiceVersion()`, `getServiceVersionCode()`, and
+`isGlassBtConnected()`. Photo capture, audio streaming, payload formats,
+parameter semantics, and media transport behavior remain unqualified. The next
+bounded gate is Test 20 r3.2, a separately governed one-shot photo design.
 
 ## Evidence
 
@@ -84,5 +95,8 @@ later separately approved stage.
 - [Test 20 r3 feasibility guide](../tests/test-20-r3-cxr-l-media-plane-feasibility.md)
 - [Test 20 r3.0.1 publication closure](../tests/test-20-r3-0-1-final-media-plane-feasibility-publication.md)
 - [Published media-plane feasibility census](../research/connection-protocol/publication/test20-r3-cxr-l-media-plane-feasibility.md)
+- [Test 20 r3.1 no-payload preflight](../tests/test-20-r3-1-cxr-l-media-service-no-payload-preflight.md)
+- [Published no-payload preflight summary](../research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.md)
+- [Test 20 r3.1.1 publication closure](../tests/test-20-r3-1-1-final-no-payload-preflight-publication.md)
 - [Connection-protocol research](../research/connection-protocol/README.md)
 - [Boot-chain research](../research/boot-chain/README.md)

@@ -1,0 +1,39 @@
+{
+  "classification": "CXR_L_MEDIA_SERVICE_STATUS_CALLBACK_REGISTRATION_AND_NO_PAYLOAD_PREFLIGHT_PASS",
+  "cxr_l_coordinate": "com.rokid.cxr:client-l:1.0.1",
+  "firmware": "1.23.009-20260725-153201",
+  "hi_rokid_version": "G1.11.11.0727",
+  "privacy": {
+    "authorization_token_value_present": false,
+    "local_user_path_present": false,
+    "media_payload_present": false,
+    "raw_bluetooth_address_present": false,
+    "raw_device_serial_present": false
+  },
+  "qualification": {
+    "audio_active_state_callbacks": 0,
+    "audio_error_callbacks": 0,
+    "audio_payload_callbacks": 0,
+    "callback_registration": true,
+    "clean_disconnect": true,
+    "glass_bluetooth_status": true,
+    "hi_rokid_recovery": true,
+    "image_error_callbacks": 0,
+    "image_payload_callbacks": 0,
+    "observation_ms": 15000,
+    "service_version_code": 10000,
+    "service_version_present": true,
+    "service_version_sha256": "92521fc3cbd964bdc9f584a991b89fddaa5754ed1cc96d6d42445338669c1305",
+    "terminal": "NO_PAYLOAD_OBSERVATION_COMPLETE"
+  },
+  "run_id_sha256": "3f03d6fc411c0191df57ab178dd743137817878eca88c228e0a8050769e4dbfc",
+  "safety": {
+    "audio_payload_retention": "NONE",
+    "cloud_request": "NONE",
+    "image_payload_retention": "NONE",
+    "start_audio_stream_invocation": "NONE",
+    "stop_audio_stream_invocation": "NONE",
+    "take_photo_invocation": "NONE"
+  },
+  "schema": "rokid.test20-r3.1.sanitized-summary.v1"
+}

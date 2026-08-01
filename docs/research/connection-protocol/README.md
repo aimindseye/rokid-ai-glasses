@@ -95,6 +95,18 @@ payload formats, or grant runtime qualification.
 - [Media-plane evidence identities](publication/test20-r3-cxr-l-evidence-hashes.txt)
 - [Test 20 r3.0.1 publication closure](../../tests/test-20-r3-0-1-final-media-plane-feasibility-publication.md)
 
+
+Test 20 r3.1.1 publishes the accepted no-payload media-service preflight. One
+governed attempt registered the public image and audio callback interfaces,
+queried service version and version code, confirmed glasses Bluetooth status,
+and completed a 15-second quiet window with zero unsolicited image or audio
+payload/error callbacks. Clean disconnect and Hi Rokid recovery passed.
+
+- [No-payload preflight JSON](publication/test20-r3-1-cxr-l-no-payload-preflight.json)
+- [No-payload preflight summary](publication/test20-r3-1-cxr-l-no-payload-preflight.md)
+- [No-payload evidence identities](publication/test20-r3-1-cxr-l-evidence-hashes.txt)
+- [Test 20 r3.1.1 publication closure](../../tests/test-20-r3-1-1-final-no-payload-preflight-publication.md)
+
 ## Implementation and research history
 
 - [Known boundaries](known-boundaries.md)

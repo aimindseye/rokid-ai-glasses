@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aimindseye/rokid-ai-glasses/schemas/test20-r3-1-cxr-l-no-payload-preflight.schema.json",
+  "title": "Test 20 r3.1 sanitized no-payload preflight summary",
+  "type": "object",
+  "required": [
+    "schema",
+    "firmware",
+    "hi_rokid_version",
+    "cxr_l_coordinate",
+    "qualification",
+    "safety",
+    "privacy",
+    "classification"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rokid.test20-r3.1.sanitized-summary.v1"
+    },
+    "firmware": {
+      "type": "string"
+    },
+    "hi_rokid_version": {
+      "type": "string"
+    },
+    "cxr_l_coordinate": {
+      "const": "com.rokid.cxr:client-l:1.0.1"
+    },
+    "qualification": {
+      "type": "object"
+    },
+    "safety": {
+      "type": "object"
+    },
+    "privacy": {
+      "type": "object"
+    },
+    "classification": {
+      "const": "CXR_L_MEDIA_SERVICE_STATUS_CALLBACK_REGISTRATION_AND_NO_PAYLOAD_PREFLIGHT_PASS"
+    }
+  },
+  "additionalProperties": true
+}
