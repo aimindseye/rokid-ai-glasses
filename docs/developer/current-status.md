@@ -26,6 +26,7 @@
 | Direct CXR-M experiment | r1 evidence retained; ownership classification withdrawn; runner disabled |
 | Hi Rokid CXR-L client | Test 19 r2 accepted: firmware 1.22/1.23 PASS, no tested regression, r2.4 runtime repairs physically validated |
 | CXR-L 1.0.1 capability census | Test 20 r1.2 accepted: static census and corrected member-level publication complete |
+| CXR-L AI-assist event callbacks | Test 20 r2.2 accepted: two ordered start/stop cycles, clean disconnect, and Hi Rokid recovery PASS |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -44,16 +45,21 @@
 
 ## Recommended next gate
 
-Test 19 r2 is complete and publication-closed. Test 20 r1.2 publishes the
-reviewed CXR-L 1.0.1 census with nine descriptor-exact runtime-qualified members,
-two qualified Hi Rokid components, and explicit synthetic and obfuscated origin
-labels. The original overbroad Test 20 r1 publication remains withdrawn.
+Test 19 r2 is complete and publication-closed. Test 20 r1.2 remains the
+immutable corrected static census with nine descriptor-exact runtime-qualified
+members and two qualified Hi Rokid components. The original overbroad Test 20
+r1 publication remains withdrawn.
 
-The next bounded phase is Test 20 r2 control-plane qualification. Start with
-read-only or callback-only behavior that is explicitly present in the accepted
-census. Camera, audio, custom commands, custom views, provider access, glass-app
-management, and native/JNI behavior remain untested and require separate
-approval.
+Test 20 r2.2 publishes the accepted single-attempt physical qualification of
+exactly two ordered `onGlassAiAssistStart()`/`onGlassAiAssistStop()` cycles. The
+combined accepted CXR-L member boundary is now eleven descriptor-exact members:
+nine from Test 20 r1.2 plus these two callbacks. The test application performed
+no assistant invocation, cloud AI request, camera, microphone, media-stream,
+custom-command, custom-view, provider, or glass-app-management operation.
+
+Camera, audio streaming, custom commands, custom views, provider access,
+glass-app management, and native/JNI behavior remain untested and require a
+separately approved phase.
 
 ## Evidence
 
@@ -61,6 +67,10 @@ approval.
 - [Test 20 r1 census guide](../tests/test-20-r1-cxr-l-capability-census.md)
 - [Test 20 r1.1 classification repair](../tests/test-20-r1-1-cxr-l-classification-repair.md)
 - [Test 20 r1.2 final publication](../tests/test-20-r1-2-cxr-l-final-publication.md)
+- [Test 20 r2 event qualification](../tests/test-20-r2-cxr-l-event-control-plane-qualification.md)
+- [Test 20 r2.1 apply repair](../tests/test-20-r2-1-public-artifact-rollback-repair.md)
+- [Test 20 r2.2 final callback publication](../tests/test-20-r2-2-final-ai-assist-callback-publication.md)
 - [Published capability census](../research/connection-protocol/publication/test20-r1-cxr-l-capability-census.md)
+- [Published AI-assist callback summary](../research/connection-protocol/publication/test20-r2-cxr-l-event-summary.md)
 - [Connection-protocol research](../research/connection-protocol/README.md)
 - [Boot-chain research](../research/boot-chain/README.md)

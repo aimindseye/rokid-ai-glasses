@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aimindseye/rokid-ai-glasses/schemas/test20-r2-cxr-l-event-summary.v1.json",
+  "title": "Test 20 r2 accepted sanitized CXR-L AI-assist callback summary",
+  "type": "object",
+  "required": [
+    "schema",
+    "application",
+    "cxr_l_coordinate",
+    "firmware",
+    "hi_rokid_version",
+    "qualification",
+    "privacy",
+    "safety",
+    "run_id_sha256",
+    "source_event_sha256"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rokid.test20-r2.sanitized-summary.v1"
+    },
+    "application": {
+      "type": "object",
+      "required": [
+        "package",
+        "version_code",
+        "version_name"
+      ],
+      "properties": {
+        "package": {
+          "const": "org.aimindseye.rokid.cxreventqualification"
+        },
+        "version_code": {
+          "const": 1
+        },
+        "version_name": {
+          "const": "1.0-test20-r2"
+        }
+      }
+    },
+    "cxr_l_coordinate": {
+      "const": "com.rokid.cxr:client-l:1.0.1"
+    },
+    "firmware": {
+      "const": "1.23.009-20260725-153201"
+    },
+    "hi_rokid_version": {
+      "const": "G1.11.11.0727"
+    },
+    "qualification": {
+      "type": "object",
+      "required": [
+        "accepted_start_callbacks",
+        "accepted_stop_callbacks",
+        "clean_disconnect",
+        "duplicate_start_callbacks",
+        "hi_rokid_recovery",
+        "ordered_cycles",
+        "out_of_order_stop_callbacks",
+        "required_cycles",
+        "single_connection_attempt",
+        "terminal"
+      ],
+      "properties": {
+        "accepted_start_callbacks": {
+          "const": 2
+        },
+        "accepted_stop_callbacks": {
+          "const": 2
+        },
+        "clean_disconnect": {
+          "const": true
+        },
+        "duplicate_start_callbacks": {
+          "const": 0
+        },
+        "hi_rokid_recovery": {
+          "const": true
+        },
+        "ordered_cycles": {
+          "const": 2
+        },
+        "out_of_order_stop_callbacks": {
+          "const": 0
+        },
+        "required_cycles": {
+          "const": 2
+        },
+        "single_connection_attempt": {
+          "const": true
+        },
+        "terminal": {
+          "const": "AI_ASSIST_TWO_ORDERED_CYCLES_OBSERVED"
+        }
+      }
+    },
+    "privacy": {
+      "type": "object",
+      "additionalProperties": {
+        "const": false
+      }
+    },
+    "safety": {
+      "type": "object",
+      "required": [
+        "test_app_ai_assistant_invocation",
+        "test_app_cloud_ai_request",
+        "operator_spoken_ai_query",
+        "camera_access_by_test_app",
+        "microphone_access_by_test_app",
+        "media_stream_requested_by_test_app",
+        "custom_command",
+        "custom_view",
+        "glass_app_management"
+      ],
+      "properties": {
+        "test_app_ai_assistant_invocation": {
+          "const": "NONE"
+        },
+        "test_app_cloud_ai_request": {
+          "const": "NONE"
+        },
+        "operator_spoken_ai_query": {
+          "const": "NONE"
+        },
+        "camera_access_by_test_app": {
+          "const": "NONE"
+        },
+        "microphone_access_by_test_app": {
+          "const": "NONE"
+        },
+        "media_stream_requested_by_test_app": {
+          "const": "NONE"
+        },
+        "custom_command": {
+          "const": "NONE"
+        },
+        "custom_view": {
+          "const": "NONE"
+        },
+        "glass_app_management": {
+          "const": "NONE"
+        }
+      }
+    },
+    "run_id_sha256": {
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_event_sha256": {
+      "pattern": "^[0-9a-f]{64}$"
+    }
+  },
+  "additionalProperties": false
+}

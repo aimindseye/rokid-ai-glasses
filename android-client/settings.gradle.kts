@@ -19,3 +19,4 @@ rootProject.name = "RokidChannelProbe"
 include(":app")
 include(":test19")
 include(":test19r2")
+include(":test20r2")
