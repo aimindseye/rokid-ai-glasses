@@ -27,6 +27,22 @@ first r1 sanitized output remains withdrawn because it propagated class-level
 participation to unrelated members.
 
 The corrected census is a selection boundary, not permission to invoke every
-listed surface. Camera, audio, AI-assist callbacks, custom commands, custom
-views, glass-app operations, provider access, and native/JNI behavior remain
-untested.
+listed surface. At r1.2, camera, audio, AI-assist callbacks, custom commands,
+custom views, glass-app operations, provider access, and native/JNI behavior
+remained untested. Test 20 r2.2 separately qualifies only the two AI-assist
+start/stop callbacks without rewriting the immutable r1.2 census.
+
+## Test 20 r2.2 AI-assist callback qualification
+
+- [Machine-readable event summary](test20-r2-cxr-l-event-summary.json)
+- [Human-readable event summary](test20-r2-cxr-l-event-summary.md)
+- [Event-summary schema](test20-r2-cxr-l-event-summary.schema.json)
+- [Evidence identities](test20-r2-cxr-l-evidence-hashes.txt)
+- [Final publication closure](../../../tests/test-20-r2-2-final-ai-assist-callback-publication.md)
+
+The accepted run observed two ordered `onGlassAiAssistStart()`/
+`onGlassAiAssistStop()` cycles with zero duplicate starts and zero
+out-of-order stops, followed by clean disconnect and Hi Rokid recovery.
+The test app made no assistant invocation, cloud AI request, camera,
+microphone, media-stream, custom-command, custom-view, provider, or
+glass-app-management operation.

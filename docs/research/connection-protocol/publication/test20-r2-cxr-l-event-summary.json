@@ -1,0 +1,48 @@
+{
+  "application": {
+    "package": "org.aimindseye.rokid.cxreventqualification",
+    "version_code": 1,
+    "version_name": "1.0-test20-r2"
+  },
+  "cxr_l_coordinate": "com.rokid.cxr:client-l:1.0.1",
+  "firmware": "1.23.009-20260725-153201",
+  "hi_rokid_version": "G1.11.11.0727",
+  "privacy": {
+    "ai_response_present": false,
+    "authorization_token_value_present": false,
+    "media_payload_present": false,
+    "raw_bluetooth_address_present": false,
+    "raw_device_serial_present": false,
+    "spoken_prompt_present": false
+  },
+  "qualification": {
+    "accepted_start_callbacks": 2,
+    "accepted_stop_callbacks": 2,
+    "clean_disconnect": true,
+    "duplicate_start_callbacks": 0,
+    "hi_rokid_recovery": true,
+    "ordered_cycles": 2,
+    "out_of_order_stop_callbacks": 0,
+    "required_cycles": 2,
+    "single_connection_attempt": true,
+    "terminal": "AI_ASSIST_TWO_ORDERED_CYCLES_OBSERVED"
+  },
+  "run_id_sha256": "e9f0efa97d7c03496c444d8a634df0600b6397365aa5c02d9c7811742f618b3c",
+  "safety": {
+    "bluetooth_pairing_mutation": "NONE",
+    "camera_access_by_test_app": "NONE",
+    "custom_command": "NONE",
+    "custom_view": "NONE",
+    "glass_app_management": "NONE",
+    "hi_rokid_force_stop": "NONE",
+    "media_stream_requested_by_test_app": "NONE",
+    "microphone_access_by_test_app": "NONE",
+    "operator_spoken_ai_query": "NONE",
+    "reboot": "NONE",
+    "stock_ai_response_observed": "NO",
+    "test_app_ai_assistant_invocation": "NONE",
+    "test_app_cloud_ai_request": "NONE"
+  },
+  "schema": "rokid.test20-r2.sanitized-summary.v1",
+  "source_event_sha256": "83a56ea1c80ce6a18a18f3cc1721460117c0d87e2e6b63e694ec75a43552163c"
+}

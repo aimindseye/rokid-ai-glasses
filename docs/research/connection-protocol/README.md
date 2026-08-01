@@ -62,17 +62,27 @@ action discriminator, and structured state role.
 - [Evidence hashes](stock-adb-toggle/evidence-hashes.txt)
 - [Historical pre-repair findings](r1.3.3.2.25.3-pre-repair-findings.md)
 
-## Accepted CXR-L capability census publication
+## Accepted CXR-L capability and event publications
 
 Test 20 r1.2 publishes the reviewed and corrected static census for
-`com.rokid.cxr:client-l:1.0.1`. The authoritative runtime boundary contains
-nine descriptor-exact members and two Hi Rokid components. The original
-over-broad Test 20 r1 classification remains withdrawn.
+`com.rokid.cxr:client-l:1.0.1`. Its immutable runtime boundary contains nine
+descriptor-exact members and two Hi Rokid components. The original over-broad
+Test 20 r1 classification remains withdrawn.
+
+Test 20 r2.2 adds a separate descriptor-exact runtime qualification delta for
+`onGlassAiAssistStart()V` and `onGlassAiAssistStop()V`. One governed attempt
+observed two ordered cycles, zero duplicate starts, zero out-of-order stops,
+clean disconnect, and Hi Rokid recovery. Across the two accepted publications,
+the combined CXR-L runtime-qualified member boundary is eleven.
 
 - [Corrected machine-readable census](publication/test20-r1-cxr-l-capability-census.json)
 - [Corrected human-readable census](publication/test20-r1-cxr-l-capability-census.md)
-- [Evidence identities](publication/test20-r1-cxr-l-evidence-hashes.txt)
-- [Final publication closure](../../tests/test-20-r1-2-cxr-l-final-publication.md)
+- [Static-census evidence identities](publication/test20-r1-cxr-l-evidence-hashes.txt)
+- [AI-assist callback summary JSON](publication/test20-r2-cxr-l-event-summary.json)
+- [AI-assist callback summary](publication/test20-r2-cxr-l-event-summary.md)
+- [AI-assist callback evidence identities](publication/test20-r2-cxr-l-evidence-hashes.txt)
+- [Test 20 r1.2 publication closure](../../tests/test-20-r1-2-cxr-l-final-publication.md)
+- [Test 20 r2.2 publication closure](../../tests/test-20-r2-2-final-ai-assist-callback-publication.md)
 
 ## Implementation and research history
 

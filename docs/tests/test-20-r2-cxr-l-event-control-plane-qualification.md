@@ -29,6 +29,31 @@ byte-verified overlay-created untracked paths. Runtime scope is unchanged.
 - Test package: `org.aimindseye.rokid.cxreventqualification`
 - Version: `1.0-test20-r2` (`versionCode=1`)
 
+## Accepted physical result
+
+The governed build, install, and single physical attempt passed on the fixed
+baseline. The accepted sanitized result records:
+
+- two accepted start callbacks;
+- two accepted stop callbacks;
+- two complete ordered cycles;
+- zero duplicate starts;
+- zero out-of-order stops;
+- one connection attempt;
+- terminal `AI_ASSIST_TWO_ORDERED_CYCLES_OBSERVED`;
+- clean disconnect; and
+- Hi Rokid recovery.
+
+The operator attested that no AI question was spoken or dictated and no stock AI
+answer was heard or displayed. The test app recorded no assistant invocation,
+cloud AI request, camera access, microphone access, media-stream request, custom
+command, custom view, or glass-app-management operation.
+
+This result promotes only `ICXRLinkCbk.onGlassAiAssistStart()V` and
+`ICXRLinkCbk.onGlassAiAssistStop()V` from untested to descriptor-exact
+runtime-qualified status. See the [accepted event summary](../research/connection-protocol/publication/test20-r2-cxr-l-event-summary.md) and the
+[Test 20 r2.2 publication closure](test-20-r2-2-final-ai-assist-callback-publication.md).
+
 ## Safety boundary
 
 The test application:
@@ -67,7 +92,7 @@ disconnect()
 Duplicate starts, stops without an active start, incomplete cycles, a partial
 one-cycle repeat, connection loss, or timeout are terminal failures.
 
-## Staged execution
+## Completed staged execution
 
 1. Build with `scripts/tests/build_test20_r2.sh`.
 2. Install with `scripts/tests/install_test20_r2.sh`.
@@ -76,7 +101,7 @@ one-cycle repeat, connection loss, or timeout are terminal failures.
 5. Upload only the sanitized summary ZIP unless private inspection is
    specifically required.
 
-## Expected successful classification
+## Accepted classification
 
 ```text
 TEST20_R2_CLASSIFICATION=CXR_L_AI_ASSIST_EVENT_CALLBACKS_AND_STOCK_RECOVERY_PASS
@@ -88,3 +113,15 @@ TEST20_R2_QUALIFICATION=PASS
 The private evidence contains the JSONL event stream, firmware screenshot,
 operator attestations, run metadata, hashes, and sanitized derived summary.
 The sanitized ZIP contains only the derived JSON and Markdown summary.
+
+
+## Final status
+
+```text
+TEST20_R2_CALLBACK_RUNTIME_QUALIFICATION=PASS
+TEST20_R2_SAFETY_BOUNDARY=PASS
+TEST20_R2_FINAL_RUNTIME_STATUS=ACCEPTED
+TEST20_R2_PUBLICATION_STATUS=CLOSED_BY_R2_2
+```
+
+No second physical run is required for this bounded qualification.

@@ -1,4 +1,4 @@
-# Project Status Through Test 20 r2.1 Implementation Readiness
+# Project Status Through Test 20 r2.2 Callback Qualification Closure
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -34,6 +34,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | r26.0 audience-first wiki architecture | Implemented | [Documentation status](documentation-status.md) |
 | Test 19 CXR-L firmware comparison | PASS on firmware 1.22 and 1.23; no tested regression | [Final findings](developer/companion-app/test-19-r2-final-findings.md) |
 | Test 20 CXR-L 1.0.1 static capability census | Corrected r1.2 publication accepted | [Published census](research/connection-protocol/publication/test20-r1-cxr-l-capability-census.md) |
+| Test 20 CXR-L AI-assist callback qualification | PASS: two ordered cycles, clean disconnect, stock recovery | [Published summary](research/connection-protocol/publication/test20-r2-cxr-l-event-summary.md) |
 
 ## Current engineering boundary
 
@@ -41,11 +42,11 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 |---|---|
 | Direct CXR-M connection | Diagnostic r1 run retained; ownership result withdrawn |
 | Hi Rokid CXR-L authorization and connection | PASS on firmware 1.22 and 1.23 through fallback-assisted service bind; r2.4 identity and disconnect repairs physically validated |
-| CXR-L 1.0.1 static capability census | 72 classes/interfaces and 594 members inventoried; corrected nine-member runtime boundary published |
+| CXR-L 1.0.1 static capability census | 72 classes/interfaces and 594 members inventoried; corrected nine-member r1.2 runtime boundary preserved |
 | Hi Rokid coexistence | PASS after both controlled firmware runs |
 | Independent local photo capture | Not yet tested |
 | Independent microphone and speaker paths | Not yet tested |
-| CXR-L AI-assist start/stop callbacks in a custom app | Test 20 r2.1 repaired implementation prepared; physical qualification not yet performed |
+| CXR-L AI-assist start/stop callbacks in a custom app | Test 20 r2.2 PASS: two starts and two stops in exact order, zero duplicates, zero out-of-order stops |
 | Offline local AI round trip | Not yet tested |
 | Minimal on-glasses APK | Not yet tested |
 | Proven custom-firmware recovery | Not established |
@@ -56,14 +57,18 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 
 Test 20 r1 is complete through the corrected r1.2 GitHub publication. The first
 r1 sanitized publication remains withdrawn; only the r1.1 repaired census is
-authoritative.
+authoritative for the static inventory and its nine-member runtime boundary.
 
-Test 20 r2.1 closes the public-artifact fixture and rollback-cleanup defects. Test 20 r2 remains one bounded CXR-L `CUSTOMAPP` attempt that passively
-observes exactly two ordered AI-assist start/stop callback cycles. It remains
-`READY_FOR_CONTROLLED_PHYSICAL_RUN`, not accepted, until the governed build,
-install, callback-order, timeout, clean-disconnect, privacy, and Hi Rokid recovery
-gates pass. Camera, audio streaming, custom commands, custom views, provider
-access, glass-app management, and native/JNI behavior remain untested.
+Test 20 r2.2 closes the bounded event/control-plane phase. One governed CXR-L
+`CUSTOMAPP` attempt observed two ordered AI-assist start/stop cycles, zero
+duplicate starts, zero out-of-order stops, clean SDK disconnect, and Hi Rokid
+recovery. The two callback methods are now descriptor-exact runtime-qualified,
+raising the combined accepted member boundary from nine to eleven.
+
+The result does not qualify camera capture, microphone or audio streaming,
+custom commands, custom views, provider access, glass-app management, native/JNI
+behavior, cloud AI content, or the absence of unrelated stock background
+traffic. Those areas remain separate future gates.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before persistent firmware

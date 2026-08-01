@@ -34,3 +34,15 @@ following are true:
 The repair performs no Gradle, Maven, ADB, phone, Bluetooth, media, cloud, or
 glasses operation. After cleanup and successful apply, continue with the
 original Test 20 r2 staged build, install, and single physical run.
+
+
+## Closure
+
+The repaired implementation subsequently passed the governed real Android
+build, exact-package install, and one bounded physical event-observation run.
+The public-artifact fixture and rollback-cleanup repairs introduced no runtime
+scope change. Test 20 r2.2 publishes the accepted callback result and closes
+this implementation branch.
+
+- [Accepted event summary](../research/connection-protocol/publication/test20-r2-cxr-l-event-summary.md)
+- [Final r2.2 publication closure](test-20-r2-2-final-ai-assist-callback-publication.md)
