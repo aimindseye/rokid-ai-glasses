@@ -84,6 +84,17 @@ the combined CXR-L runtime-qualified member boundary is eleven.
 - [Test 20 r1.2 publication closure](../../tests/test-20-r1-2-cxr-l-final-publication.md)
 - [Test 20 r2.2 publication closure](../../tests/test-20-r2-2-final-ai-assist-callback-publication.md)
 
+Test 20 r3.0.1 publishes the accepted read-only media-plane feasibility census.
+It identifies 23 stable declared public surfaces: eight client entry points,
+five image/audio callbacks, and ten media-service contract members. The result
+does not invoke a media API, collect a payload, resolve parameter semantics or
+payload formats, or grant runtime qualification.
+
+- [Media-plane feasibility JSON](publication/test20-r3-cxr-l-media-plane-feasibility.json)
+- [Media-plane feasibility summary](publication/test20-r3-cxr-l-media-plane-feasibility.md)
+- [Media-plane evidence identities](publication/test20-r3-cxr-l-evidence-hashes.txt)
+- [Test 20 r3.0.1 publication closure](../../tests/test-20-r3-0-1-final-media-plane-feasibility-publication.md)
+
 ## Implementation and research history
 
 - [Known boundaries](known-boundaries.md)

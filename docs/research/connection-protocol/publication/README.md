@@ -46,3 +46,19 @@ out-of-order stops, followed by clean disconnect and Hi Rokid recovery.
 The test app made no assistant invocation, cloud AI request, camera,
 microphone, media-stream, custom-command, custom-view, provider, or
 glass-app-management operation.
+
+
+## Test 20 r3.0.1 media-plane feasibility census
+
+- [Machine-readable feasibility census](test20-r3-cxr-l-media-plane-feasibility.json)
+- [Human-readable feasibility census](test20-r3-cxr-l-media-plane-feasibility.md)
+- [Publication schema](test20-r3-cxr-l-media-plane-feasibility.schema.json)
+- [Evidence identities](test20-r3-cxr-l-evidence-hashes.txt)
+- [Final publication closure](../../../tests/test-20-r3-0-1-final-media-plane-feasibility-publication.md)
+
+The accepted read-only census contains 23 stable declared public surfaces:
+eight client entry points, five callbacks, and ten media-service contract
+members. It confirms static image/audio control, callback, and service paths.
+No media API was invoked, no media payload was collected, parameter semantics
+and payload formats remain unresolved, and runtime qualification was not
+granted.

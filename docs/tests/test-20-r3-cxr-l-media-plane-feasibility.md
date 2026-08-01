@@ -81,3 +81,25 @@ Upload only `${OUTPUT}-sanitized-publication.zip` and its SHA-256 sidecar.
 A passing result permits design of
 `TEST20_R3_1_SERVICE_STATUS_AND_NO_PAYLOAD_PREFLIGHT`. It does not authorize
 photo capture, image callback payload collection, or audio streaming.
+
+
+## Accepted publication closure
+
+Test 20 r3.0.1 publishes the reviewed sanitized census and closes this static
+feasibility phase.
+
+```text
+SANITIZED_PUBLICATION_ZIP_SHA256=5e3190657a65565cf91c9711cb25e7c0d269fa46287bbafee72e8a03e71b1333
+PUBLICATION_JSON_SHA256=848114e60720b3014a5ec8b361ca1223f636437e9f976733af129630a944aa5d
+PUBLICATION_MARKDOWN_SHA256=3999fc2e1d321896bba6c4636b71e0a0cf8a24ac039036058469af0941177ef8
+MEDIA_SURFACE_COUNT=23
+RUNTIME_MEDIA_INVOCATION=NONE
+RUNTIME_QUALIFICATION=NOT_GRANTED
+TEST20_R3_FINAL_STATUS=COMPLETE
+```
+
+- [Final publication closure](test-20-r3-0-1-final-media-plane-feasibility-publication.md)
+- [Published feasibility census](../research/connection-protocol/publication/test20-r3-cxr-l-media-plane-feasibility.md)
+- [Evidence identities](../research/connection-protocol/publication/test20-r3-cxr-l-evidence-hashes.txt)
+
+The next gate remains Test 20 r3.1 service-status and no-payload preflight.

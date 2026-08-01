@@ -1,0 +1,272 @@
+{
+  "feasibility": {
+    "audio_callback_path": "STATICALLY_PRESENT",
+    "audio_control_path": "STATICALLY_PRESENT",
+    "image_callback_path": "STATICALLY_PRESENT",
+    "image_control_path": "STATICALLY_PRESENT",
+    "parameter_semantics": "UNRESOLVED",
+    "payload_formats": "UNRESOLVED",
+    "runtime_qualification": "NOT_GRANTED",
+    "service_contract": "STATICALLY_PRESENT"
+  },
+  "hi_rokid": {
+    "component_runtime_boundary": "CONNECTION_LIFECYCLE_QUALIFIED_MEDIA_OPERATIONS_UNTESTED",
+    "media_service_action": "com.rokid.sprite.aiapp.externalapp.MEDIA_STREAM_SERVICE",
+    "media_service_exported": true,
+    "package": "com.rokid.sprite.global.aiapp",
+    "version_name": "G1.11.11.0727"
+  },
+  "next_step": {
+    "classification": "READY_FOR_BOUNDED_MEDIA_TEST_DESIGN",
+    "recommended_stage": "TEST20_R3_1_SERVICE_STATUS_AND_NO_PAYLOAD_PREFLIGHT",
+    "runtime_media_test_authorized": false
+  },
+  "privacy": {
+    "authorization_token_value_present": false,
+    "bluetooth_address_present": false,
+    "device_serial_present": false,
+    "local_user_path_present": false,
+    "media_payload_present": false,
+    "proprietary_binary_present": false
+  },
+  "safety": {
+    "adb_operation": "NONE",
+    "cloud_request": "NONE",
+    "glasses_operation": "NONE",
+    "gradle_operation": "NONE",
+    "maven_operation": "NONE",
+    "phone_operation": "NONE",
+    "runtime_media_invocation": "NONE"
+  },
+  "schema": "rokid.test20.r3.cxr-l-media-plane-feasibility.public.v1",
+  "sdk": {
+    "aar_sha256": "c23d34b3adc60d3fa16001645ce6172eaf4554173e7ef9c078595e672d50824e",
+    "coordinate": "com.rokid.cxr:client-l:1.0.1",
+    "pom_sha256": "d29ddfe5d8daa7e36400efef9b0ed40bc19f1cf452908260d5551aafd62f9f2a"
+  },
+  "source": {
+    "census_schema": "rokid.test20.r1.1.cxr-l-capability-census.public.v1",
+    "census_sha256": "a3f261e830910a1664e004feb91af339ea1518230a4c1c6bc8d2205e1075dcc9"
+  },
+  "surface_counts": {
+    "callbacks": 5,
+    "client_entrypoints": 8,
+    "service_contract": 10,
+    "total": 23
+  },
+  "surfaces": {
+    "callbacks": [
+      {
+        "class": "com.rokid.cxr.link.callbacks.IAudioStreamCbk",
+        "descriptor": "([BII)V",
+        "kind": "method",
+        "name": "onAudioReceived",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract void onAudioReceived(byte[], int, int)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.cxr.link.callbacks.IAudioStreamCbk",
+        "descriptor": "(ILjava/lang/String;)V",
+        "kind": "method",
+        "name": "onAudioError",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract void onAudioError(int, java.lang.String)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.cxr.link.callbacks.IAudioStreamCbk",
+        "descriptor": "(Z)V",
+        "kind": "method",
+        "name": "onAudioStreamStateChanged",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract void onAudioStreamStateChanged(boolean)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.cxr.link.callbacks.IImageStreamCbk",
+        "descriptor": "([B)V",
+        "kind": "method",
+        "name": "onImageReceived",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract void onImageReceived(byte[])",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.cxr.link.callbacks.IImageStreamCbk",
+        "descriptor": "(ILjava/lang/String;)V",
+        "kind": "method",
+        "name": "onImageError",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract void onImageError(int, java.lang.String)",
+        "surface_origin": "declared-public-api"
+      }
+    ],
+    "client_entrypoints": [
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "(Lcom/rokid/cxr/link/callbacks/IAudioStreamCbk;)V",
+        "kind": "method",
+        "name": "setCXRAudioCbk",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final void setCXRAudioCbk(com.rokid.cxr.link.callbacks.IAudioStreamCbk)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "(Lcom/rokid/cxr/link/callbacks/IImageStreamCbk;)V",
+        "kind": "method",
+        "name": "setCXRImageCbk",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final void setCXRImageCbk(com.rokid.cxr.link.callbacks.IImageStreamCbk)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "(III)Z",
+        "kind": "method",
+        "name": "takePhoto",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final boolean takePhoto(int, int, int)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "(I)Z",
+        "kind": "method",
+        "name": "startAudioStream",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final boolean startAudioStream(int)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "()Z",
+        "kind": "method",
+        "name": "stopAudioStream",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final boolean stopAudioStream()",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "()Ljava/lang/String;",
+        "kind": "method",
+        "name": "getServiceVersion",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final java.lang.String getServiceVersion()",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "()Ljava/lang/Integer;",
+        "kind": "method",
+        "name": "getServiceVersionCode",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final java.lang.Integer getServiceVersionCode()",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.example.ExternalAppClient",
+        "descriptor": "()Z",
+        "kind": "method",
+        "name": "isGlassBtConnected",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public final boolean isGlassBtConnected()",
+        "surface_origin": "declared-public-api"
+      }
+    ],
+    "service_contract": [
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "(Lcom/rokid/sprite/aiapp/externalapp/IImageStreamCallback;)Z",
+        "kind": "method",
+        "name": "registerImageCallback",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean registerImageCallback(com.rokid.sprite.aiapp.externalapp.IImageStreamCallback)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "(Lcom/rokid/sprite/aiapp/externalapp/IImageStreamCallback;)Z",
+        "kind": "method",
+        "name": "unregisterImageCallback",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean unregisterImageCallback(com.rokid.sprite.aiapp.externalapp.IImageStreamCallback)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "(III)Z",
+        "kind": "method",
+        "name": "takePhoto",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean takePhoto(int, int, int)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "(Lcom/rokid/sprite/aiapp/externalapp/IAudioStreamCallback;)Z",
+        "kind": "method",
+        "name": "registerAudioCallback",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean registerAudioCallback(com.rokid.sprite.aiapp.externalapp.IAudioStreamCallback)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "(Lcom/rokid/sprite/aiapp/externalapp/IAudioStreamCallback;)Z",
+        "kind": "method",
+        "name": "unregisterAudioCallback",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean unregisterAudioCallback(com.rokid.sprite.aiapp.externalapp.IAudioStreamCallback)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "(I)Z",
+        "kind": "method",
+        "name": "startAudioStream",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean startAudioStream(int)",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "()Z",
+        "kind": "method",
+        "name": "stopAudioStream",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean stopAudioStream()",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "()Z",
+        "kind": "method",
+        "name": "isAudioStreaming",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract boolean isAudioStreaming()",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "()Ljava/lang/String;",
+        "kind": "method",
+        "name": "getServiceVersion",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract java.lang.String getServiceVersion()",
+        "surface_origin": "declared-public-api"
+      },
+      {
+        "class": "com.rokid.sprite.aiapp.externalapp.IMediaStreamService",
+        "descriptor": "()I",
+        "kind": "method",
+        "name": "getServiceVersionCode",
+        "runtime_status": "STATICALLY_CONFIRMED_RUNTIME_UNTESTED",
+        "signature": "public abstract int getServiceVersionCode()",
+        "surface_origin": "declared-public-api"
+      }
+    ]
+  }
+}
