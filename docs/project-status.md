@@ -1,4 +1,4 @@
-# Project Status Through Test 20 r3.1 No-Payload Preflight Implementation
+# Project Status Through Test 20 r3.1.1 No-Payload Preflight Publication
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -36,7 +36,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Test 20 CXR-L 1.0.1 static capability census | Corrected r1.2 publication accepted | [Published census](research/connection-protocol/publication/test20-r1-cxr-l-capability-census.md) |
 | Test 20 CXR-L AI-assist callback qualification | PASS: two ordered cycles, clean disconnect, stock recovery | [Published summary](research/connection-protocol/publication/test20-r2-cxr-l-event-summary.md) |
 | Test 20 CXR-L media-plane feasibility census | PASS: 23 stable declared surfaces; runtime media qualification not granted | [Published feasibility census](research/connection-protocol/publication/test20-r3-cxr-l-media-plane-feasibility.md) |
-| Test 20 CXR-L media no-payload preflight | Implementation ready: service status, Bluetooth status, callback registration, and quiet-window observation only | [Runbook](tests/test-20-r3-1-cxr-l-media-service-no-payload-preflight.md) |
+| Test 20 CXR-L media no-payload preflight | PASS: status queries, callback registration, 15-second quiet window, zero unsolicited media callbacks, clean disconnect, and stock recovery | [Published summary](research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.md) |
 
 ## Current engineering boundary
 
@@ -46,7 +46,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Hi Rokid CXR-L authorization and connection | PASS on firmware 1.22 and 1.23 through fallback-assisted service bind; r2.4 identity and disconnect repairs physically validated |
 | CXR-L 1.0.1 static capability census | 72 classes/interfaces and 594 members inventoried; corrected nine-member r1.2 runtime boundary preserved |
 | Hi Rokid coexistence | PASS after both controlled firmware runs |
-| Independent local photo capture | Static control/callback paths present; runtime capture untested and not authorized |
+| Independent local photo capture | Static path present; one-shot runtime capture remains untested and requires Test 20 r3.2 |
 | Independent microphone and speaker paths | Static audio control/callback paths present; runtime streaming untested and not authorized |
 | CXR-L AI-assist start/stop callbacks in a custom app | Test 20 r2.2 PASS: two starts and two stops in exact order, zero duplicates, zero out-of-order stops |
 | Offline local AI round trip | Not yet tested |
@@ -74,12 +74,18 @@ declared public control, callback, and service paths are statically present.
 Parameter semantics and payload formats remain unresolved, no media API was
 invoked, and runtime qualification was not granted.
 
-Test 20 r3.1 implements the next bounded gate. It is limited to service version,
-service version code, glasses Bluetooth status, image/audio callback registration,
-and a no-payload observation window. It does not authorize camera capture,
-microphone/audio streaming, payload retention, custom commands, custom views,
-provider access, glass-app management, or native/JNI behavior. One governed
-physical attempt is required before any r3.1 runtime claim is accepted.
+Test 20 r3.1.1 closes the no-payload preflight. One governed attempt returned a
+service version value, service version code `10000`, connected glasses Bluetooth
+status, and successful image/audio callback registration. During the 15-second
+quiet window it observed zero image payload/error callbacks and zero audio
+payload/error/active-state callbacks. Clean disconnect, Hi Rokid recovery, and
+privacy gates passed.
+
+Runtime qualification is limited to the two callback-registration setters and
+the three status queries. The result does not qualify `takePhoto()`,
+`startAudioStream()`, `stopAudioStream()`, payload formats, parameter semantics,
+or media transport performance. The next phase is Test 20 r3.2: a separately
+governed one-shot photo control and bounded image-callback qualification.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before persistent firmware

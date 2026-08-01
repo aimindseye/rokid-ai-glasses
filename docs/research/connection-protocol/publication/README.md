@@ -62,3 +62,23 @@ members. It confirms static image/audio control, callback, and service paths.
 No media API was invoked, no media payload was collected, parameter semantics
 and payload formats remain unresolved, and runtime qualification was not
 granted.
+
+## Test 20 r3.1.1 no-payload media-service preflight
+
+- [Machine-readable preflight summary](test20-r3-1-cxr-l-no-payload-preflight.json)
+- [Human-readable preflight summary](test20-r3-1-cxr-l-no-payload-preflight.md)
+- [Publication schema](test20-r3-1-cxr-l-no-payload-preflight.schema.json)
+- [Evidence identities](test20-r3-1-cxr-l-evidence-hashes.txt)
+- [Final publication closure](../../../tests/test-20-r3-1-1-final-no-payload-preflight-publication.md)
+
+The accepted run registered image and audio callback interfaces, queried the
+service version, service version code, and glasses Bluetooth status, and then
+observed a 15-second quiet window. It received zero unsolicited image
+payload/error callbacks and zero audio payload/error/active-state callbacks.
+Clean disconnect and Hi Rokid recovery passed.
+
+Runtime qualification is limited to `setCXRImageCbk(IImageStreamCbk)`,
+`setCXRAudioCbk(IAudioStreamCbk)`, `getServiceVersion()`,
+`getServiceVersionCode()`, and `isGlassBtConnected()`. The publication does not
+qualify photo capture, audio streaming, payload formats, parameter semantics,
+or media transport performance.

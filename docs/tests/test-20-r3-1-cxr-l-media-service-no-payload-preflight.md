@@ -1,6 +1,6 @@
 # Test 20 r3.1 — CXR-L Media Service Status and No-Payload Preflight Qualification
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=planned; last_reviewed=2026-08-01 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-08-01 -->
 
 ## Purpose
 
@@ -48,3 +48,39 @@ payload formats, parameter semantics, direct binder methods, or media capture.
 - glasses firmware: `1.23.009-20260725-153201`
 - Hi Rokid: `G1.11.11.0727`
 - SDK: `com.rokid.cxr:client-l:1.0.1`
+
+
+## Accepted physical result
+
+Test 20 r3.1 completed one governed physical attempt on firmware
+`1.23.009-20260725-153201` with Hi Rokid `G1.11.11.0727` and
+`com.rokid.cxr:client-l:1.0.1`.
+
+- callback registration: PASS
+- service version: present; public value represented only by SHA-256
+- service version code: `10000`
+- glasses Bluetooth status: connected
+- quiet observation window: `15000` ms
+- image payload/error callbacks: `0` / `0`
+- audio payload/error/active-state callbacks: `0` / `0` / `0`
+- clean disconnect: PASS
+- Hi Rokid recovery: PASS
+- terminal: `NO_PAYLOAD_OBSERVATION_COMPLETE`
+
+No photo request, audio-stream request, payload retention, or cloud request was
+performed. The runtime-qualified delta is limited to the five methods listed
+above. `takePhoto()`, `startAudioStream()`, `stopAudioStream()`, payload formats,
+parameter semantics, and media transport behavior remain unqualified.
+
+## Publication
+
+- [Machine-readable accepted summary](../research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.json)
+- [Human-readable accepted summary](../research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.md)
+- [Evidence identities](../research/connection-protocol/publication/test20-r3-1-cxr-l-evidence-hashes.txt)
+- [Final r3.1.1 publication closure](test-20-r3-1-1-final-no-payload-preflight-publication.md)
+
+## Next boundary
+
+Test 20 r3.2 may design exactly one bounded `takePhoto()` invocation and one
+image-callback observation path. It must remain a separate approval, build,
+install, and physical-run workflow.

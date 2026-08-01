@@ -1,0 +1,9 @@
+# Test 20 r3.1 public evidence identities
+
+1f037c809e27d3166bc8e0b1c51fc01bcda6b0de5e05068101d2b68a0c34b6f0  test20-r3-1-no-payload-fw-1.23-20260801T015231Z-sanitized-summary.zip
+b1e48f30335f8b823dc9725f1d94ccfc44f44aa71d50abef82913a9dd7fb5235  test20-r3-1-cxr-l-no-payload-preflight.json
+ad1a55b4218e9fe37d648c67cbe01418a4dda22218a0fb4e31e05e4ba60f9a82  test20-r3-1-cxr-l-no-payload-preflight.md
+92521fc3cbd964bdc9f584a991b89fddaa5754ed1cc96d6d42445338669c1305  service-version-value
+3f03d6fc411c0191df57ab178dd743137817878eca88c228e0a8050769e4dbfc  run-id
+
+Private evidence bytes, authorization-token values, device serials, raw Bluetooth addresses, local paths, and media payloads are not published.
