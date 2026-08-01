@@ -1,4 +1,4 @@
-# Project Status Through Test 20 r3.0.1 Media-Plane Feasibility Closure
+# Project Status Through Test 20 r3.1 No-Payload Preflight Implementation
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -36,6 +36,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Test 20 CXR-L 1.0.1 static capability census | Corrected r1.2 publication accepted | [Published census](research/connection-protocol/publication/test20-r1-cxr-l-capability-census.md) |
 | Test 20 CXR-L AI-assist callback qualification | PASS: two ordered cycles, clean disconnect, stock recovery | [Published summary](research/connection-protocol/publication/test20-r2-cxr-l-event-summary.md) |
 | Test 20 CXR-L media-plane feasibility census | PASS: 23 stable declared surfaces; runtime media qualification not granted | [Published feasibility census](research/connection-protocol/publication/test20-r3-cxr-l-media-plane-feasibility.md) |
+| Test 20 CXR-L media no-payload preflight | Implementation ready: service status, Bluetooth status, callback registration, and quiet-window observation only | [Runbook](tests/test-20-r3-1-cxr-l-media-service-no-payload-preflight.md) |
 
 ## Current engineering boundary
 
@@ -73,11 +74,12 @@ declared public control, callback, and service paths are statically present.
 Parameter semantics and payload formats remain unresolved, no media API was
 invoked, and runtime qualification was not granted.
 
-The next gate is Test 20 r3.1 service-status and no-payload preflight. It is
-limited to service version, Bluetooth status, and callback registration
-lifecycle. Camera capture, microphone/audio streaming, media payload retention,
-custom commands, custom views, provider access, glass-app management, and
-native/JNI behavior remain separate future gates.
+Test 20 r3.1 implements the next bounded gate. It is limited to service version,
+service version code, glasses Bluetooth status, image/audio callback registration,
+and a no-payload observation window. It does not authorize camera capture,
+microphone/audio streaming, payload retention, custom commands, custom views,
+provider access, glass-app management, or native/JNI behavior. One governed
+physical attempt is required before any r3.1 runtime claim is accepted.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before persistent firmware
