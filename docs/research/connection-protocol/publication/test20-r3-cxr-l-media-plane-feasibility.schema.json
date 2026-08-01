@@ -1,0 +1,248 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/aimindseye/rokid-ai-glasses/schemas/test20-r3-cxr-l-media-plane-feasibility.v1.json",
+  "title": "Test 20 r3 sanitized CXR-L media-plane feasibility census",
+  "type": "object",
+  "required": [
+    "schema",
+    "source",
+    "sdk",
+    "hi_rokid",
+    "surface_counts",
+    "surfaces",
+    "feasibility",
+    "privacy",
+    "safety",
+    "next_step"
+  ],
+  "properties": {
+    "schema": {
+      "const": "rokid.test20.r3.cxr-l-media-plane-feasibility.public.v1"
+    },
+    "source": {
+      "type": "object",
+      "required": [
+        "census_schema",
+        "census_sha256"
+      ],
+      "properties": {
+        "census_schema": {
+          "type": "string"
+        },
+        "census_sha256": {
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sdk": {
+      "type": "object",
+      "required": [
+        "coordinate",
+        "aar_sha256",
+        "pom_sha256"
+      ],
+      "properties": {
+        "coordinate": {
+          "const": "com.rokid.cxr:client-l:1.0.1"
+        },
+        "aar_sha256": {
+          "const": "c23d34b3adc60d3fa16001645ce6172eaf4554173e7ef9c078595e672d50824e"
+        },
+        "pom_sha256": {
+          "const": "d29ddfe5d8daa7e36400efef9b0ed40bc19f1cf452908260d5551aafd62f9f2a"
+        }
+      },
+      "additionalProperties": false
+    },
+    "hi_rokid": {
+      "type": "object",
+      "required": [
+        "package",
+        "version_name",
+        "media_service_action",
+        "media_service_exported",
+        "component_runtime_boundary"
+      ],
+      "properties": {
+        "package": {
+          "const": "com.rokid.sprite.global.aiapp"
+        },
+        "version_name": {
+          "const": "G1.11.11.0727"
+        },
+        "media_service_action": {
+          "const": "com.rokid.sprite.aiapp.externalapp.MEDIA_STREAM_SERVICE"
+        },
+        "media_service_exported": {
+          "const": true
+        },
+        "component_runtime_boundary": {
+          "const": "CONNECTION_LIFECYCLE_QUALIFIED_MEDIA_OPERATIONS_UNTESTED"
+        }
+      },
+      "additionalProperties": false
+    },
+    "surface_counts": {
+      "type": "object",
+      "required": [
+        "client_entrypoints",
+        "callbacks",
+        "service_contract",
+        "total"
+      ],
+      "properties": {
+        "client_entrypoints": {
+          "const": 8
+        },
+        "callbacks": {
+          "const": 5
+        },
+        "service_contract": {
+          "const": 10
+        },
+        "total": {
+          "const": 23
+        }
+      },
+      "additionalProperties": false
+    },
+    "surfaces": {
+      "type": "object",
+      "required": [
+        "client_entrypoints",
+        "callbacks",
+        "service_contract"
+      ],
+      "properties": {
+        "client_entrypoints": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8
+        },
+        "callbacks": {
+          "type": "array",
+          "minItems": 5,
+          "maxItems": 5
+        },
+        "service_contract": {
+          "type": "array",
+          "minItems": 10,
+          "maxItems": 10
+        }
+      },
+      "additionalProperties": false
+    },
+    "feasibility": {
+      "type": "object",
+      "required": [
+        "image_control_path",
+        "image_callback_path",
+        "audio_control_path",
+        "audio_callback_path",
+        "service_contract",
+        "parameter_semantics",
+        "payload_formats",
+        "runtime_qualification"
+      ],
+      "properties": {
+        "image_control_path": {
+          "const": "STATICALLY_PRESENT"
+        },
+        "image_callback_path": {
+          "const": "STATICALLY_PRESENT"
+        },
+        "audio_control_path": {
+          "const": "STATICALLY_PRESENT"
+        },
+        "audio_callback_path": {
+          "const": "STATICALLY_PRESENT"
+        },
+        "service_contract": {
+          "const": "STATICALLY_PRESENT"
+        },
+        "parameter_semantics": {
+          "const": "UNRESOLVED"
+        },
+        "payload_formats": {
+          "const": "UNRESOLVED"
+        },
+        "runtime_qualification": {
+          "const": "NOT_GRANTED"
+        }
+      },
+      "additionalProperties": false
+    },
+    "privacy": {
+      "type": "object",
+      "required": [
+        "authorization_token_value_present",
+        "bluetooth_address_present",
+        "device_serial_present",
+        "media_payload_present",
+        "local_user_path_present",
+        "proprietary_binary_present"
+      ],
+      "additionalProperties": {
+        "const": false
+      }
+    },
+    "safety": {
+      "type": "object",
+      "required": [
+        "runtime_media_invocation",
+        "phone_operation",
+        "glasses_operation",
+        "adb_operation",
+        "maven_operation",
+        "gradle_operation",
+        "cloud_request"
+      ],
+      "properties": {
+        "runtime_media_invocation": {
+          "const": "NONE"
+        },
+        "phone_operation": {
+          "const": "NONE"
+        },
+        "glasses_operation": {
+          "const": "NONE"
+        },
+        "adb_operation": {
+          "const": "NONE"
+        },
+        "maven_operation": {
+          "const": "NONE"
+        },
+        "gradle_operation": {
+          "const": "NONE"
+        },
+        "cloud_request": {
+          "const": "NONE"
+        }
+      },
+      "additionalProperties": false
+    },
+    "next_step": {
+      "type": "object",
+      "required": [
+        "classification",
+        "recommended_stage",
+        "runtime_media_test_authorized"
+      ],
+      "properties": {
+        "classification": {
+          "const": "READY_FOR_BOUNDED_MEDIA_TEST_DESIGN"
+        },
+        "recommended_stage": {
+          "const": "TEST20_R3_1_SERVICE_STATUS_AND_NO_PAYLOAD_PREFLIGHT"
+        },
+        "runtime_media_test_authorized": {
+          "const": false
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
