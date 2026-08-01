@@ -1,4 +1,4 @@
-# Project Status Through Test 20 r3.1.1 No-Payload Preflight Publication
+# Project Status Through Test 20 r3.2 One-Shot Photo Implementation
 
 <!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-07-31 -->
 
@@ -37,6 +37,7 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Test 20 CXR-L AI-assist callback qualification | PASS: two ordered cycles, clean disconnect, stock recovery | [Published summary](research/connection-protocol/publication/test20-r2-cxr-l-event-summary.md) |
 | Test 20 CXR-L media-plane feasibility census | PASS: 23 stable declared surfaces; runtime media qualification not granted | [Published feasibility census](research/connection-protocol/publication/test20-r3-cxr-l-media-plane-feasibility.md) |
 | Test 20 CXR-L media no-payload preflight | PASS: status queries, callback registration, 15-second quiet window, zero unsolicited media callbacks, clean disconnect, and stock recovery | [Published summary](research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.md) |
+| Test 20 CXR-L one-shot photo qualification | Implementation ready: one explicit request, one bounded image callback, no payload persistence, and automatic recovery | [Runbook](tests/test-20-r3-2-cxr-l-one-shot-photo-qualification.md) |
 
 ## Current engineering boundary
 
@@ -81,11 +82,14 @@ quiet window it observed zero image payload/error callbacks and zero audio
 payload/error/active-state callbacks. Clean disconnect, Hi Rokid recovery, and
 privacy gates passed.
 
-Runtime qualification is limited to the two callback-registration setters and
-the three status queries. The result does not qualify `takePhoto()`,
-`startAudioStream()`, `stopAudioStream()`, payload formats, parameter semantics,
-or media transport performance. The next phase is Test 20 r3.2: a separately
-governed one-shot photo control and bounded image-callback qualification.
+Runtime qualification from r3.1.1 remains limited to the two callback-registration
+setters and the three status queries. Test 20 r3.2 now implements the separately
+governed one-shot photo gate. It permits one explicit `takePhoto(1920, 1080, 80)`
+request against a non-sensitive printed test target, accepts at most one non-empty
+image callback, records only metadata and a private digest, never persists or
+previews image bytes, and verifies clean disconnect and stock recovery. The
+parameter labels are a working hypothesis and are not generalized by this stage.
+Audio streaming remains untested and unauthorized.
 
 Custom firmware remains a later conditional track. Prefer stock firmware plus a
 custom phone app, then a minimal on-glasses APK, before persistent firmware

@@ -29,7 +29,7 @@
 | CXR-L AI-assist event callbacks | Test 20 r2.2 accepted: two ordered start/stop cycles, clean disconnect, and Hi Rokid recovery PASS |
 | CXR-L media-plane feasibility | Test 20 r3.0.1 accepted: 23 descriptor-exact image/audio/service surfaces statically confirmed; runtime qualification not granted |
 | CXR-L media no-payload preflight | Test 20 r3.1.1 accepted: service status, Bluetooth status, image/audio callback registration, 15-second quiet window, zero unsolicited media callbacks, clean disconnect, and Hi Rokid recovery PASS |
-| CXR-L one-shot photo qualification | Not started; requires a separately governed r3.2 single-operation design |
+| CXR-L one-shot photo qualification | Test 20 r3.2 implementation ready for governed build and one physical attempt; exactly one bounded photo request, no payload persistence |
 | Independent camera capture | Not yet tested |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -74,6 +74,14 @@ Bluetooth status, and completed a 15-second quiet window with zero unsolicited
 image payload/error callbacks and zero audio payload/error/active-state
 callbacks. Clean disconnect and Hi Rokid recovery passed.
 
+Test 20 r3.2 implements the separately governed one-shot photo stage. It
+uses one explicit operator-controlled `takePhoto(1920, 1080, 80)` request after
+the accepted connection and service-status gates. Callback bytes are inspected
+in memory for non-empty encoded-image metadata and a private digest, are never
+written or previewed, and are followed by a bounded duplicate-callback window.
+The argument semantics remain a working hypothesis; a pass qualifies only this
+exact triplet and one callback lifecycle.
+
 The accepted runtime-qualified delta is limited to
 `setCXRImageCbk(IImageStreamCbk)`, `setCXRAudioCbk(IAudioStreamCbk)`,
 `getServiceVersion()`, `getServiceVersionCode()`, and
@@ -98,5 +106,6 @@ bounded gate is Test 20 r3.2, a separately governed one-shot photo design.
 - [Test 20 r3.1 no-payload preflight](../tests/test-20-r3-1-cxr-l-media-service-no-payload-preflight.md)
 - [Published no-payload preflight summary](../research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.md)
 - [Test 20 r3.1.1 publication closure](../tests/test-20-r3-1-1-final-no-payload-preflight-publication.md)
+- [Test 20 r3.2 one-shot photo qualification](../tests/test-20-r3-2-cxr-l-one-shot-photo-qualification.md)
 - [Connection-protocol research](../research/connection-protocol/README.md)
 - [Boot-chain research](../research/boot-chain/README.md)

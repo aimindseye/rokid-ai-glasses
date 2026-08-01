@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="white"/>
+  <rect x="24" y="24" width="1152" height="752" fill="none" stroke="black" stroke-width="16"/>
+  <text x="600" y="105" font-family="sans-serif" font-size="64" text-anchor="middle" fill="black">TEST 20 r3.2</text>
+  <text x="600" y="165" font-family="sans-serif" font-size="34" text-anchor="middle" fill="black">PUBLIC NON-SENSITIVE PHOTO TARGET</text>
+  <rect x="110" y="235" width="220" height="220" fill="black"/>
+  <circle cx="600" cy="345" r="110" fill="none" stroke="black" stroke-width="20"/>
+  <path d="M870 455 L980 235 L1090 455 Z" fill="black"/>
+  <g stroke="black" stroke-width="8">
+    <line x1="110" y1="550" x2="1090" y2="550"/>
+    <line x1="110" y1="600" x2="1090" y2="600"/>
+    <line x1="110" y1="650" x2="1090" y2="650"/>
+  </g>
+  <text x="600" y="735" font-family="monospace" font-size="30" text-anchor="middle" fill="black">1920 / 1080 / 80 — ONE REQUEST ONLY</text>
+</svg>
