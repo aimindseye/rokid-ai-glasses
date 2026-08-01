@@ -138,3 +138,16 @@ observed envelope and sequence candidate with constructors or native transforms,
 and recover positive reply, authorization, integrity, session-binding, and
 rollback semantics. Custom RFCOMM transmission and captured-payload replay remain
 disabled.
+## Test 20 final CXR-L one-shot photo and callback closure
+
+Test 20 r3.2.1.3 and r3.3 close the bounded one-shot photo and image-callback path for the tested environment. r3.2.1.3 proves the two-phase host-tokenized one-shot gate. r3.3 shows that pre-connect-only image callback registration can accept the photo request yet deliver no callback while the service remains stable, whereas re-registering the same retained callback after successful service-status qualification delivers one image payload callback with the unchanged `takePhoto(1920,1080,80)` request.
+
+The canonical implementation therefore retains the callback strongly, registers it pre-connect, re-registers the same object post-service-status, and only then permits photo readiness. `ARG3_ZERO_DIAGNOSTIC` was not run because callback delivery was already proven with the original third argument. The result is bounded to the tested firmware, Hi Rokid version, and `client-l:1.0.1`; it does not establish the SDK's internal mechanism.
+
+- [r3.2.1.3 two-phase one-shot qualification](../../tests/test-20-r3-2-1-3-two-phase-one-shot-photo-qualification.md)
+- [r3.3 callback closure](../../tests/test-20-r3-3-post-takephoto-image-callback-closure.md)
+- [final Test 20 publication](../../tests/test-20-final-photo-control-callback-publication.md)
+- [final machine publication](publication/test20-final-cxr-l-one-shot-photo-and-callback-closure.json)
+- [final human-readable publication](publication/test20-final-cxr-l-one-shot-photo-and-callback-closure.md)
+
+`TEST20_FINAL_STATUS=ACCEPTED_CLOSED_IMPLEMENTATION_RULE_PUBLISHED`

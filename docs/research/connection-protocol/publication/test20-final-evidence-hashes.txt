@@ -1,0 +1,9 @@
+3bcb4d6fe7d15af9ae6850ee5c7a64b6e0581df248e36c852e643737d9c0aa04  r3.2.1.3 sanitized summary ZIP
+96716c665f268f543686b7fcc9d2b8f87526c835d8a4994d21c908c1371b0ce5  r3.3 STRONG_REF_PRECONNECT sanitized summary ZIP
+dd8b8580e484968bdb75b20c6d00188d2b564efa1697b52e17f461bf3502b35c  r3.3 POSTCONNECT_REREGISTER sanitized summary ZIP
+df801b7e18fe38f6b182041501965445d2e5fe880364f415ceb9cf8c972c8023  test20-final-cxr-l-one-shot-photo-and-callback-closure.json
+80300d745df972ec5f7ed89fc192dcced2a92b474a02cccebc884350252aa017  test20-final-cxr-l-one-shot-photo-and-callback-closure.md
+f16b89ffb0e84bde7734c39e76ad9d62fac3481273b64e9e7f8457d0614105f6  test20-final-cxr-l-one-shot-photo-and-callback-closure.schema.json
+523c3a8a1baa15e1227578799de24dd51e85d029972f370c795945624190edfc  test20-r3-2-1-3-one-shot-photo-summary.json
+1b98b3e8834b5a5687d550377ac01f08c8632b0279c624af248ee06bc1c4b121  test20-r3-3-postconnect-reregister-summary.json
+96e9fbd5b90f8c8de53f0ec7226c4aea96f3dea3ca72ed394066df7f863024cb  test20-r3-3-strong-ref-preconnect-summary.json

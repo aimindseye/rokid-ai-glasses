@@ -1,0 +1,84 @@
+{
+  "accepted_inputs": {
+    "r3_2_1_3_sanitized_zip_sha256": "3bcb4d6fe7d15af9ae6850ee5c7a64b6e0581df248e36c852e643737d9c0aa04",
+    "r3_3_postconnect_reregister_sanitized_zip_sha256": "dd8b8580e484968bdb75b20c6d00188d2b564efa1697b52e17f461bf3502b35c",
+    "r3_3_strong_ref_preconnect_sanitized_zip_sha256": "96716c665f268f543686b7fcc9d2b8f87526c835d8a4994d21c908c1371b0ce5"
+  },
+  "canonical_implementation_rule": {
+    "audio_operation": "NONE",
+    "do_not_mark_photo_ready_until_postconnect_reregistration_succeeds": true,
+    "image_payload_persistence": "NONE",
+    "image_preview": "NONE",
+    "max_photo_requests_per_run": 1,
+    "photo_args": [
+      1920,
+      1080,
+      80
+    ],
+    "register_callback_before_connect": true,
+    "reregister_same_callback_after_successful_service_status": true,
+    "retain_strong_image_callback_reference": true,
+    "third_argument_semantics": "WORKING_HYPOTHESIS_NOT_GENERALIZED",
+    "two_phase_host_tokenized_one_shot_arm_preserved": true
+  },
+  "classification": "CXR_L_ONE_SHOT_PHOTO_AND_IMAGE_CALLBACK_PATH_PROVEN_WITH_POSTCONNECT_REREGISTRATION",
+  "environment": {
+    "cxr_l_aar_sha256": "c23d34b3adc60d3fa16001645ce6172eaf4554173e7ef9c078595e672d50824e",
+    "cxr_l_coordinate": "com.rokid.cxr:client-l:1.0.1",
+    "glasses_firmware": "1.23.009-20260725-151201",
+    "hi_rokid_version": "G1.11.11.0727"
+  },
+  "interpretation_boundary": [
+    "The behavioral difference strongly implicates callback registration timing or session establishment; it does not prove the SDK internal mechanism.",
+    "The post-connect re-registration rule is validated only for the tested firmware, Hi Rokid version, and client-l 1.0.1 environment.",
+    "The third takePhoto argument semantics remain unresolved; the zero diagnostic was not run.",
+    "Direct camera capture without the Hi Rokid authorization/media-service path remains unqualified.",
+    "Microphone and speaker paths remain outside this photo qualification."
+  ],
+  "privacy": {
+    "authorization_token_value_published": false,
+    "image_payload_published": false,
+    "operator_arm_token_value_published": false,
+    "private_evidence_archives_published": false,
+    "raw_device_serial_published": false,
+    "screenshot_published": false
+  },
+  "r3_2_1_3": {
+    "additional_media_action": "NO",
+    "audio_operation": "NONE",
+    "capture_dispatch": "ACCEPTED_ONCE",
+    "hi_rokid_recovery": "PASS",
+    "image_error_callback_count": 0,
+    "image_payload_callback_count": 0,
+    "photo_requests_before_arm": 0,
+    "photo_requests_before_operator_tap": 0,
+    "purpose": "SCRIPT_APK_OPERATOR_GATE_SYNCHRONIZATION_AND_TWO_PHASE_PHOTO_ARMING",
+    "resolved_photo_request_count": 1,
+    "status": "PASS"
+  },
+  "r3_3": {
+    "arg3_zero_diagnostic": {
+      "reason": "NOT_JUSTIFIED_AFTER_CALLBACK_PATH_PROVEN_WITH_ARG3_80",
+      "status": "NOT_RUN"
+    },
+    "postconnect_reregister": {
+      "classification": "IMAGE_CALLBACK_DELIVERED",
+      "image_error_callback_count": 0,
+      "image_payload_callback_count": 1,
+      "resolved_photo_request_count": 1,
+      "status": "PASS",
+      "take_photo_returned": true,
+      "terminal_outcome": "ONE_SHOT_PHOTO_RECEIVED"
+    },
+    "strong_ref_preconnect": {
+      "classification": "REQUEST_ACCEPTED_NO_CALLBACK_SERVICE_STABLE",
+      "image_error_callback_count": 0,
+      "image_payload_callback_count": 0,
+      "resolved_photo_request_count": 1,
+      "service_stability": "STABLE",
+      "status": "PASS",
+      "take_photo_returned": true
+    }
+  },
+  "schema": "rokid.test20.final.photo-callback-publication.v1"
+}

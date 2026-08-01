@@ -1,6 +1,6 @@
 # Companion-App Requirements
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=planned; last_reviewed=2026-07-30 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=planned; last_reviewed=2026-08-01 -->
 
 ## Page status
 
@@ -9,7 +9,7 @@
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
 | Evidence status | Planned |
-| Last reviewed | 2026-07-30 |
+| Last reviewed | 2026-08-01 |
 
 
 ## Functional requirements
@@ -26,6 +26,19 @@
 | HUB-08 | Communicate with a local/private backend using authenticated encryption |
 | HUB-09 | Record auditable request, evidence, response, and error lineage |
 | HUB-10 | Recover from app, phone, Bluetooth, device, and network interruptions |
+
+## Qualified CXR-L photo lifecycle
+
+For the tested Rokid AI Glasses Style environment, HUB-04 now has a device-qualified CXR-L implementation rule:
+
+- retain one strong `IImageStreamCbk` object for the connection attempt;
+- register it before connection;
+- after CXR-L connected, glasses Bluetooth connected, and successful service-status qualification, re-register that same callback object;
+- do not expose photo readiness until the post-connect registration succeeds;
+- preserve a host-controlled two-phase one-shot gate and consume the arm atomically before `takePhoto()`;
+- keep payload preview/persistence and audio operations disabled unless separately qualified.
+
+This rule is validated for firmware `1.23.009-20260725-151201`, Hi Rokid `G1.11.11.0727`, and `com.rokid.cxr:client-l:1.0.1`. It is not yet generalized to other versions or to direct capture without Hi Rokid.
 
 ## Safety and privacy requirements
 

@@ -1,0 +1,41 @@
+{
+  "TEST20_R3_3_RUN_VALID": "PASS",
+  "app_version": "1.0-test20-r3.3",
+  "callback_closure": {
+    "arg3": 80,
+    "audio_operation": "NONE",
+    "callback_dispatch_event_count": 1,
+    "callback_profile": "POSTCONNECT_REREGISTER",
+    "classification": "IMAGE_CALLBACK_DELIVERED",
+    "image_error_callback_count": 0,
+    "image_payload_callback_count": 1,
+    "next_profile_or_action": "STOP_CALLBACK_PATH_PROVEN",
+    "one_shot_gate": "PASS",
+    "photo_result_event_count": 1,
+    "reported_photo_counts": [
+      1,
+      1,
+      1,
+      1,
+      1,
+      1
+    ],
+    "resolved_photo_request_count": 1,
+    "take_photo_error_class": "",
+    "take_photo_returned": true,
+    "terminal_outcome": "ONE_SHOT_PHOTO_RECEIVED",
+    "watchdog_checkpoint_count": 1
+  },
+  "firmware": "1.23.009-20260725-151201",
+  "firmware_attestation": {
+    "ocr_used": false,
+    "operator_exact_match": true,
+    "screenshot_bytes": 2808728,
+    "screenshot_sha256": "919a5970e4d6216277563b809437ecda46b00d54f060f90485055dff753c3315"
+  },
+  "mode": "final",
+  "package": "org.aimindseye.rokid.cxrphotoqualification",
+  "profile": "POSTCONNECT_REREGISTER",
+  "run_id_sha256": "fda188b95e272b18ec736cf6266842770321dc55ad88b883446fe5379f0a2d57",
+  "schema": "rokid.test20-r3.3.sanitized-summary.v1"
+}

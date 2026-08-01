@@ -1,0 +1,50 @@
+{
+  "$id": "https://github.com/aimindseye/rokid-ai-glasses/blob/main/docs/research/connection-protocol/publication/test20-final-cxr-l-one-shot-photo-and-callback-closure.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "accepted_inputs": {
+      "type": "object"
+    },
+    "canonical_implementation_rule": {
+      "type": "object"
+    },
+    "classification": {
+      "const": "CXR_L_ONE_SHOT_PHOTO_AND_IMAGE_CALLBACK_PATH_PROVEN_WITH_POSTCONNECT_REREGISTRATION"
+    },
+    "environment": {
+      "type": "object"
+    },
+    "interpretation_boundary": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "privacy": {
+      "type": "object"
+    },
+    "r3_2_1_3": {
+      "type": "object"
+    },
+    "r3_3": {
+      "type": "object"
+    },
+    "schema": {
+      "const": "rokid.test20.final.photo-callback-publication.v1"
+    }
+  },
+  "required": [
+    "schema",
+    "classification",
+    "environment",
+    "accepted_inputs",
+    "r3_2_1_3",
+    "r3_3",
+    "canonical_implementation_rule",
+    "interpretation_boundary",
+    "privacy"
+  ],
+  "title": "Test 20 final CXR-L one-shot photo and callback closure publication",
+  "type": "object"
+}

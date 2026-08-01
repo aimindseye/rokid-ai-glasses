@@ -2,7 +2,10 @@ package org.aimindseye.rokid.cxrphotoqualification;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -27,16 +30,40 @@ public final class MainActivity extends Activity {
     private Button captureButton;
     private Button disconnectButton;
     private String token;
+    private String operatorGateRunId;
+    private String operatorGateToken;
+    private BroadcastReceiver operatorGateReceiver;
+    private boolean operatorGateReceiverRegistered;
+    private static final String OPERATOR_GATE_ACTION =
+            "org.aimindseye.rokid.cxrphotoqualification.ARM_ONE_PHOTO";
 
     @Override protected void onCreate(Bundle state) {
         super.onCreate(state);
         String runId = getIntent().getStringExtra("run_id");
         if (runId == null || runId.isBlank()) runId = utcTimestamp();
+        operatorGateRunId = runId;
+        operatorGateToken = getIntent().getStringExtra("operator_gate_token");
         String firmwareLabel = getIntent().getStringExtra("firmware_label");
         if (firmwareLabel == null || firmwareLabel.isBlank()) firmwareLabel = "unspecified";
         try { logger = new EvidenceLogger(this, runId, firmwareLabel); }
         catch (IOException error) { throw new IllegalStateException("Cannot initialize Test 20 r3.2 evidence", error); }
         buildUi(runId, firmwareLabel);
+        registerOperatorGateReceiver();
+        logger.event("canonical_photo_controller_lifecycle", EvidenceLogger.details(
+                "lifecycle", "CANONICAL_POSTCONNECT_REREGISTER",
+                "strong_callback_reference", true,
+                "preconnect_registration", true,
+                "post_service_status_reregistration", true,
+                "one_photo_request_per_run", true,
+                "audio_operation_enabled", false,
+                "payload_persistence_enabled", false));
+        logger.event("operator_gate_initialized", EvidenceLogger.details(
+                "phase", "PREREQUISITE_LOCKED",
+                "photo_control_enabled", false,
+                "host_arm_granted", false,
+                "arm_token_present", operatorGateToken != null && !operatorGateToken.isBlank(),
+                "arm_token_value_logged", false,
+                "host_arm_action", "ARM_ONE_PHOTO"));
         RuntimeAppIdentity identity = runtimeAppIdentity();
         logger.event("run_started", EvidenceLogger.details(
                 "app_package", getPackageName(),
@@ -85,12 +112,18 @@ public final class MainActivity extends Activity {
                 new CxrLPhotoController.Callback() {
                     @Override public void onStatus(String status) { setStatus(status); }
                     @Override public void onPhotoReady() {
-                        captureButton.setEnabled(true);
-                        setStatus("ONE-SHOT PHOTO READY. Point only at the printed Test 20 r3.2 target, then tap Capture exactly once.");
+                        captureButton.setEnabled(false);
+                        captureButton.setText("3. PHASE 1 — PHOTO LOCKED (wait for host arm)");
+                        logger.event("operator_gate_prerequisite_ready", EvidenceLogger.details(
+                                "photo_control_enabled", false,
+                                "host_arm_granted", false,
+                                "photo_request_issued", false));
+                        setStatus("PHASE 1 COMPLETE — PHOTO LOCKED. Return to the host terminal. Do not tap item 3 until the host arms Phase 2.");
                     }
                     @Override public void onPhotoRequestIssued() {
                         captureButton.setEnabled(false);
-                        setStatus("One photo request issued. Keep the target steady and wait for the terminal result.");
+                        captureButton.setText("3. PHOTO REQUEST CONSUMED — PERMANENTLY LOCKED");
+                        setStatus("One armed photo request issued. The photo control is permanently locked for this run.");
                     }
                     @Override public void onTerminal(String outcome, boolean success) {
                         connectButton.setEnabled(false);
@@ -109,6 +142,10 @@ public final class MainActivity extends Activity {
     }
 
     @Override protected void onDestroy() {
+        if (operatorGateReceiverRegistered && operatorGateReceiver != null) {
+            try { unregisterReceiver(operatorGateReceiver); } catch (Throwable ignored) { }
+            operatorGateReceiverRegistered = false;
+        }
         if (controller != null) controller.disconnect("activity_destroyed");
         token = null;
         super.onDestroy();
@@ -120,16 +157,16 @@ public final class MainActivity extends Activity {
         int padding = Math.round(20 * getResources().getDisplayMetrics().density);
         content.setPadding(padding, padding, padding, padding);
         TextView title = new TextView(this);
-        title.setText("Test 20 r3.2 — One-Shot Photo Qualification");
+        title.setText("Test 20 Final — Canonical One-Shot Photo Controller");
         title.setTextSize(22); title.setPadding(0,0,0,padding/2); content.addView(title);
         TextView identity = new TextView(this);
         identity.setText("Run: " + runId + "\nFirmware: " + firmwareLabel);
         identity.setTextSize(13); identity.setPadding(0,0,0,padding/2); content.addView(identity);
         TextView scope = new TextView(this);
-        scope.setText("Exactly one takePhoto(1920,1080,80) request. Use only the printed public test target. No preview, file write, upload, audio operation, or cloud request.");
+        scope.setText("Canonical lifecycle: retain one image callback, register before connect, re-register the same callback after successful service status, then allow the host to arm exactly one takePhoto(1920,1080,80) request. No preview, file write, upload, audio operation, or cloud request.");
         scope.setTextSize(15); scope.setPadding(0,0,0,padding); content.addView(scope);
         statusView = new TextView(this);
-        statusView.setText("Confirm Hi Rokid is connected, then tap Authorize once.");
+        statusView.setText("PHASE 1 — PHOTO LOCKED. Confirm Hi Rokid is connected, then tap only Authorize and Start connection.");
         statusView.setTextSize(17); statusView.setPadding(0,0,0,padding); content.addView(statusView);
         authorizationButton = button("1. Authorize through Hi Rokid");
         authorizationButton.setOnClickListener(view -> {
@@ -143,15 +180,22 @@ public final class MainActivity extends Activity {
         connectButton.setOnClickListener(view -> {
             connectButton.setEnabled(false);
             disconnectButton.setEnabled(true);
-            setStatus("One connection attempt started. Wait for ONE-SHOT PHOTO READY.");
+            setStatus("PHASE 1 — connection started. Wait for PHASE 1 COMPLETE — PHOTO LOCKED.");
             controller.startConnection(token);
         });
         content.addView(connectButton);
-        captureButton = button("3. Capture exactly one bounded photo");
+        captureButton = button("3. PHASE 1 — PHOTO LOCKED (host arm required)");
         captureButton.setEnabled(false);
         captureButton.setOnClickListener(view -> {
             captureButton.setEnabled(false);
-            controller.requestOnePhoto();
+            captureButton.setText("3. PHOTO REQUEST CONSUMED — PERMANENTLY LOCKED");
+            boolean accepted = controller.requestOnePhoto();
+            logger.event("operator_gate_capture_dispatch", EvidenceLogger.details(
+                    "controller_request_accepted", accepted,
+                    "photo_control_enabled_after_click", false));
+            if (!accepted) {
+                setStatus("Photo request blocked by the controller gate. Do not retry in this run.");
+            }
         });
         content.addView(captureButton);
         disconnectButton = button("Emergency disconnect");
@@ -177,6 +221,48 @@ public final class MainActivity extends Activity {
         ScrollView scroll = new ScrollView(this); scroll.addView(content); setContentView(scroll);
     }
 
+    private void registerOperatorGateReceiver() {
+        operatorGateReceiver = new BroadcastReceiver() {
+            @Override public void onReceive(Context context, Intent intent) {
+                handleOperatorGateIntent(intent);
+            }
+        };
+        IntentFilter filter = new IntentFilter(OPERATOR_GATE_ACTION);
+        if (Build.VERSION.SDK_INT >= 33) {
+            registerReceiver(operatorGateReceiver, filter, Context.RECEIVER_EXPORTED);
+        } else {
+            registerReceiver(operatorGateReceiver, filter);
+        }
+        operatorGateReceiverRegistered = true;
+    }
+    private void handleOperatorGateIntent(Intent intent) {
+        String suppliedRunId = intent == null ? null : intent.getStringExtra("run_id");
+        String suppliedToken = intent == null ? null : intent.getStringExtra("operator_gate_token");
+        boolean actionMatch = intent != null && OPERATOR_GATE_ACTION.equals(intent.getAction());
+        boolean runIdMatch = operatorGateRunId != null && operatorGateRunId.equals(suppliedRunId);
+        boolean tokenPresent = suppliedToken != null && !suppliedToken.isBlank();
+        boolean tokenMatch = operatorGateToken != null && !operatorGateToken.isBlank()
+                && operatorGateToken.equals(suppliedToken);
+        boolean granted = actionMatch && runIdMatch && tokenMatch && controller != null
+                && controller.grantHostArm();
+        captureButton.setEnabled(granted);
+        if (granted) {
+            captureButton.setText("3. PHASE 2 — ARMED: capture ONE photo");
+            setStatus("PHASE 2 — ARMED FOR EXACTLY ONE PHOTO. Confirm the printed target, then tap item 3 exactly once.");
+        } else {
+            captureButton.setText("3. PHOTO LOCKED — host arm rejected");
+            setStatus("Host arm rejected or not currently eligible. PHOTO REMAINS LOCKED. Return to the terminal.");
+        }
+        logger.event("operator_gate_host_command", EvidenceLogger.details(
+                "action", "ARM_ONE_PHOTO",
+                "action_match", actionMatch,
+                "run_id_match", runIdMatch,
+                "token_present", tokenPresent,
+                "token_match", tokenMatch,
+                "token_value_logged", false,
+                "granted", granted,
+                "photo_control_enabled_after_command", granted));
+    }
     private Button button(String label) {
         Button button = new Button(this); button.setText(label); button.setAllCaps(false); return button;
     }

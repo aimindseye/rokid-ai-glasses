@@ -34,6 +34,8 @@ Start with the [Research library](research/README.md) for validated numbered
 tests, protocol releases, protected-application research, methodology,
 limitations, sanitized evidence, and supersession history.
 
+- [Test 20 final photo control and callback publication](tests/test-20-final-photo-control-callback-publication.md)
+
 ## Shared reference
 
 The [Reference library](reference/README.md) holds the common device profile,

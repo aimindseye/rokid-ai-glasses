@@ -48,6 +48,8 @@ reports and evidence are sanitized.
 | 18C | Cable and debug-board path | Boot inputs/native/FDT | BOUNDED — debug-board evidence; direct ADB/cable-ID path not proven | [Finding](../findings/glasses-android-os-and-adb.md#cable-and-debug-board-boundary) |
 | 18D | Repair-app and recovery boundaries | Static reachability/recovery | BOUNDED — no safe exported setter; phone replay blocked | [Finding](../findings/glasses-android-os-and-adb.md#repair-app-feasibility) |
 | 18 | USB ADB control-path follow-up | 18A–18D | PASS in static/offline scope; runtime invocation unresolved | [Sanitized summary](../../evidence/sanitized/glasses-os-services/usb-adb-control-summary.txt) |
+| 19 | CXR-L non-display companion connection qualification | Firmware/app ownership and connection path | PASS in accepted Test 19 r2 scope | [Developer status](../developer/current-status.md) |
+| 20 | CXR-L one-shot photo and callback closure | Two-phase one-shot arm; callback lifecycle | PASS in tested environment; post-service-status callback re-registration required | [Final publication](test-20-final-photo-control-callback-publication.md) |
 
 ## Research and implementation releases
 

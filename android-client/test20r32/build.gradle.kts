@@ -10,8 +10,8 @@ android {
         applicationId = "org.aimindseye.rokid.cxrphotoqualification"
         minSdk = 31
         targetSdk = 36
-        versionCode = 1
-        versionName = "1.0-test20-r3.2"
+        versionCode = 4
+        versionName = "1.0-test20-final"
     }
 
     buildTypes {

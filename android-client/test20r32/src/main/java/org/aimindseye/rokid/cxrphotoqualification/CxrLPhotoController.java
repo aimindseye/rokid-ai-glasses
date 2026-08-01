@@ -32,6 +32,8 @@ final class CxrLPhotoController {
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final AtomicBoolean started = new AtomicBoolean(false);
     private final AtomicBoolean photoRequestIssued = new AtomicBoolean(false);
+    private final AtomicBoolean hostArmGranted = new AtomicBoolean(false);
+    private final AtomicBoolean hostArmConsumed = new AtomicBoolean(false);
     private final AtomicBoolean terminal = new AtomicBoolean(false);
     private final AtomicBoolean disconnectStarted = new AtomicBoolean(false);
 
@@ -44,6 +46,9 @@ final class CxrLPhotoController {
     private boolean statusQueriesCompleted;
     private boolean photoReady;
     private boolean firstImageAccepted;
+    private IImageStreamCbk imageStreamCallback;
+    private long imageCallbackRegistrationElapsedMs = -1L;
+    private long photoRequestReturnElapsedMs = -1L;
     private int photoRequestCount;
     private int imagePayloadCallbackCount;
     private int imageErrorCallbackCount;
@@ -81,7 +86,9 @@ final class CxrLPhotoController {
                 "image_payload_persistence_enabled", false,
                 "image_preview_enabled", false,
                 "audio_stream_invocation_enabled", false,
-                "cloud_api_client_present", false));
+                "cloud_api_client_present", false,
+                "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
+                "callback_strong_reference_enabled", true));
         callback.onStatus("Configuring one CXR-L CUSTOMAPP photo connection...");
 
         try {
@@ -130,6 +137,38 @@ final class CxrLPhotoController {
         }
     }
 
+    boolean grantHostArm() {
+        boolean eligible = photoReady && !terminal.get() && link != null
+                && !photoRequestIssued.get() && !hostArmConsumed.get();
+        if (!eligible) {
+            logger.event("operator_gate_arm_result", EvidenceLogger.details(
+                    "granted", false,
+                    "disposition", "NOT_ELIGIBLE",
+                    "photo_ready", photoReady,
+                    "terminal", terminal.get(),
+                    "photo_request_issued", photoRequestIssued.get(),
+                    "host_arm_consumed", hostArmConsumed.get(),
+                    "host_arm_available", hostArmGranted.get()));
+            return false;
+        }
+        if (hostArmGranted.get()) {
+            logger.event("operator_gate_arm_result", EvidenceLogger.details(
+                    "granted", true,
+                    "disposition", "ALREADY_ARMED",
+                    "photo_ready", true,
+                    "photo_request_issued", false,
+                    "host_arm_available", true));
+            return true;
+        }
+        boolean granted = hostArmGranted.compareAndSet(false, true);
+        logger.event("operator_gate_arm_result", EvidenceLogger.details(
+                "granted", granted,
+                "disposition", granted ? "ARMED" : "RACE_REJECTED",
+                "photo_ready", photoReady,
+                "photo_request_issued", photoRequestIssued.get(),
+                "host_arm_available", hostArmGranted.get()));
+        return granted;
+    }
     boolean requestOnePhoto() {
         if (!photoReady || terminal.get() || link == null) {
             logger.event("photo_request_rejected", EvidenceLogger.details(
@@ -138,6 +177,14 @@ final class CxrLPhotoController {
                     "terminal", terminal.get()));
             return false;
         }
+        if (!hostArmGranted.compareAndSet(true, false)) {
+            logger.event("photo_request_rejected", EvidenceLogger.details(
+                    "reason", "host_arm_not_granted_or_already_consumed",
+                    "host_arm_consumed", hostArmConsumed.get(),
+                    "request_count", photoRequestCount));
+            return false;
+        }
+        hostArmConsumed.set(true);
         if (!photoRequestIssued.compareAndSet(false, true)) {
             logger.event("photo_request_rejected", EvidenceLogger.details(
                     "reason", "single_request_already_issued",
@@ -147,34 +194,47 @@ final class CxrLPhotoController {
 
         photoRequestCount++;
         photoRequestElapsedMs = SystemClock.elapsedRealtime();
+        int requestArg3 = Test20R32Contract.PHOTO_ARG_3;
+        logCallbackPathSnapshot("PRE_TAKEPHOTO", 0L);
         boolean returned = false;
         String errorClass = "";
         try {
             returned = link.takePhoto(
                     Test20R32Contract.PHOTO_ARG_1,
                     Test20R32Contract.PHOTO_ARG_2,
-                    Test20R32Contract.PHOTO_ARG_3);
+                    requestArg3);
         } catch (Throwable error) {
             errorClass = error.getClass().getName();
         }
+        photoRequestReturnElapsedMs = SystemClock.elapsedRealtime();
+        long returnLatencyMs = Math.max(0L, photoRequestReturnElapsedMs - photoRequestElapsedMs);
         logger.event("photo_request_result", EvidenceLogger.details(
                 "method", "takePhoto(III)Z",
                 "request_count", photoRequestCount,
+                "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
                 "arg_1", Test20R32Contract.PHOTO_ARG_1,
                 "arg_2", Test20R32Contract.PHOTO_ARG_2,
-                "arg_3", Test20R32Contract.PHOTO_ARG_3,
+                "arg_3", requestArg3,
                 "argument_semantics", Test20R32Contract.PHOTO_ARGUMENT_SEMANTICS,
                 "returned", returned,
+                "return_latency_ms", returnLatencyMs,
                 "error_class", errorClass,
+                "callback_strong_reference_present", imageStreamCallback != null,
+                "callback_identity_hash", imageStreamCallback == null ? -1 : System.identityHashCode(imageStreamCallback),
                 "payload_persistence_enabled", false,
                 "payload_preview_enabled", false));
+        logCallbackPathSnapshot("POST_TAKEPHOTO_RETURN", 0L);
         callback.onPhotoRequestIssued();
         if (!returned) {
             finish(errorClass.isEmpty() ? "PHOTO_REQUEST_RETURNED_FALSE" : "PHOTO_REQUEST_EXCEPTION", false);
             return false;
         }
+        schedulePostPhotoWatchdogs();
         handler.postDelayed(() -> {
-            if (!terminal.get() && !firstImageAccepted) finish("PHOTO_CALLBACK_TIMEOUT", false);
+            if (!terminal.get() && !firstImageAccepted) {
+                logCallbackPathSnapshot("PHOTO_CALLBACK_TIMEOUT", Test20R32Contract.PHOTO_CALLBACK_TIMEOUT_MS);
+                finish("PHOTO_CALLBACK_TIMEOUT", false);
+            }
         }, Test20R32Contract.PHOTO_CALLBACK_TIMEOUT_MS);
         return true;
     }
@@ -182,28 +242,83 @@ final class CxrLPhotoController {
     private void registerImageCallback() {
         boolean returned = false;
         String errorClass = "";
+        imageStreamCallback = new IImageStreamCbk() {
+            @Override public void onImageReceived(byte[] payload) {
+                logger.event("image_callback_dispatch", EvidenceLogger.details(
+                        "kind", "PAYLOAD",
+                        "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
+                        "callback_identity_hash", System.identityHashCode(imageStreamCallback),
+                        "strong_reference_present", imageStreamCallback != null,
+                        "on_main_looper", Looper.myLooper() == Looper.getMainLooper(),
+                        "thread_name_sha256", EvidenceLogger.sha256(Thread.currentThread().getName()),
+                        "payload_present", payload != null,
+                        "payload_length", payload == null ? -1 : payload.length));
+                ImageObservation observation = inspectImage(payload);
+                activity.runOnUiThread(() -> handleImageObservation(observation));
+            }
+            @Override public void onImageError(int code, String message) {
+                logger.event("image_callback_dispatch", EvidenceLogger.details(
+                        "kind", "ERROR",
+                        "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
+                        "callback_identity_hash", System.identityHashCode(imageStreamCallback),
+                        "strong_reference_present", imageStreamCallback != null,
+                        "on_main_looper", Looper.myLooper() == Looper.getMainLooper(),
+                        "thread_name_sha256", EvidenceLogger.sha256(Thread.currentThread().getName()),
+                        "error_code", code,
+                        "message_present", message != null && !message.isBlank(),
+                        "message_sha256", EvidenceLogger.sha256(String.valueOf(message)),
+                        "message_logged", false));
+                activity.runOnUiThread(() -> handleImageError(code, message));
+            }
+        };
         try {
-            link.setCXRImageCbk(new IImageStreamCbk() {
-                @Override public void onImageReceived(byte[] payload) {
-                    ImageObservation observation = inspectImage(payload);
-                    activity.runOnUiThread(() -> handleImageObservation(observation));
-                }
-                @Override public void onImageError(int code, String message) {
-                    activity.runOnUiThread(() -> handleImageError(code, message));
-                }
-            });
+            link.setCXRImageCbk(imageStreamCallback);
             returned = true;
+            imageCallbackRegistrationElapsedMs = SystemClock.elapsedRealtime();
         } catch (Throwable error) {
             errorClass = error.getClass().getName();
         }
         imageCallbackRegistered = returned;
         logger.event("image_callback_registration_result", EvidenceLogger.details(
                 "method", "setCXRImageCbk(IImageStreamCbk)V",
+                "registration_phase", "PRE_CONNECT",
                 "registration_returned", returned,
                 "registration_error_class", errorClass,
+                "callback_identity_hash", System.identityHashCode(imageStreamCallback),
+                "strong_reference_held", imageStreamCallback != null,
+                "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
                 "audio_callback_registered", false,
                 "media_request_issued", false));
         if (!returned) finish("IMAGE_CALLBACK_REGISTRATION_FAILED", false);
+    }
+    private boolean reregisterImageCallbackAfterServiceStatus() {
+        boolean returned = false;
+        String errorClass = "";
+        int identityBefore = imageStreamCallback == null ? -1 : System.identityHashCode(imageStreamCallback);
+        try {
+            if (imageStreamCallback == null) throw new IllegalStateException("image callback strong reference missing");
+            link.setCXRImageCbk(imageStreamCallback);
+            returned = true;
+            imageCallbackRegistrationElapsedMs = SystemClock.elapsedRealtime();
+        } catch (Throwable error) {
+            errorClass = error.getClass().getName();
+        }
+        int identityAfter = imageStreamCallback == null ? -1 : System.identityHashCode(imageStreamCallback);
+        boolean sameIdentity = identityBefore >= 0 && identityBefore == identityAfter;
+        imageCallbackRegistered = returned && sameIdentity;
+        logger.event("canonical_image_callback_reregistration_result", EvidenceLogger.details(
+                "method", "setCXRImageCbk(IImageStreamCbk)V",
+                "registration_phase", "POST_SERVICE_STATUS",
+                "canonical_requirement", true,
+                "registration_returned", returned,
+                "registration_error_class", errorClass,
+                "callback_identity_before", identityBefore,
+                "callback_identity_after", identityAfter,
+                "same_callback_identity", sameIdentity,
+                "strong_reference_held", imageStreamCallback != null,
+                "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
+                "media_request_issued", photoRequestIssued.get()));
+        return imageCallbackRegistered;
     }
 
     void disconnect(String reason) {
@@ -370,6 +485,10 @@ final class CxrLPhotoController {
             finish("SERVICE_STATUS_QUERY_FAILED", false);
             return;
         }
+        if (!reregisterImageCallbackAfterServiceStatus()) {
+            finish("IMAGE_CALLBACK_REREGISTRATION_FAILED", false);
+            return;
+        }
         handler.removeCallbacksAndMessages(null);
         photoReady = true;
         logger.event("photo_ready", EvidenceLogger.details(
@@ -385,6 +504,56 @@ final class CxrLPhotoController {
         callback.onPhotoReady();
     }
 
+    private void schedulePostPhotoWatchdogs() {
+        for (long delayMs : Test20R32Contract.POST_TAKEPHOTO_WATCHDOG_DELAYS_MS) {
+            final long checkpointMs = delayMs;
+            handler.postDelayed(() -> {
+                if (!terminal.get() && !firstImageAccepted) {
+                    logCallbackPathSnapshot("POST_TAKEPHOTO_WATCHDOG", checkpointMs);
+                }
+            }, delayMs);
+        }
+    }
+    private void logCallbackPathSnapshot(String phase, long checkpointMs) {
+        Boolean sdkBt = null;
+        String btError = "";
+        String serviceVersion = null;
+        String serviceError = "";
+        if (link != null) {
+            try { sdkBt = link.isGlassBtConnected(); }
+            catch (Throwable error) { btError = error.getClass().getName(); }
+            try { serviceVersion = link.getServiceVersion(); }
+            catch (Throwable error) { serviceError = error.getClass().getName(); }
+        }
+        long now = SystemClock.elapsedRealtime();
+        long sinceRequestMs = photoRequestElapsedMs < 0L ? -1L : Math.max(0L, now - photoRequestElapsedMs);
+        long sinceRegistrationMs = imageCallbackRegistrationElapsedMs < 0L
+                ? -1L : Math.max(0L, now - imageCallbackRegistrationElapsedMs);
+        logger.event("callback_path_snapshot", EvidenceLogger.details(
+                "phase", phase,
+                "checkpoint_ms", checkpointMs,
+                "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
+                "photo_request_count", photoRequestCount,
+                "photo_request_issued", photoRequestIssued.get(),
+                "since_photo_request_ms", sinceRequestMs,
+                "since_callback_registration_ms", sinceRegistrationMs,
+                "cxrl_connected", cxrlConnected,
+                "glass_bt_connected", glassBtConnected,
+                "sdk_glass_bt_query_returned", btError.isEmpty(),
+                "sdk_glass_bt_connected", sdkBt == null ? "unknown" : sdkBt,
+                "sdk_glass_bt_error_class", btError,
+                "service_version_query_returned", serviceError.isEmpty(),
+                "service_version_present", serviceVersion != null && !serviceVersion.isBlank(),
+                "service_version_error_class", serviceError,
+                "callback_registered", imageCallbackRegistered,
+                "callback_strong_reference_present", imageStreamCallback != null,
+                "callback_identity_hash", imageStreamCallback == null ? -1 : System.identityHashCode(imageStreamCallback),
+                "image_payload_callback_count", imagePayloadCallbackCount,
+                "image_error_callback_count", imageErrorCallbackCount,
+                "terminal", terminal.get(),
+                "audio_operation", "NONE",
+                "media_request_count", photoRequestCount));
+    }
     private ImageObservation inspectImage(byte[] payload) {
         int length = payload == null ? -1 : payload.length;
         String digest = payload == null ? "" : EvidenceLogger.sha256(payload);
@@ -485,10 +654,15 @@ final class CxrLPhotoController {
                 "image_callback_registered", imageCallbackRegistered,
                 "status_queries_completed", statusQueriesCompleted,
                 "photo_ready", photoReady,
+                "host_arm_available", hostArmGranted.get(),
+                "host_arm_consumed", hostArmConsumed.get(),
                 "photo_request_count", photoRequestCount,
                 "image_payload_callback_count", imagePayloadCallbackCount,
                 "image_error_callback_count", imageErrorCallbackCount,
-                "first_image_accepted", firstImageAccepted));
+                "first_image_accepted", firstImageAccepted,
+                "image_callback_lifecycle", Test20R32Contract.IMAGE_CALLBACK_LIFECYCLE,
+                "callback_strong_reference_present", imageStreamCallback != null,
+                "callback_identity_hash", imageStreamCallback == null ? -1 : System.identityHashCode(imageStreamCallback)));
         callback.onTerminal(outcome, success);
         handler.postDelayed(() -> {
             disconnect("automatic_terminal_cleanup");
