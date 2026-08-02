@@ -44,6 +44,7 @@ instructions or community projects.
   four-message family; independent command transmission remains prohibited and
   unimplemented.
 - A complete replacement companion app, Style-qualified CXR integration, and
+  * Test 21 closes the static CXR-L Binder boundary for the accepted `client-l:1.0.1` artifact: all 7 callback interfaces and 21 callback methods have final Stub ↔ Proxy agreement with 0 transaction mismatches; runtime authorization/session semantics remain outside the claim.
   custom firmware have not yet been delivered.
 
 The concise capability boundary is maintained in
@@ -57,6 +58,7 @@ release history remain in the [Research library](docs/research/README.md).
 - [Contribution guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 - [Architecture summary](ARCHITECTURE.md)
+  * [Test 21 static Binder boundary](docs/research/cxr/test21-static-binder-boundary-overview.md)
 
 ## Safety and privacy
 

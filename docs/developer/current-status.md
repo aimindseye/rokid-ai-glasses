@@ -1,6 +1,6 @@
 # Developer Current Status
 
-<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-08-01 -->
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-08-02 -->
 
 ## Page status
 
@@ -9,7 +9,7 @@
 | Audience | Developer |
 | Applies to | Rokid AI Glasses Style (non-display) |
 | Evidence status | Validated |
-| Last reviewed | 2026-08-01 |
+| Last reviewed | 2026-08-02 |
 
 ## Replacement companion boundary
 
@@ -30,6 +30,7 @@
 | CXR-L media-plane feasibility | Test 20 r3.0.1 accepted: 23 descriptor-exact image/audio/service surfaces statically confirmed; runtime qualification not granted |
 | CXR-L media no-payload preflight | Test 20 r3.1.1 accepted: service status, Bluetooth status, image/audio callback registration, 15-second quiet window, zero unsolicited media callbacks, clean disconnect, and Hi Rokid recovery PASS |
 | CXR-L one-shot photo qualification | Test 20 final accepted: two-phase one-shot gate and image callback path proven; post-service-status callback re-registration is the canonical tested lifecycle |
+| CXR-L static Binder boundary | Test 21 accepted: full static boundary closed for `client-l:1.0.1`; callback side 7 interfaces / 21 methods / 21 confirmations / 0 mismatches; authorization and session semantics remain unresolved |
 | Independent camera capture | Qualified only through the custom CXR-L + Hi Rokid authorization/media-service path; direct/no-Hi-Rokid capture remains unqualified |
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
@@ -45,6 +46,12 @@
 | Live/OTA vbmeta correspondence | Read-only match established for the qualified chain |
 | Repaired Magisk candidate | Accepted offline only; never booted or flashed |
 | Proven recovery path for custom firmware | Not established |
+
+### Test 21 static Binder boundary
+
+Test 21 is publication-closed. The accepted service/client Binder prerequisite plus callback closure establish the static CXR-L Binder boundary for `client-l:1.0.1`. The final callback result is 7/7 interfaces, 21/21 methods, 21/21 Stub ↔ Proxy confirmations, 21/21 Parcel contracts, and 0 transaction mismatches.
+
+This is an interface/ABI result, not a claim that a complete Hi Rokid replacement is functional. Authorization semantics, session lifecycle, proprietary service implementation, and end-to-end compatibility remain unresolved. See the [Test 21 overview](../research/cxr/test21-static-binder-boundary-overview.md).
 
 ## Recommended next gate
 
