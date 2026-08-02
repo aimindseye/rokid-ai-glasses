@@ -462,6 +462,24 @@ fields, request correlation, reply semantics, and rollback behavior are not yet
 known. No safe exported glasses-side component was proven to provide the same
 operation to a normal third-party APK.
 
+### Test 21 static CXR-L Binder boundary
+
+Test 21 adds a closed static Binder interface boundary for the accepted `com.rokid.cxr:client-l:1.0.1` artifact. It complements transport and runtime observations by documenting the callable service/client and callback Binder surfaces without requiring a phone-side privileged runtime probe.
+
+```mermaid
+flowchart LR
+    APP[Clean-room client] --> PROXY[Service Proxy + request Parcel]
+    PROXY --> BINDER[Binder transport]
+    BINDER --> SERVICE[Rokid service boundary]
+    SERVICE --> CBPROXY[Callback Proxy + callback Parcel]
+    CBPROXY --> CBSTUB[Client callback Stub.onTransact]
+    CBSTUB --> APP
+```
+
+Accepted callback closure: 7 interfaces, 21 methods, 21 host Stub dispatch confirmations, 21 Stub ↔ Proxy agreements, all 21 Parcel contracts, and zero transaction mismatches. The static boundary does not recover authorization semantics, session lifecycle, proprietary service implementation, cloud behavior, or general end-to-end compatibility.
+
+See the [Test 21 overview](../research/cxr/test21-static-binder-boundary-overview.md), [diagrams](../research/cxr/test21-static-binder-boundary-diagrams.md), and [callback transaction reference](../research/cxr/test21-callback-transaction-reference.md).
+
 ### Replacement companion readiness
 
 | Layer | Current status |

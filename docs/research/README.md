@@ -1,6 +1,6 @@
 # Research Index
 
-<!-- wiki-status: audience=research; applies_to=rokid-ai-glasses-style-non-display; evidence=historical; last_reviewed=2026-07-30 -->
+<!-- wiki-status: audience=research; applies_to=rokid-ai-glasses-style-non-display; evidence=historical; last_reviewed=2026-08-02 -->
 
 ## Page status
 
@@ -9,7 +9,7 @@
 | Audience | Research |
 | Applies to | Rokid AI Glasses Style (non-display) |
 | Evidence status | Historical |
-| Last reviewed | 2026-07-30 |
+| Last reviewed | 2026-08-02 |
 
 ## Evidence rules
 
@@ -45,6 +45,15 @@ observed outbound message grammar without replay.
 #### Test 20 final photo path
 
 [Test 20 final photo control and callback publication](../tests/test-20-final-photo-control-callback-publication.md) closes the governed CXR-L one-shot photo work. The accepted implementation retains the image callback strongly and re-registers the same callback after successful service-status qualification before allowing photo arming.
+
+#### Test 21 static Binder boundary
+
+Test 21 completes the static clean-room Binder boundary for the accepted CXR-L `client-l:1.0.1` artifact. The final callback result covers 7 interfaces and 21 methods with 21/21 Stub ↔ Proxy confirmations, all 21 Parcel contracts retained, and 0 transaction mismatches. Authorization, session lifecycle, proprietary service implementation, and end-to-end behavior remain outside the claim.
+
+- [Overview](cxr/test21-static-binder-boundary-overview.md)
+- [Findings](cxr/test21-static-binder-boundary-findings.md)
+- [Diagrams](cxr/test21-static-binder-boundary-diagrams.md)
+- [Callback transaction reference](cxr/test21-callback-transaction-reference.md)
 
 ## Current boundary
 

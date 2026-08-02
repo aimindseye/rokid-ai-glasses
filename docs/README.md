@@ -1,6 +1,6 @@
 # Documentation Home
 
-<!-- wiki-status: audience=all; applies_to=rokid-ai-glasses-style-non-display; evidence=mixed; last_reviewed=2026-07-30 -->
+<!-- wiki-status: audience=all; applies_to=rokid-ai-glasses-style-non-display; evidence=mixed; last_reviewed=2026-08-02 -->
 
 ## Page status
 
@@ -9,7 +9,7 @@
 | Audience | All |
 | Applies to | Rokid AI Glasses Style (non-display) |
 | Evidence status | Mixed |
-| Last reviewed | 2026-07-30 |
+| Last reviewed | 2026-08-02 |
 
 
 This wiki is organized by **audience first**. Research chronology and release
@@ -35,6 +35,7 @@ tests, protocol releases, protected-application research, methodology,
 limitations, sanitized evidence, and supersession history.
 
 - [Test 20 final photo control and callback publication](tests/test-20-final-photo-control-callback-publication.md)
+- [Test 21 static Binder boundary](research/cxr/test21-static-binder-boundary-overview.md)
 
 ## Shared reference
 

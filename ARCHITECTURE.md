@@ -66,6 +66,20 @@ connection request is accepted, the bugreport is collected after close, and the
 handoff is revoked afterward. Dynamic endpoint, process, slot, and handle values
 remain private.
 
+## Test 21 static CXR-L Binder boundary
+
+```mermaid
+flowchart LR
+    APP[Clean-room client] --> SP[Service-side Binder Proxy]
+    SP --> BS[Rokid Binder service boundary]
+    BS --> CB[Client callback Stub]
+    CB --> APP
+```
+
+Test 21 closes the **static** Binder interface boundary for the accepted `com.rokid.cxr:client-l:1.0.1` artifact. The callback side is complete at 7/7 interfaces, 21/21 methods, 21/21 Stub ↔ Proxy confirmations, and 0 transaction mismatches. The service/client prerequisite was accepted in r3.3.4.2.6.1.1. This does not prove authorization, session lifecycle, proprietary service implementation, or end-to-end functional compatibility.
+
+See [Test 21 static Binder boundary](docs/research/cxr/test21-static-binder-boundary-overview.md) and the [callback transaction reference](docs/research/cxr/test21-callback-transaction-reference.md).
+
 ## Current application boundary
 
 ```mermaid
