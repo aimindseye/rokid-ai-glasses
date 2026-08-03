@@ -43,3 +43,7 @@ There is no independent companion-app or Developer Mode replay runner yet.
 - `publish_test19_r2_comparison.py` — private-ZIP verification and sanitized final comparison publication
 - `test_test19_r2_tools.py` — synthetic stage, privacy, and source-contract tests
 - `run_test19_cxr_qualification.sh` — disabled historical r1 CXR-M runner
+
+### R27.2.8 final analyzer disposition
+
+The Test 19 r1/r2 network analyzer filenames are retained as compatibility shims backed by the canonical network analyzer. Independent tool tests remain regression oracles; residual low-similarity analyzer pairs remain separate historical implementations by design.

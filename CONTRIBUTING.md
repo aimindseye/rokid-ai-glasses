@@ -20,6 +20,7 @@ Contributions are welcome for the display-free Rokid AI Glasses Style.
 6. Do not commit PCAPs, TLS keys, bugreports, HCI logs, APKs, native libraries,
    firmware images, or decrypted payload exports.
 7. Link primary or authoritative sources for current external claims.
+8. Prefer the canonical research tooling interface for new work; do not create a new revision-named runner when an existing semantic family can be extended.
 
 ## Validation
 
@@ -27,4 +28,5 @@ Contributions are welcome for the display-free Rokid AI Glasses Style.
 bash scripts/safety/validate_public_repo.sh
 python3 scripts/safety/check_markdown_links.py --repo .
 python3 scripts/safety/check_documentation_governance.py --repo .
+scripts/rokid-research verify
 ```

@@ -1,0 +1,42 @@
+{
+  "allowed_suffixes": [
+    "",
+    ".md",
+    ".py",
+    ".sh",
+    ".json",
+    ".tsv",
+    ".txt",
+    ".js",
+    ".ts"
+  ],
+  "forbidden_suffixes": [
+    ".apk",
+    ".aar",
+    ".jar",
+    ".dex",
+    ".pcap",
+    ".pcapng",
+    ".img",
+    ".bin",
+    ".key",
+    ".pem",
+    ".p12",
+    ".keystore",
+    ".jks",
+    ".zip"
+  ],
+  "next_test": "Test 22 \u2014 Independent On-Glasses Wi-Fi, Routed IP, and Third-Party Direct Socket Capability",
+  "required_closure": {
+    "host_multi_member_consolidation_candidate_count": 0,
+    "next_device_test_ready": "YES",
+    "preserve_distinct_implementation_family_count": 4,
+    "preserve_historical_count": 4,
+    "preserve_regression_oracle_count": 38,
+    "r27_whole_history_consolidation": "COMPLETE",
+    "source_lock_failure_count": 0,
+    "total_canonicalized_implementation_count": 88
+  },
+  "schema": "rokid.r27.3.publication.v1",
+  "title": "R27.3 FINAL PUBLICATION"
+}

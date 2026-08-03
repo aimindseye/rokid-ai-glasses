@@ -36,6 +36,7 @@ limitations, sanitized evidence, and supersession history.
 
 - [Test 20 final photo control and callback publication](tests/test-20-final-photo-control-callback-publication.md)
 - [Test 21 static Binder boundary](research/cxr/test21-static-binder-boundary-overview.md)
+- [Canonical research tooling and revision lineage](research/tooling/README.md)
 
 ## Shared reference
 

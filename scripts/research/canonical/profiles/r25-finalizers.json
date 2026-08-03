@@ -1,0 +1,236 @@
+{
+  "profiles": [
+    {
+      "archive": {
+        "membership": "all_after_manifest",
+        "suffix": "-private-evidence.zip",
+        "zip_mode": "r25_deterministic_tree"
+      },
+      "compatibility_shim_sha256": "4682a48a31542c66f6d69aa9feb6a3766f5d75ff166c21372724d51807170919",
+      "historical_source_sha256": "0e2f6cce9c5c582c235d34c09be7a13f8ed98fb8a39571b43bbb2212473fddd5",
+      "legacy_path": "scripts/research/connection-protocol/finalize_r25.py",
+      "legacy_sha256": "0e2f6cce9c5c582c235d34c09be7a13f8ed98fb8a39571b43bbb2212473fddd5",
+      "manifest": {
+        "filename": "SHA256SUMS-private-final.json",
+        "kind": "r25_file_manifest_v1",
+        "print_count": "records_excluding_manifest",
+        "selection": "all_except_manifest"
+      },
+      "requirements": {
+        "optional": [],
+        "required": []
+      },
+      "retirement_reason": "historical finalizer implementation archived; live revision path delegates to canonical r25 finalizer",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25",
+      "stdout": [
+        "R1_3_3_2_25_PRIVATE_MANIFEST_COUNT={manifest_count}",
+        "R1_3_3_2_25_PRIVATE_EVIDENCE_ZIP={archive}",
+        "R1_3_3_2_25_PRIVATE_EVIDENCE_SHA256={archive_sha256}",
+        "R1_3_3_2_25_FINALIZE=PASS"
+      ]
+    },
+    {
+      "archive": {
+        "membership": "all_after_manifest",
+        "suffix": "-private-analysis.zip",
+        "zip_mode": "source_metadata"
+      },
+      "compatibility_shim_sha256": "03c9fccfd42145754505d2ddcb75b88c23fa1eb1f9a244b97f0d6166dd489eed",
+      "historical_source_sha256": "0d3ef9b26faabd37dd48595f3c7676790c8865fe0818e9daf5e6794d1fad5bad",
+      "legacy_path": "scripts/research/connection-protocol/finalize_r25_1.py",
+      "legacy_sha256": "0d3ef9b26faabd37dd48595f3c7676790c8865fe0818e9daf5e6794d1fad5bad",
+      "manifest": {
+        "filename": "SHA256SUMS-r25.1.json",
+        "kind": "sha256_map",
+        "print_count": "records_plus_manifest",
+        "selection": "all_except_manifest"
+      },
+      "requirements": {
+        "optional": [],
+        "required": []
+      },
+      "retirement_reason": "historical finalizer implementation archived; live revision path delegates to canonical r25 finalizer",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.1",
+      "stdout": [
+        "R1_3_3_2_25_1_MANIFEST_COUNT={manifest_count}",
+        "R1_3_3_2_25_1_PRIVATE_ANALYSIS_ZIP={archive}",
+        "R1_3_3_2_25_1_PRIVATE_ANALYSIS_SHA256={archive_sha256}",
+        "R1_3_3_2_25_1_FINALIZE=PASS"
+      ]
+    },
+    {
+      "archive": {
+        "membership": "selected_plus_manifest",
+        "suffix": "-private-evidence.zip",
+        "zip_mode": "source_metadata"
+      },
+      "compatibility_shim_sha256": "a8783d11b45eb6a01e5df0017abd034a7e01778cc9acb1f3df03c44c66b02390",
+      "historical_source_sha256": "2c9fb45a0c67bbc320740fbf467662bfb4cff94b704efd663815d16d0195e4dc",
+      "legacy_path": "scripts/research/connection-protocol/finalize_r25_2.py",
+      "legacy_sha256": "2c9fb45a0c67bbc320740fbf467662bfb4cff94b704efd663815d16d0195e4dc",
+      "manifest": {
+        "filename": "SHA256SUMS-r25.2.json",
+        "kind": "sha256_map",
+        "print_count": "records_plus_manifest",
+        "selection": "all_except_manifest"
+      },
+      "requirements": {
+        "optional": [],
+        "required": []
+      },
+      "retirement_reason": "historical finalizer implementation archived; live revision path delegates to canonical r25 finalizer",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2",
+      "stdout": [
+        "R1_3_3_2_25_2_MANIFEST_COUNT={manifest_count}",
+        "R1_3_3_2_25_2_PRIVATE_EVIDENCE_ZIP={archive}",
+        "R1_3_3_2_25_2_PRIVATE_EVIDENCE_SHA256={archive_sha256}",
+        "R1_3_3_2_25_2_FINALIZE=PASS"
+      ]
+    },
+    {
+      "archive": {
+        "membership": "all_after_manifest",
+        "suffix": "-private-evidence.zip",
+        "zip_mode": "source_metadata"
+      },
+      "compatibility_shim_sha256": "d35e3450546596555817ddadb975d2693fdaa0ba59f90bde8fff7d6f8967a1ca",
+      "historical_source_sha256": "92facb0fd6e36851e85889507d9c19a22656ad98ef4ab177306fc99d97678058",
+      "legacy_path": "scripts/research/connection-protocol/finalize_r25_2_1.py",
+      "legacy_sha256": "92facb0fd6e36851e85889507d9c19a22656ad98ef4ab177306fc99d97678058",
+      "manifest": {
+        "filename": "SHA256SUMS-private.json",
+        "kind": "sha256_sizebytes_map",
+        "print_count": "none",
+        "selection": "all_except_manifest"
+      },
+      "requirements": {
+        "optional": [],
+        "required": [
+          "client-probe-private.jsonl",
+          "phone-logcat-private.txt",
+          "run-metadata-private.json",
+          "analysis/r25.2.1-private-analysis.json",
+          "publication/r25.2.1-power-state-attribution.json"
+        ]
+      },
+      "retirement_reason": "historical finalizer implementation archived; live revision path delegates to canonical r25 finalizer",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.1",
+      "stdout": [
+        "R25_2_1_PRIVATE_MANIFEST={manifest_path}",
+        "R25_2_1_PRIVATE_ARCHIVE={archive}",
+        "R25_2_1_PRIVATE_ARCHIVE_SHA256={archive_sha256}",
+        "R1_3_3_2_25_2_1_FINALIZE=PASS"
+      ]
+    },
+    {
+      "archive": {
+        "membership": "all_after_manifest",
+        "suffix": "-private-evidence.zip",
+        "zip_mode": "source_metadata"
+      },
+      "compatibility_shim_sha256": "e2a944b031bc0a5556b4bc659555f4b46f48da1483eb21b73609378ead5db5d0",
+      "historical_source_sha256": "f1c965da879fdc39147802609f381b7833962511627f5265caa352bba017d53f",
+      "legacy_path": "scripts/research/connection-protocol/finalize_r25_2_2.py",
+      "legacy_sha256": "f1c965da879fdc39147802609f381b7833962511627f5265caa352bba017d53f",
+      "manifest": {
+        "filename": "SHA256SUMS-private.json",
+        "kind": "sha256_size_map",
+        "print_count": "none",
+        "selection": "all_except_manifest"
+      },
+      "requirements": {
+        "optional": [],
+        "required": []
+      },
+      "retirement_reason": "historical finalizer implementation archived; live revision path delegates to canonical r25 finalizer",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.2",
+      "stdout": [
+        "R25_2_2_PRIVATE_EVIDENCE_ZIP={archive}",
+        "R25_2_2_PRIVATE_EVIDENCE_SHA256={archive_sha256}",
+        "R25_2_2_FINALIZE=PASS"
+      ]
+    },
+    {
+      "archive": {
+        "membership": "selected_plus_manifest",
+        "suffix": "-private-evidence.zip",
+        "zip_mode": "source_metadata"
+      },
+      "compatibility_shim_sha256": "bb0e11f482fda6b5b2c74ac1c8846d61236f9776f8457072a58347fb6c6720d8",
+      "historical_source_sha256": "8343c29d594ff39f1eff501e7c0257dd60f6cb1fc45047f5d0a15bb490d0c7dc",
+      "legacy_path": "scripts/research/connection-protocol/finalize_r25_2_2_1.py",
+      "legacy_sha256": "8343c29d594ff39f1eff501e7c0257dd60f6cb1fc45047f5d0a15bb490d0c7dc",
+      "manifest": {
+        "filename": "SHA256SUMS-private.json",
+        "kind": "release_records",
+        "print_count": "none",
+        "release": "r1.3.3.2.25.2.2.1",
+        "schema": "rokid.r25.2.2.1.private-evidence-manifest.v1",
+        "selection": "required_plus_optional"
+      },
+      "requirements": {
+        "optional": [],
+        "required": [
+          "analysis/r25.2.2.1-private-analysis.json",
+          "publication/r25.2.2.1-cached-runtime-attribution.json",
+          "handoff/r25.2.2.1-connection-only-handoff-private.json",
+          "source-lineage-private.json"
+        ]
+      },
+      "retirement_reason": "historical finalizer implementation archived; live revision path delegates to canonical r25 finalizer",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.2.1",
+      "stdout": [
+        "R25_2_2_1_PRIVATE_EVIDENCE_ZIP={archive}",
+        "R25_2_2_1_PRIVATE_EVIDENCE_SHA256={archive_sha256}",
+        "R25_2_2_1_FINALIZE=PASS"
+      ]
+    },
+    {
+      "archive": {
+        "membership": "selected_plus_manifest",
+        "suffix": "-private-evidence.zip",
+        "zip_mode": "source_metadata"
+      },
+      "compatibility_shim_sha256": "68c369f7bb937630d88d7dce58dffe623a20d88356989ac91f2da860ede87cc4",
+      "historical_source_sha256": "2e3437dcc3beaa173eb456b79c19b522623687f7dc73c56c6dc1f0202819b4b1",
+      "legacy_path": "scripts/research/connection-protocol/finalize_r25_2_2_2.py",
+      "legacy_sha256": "2e3437dcc3beaa173eb456b79c19b522623687f7dc73c56c6dc1f0202819b4b1",
+      "manifest": {
+        "filename": "SHA256SUMS-private.json",
+        "kind": "release_records",
+        "print_count": "none",
+        "release": "r1.3.3.2.25.2.2.2",
+        "schema": "rokid.r25.2.2.2.private-evidence-manifest.v1",
+        "selection": "required_plus_optional"
+      },
+      "requirements": {
+        "optional": [
+          "phone-bugreport-private.zip"
+        ],
+        "required": [
+          "input/r25.2.2.2-connection-only-input-private.json",
+          "client-probe-private.jsonl",
+          "phone-logcat-private.txt",
+          "run-metadata-private.json",
+          "analysis/r25.2.2.2-private-analysis.json",
+          "publication/r25.2.2.2-connection-only-qualification.json"
+        ]
+      },
+      "retirement_reason": "historical finalizer implementation archived; live revision path delegates to canonical r25 finalizer",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.2.2",
+      "stdout": [
+        "R25_2_2_2_PRIVATE_EVIDENCE_ZIP={archive}",
+        "R25_2_2_2_PRIVATE_EVIDENCE_SHA256={archive_sha256}",
+        "R25_2_2_2_FINALIZE=PASS"
+      ]
+    }
+  ],
+  "schema": "rokid.r27.2.1.r25-finalizers.v1"
+}

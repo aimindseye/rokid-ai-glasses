@@ -80,6 +80,22 @@ Test 21 closes the **static** Binder interface boundary for the accepted `com.ro
 
 See [Test 21 static Binder boundary](docs/research/cxr/test21-static-binder-boundary-overview.md) and the [callback transaction reference](docs/research/cxr/test21-callback-transaction-reference.md).
 
+<!-- r27.1.0-canonical-tooling -->
+## Research tooling architecture
+
+```mermaid
+flowchart LR
+    O[Developer / researcher] --> C[scripts/rokid-research]
+    C --> I[Dynamic script and documentation catalog]
+    I --> S[Semantic research track]
+    S --> L[Preserved revision implementation]
+    L --> E[Evidence and publication lineage]
+```
+
+R27.1 separates the stable developer interface from historical revision filenames. The initial canonical layer inventories and resolves the existing implementations without deleting or automatically executing them. Later migrations may extract shared modules only after equivalence tests preserve accepted results and evidence lineage. By R27.1.12, validators, packagers, and active Test 21 source-contract implementations have converged on canonical engines, while independent tool-test suites are explicitly retained as regression oracles rather than collapsed into the implementations they verify.
+
+See [canonical research tooling](docs/research/tooling/README.md).
+
 ## Current application boundary
 
 ```mermaid
@@ -125,3 +141,12 @@ safe rollback-capable toggle remain unresolved.
 - [Runtime status](docs/research/connection-protocol/r1.3.3.2.25.2.4-runtime-status-summary.json)
 - [Android client](android-client/README.md)
 - [Test and research matrix](docs/tests/test-matrix.md)
+
+## R27 consolidation closure
+
+The canonical research harness is now the implementation front door for the 88 historical implementations qualified during R27. Compatibility shims preserve old invocation paths; independent regression oracles and semantically distinct historical analyzers remain independent by design. The machine gate is `scripts/rokid-research consolidation status`.
+
+<!-- r27.3-final-publication -->
+## R27 public baseline and Test 22 boundary
+
+R27.3 does not change the canonical architecture established by R27.2.8. It publishes that architecture as a reviewed Git baseline. Historical invocation paths remain compatibility shims or intentionally preserved distinct implementations; independent regression oracles remain independent. Test 22 begins only from a clean post-merge `main` tree that passes the R27 consolidation, oracle, link, and publication privacy gates.

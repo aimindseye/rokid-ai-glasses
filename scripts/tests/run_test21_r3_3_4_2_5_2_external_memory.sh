@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+REPO="";PHONE="";OUTPUT=""
+while [ "$#" -gt 0 ];do case "$1" in --repo) REPO="$2";shift 2;;--phone) PHONE="$2";shift 2;;--output) OUTPUT="$2";shift 2;;*) echo "ERROR: unknown argument $1";exit 2;;esac;done
+[ -d "$REPO/.git" ] || { echo "ERROR: invalid repo";exit 2; };[ -n "$PHONE" ] || { echo "ERROR: --phone required";exit 2; };[ -n "$OUTPUT" ] || { echo "ERROR: --output required";exit 2; }
+CHECK="$REPO/scripts/tests/check_test21_r3_3_4_2_5_2_source_contract.py";COLLECT="$REPO/scripts/tests/collect_test21_r3_3_4_2_5_2_external_memory.py";ANALYZE="$REPO/scripts/tests/analyze_test21_r3_3_4_2_5_2_external_memory.py";COL="$OUTPUT/private/external-memory";mkdir -p "$COL" || exit 1
+echo "============================================================";echo "TEST 21 r3.3.4.2.5.2 — NON-INJECTED ROOT EXTERNAL MEMORY";echo "============================================================";echo "MODE=NON_INJECTED_ROOT_EXTERNAL_MEMORY";echo "FRIDA_SERVER_START=NONE";echo "FRIDA_PROCESS_ATTACH=NONE";echo "INJECTED_AGENT_LOAD=NONE";echo "PTRACE_ATTACH=NONE";echo "PROCESS_SIGNAL=NONE";echo "PAYLOAD_EXECUTION=NONE";echo "HI_ROKID_FORCE_STOP=NONE";echo "CXR_L_CONNECTION_ATTEMPT=NONE"
+PYTHONDONTWRITEBYTECODE=1 python3 "$CHECK" --repo "$REPO" || exit 1
+PYTHONDONTWRITEBYTECODE=1 python3 "$COLLECT" --phone "$PHONE" --output "$COL";COLLECT_RC=$?;[ "$COLLECT_RC" -eq 0 ] || { echo "ERROR: external-memory collection failed";exit "$COLLECT_RC"; }
+PYTHONDONTWRITEBYTECODE=1 python3 "$ANALYZE" --repo "$REPO" --collection "$COL" --output "$OUTPUT";ANALYZE_RC=$?;[ "$ANALYZE_RC" -eq 0 ] || exit "$ANALYZE_RC"
+echo "TEST21_R3_3_4_2_5_2_RUN_RC=0";echo "OUTPUT=$OUTPUT";echo "DEVICE_MEMORY_READ=BOUNDED_READ_ONLY";echo "FRIDA_SERVER_START=NONE";echo "FRIDA_PROCESS_ATTACH=NONE";echo "INJECTED_AGENT_LOAD=NONE";echo "PTRACE_ATTACH=NONE";echo "PROCESS_SIGNAL=NONE";echo "PAYLOAD_EXECUTION=NONE";echo "DEVICE_PERSISTENT_MUTATION=NONE";echo "HI_ROKID_FORCE_STOP=NONE";echo "CXR_L_CONNECTION_ATTEMPT=NONE";echo "PHOTO_OPERATION=NONE";echo "AUDIO_OPERATION=NONE"

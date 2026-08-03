@@ -53,6 +53,13 @@ Test 21 is publication-closed. The accepted service/client Binder prerequisite p
 
 This is an interface/ABI result, not a claim that a complete Hi Rokid replacement is functional. Authorization semantics, session lifecycle, proprietary service implementation, and end-to-end compatibility remain unresolved. See the [Test 21 overview](../research/cxr/test21-static-binder-boundary-overview.md).
 
+<!-- r27.1.0-canonical-tooling -->
+## Repository/tooling consolidation gate
+
+Test 21 is closed, but new device testing is intentionally paused during **R27 repository canonicalization**. R27.1 introduces `scripts/rokid-research` as the stable semantic front door while preserving historical revision scripts for provenance. No historical implementation is retired until preservation, unique-logic mapping, equivalence testing, documentation migration, and publication review pass.
+
+See the [canonical tooling index](../research/tooling/README.md).
+
 ## Recommended next gate
 
 Test 19 r2 is complete and publication-closed. Test 20 r1.2 remains the
@@ -118,3 +125,44 @@ The accepted implementation rule for the tested firmware/Hi Rokid/`client-l:1.0.
 - [Test 20 r3.2 one-shot photo qualification](../tests/test-20-r3-2-cxr-l-one-shot-photo-qualification.md)
 - [Connection-protocol research](../research/connection-protocol/README.md)
 - [Boot-chain research](../research/boot-chain/README.md)
+
+<!-- r27.1.2-status -->
+### R27.1.2 repository consolidation status
+
+The Test 21 sanitized-evidence packaging family is represented by one canonical engine plus thirty revision profiles. The final accepted r3.3.4.2.6.1.3 privacy policy, including dotted-version-safe IPv4 detection, is part of the shared implementation. Historical packager files remain untouched pending later retirement gates. New device testing remains paused during R27 consolidation.
+
+<!-- r27.1.3-status -->
+### R27.1.3 repository consolidation status
+
+The current tree contains 32 historical source-contract checker files. Twenty-nine currently applicable Test 21 contracts are source-locked behind the canonical `rokid-research contract check` interface with exact legacy return-code/stdout equivalence. Three Test 20 contracts remain explicit deferred historical contracts because their predicates target superseded Test 20 source snapshots or require revision-specific output behavior. Historical checker deletion and rewrite remain `NONE`; new device testing remains paused during R27 consolidation.
+
+<!-- r27.1.4-status -->
+### R27.1.4 repository consolidation status
+
+The historical Tests 19–21 `test_*_tools.py` family is represented by one source-locked canonical registry and `rokid-research test run` command. Thirty-eight current suites are qualified behind canonical dispatch. One Test 21 suite remains explicitly deferred because its required synthetic obfuscated AAR fixture is absent. Historical test rewrite/deletion remains `NONE`; new device testing remains paused during R27 consolidation.
+
+### R27.1.5 repository consolidation status
+
+The canonical tooling layer now shares one host-only primitive library for hashing/source locks, subprocess execution, syntax checks, marker/regex gates, sidecar generation, and privacy detection. A retirement-readiness gate identifies 42 independently implemented canonical retirement candidates (12 r25 validators and 30 Test 21 packagers), while the source-contract and tool-test families remain non-retireable because canonical dispatch still executes their historical oracle files. Historical file action and repository deletion remain `NONE`; new device testing remains paused during R27 consolidation.
+
+### R27.1.12 repository consolidation status
+
+The Tests 19–21 tool-test family is finalized as independent regression-oracle coverage rather than implementation duplication. Thirty-eight current suites remain byte-preserved and source-locked, execute through `rokid-research test run`, and must retain their expected passing test counts. One Test 21 suite remains deferred because its synthetic obfuscated-AAR fixture is absent. The R27.1 retirement queue is closed: 71 compatibility shims, 38 preserved regression oracles, four preserved historical/deferred entries, zero retirement candidates, zero inbound/container/source-lock blockers, and no repository path deletion. New device testing remains paused until the broader R27 whole-repository consolidation moves beyond the Tests 19–21/r25 families.
+
+
+### R27.2.1 repository consolidation status
+
+The post-R27.1 residual-host triage selected thirteen tracked r25 connection-protocol scripts for the next host-only consolidation slice: seven private-evidence finalizers and six sanitized-publication verifiers. R27.2.1 adds independent canonical engines and revision profiles for those behaviors and requires 7/7 finalizer plus 6/6 publication-verifier equivalence before any historical implementation reduction. The thirteen historical files remain byte-unchanged; repository deletion, device operation, and privileged operation remain `NONE`. New device testing remains paused during R27 consolidation.
+
+### R27.2.2 repository consolidation status
+
+The thirteen r25 finalization/publication implementations qualified by R27.2.1 are now preservation-backed compatibility shims: seven finalizers and six sanitized-publication verifiers. Existing runner/test call paths remain unchanged, while the active logic is centralized in the canonical engines. R27 canonicalized implementation count advances from 71 to 84. Repository path deletion, device operation, and privileged operation remain `NONE`.
+
+## R27.2.8 FINAL
+
+Repository/tooling consolidation is complete. The final machine gate is `scripts/rokid-research consolidation status`; expected state is `R27_WHOLE_HISTORY_CONSOLIDATION=COMPLETE` and `NEXT_DEVICE_TEST_READY=YES`. Next planned device research: Test 22 independent on-glasses Wi-Fi/routed-IP/direct-socket capability.
+
+<!-- r27.3-final-publication -->
+## R27 publication closure and next device gate
+
+R27 whole-history consolidation is complete and R27.3 is the publication gate for that state. The accepted closure is 88 canonicalized historical implementations, 38 preserved independent regression oracles, four preserved historical/deferred entries, four explicitly preserved distinct implementation families, zero remaining host-only multi-member consolidation candidates, and zero source-lock failures. After R27.3 is merged and post-merge verification passes on `main`, the repository is ready for **Test 22 — Independent On-Glasses Wi-Fi, Routed IP, and Third-Party Direct Socket Capability**.

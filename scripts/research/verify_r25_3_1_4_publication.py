@@ -30,12 +30,23 @@ LINEAGE_SOURCE_HASHES = {
     Path("scripts/research/connection-protocol/r25_3_1_analyze.py"): "e9034b209f8abaecea775057910b33ee2e61d64970320cf36bbe2953523d8d5e",
     Path("scripts/research/connection-protocol/r25_3_1_capture.py"): "25aa249b81a999988e1f287b2b9a660f69e074c92ab6ddb96602de0eb3c748d8",
     Path("scripts/research/connection-protocol/run_r1_3_3_2_25_3_1.sh"): "c92f79acaf06d7f1ddf91a833f2077856231e389ff83677798875f736200e594",
-    Path("scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_package.sh"): "99ee789ff35b7da6fbf460d4c03723ce7ba78a24f0ee526b0ee984073b94ca4e",
     Path("docs/research/connection-protocol/r1.3.3.2.25.3.1.1-stock-adb-toggle-semantic-oracle-repair-rfcomm-payload-capture.md"): "4ab9b5879d6165dc84cf44147878cd10e598106522e2c447c78d673be5e2fbee",
     Path("scripts/research/connection-protocol/r25_3_1_1_analyze.py"): "c1ee9a169360772cb17aff34c72b501aa217b455885492c6581514d04e93301f",
     Path("scripts/research/connection-protocol/r25_3_1_1_capture.py"): "2d78821ba551b0dcd4067ca1f698ec6ee5e8257baf1f9be319bdeec16b3e0c95",
     Path("scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_1.sh"): "0025a3dd25fc650e000b37310af625eff216d0ef527c286185c01f5c097c621a",
-    Path("scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_1_package.sh"): "198303ea2c111013ab5dca6a0702f62d0dd7115fce025df3be92f97c02acef01",
+}
+
+
+CANONICAL_VALIDATOR_PROFILE = Path("scripts/research/canonical/profiles/r25-package-validators.json")
+HISTORICAL_VALIDATOR_LINEAGE = {
+    "r25.3.1": {
+        "path": Path("scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_package.sh"),
+        "historical_sha256": "99ee789ff35b7da6fbf460d4c03723ce7ba78a24f0ee526b0ee984073b94ca4e",
+    },
+    "r25.3.1.1": {
+        "path": Path("scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_1_package.sh"),
+        "historical_sha256": "198303ea2c111013ab5dca6a0702f62d0dd7115fce025df3be92f97c02acef01",
+    },
 }
 
 SOURCE_RUNTIME_HASHES = {
@@ -68,6 +79,8 @@ PUBLICATION_FILES = (
     Path("scripts/README.md"),
     Path("scripts/research/README.md"),
     *LINEAGE_SOURCE_HASHES.keys(),
+    CANONICAL_VALIDATOR_PROFILE,
+    *(entry["path"] for entry in HISTORICAL_VALIDATOR_LINEAGE.values()),
     *EXPECTED,
 )
 
@@ -137,6 +150,30 @@ def main() -> int:
             errors.append(f"missing lineage file: {rel}")
         elif digest(path) != expected:
             errors.append(f"lineage source hash mismatch: {rel}")
+
+    try:
+        registry = load_object(repo / CANONICAL_VALIDATOR_PROFILE)
+        profiles = registry.get("profiles")
+        if not isinstance(profiles, dict):
+            errors.append("canonical r25 validator profile registry missing profiles")
+        else:
+            for revision, lineage in HISTORICAL_VALIDATOR_LINEAGE.items():
+                profile = profiles.get(revision)
+                if not isinstance(profile, dict):
+                    errors.append(f"canonical validator profile missing: {revision}")
+                    continue
+                if profile.get("legacy_source_sha256") != lineage["historical_sha256"]:
+                    errors.append(f"historical validator lineage hash mismatch in canonical profile: {revision}")
+                if profile.get("retirement_state") != "COMPATIBILITY_SHIM":
+                    errors.append(f"canonical validator retirement state mismatch: {revision}")
+                shim_sha = profile.get("compatibility_shim_sha256")
+                current_path = repo / lineage["path"]
+                if not isinstance(shim_sha, str) or not HASH_RE.fullmatch(shim_sha):
+                    errors.append(f"canonical validator shim hash missing: {revision}")
+                elif not current_path.is_file() or digest(current_path) != shim_sha:
+                    errors.append(f"canonical validator shim identity mismatch: {revision}")
+    except (OSError, ValueError, json.JSONDecodeError) as exc:
+        errors.append(str(exc))
 
     for name, expected in SOURCE_RUNTIME_HASHES.items():
         path = repo / STOCK / name
@@ -217,9 +254,8 @@ def main() -> int:
         errors.append(str(exc))
 
     snippets = {
-        Path("README.md"): ("Current stock ADB-toggle result", "stock-adb-toggle/runtime-status-summary.json"),
         Path("ARCHITECTURE.md"): ("Exact observed stock ADB-toggle frame grammar",),
-        Path("docs/project-status.md"): ("r1.3.3.2.25.3.1.3", "Target-pair-scoped RFCOMM UIH attribution"),
+        Path("docs/project-status.md"): ("Stock ADB disable/restore semantics", "r25.3.1.3-runtime-status-summary.json"),
         Path("docs/research/connection-protocol/README.md"): ("Accepted stock ADB-toggle publication", "r25.3.1 semantic-oracle repair", "r25.3.1.1 operator-arm sequencing repair", "stock-adb-toggle/evidence-hashes.txt"),
         Path("docs/findings/glasses-android-os-and-adb.md"): ("Runtime stock-toggle semantics and observed message grammar",),
         Path("docs/tests/test-matrix.md"): ("r1.3.3.2.25.3.1.4", "r1.3.3.2.25.3.1.4.2"),
@@ -232,11 +268,26 @@ def main() -> int:
                 if snippet not in text:
                     errors.append(f"missing snippet {snippet!r} in {rel}")
 
-    # No private binary artifact may be committed in the publication path.
-    for suffix in (".zip", ".img", ".apk", ".pcap", ".pcapng", ".bin"):
-        for path in repo.rglob(f"*{suffix}"):
-            if ".git" not in path.parts:
-                errors.append(f"forbidden binary artifact in repository: {path.relative_to(repo)}")
+    # No private binary artifact may be committed. Prefer the Git-tracked set so
+    # ignored Android build/Gradle outputs cannot create false publication failures.
+    binary_suffixes = {".zip", ".img", ".apk", ".pcap", ".pcapng", ".bin"}
+    tracked_paths: list[Path] = []
+    try:
+        import subprocess
+        cp = subprocess.run(
+            ["git", "-C", str(repo), "ls-files", "-z"],
+            stdout=subprocess.PIPE, stderr=subprocess.PIPE, check=False,
+        )
+        if cp.returncode == 0:
+            tracked_paths = [repo / raw.decode("utf-8", errors="surrogateescape") for raw in cp.stdout.split(b"\0") if raw]
+    except OSError:
+        tracked_paths = []
+    if not tracked_paths:
+        ignored_parts = {".git", ".gradle", "build", "__pycache__"}
+        tracked_paths = [p for p in repo.rglob("*") if p.is_file() and not any(part in ignored_parts for part in p.relative_to(repo).parts)]
+    for path in tracked_paths:
+        if path.suffix.lower() in binary_suffixes:
+            errors.append(f"forbidden binary artifact in repository: {path.relative_to(repo)}")
 
     verifier = repo / "scripts/research/verify_r25_3_1_4_publication.py"
     if verifier.is_file():
@@ -252,6 +303,7 @@ def main() -> int:
     print("R25_3_1_2_TARGET_PAIR_QUALIFICATION=PASS")
     print("R25_3_1_3_EXACT_GRAMMAR_CLOSURE=PASS")
     print("R25_3_1_4_2_FULL_LINEAGE_SOURCE_HASHES=PASS")
+    print("R25_3_1_4_CANONICAL_VALIDATOR_LINEAGE=PASS")
     print("R25_3_1_4_EVIDENCE_HASH_MIRROR=PASS")
     print("R25_3_1_4_PRIVATE_ANALYSIS_ZIP_INCLUDED=NO")
     print("R25_3_1_4_DEVICE_OPERATION=NONE")

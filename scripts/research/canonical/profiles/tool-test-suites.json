@@ -1,0 +1,729 @@
+{
+  "current_equivalent_count": 38,
+  "deferred_count": 1,
+  "preserve_historical_count": 1,
+  "preserve_regression_oracle_count": 38,
+  "profile_count": 39,
+  "profiles": [
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_JAVA_FIXTURE",
+      "flags": [
+        "subprocess",
+        "javac",
+        "java",
+        "zip",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "10cc5c7e9e93ce1fa2725bf514ee7ff1a71595cb0f320891c56cf2f0e4b9f164",
+      "legacy_test": "scripts/tests/test_test19_cxr_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "cxr",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 90,
+      "track": "test19"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_JAVA_FIXTURE",
+      "flags": [
+        "subprocess",
+        "javac",
+        "java",
+        "adb_literal",
+        "zip",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "24cae8e7eece80df5003a44e5eb9babe6a3fab7c34c7449be78bb77ffb59d4cd",
+      "legacy_test": "scripts/tests/test_test19_r2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 17,
+      "timeout_seconds": 90,
+      "track": "test19"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "java"
+      ],
+      "legacy_sha256": "735b3318537e1b66816945bf146e1065a912c9b63fb981109d91261c8d23d210",
+      "legacy_test": "scripts/tests/test_test20_r1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 11,
+      "timeout_seconds": 45,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "java",
+        "fixture"
+      ],
+      "legacy_sha256": "923996dc3112b7045ba7cc3bad51898c913f6235a4c4c7352e6c05d1d0089775",
+      "legacy_test": "scripts/tests/test_test20_r2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 9,
+      "timeout_seconds": 45,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "java",
+        "fixture"
+      ],
+      "legacy_sha256": "e80d81da7d917d8cfe13cfa878210134771c304e2a13eba7c53d9c66dc2b6f5c",
+      "legacy_test": "scripts/tests/test_test20_r3_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 9,
+      "timeout_seconds": 45,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "fixture"
+      ],
+      "legacy_sha256": "1e79f6d2e26184b6f7af6fe517de3338ab71385c92e64ef3a9810639b05f5a8b",
+      "legacy_test": "scripts/tests/test_test20_r3_2_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.2.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 14,
+      "timeout_seconds": 45,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "java",
+        "fixture"
+      ],
+      "legacy_sha256": "3ccf177f92c70f2a82cab0bd3f5bf2293064ccbed87c6c8f35e4a5550d7c1e55",
+      "legacy_test": "scripts/tests/test_test20_r3_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 11,
+      "timeout_seconds": 45,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "fixture"
+      ],
+      "legacy_sha256": "8cf0e2d3647f185a02195aedcba6630e9a50b9227569aa498815e36c63481f63",
+      "legacy_test": "scripts/tests/test_test20_r3_3_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 14,
+      "timeout_seconds": 45,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "810f0eaa2d899d16f7304480e36efd7188b6c5eea82ffc1fb13b1dea4742df5f",
+      "legacy_test": "scripts/tests/test_test20_r3_media_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.media",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 9,
+      "timeout_seconds": 45,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "fixture"
+      ],
+      "legacy_sha256": "a402d21ea5062b2b91a40dbaa7cc7251d638eeda25635296a74e58bf750fd9b8",
+      "legacy_test": "scripts/tests/test_test21_r1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 7,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "ceb75941d8577258018cac5401d4ebc9097d7e825f33f461cce9b3a92dcab760",
+      "legacy_test": "scripts/tests/test_test21_r2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 13,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "7b4a1b302d8f6ef614fc8c972fdbcc4c870b2c7e831d19bfcfc7c796bcccd3af",
+      "legacy_test": "scripts/tests/test_test21_r3_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 11,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [],
+      "legacy_sha256": "6450dae254465007c650eceade54134efc4cb62ff74a4ed73e7fe4972fe655b1",
+      "legacy_test": "scripts/tests/test_test21_r3_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 10,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "b3f45d8262ea5f935ba8d46c9bbeb361dab61d072e5e3af23a8d549ce83c9c69",
+      "legacy_test": "scripts/tests/test_test21_r3_3_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 13,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "d7ce77a967078785f5c2b56dc11aecc076ad0fa7843fc84e2f5f10636a59c10d",
+      "legacy_test": "scripts/tests/test_test21_r3_3_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 14,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "a6aecc55bbbc69868fac236a44960ce9ac45b4e129028146e0672a16ff094342",
+      "legacy_test": "scripts/tests/test_test21_r3_3_3_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.3.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 10,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "adb_literal",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "6d412058f854f6fae7d9786e3df9f81643ce43c95d10b2d9ddf7a8a84dc6a8df",
+      "legacy_test": "scripts/tests/test_test21_r3_3_3_2_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.3.2.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 13,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "adb_literal",
+        "fixture"
+      ],
+      "legacy_sha256": "52d213938a73d89b82e187b0b87b94970a6381836c31439ea84d26d9f38c0e35",
+      "legacy_test": "scripts/tests/test_test21_r3_3_3_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.3.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "adb_literal",
+        "network_fixture"
+      ],
+      "legacy_sha256": "aa1abd9b1b4cd9bb43d28eeb18bad9cbe17031a006de3114227953ce33f02881",
+      "legacy_test": "scripts/tests/test_test21_r3_3_3_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.3",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 12,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "zip"
+      ],
+      "legacy_sha256": "d2b5440a1da7735ee6b19adf1c31e2951a43763e4457d57e82385689d21e663b",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 9,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "java",
+        "adb_literal",
+        "zip",
+        "fixture"
+      ],
+      "legacy_sha256": "184869ece5428ed39dfbdc1faa29171c1a5c2cfd4eada6d01d623e49b848f46b",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 10,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "java",
+        "adb_literal",
+        "zip",
+        "fixture"
+      ],
+      "legacy_sha256": "c93ea3dba396d5f46b7ce947b6f10c2e174636d1ceb6aed950692e632da4d6c8",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "adb_literal",
+        "zip",
+        "fixture"
+      ],
+      "legacy_sha256": "67074c2a012290ea84337f9ad02519f3ab40e8bf931cb68d152165ad534cd1f0",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_3_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.3",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "zip"
+      ],
+      "legacy_sha256": "3599341d85641a079a6ce1df3373f0741eaa5e94cd52eb506af8a7abf88f6bfe",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_4_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.4",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "java",
+        "frida_literal",
+        "fixture"
+      ],
+      "legacy_sha256": "b2e50545ffef8f6c8810d862d8fe68e94170d40725e75f69f8c865878cb650c2",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_5_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.5.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "adb_literal",
+        "fixture"
+      ],
+      "legacy_sha256": "adf08d6e03ca724cfeaff22872d54580760dffc4e0cee31672e86a40e13c7c5e",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_5_2_1_1_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.5.2.1.1.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 12,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "7159cc1ed9b8bd66f3dce471ceba6a3dd7e8de724a015f10bb0c037d9635251d",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_5_2_1_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.5.2.1.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 10,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "4d8be2cf56edeee440b0f761d890949a0f6b8299dfce87971197602dd7bd5b1a",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_5_2_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.5.2.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 9,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "frida_literal"
+      ],
+      "legacy_sha256": "b3d7a18490b04e8af54a246406a3600914e4fc8e6127c114fbd96f01dca2822e",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_5_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.5.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "java"
+      ],
+      "legacy_sha256": "6da25e3e791adf0cb4d8af45b1a63b2e1af284cd9bfbb1302d2421427f1ee4ba",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_5_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.5",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 8,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "synthetic obfuscated AAR fixture is absent from current repository",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "adb_literal",
+        "frida_literal",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "1d87bb46c80c6a9c7e3c82a2400c4fe8887d69eeb249bfc42acc3ac3f7ca867d",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_6_1_1_tools.py",
+      "oracle_reason": "synthetic obfuscated AAR fixture is absent from current repository",
+      "oracle_state": "PRESERVE_HISTORICAL",
+      "required_fixture_paths": [
+        "fixtures/synthetic-obfuscated-client-l-1.0.1.aar"
+      ],
+      "revision": "r3.3.4.2.6.1.1",
+      "status": "DEFERRED_MISSING_FIXTURE",
+      "test_count": 10,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "adb_literal",
+        "frida_literal",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "cc0bc6d05490ddd527af7a5d699924f566551c2f612cb04af2ea69e0f33c6619",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_6_1_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.6.1.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 11,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_JAVA_FIXTURE",
+      "flags": [
+        "subprocess",
+        "javac",
+        "java",
+        "adb_literal",
+        "frida_literal",
+        "magisk_literal",
+        "zip",
+        "fixture"
+      ],
+      "legacy_sha256": "bedbc792a0d07a71f8c7fb2f01db3044db0261b48bc212835ce5f1a33565e1eb",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_6_1_3_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.6.1.3",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 6,
+      "timeout_seconds": 90,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "adb_literal",
+        "frida_literal",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "4ee2324f2f18ee4c7c6150feb4bb9de77b69565b94aa2e0db55edd4afdeb81e1",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_6_1_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.6.1",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 7,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_SUBPROCESS_FIXTURE",
+      "flags": [
+        "subprocess",
+        "adb_literal",
+        "frida_literal",
+        "network_fixture",
+        "fixture"
+      ],
+      "legacy_sha256": "2c3ca3aef0d0d2b57c2347b5903da43ed0f0f1697c172c7f80de4931d27148ea",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_6_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2.6",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 11,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [],
+      "legacy_sha256": "e473cf6fdd7b4deaddcd7e20bd1910720a6b2fac6c456be616a7cbbf4c1a050c",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_2_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4.2",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 7,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [],
+      "legacy_sha256": "bc312420dfef1f27baa7a1419b9905a2994406feacc224ef53bdaf7917369b2c",
+      "legacy_test": "scripts/tests/test_test21_r3_3_4_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3.4",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 7,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "8f7a7c5b9c5a386f4053907e66c269ffab19d8738b287a160eb7f30e070d1913",
+      "legacy_test": "scripts/tests/test_test21_r3_3_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3.3",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 12,
+      "timeout_seconds": 45,
+      "track": "test21"
+    },
+    {
+      "deferred_reason": "",
+      "execution_class": "HOST_LIGHTWEIGHT",
+      "flags": [
+        "fixture"
+      ],
+      "legacy_sha256": "bdaa5e9fd6307597ece3b103d2c963ecacbdec559e65b96101104b3c59231e08",
+      "legacy_test": "scripts/tests/test_test21_r3_tools.py",
+      "oracle_reason": "independent regression oracle retained intentionally; canonical runner verifies exact source lock, invocation contract, pass status, and test count",
+      "oracle_state": "PRESERVE_REGRESSION_ORACLE",
+      "required_fixture_paths": [],
+      "revision": "r3",
+      "status": "CURRENT_EQUIVALENT",
+      "test_count": 12,
+      "timeout_seconds": 45,
+      "track": "test21"
+    }
+  ],
+  "schema": "rokid.r27.1.12.tool-test-suites.v2"
+}

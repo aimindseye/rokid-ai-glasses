@@ -50,6 +50,7 @@ reports and evidence are sanitized.
 | 18 | USB ADB control-path follow-up | 18A–18D | PASS in static/offline scope; runtime invocation unresolved | [Sanitized summary](../../evidence/sanitized/glasses-os-services/usb-adb-control-summary.txt) |
 | 19 | CXR-L non-display companion connection qualification | Firmware/app ownership and connection path | PASS in accepted Test 19 r2 scope | [Developer status](../developer/current-status.md) |
 | 20 | CXR-L one-shot photo and callback closure | Two-phase one-shot arm; callback lifecycle | PASS in tested environment; post-service-status callback re-registration required | [Final publication](test-20-final-photo-control-callback-publication.md) |
+| 21 | CXR-L static Binder boundary | Service/client and callback Binder ABI | PASS — static boundary closed for `client-l:1.0.1`; callback side 7 interfaces / 21 methods / 21 confirmations / 0 mismatches | [Overview](../research/cxr/test21-static-binder-boundary-overview.md) |
 
 ## Research and implementation releases
 
