@@ -1,21 +1,30 @@
 #!/usr/bin/env python3
-from pathlib import Path
-import argparse,hashlib,json,zipfile
+from __future__ import annotations
 
-def sha(p):
- h=hashlib.sha256(); h.update(p.read_bytes()); return h.hexdigest()
-def main():
- ap=argparse.ArgumentParser(); ap.add_argument('--run',type=Path,required=True); a=ap.parse_args(); run=a.run.resolve()
- files=sorted(p for p in run.rglob('*') if p.is_file() and p.name not in {'SHA256SUMS-r25.2.json'})
- manifest={str(p.relative_to(run)):sha(p) for p in files}
- (run/'SHA256SUMS-r25.2.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
- files.append(run/'SHA256SUMS-r25.2.json')
- out=run.with_name(run.name+'-private-evidence.zip')
- with zipfile.ZipFile(out,'w',zipfile.ZIP_DEFLATED) as z:
-  for p in files:z.write(p,arcname=f'{run.name}/{p.relative_to(run)}')
- digest=sha(out); out.with_suffix(out.suffix+'.sha256').write_text(f'{digest}  {out.name}\n')
- print(f'R1_3_3_2_25_2_MANIFEST_COUNT={len(files)}')
- print(f'R1_3_3_2_25_2_PRIVATE_EVIDENCE_ZIP={out}')
- print(f'R1_3_3_2_25_2_PRIVATE_EVIDENCE_SHA256={digest}')
- print('R1_3_3_2_25_2_FINALIZE=PASS')
-if __name__=='__main__': main()
+# R27.2.2 compatibility shim.
+# Historical implementation SHA-256: 2c9fb45a0c67bbc320740fbf467662bfb4cff94b704efd663815d16d0195e4dc
+
+import argparse
+import sys
+from pathlib import Path
+
+REPO = Path(__file__).resolve().parents[3]
+if str(REPO) not in sys.path:
+    sys.path.insert(0, str(REPO))
+
+from scripts.research.canonical.r25_finalizer import finalize
+
+REVISION = 'r25.2'
+HISTORICAL_SOURCE_SHA256 = '2c9fb45a0c67bbc320740fbf467662bfb4cff94b704efd663815d16d0195e4dc'
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--run", type=Path, required=True)
+    args = parser.parse_args()
+    rc, _archive, _sidecar = finalize(REPO, REVISION, args.run)
+    return rc
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

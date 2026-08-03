@@ -1,0 +1,1017 @@
+{
+  "contract_semantics": "ACCEPTED_SOURCE_SNAPSHOT_PLUS_DECLARATIVE_LINEAGE",
+  "deferred_historical_contracts": [
+    {
+      "deferred_reason": "HISTORICAL_TEST20_CONTRACT_NOT_ALL_APPLICABLE_TO_CURRENT_SOURCE_TREE",
+      "expected_pass_markers": [
+        "TEST20_FINAL_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test20_final_source_contract.py",
+      "legacy_source_sha256": "d628d42c3b7336f77ef488fa39e116f36849b223e51b70c1c9337a2c9e0ff39d",
+      "revision": "final",
+      "supports_output": false,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "HISTORICAL_TEST20_CONTRACT_NOT_ALL_APPLICABLE_TO_CURRENT_SOURCE_TREE",
+      "expected_pass_markers": [
+        "TEST20_R3_2_1_3_OPERATOR_GATE_SOURCE_CONTRACT=PASS",
+        "TEST20_R3_2_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test20_r3_2_1_source_contract.py",
+      "legacy_source_sha256": "112475c1419ec6cbaf6cef5ef2f263e5d87b78db11f468cc3be5dddddb5dc765",
+      "revision": "r3.2.1",
+      "supports_output": true,
+      "track": "test20"
+    },
+    {
+      "deferred_reason": "HISTORICAL_TEST20_CONTRACT_NOT_ALL_APPLICABLE_TO_CURRENT_SOURCE_TREE",
+      "expected_pass_markers": [
+        "TEST20_R3_3_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test20_r3_3_source_contract.py",
+      "legacy_source_sha256": "f5f535583eb0cc3b7c7f0e85a13add09524ebe97a4dadcc63b8973043d0aa09c",
+      "revision": "r3.3",
+      "supports_output": true,
+      "track": "test20"
+    }
+  ],
+  "profiles": [
+    {
+      "compatibility_shim_sha256": "c64264c09970a4a44634eeab987d437caf1339ab2cea57f13e366a18eb317813",
+      "contract_dependencies": [],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R1_SOURCE_CONTRACT=PASS\nDEVICE_MUTATION=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\nAIUI_OPERATION=STATIC_ELIGIBILITY_CENSUS_ONLY\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "547171cba2f378ce419c91df5d10394a34cfa7a4ae56f706ad8f9853ff5a91ef",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r1-cxrl-hirokid-dependency-aiui-eligibility-discovery.md": "5bf231c7637035cc4e91b69f7b9ed0215d4b1d70ed5b685e45e82543d9a2142f",
+        "scripts/tests/analyze_test21_r1_discovery.py": "3b644ff7f0824a45ed5554c06333508a69f07699381e9b1c7962f2084f6330ba",
+        "scripts/tests/package_test21_r1_sanitized.py": "1c2e490ab98e4bf880674ca97cd83e987d64100a4b7aca4d683c6130618b4b75",
+        "scripts/tests/run_test21_r1_discovery.sh": "04ac6b6f20a564417fbc97cb9f18b26ff18c3b08b0887f051e8a948a0b59ba58",
+        "scripts/tests/test_test21_r1_tools.py": "a402d21ea5062b2b91a40dbaa7cc7251d638eeda25635296a74e58bf750fd9b8"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "dcd84c8399d9a75977b6e1c1ed1bdac3204180b253445e92642f4597a54df7aa",
+      "contract_dependencies": [],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R2_SOURCE_CONTRACT=PASS\nHI_ROKID_PACKAGE=com.rokid.sprite.global.aiapp\nCUSTOM_COMPANION_PACKAGE=org.aimindseye.rokid.cxrphotoqualification\nAUTH_TOKEN_HANDLING=IN_MEMORY_ONLY_EXISTING_TEST20_FIELD\nAUTH_TOKEN_HOST_EXPORT=NONE\nTAKE_PHOTO_EXECUTABLE_CALL_SITES=1\nAUDIO_EXECUTABLE_CALL_SITES=0\nHI_ROKID_FORCE_STOP_COUNT=1\nPACKAGE_DISABLE_OR_UNINSTALL=NONE\nPACKAGE_DATA_CLEAR=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\nTEST20_HOST_ARM_BROADCAST=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "41ca31d4cab2405c99d7a73b8cc504edb40b8ff4781d9d49db8b6c1b82880fe3",
+      "required_directories": [],
+      "required_file_sha256": {
+        "android-client/test20r32/build.gradle.kts": "b55ca8520db7c03c2b81306bec5587e93c0461dcf11996af711581a236f7a8a1",
+        "android-client/test20r32/src/main/java/org/aimindseye/rokid/cxrphotoqualification/CxrLPhotoController.java": "cf4454d801f265002f54a216571d12f203a117d59178f0df187689ed4a738a41",
+        "android-client/test20r32/src/main/java/org/aimindseye/rokid/cxrphotoqualification/MainActivity.java": "311ca8cb5ce91fd0b88ca9476dec1002c366f20040ad38fbecf35a1a3fb61e20",
+        "android-client/test20r32/src/main/java/org/aimindseye/rokid/cxrphotoqualification/Test20R32Contract.java": "63bc02dc1360d97405682f0d1a374303f49ad56e8408ab541e80d3cadcd951a3",
+        "scripts/tests/analyze_test21_r2_ownership.py": "a118d0df81743f8241ae761189691441b28085697a5197e8638d55e7bff15979",
+        "scripts/tests/run_test21_r2_force_stop_ownership.sh": "7f3861aea865e99411d7d9dd869eb392971a2e0f110d420cf8f40896f090bf7c"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "aa4764efdff403f75e56f02c58a7f96694a7486e35fff8d3b63fcb76a07547d5",
+      "contract_dependencies": [
+        {
+          "revision": "r3",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_1_SOURCE_CONTRACT=PASS\nHI_ROKID_PACKAGE=com.rokid.sprite.global.aiapp\nCUSTOM_COMPANION_PACKAGE=org.aimindseye.rokid.cxrphotoqualification\nR3_ACCEPTED_PREREQUISITE_IDENTITY=PASS\nTAKE_PHOTO_EXECUTABLE_CALL_SITES=1\nAUDIO_EXECUTABLE_CALL_SITES=0\nCXR_L_CONNECTION_ATTEMPT=NONE\nPACKAGE_DISABLE_OR_UNINSTALL=NONE\nPACKAGE_DATA_CLEAR=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\nTEST20_HOST_ARM_BROADCAST=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "ac5637e67b106e8c120b27c22c20857736b90d31b786cae71509a4eb3846f2bc",
+      "required_directories": [],
+      "required_file_sha256": {
+        "android-client/test20r32/src/main/java/org/aimindseye/rokid/cxrphotoqualification/CxrLPhotoController.java": "cf4454d801f265002f54a216571d12f203a117d59178f0df187689ed4a738a41",
+        "scripts/tests/analyze_test21_r3_respawn.py": "96561be5bf37939566a1446b8d853a4d73c441f7f127929a100954a041f3ab13",
+        "scripts/tests/run_test21_r3_1_auto_respawn_trigger.sh": "94617f2587d08f30b90bc4bea13ceb7523810c837b523b23d83cc7bb3b34ddf3",
+        "scripts/tests/run_test21_r3_bound_service_respawn.sh": "b29217e477baf1d0500498bf380ff0a7ee91447558a74aa80fcc0254f2443e4a"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "c21d68053d22fa4a0289038335f4d6e6382bfb137136ad78d200d92d0118af67",
+      "contract_dependencies": [],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_2_SOURCE_CONTRACT=PASS\nPROFILE=CUSTOM_UNAUTHORIZED_ALIVE\nHI_ROKID_FORCE_STOP_COUNT=1\nCUSTOM_COMPANION_FORCE_STOP_COUNT=1\nAUTHORIZATION_OPERATION=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\nSECONDARY_PACKAGE_FORCE_STOP=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "e0ad017a4c49064077fb4ac055b35214b7a8e20472df412c11d69c0344ad9408",
+      "required_directories": [],
+      "required_file_sha256": {
+        "scripts/tests/collect_test21_r3_2_topology.py": "e47ef49fb60db363de17eafefea8ccc90a84cee299fc5bf04c4aa4d69b1b7481",
+        "scripts/tests/run_test21_r3_2_process_topology.sh": "46bd1623c5bb14f6677cdb3b2687371791d9f3b3aa9a89f3c00e523f94ad9d90"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "40fe830bf73aec74fcc78b70df3bda1380b0d1c7719939f650d51e64f92d4858",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_1_SOURCE_CONTRACT=PASS\nPROFILE=AUTHORIZED_FOREGROUND_DELAY_30S\nR3_3_ACCEPTED_PREREQUISITE_IDENTITY=PASS\nSETTLE_SECONDS=30\nAUTHORIZATION_OPERATION=ONE_CONTROLLED_ATTEMPT\nCXR_L_CONNECTION_ATTEMPT=NONE\nHI_ROKID_FORCE_STOP_COUNT=1\nSECONDARY_PACKAGE_FORCE_STOP=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "bfe7165d7f5e309a96f6b806db290f96bc2ded661c58cd4e86c4e84c27f68c4e",
+      "required_directories": [],
+      "required_file_sha256": {
+        "scripts/tests/analyze_test21_r3_3_authorized_no_connect.py": "ac34ce8a0b403dc32d3af82e00c26eb8c7ccd3a1887ff6c2f36f05081280a18a",
+        "scripts/tests/run_test21_r3_3_1_deferred_binding.sh": "7b0c4aa691a0c66e2281aea892aaaf21db2fb81a4d3eece9eb1c939245ab3b46",
+        "scripts/tests/run_test21_r3_3_authorized_no_connect.sh": "6c9aeaebf3dcf4279e515e3ccb0d891b937748fd76ec727e05d0261b38e4719c"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "e1c01a8ff257e6173d9a62fc4c76876c19dfdbbe053acdb0ab88ffe2ff69b1cc",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_2_SOURCE_CONTRACT=PASS\nPROFILE=AUTHORIZED_FOREGROUND_TO_BACKGROUND_HOME_15S\nR3_3_1_REPAIRED_PREREQUISITE_IDENTITY=PASS\nAUTHORIZATION_OPERATION=ONE_CONTROLLED_ATTEMPT\nLIFECYCLE_TRANSITION=ONE_HOST_KEYCODE_HOME\nCXR_L_CONNECTION_ATTEMPT=NONE\nHI_ROKID_FORCE_STOP_COUNT=1\nSECONDARY_PACKAGE_FORCE_STOP=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "694bf04c01a57b69b88cb70eb20a76067fefe25e3b8616b8918de1ed6a49c7a8",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-1-post-authorization-delay-foreground-lifecycle-deferred-binding.md": "ae615fb92e0028731d149382712d2aa17542a9a240094eed02203071286f0dc8",
+        "scripts/tests/analyze_test21_r3_3_1_deferred_binding.py": "5ea937b0fda82ff1cf54be0bbfb6ad230a9630a054b7dfedf3b6d90ef73b69f7",
+        "scripts/tests/collect_test21_r3_3_1_respawn.py": "66264ce5a8612f3d13b6e44e5af9d5b788918a52919525975a5060fe56ed1883",
+        "scripts/tests/collect_test21_r3_3_1_state.py": "44aa39369929792097f9c72bef4d5cb39ff5e05e9e0d813b86404ea02e97fc27",
+        "scripts/tests/package_test21_r3_3_1_sanitized.py": "7c4d2620aae066afb27c038c56decfcafbfe0dedfddcae2ab624cd90e2ac963d",
+        "scripts/tests/run_test21_r3_3_1_deferred_binding.sh": "7b0c4aa691a0c66e2281aea892aaaf21db2fb81a4d3eece9eb1c939245ab3b46",
+        "scripts/tests/run_test21_r3_3_2_lifecycle_transition.sh": "8fe58da392dd2d46f23e47906b87276c5c132016cd19f715ac9796f4dc40b60d",
+        "scripts/tests/test_test21_r3_3_1_tools.py": "b3f45d8262ea5f935ba8d46c9bbeb361dab61d072e5e3af23a8d549ce83c9c69"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "b04cb9bda9aa0d3ae69596426d4a77e4d5d00fe5d79b47cc9f3946b8b748080e",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.3",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_3_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_3_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_3_1_SOURCE_CONTRACT=PASS\nPROFILE=PCAPDROID_DUAL_APP_ATTRIBUTION_AUTHORIZED_NO_CONNECT\nREPAIRED_R3_3_3_PREREQUISITE_IDENTITY=PASS\nPCAPDROID_DUAL_APP_FILTER=HI_ROKID_AND_CUSTOM\nPCAPDROID_TLS_DECRYPTION=ENABLED\nCXR_L_CONNECTION_ATTEMPT=NONE\nHI_ROKID_FORCE_STOP=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "55563710c75f5cebcb78f823974999c72aae7f7de83e39cdbde554aac2560107",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-3-original-r3-differential-pcapdroid-mitm-network-correlation.md": "4129a724ae47b3febd2600ee6c0a21084b8ff88ebe17d5ecd3d853eaf1577ae9",
+        "scripts/tests/analyze_test21_r3_3_3_network_correlation.py": "7e8e083030b17816fa250b014d92c266efff03da78a67a8876836cf3922b75e3",
+        "scripts/tests/collect_test21_r3_3_3_timeline.py": "1a29dcdfe522c46179b8c406320023feb62ee3f43fe16ceff1ac5dcdf8bd83b9",
+        "scripts/tests/package_test21_r3_3_3_sanitized.py": "dbb3a702a8099080a0d0ce909a89ed9f39fd71f835358c155bb8370f06d48693",
+        "scripts/tests/parse_test21_r3_3_3_pcap.py": "e70b68e44048bd3cddf2f2ffc489e223b3927161ea60b7b1cd3b522d9150a61a",
+        "scripts/tests/run_test21_r3_3_3_1_network_attribution.sh": "ec49744d691242f1d13ea210521575ad09dd3178ec648e9867c2ff780e2381fb",
+        "scripts/tests/run_test21_r3_3_3_network_differential.sh": "6a35bbf8d01e91cbedf073a6154b20cb9f2187b406431668cf5b830df4083ab3",
+        "scripts/tests/test_test21_r3_3_3_tools.py": "aa1abd9b1b4cd9bb43d28eeb18bad9cbe17031a006de3114227953ce33f02881"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.3.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "42e592f81ff8a086077c0cbd451b87292bf26a0ccece35e34e7a4b6e3e014cd7",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.3.2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_3_2_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_3_2_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_3_2_1_SOURCE_CONTRACT=PASS\nMODE=OFFLINE_EXISTING_EVIDENCE_ONLY\nR3_3_3_2_PREREQUISITE_IDENTITY=PASS\nTSHARK_FIELD_SEPARATOR_REPAIR=separator=/t\nGROUND_TRUTH_GATE=REQUIRE_EXACT_4_OF_4\nDEVICE_OPERATION=NONE\nADB_OPERATION=NONE\nNEW_CAPTURE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "33c9c316b4ca2fc6cf3acb3ed6f1cff9975910690ed56125d711406cda3be81b",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-3-2-1-tshark-field-separator-repair.md": "0a3e9c3f77463d5162b739cb02607fb8b815f2883ca041b4fab8227d424a8798",
+        "docs/tests/test-21-r3-3-3-2-native-csv-known-endpoint-respawn-reanalysis.md": "5068b49cc8ac22ea120d9e2c9775929c0bd2befad9a8a3be83775d0edc2eb6d3",
+        "scripts/tests/analyze_test21_r3_3_3_2_1_offline.py": "e6eaef4fd7673c3f635a7d4c8f3b91be4c4e8fbeeba32ea99a45724626cf452f",
+        "scripts/tests/analyze_test21_r3_3_3_2_offline.py": "7a3db0654471b0685ed33ff051a3f76dea9c13e4a618b2df01e3757aea01e9a6",
+        "scripts/tests/package_test21_r3_3_3_2_1_sanitized.py": "1f87ed710b8803e75497888be0d3f2635ed206885516d950daf37ccaaa495276",
+        "scripts/tests/package_test21_r3_3_3_2_sanitized.py": "e8865bed020fa787ad0a53dc4b2053e61f2cc4df71422be8d5fffde0d8c9ab2a",
+        "scripts/tests/run_test21_r3_3_3_2_1_offline_reanalysis.sh": "72b69152270896e28183814fb941555cbc86ebf86d018a94c99d500c0ce61f24",
+        "scripts/tests/run_test21_r3_3_3_2_offline_reanalysis.sh": "2035025618b524e4266ce5eaff39f363324321c692511fd237bae65481394018",
+        "scripts/tests/test_test21_r3_3_3_2_1_tools.py": "6d412058f854f6fae7d9786e3df9f81643ce43c95d10b2d9ddf7a8a84dc6a8df",
+        "scripts/tests/test_test21_r3_3_3_2_tools.py": "52d213938a73d89b82e187b0b87b94970a6381836c31439ea84d26d9f38c0e35"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.3.2.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "dcbfa28f7a7da582cb4bed81e789b7d182be925da7e96174f43b48593a7a4087",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.3",
+          "track": "test21"
+        },
+        {
+          "revision": "r3.3.3.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_3_2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_3_2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_3_2_SOURCE_CONTRACT=PASS\nMODE=OFFLINE_EXISTING_EVIDENCE_ONLY\nR3_3_3_AND_R3_3_3_1_PREREQUISITE_IDENTITY=PASS\nDEVICE_OPERATION=NONE\nNEW_CAPTURE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "203a621a7443aa52fa01a7b82527a20aee20882bf697a13e7c7b91261553089d",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-3-1-pcapdroid-dual-app-attribution-authorized-no-connect.md": "a4d26eab781f97d601c8299363bdd76af22c34b5d639d32c776bea8ae3bf6578",
+        "docs/tests/test-21-r3-3-3-2-native-csv-known-endpoint-respawn-reanalysis.md": "5068b49cc8ac22ea120d9e2c9775929c0bd2befad9a8a3be83775d0edc2eb6d3",
+        "docs/tests/test-21-r3-3-3-original-r3-differential-pcapdroid-mitm-network-correlation.md": "4129a724ae47b3febd2600ee6c0a21084b8ff88ebe17d5ecd3d853eaf1577ae9",
+        "scripts/tests/analyze_test21_r3_3_3_1_attribution.py": "a515c5a14d162480a1d5397afca1cca651409c1e7d6d950063191edbbb79dd40",
+        "scripts/tests/analyze_test21_r3_3_3_2_offline.py": "7a3db0654471b0685ed33ff051a3f76dea9c13e4a618b2df01e3757aea01e9a6",
+        "scripts/tests/analyze_test21_r3_3_3_network_correlation.py": "7e8e083030b17816fa250b014d92c266efff03da78a67a8876836cf3922b75e3",
+        "scripts/tests/collect_test21_r3_3_3_timeline.py": "1a29dcdfe522c46179b8c406320023feb62ee3f43fe16ceff1ac5dcdf8bd83b9",
+        "scripts/tests/package_test21_r3_3_3_1_sanitized.py": "ec0a1603509e62e2bc66461ad5c545d68a4e1463111abc89d3e32b60894ab5d8",
+        "scripts/tests/package_test21_r3_3_3_2_sanitized.py": "e8865bed020fa787ad0a53dc4b2053e61f2cc4df71422be8d5fffde0d8c9ab2a",
+        "scripts/tests/package_test21_r3_3_3_sanitized.py": "dbb3a702a8099080a0d0ce909a89ed9f39fd71f835358c155bb8370f06d48693",
+        "scripts/tests/parse_test21_r3_3_3_1_pcap.py": "5db3e5b1ecfe840c47007fca865c3683311b6302e2cee4fa29e5593061e474f6",
+        "scripts/tests/parse_test21_r3_3_3_pcap.py": "e70b68e44048bd3cddf2f2ffc489e223b3927161ea60b7b1cd3b522d9150a61a",
+        "scripts/tests/run_test21_r3_3_3_1_network_attribution.sh": "ec49744d691242f1d13ea210521575ad09dd3178ec648e9867c2ff780e2381fb",
+        "scripts/tests/run_test21_r3_3_3_2_offline_reanalysis.sh": "2035025618b524e4266ce5eaff39f363324321c692511fd237bae65481394018",
+        "scripts/tests/run_test21_r3_3_3_network_differential.sh": "6a35bbf8d01e91cbedf073a6154b20cb9f2187b406431668cf5b830df4083ab3",
+        "scripts/tests/test_test21_r3_3_3_1_tools.py": "a6aecc55bbbc69868fac236a44960ce9ac45b4e129028146e0672a16ff094342",
+        "scripts/tests/test_test21_r3_3_3_2_tools.py": "52d213938a73d89b82e187b0b87b94970a6381836c31439ea84d26d9f38c0e35",
+        "scripts/tests/test_test21_r3_3_3_tools.py": "aa1abd9b1b4cd9bb43d28eeb18bad9cbe17031a006de3114227953ce33f02881"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.3.2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "2d3414336dd4777daf29a81276f4d44a611c34b3cca47b6dc7d489ee3d990ed5",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_3_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_3_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_3_SOURCE_CONTRACT=PASS\nPROFILE=ORIGINAL_R3_DIFFERENTIAL_PCAPDROID_MITM\nR3_3_2_ACCEPTED_PREREQUISITE_IDENTITY=PASS\nPCAPDROID_API_CONTROL=DOCUMENTED_CAPTURECTRL\nPCAPDROID_TLS_DECRYPTION=ENABLED\nPCAPDROID_MULTI_APP_FILTER=HI_ROKID_AND_CUSTOM\nCXR_L_CONNECTION_ATTEMPT=ONE_CONTROLLED_ATTEMPT\nHI_ROKID_FORCE_STOP_COUNT=1\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "b5bfe551a374408d7f0472be365675a14d4d74f2f05ccfe6518ed8ed2dd92e93",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-2-authorized-foreground-background-lifecycle-respawn.md": "5edd9567a34cdbaaba9fbd0f04afb33e5b07b0e3b46e256663453d2a8f63f202",
+        "scripts/tests/analyze_test21_r3_3_2_lifecycle_transition.py": "426962a12aa626c0f7b3763a1e8f8355f2fb8eb126f78a6bd4a578edae928b13",
+        "scripts/tests/collect_test21_r3_3_2_respawn.py": "d04577639f4d3b10936aae7ebc400f04a73b1c1eec3e75db9c8a3d06fc28b138",
+        "scripts/tests/collect_test21_r3_3_2_state.py": "f04a037429a8377ba0be881c777977dc0fba00445f986ab07a7126863379c2d5",
+        "scripts/tests/package_test21_r3_3_2_sanitized.py": "d100e370a3923e2f043811d2e6210f7dadfab76c2b09e116e1b3f5206674229f",
+        "scripts/tests/package_test21_r3_3_3_sanitized.py": "dbb3a702a8099080a0d0ce909a89ed9f39fd71f835358c155bb8370f06d48693",
+        "scripts/tests/run_test21_r3_3_2_lifecycle_transition.sh": "8fe58da392dd2d46f23e47906b87276c5c132016cd19f715ac9796f4dc40b60d",
+        "scripts/tests/run_test21_r3_3_3_network_differential.sh": "6a35bbf8d01e91cbedf073a6154b20cb9f2187b406431668cf5b830df4083ab3",
+        "scripts/tests/test_test21_r3_3_2_tools.py": "d7ce77a967078785f5c2b56dc11aecc076ad0fa7843fc84e2f5f10636a59c10d"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.3",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "64a5b1a6503697e4b3afd5a32a70bc1e0c41e596e5cf7bc46f04a9fb34cc41f9",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_1_SOURCE_CONTRACT=PASS\nR3_3_4_PREREQUISITE_IDENTITY=PASS\nPROFILE=CXRLINKSERVICE_BINDING_CONTRACT\nHI_ROKID_FORCE_STOP_COUNT=1\nCXR_L_CONNECTION_ATTEMPT=ONE_CONTROLLED_ATTEMPT\nAPK_PULL=READ_ONLY_PRIVATE\nPCAPDROID_OPERATION=NONE\nNETWORK_CAPTURE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "e29495553d4e848dd5366cfe288a435a2069d4fa81f3c3969b86c5fc12cf57b7",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-1-cxrlinkservice-binding-contract.md": "546c8f3355e5004a23e4c6be779c16930ab9617d2cd7978dedc49261172523c0",
+        "docs/tests/test-21-r3-3-4-exact-cxrl-local-component-activation.md": "a39937c0aa235d90afa5ad108990bc8333fc6098d856324c6be22ad09bb8a47d",
+        "scripts/tests/analyze_test21_r3_3_4_1_binding_contract.py": "1a25ed497f6d627e9dcd90e750e7c65134ae96f074b7aa30b841067ff01d68b5",
+        "scripts/tests/analyze_test21_r3_3_4_local_activation.py": "9bc58c9851be247ff8ef91dcdeb66ec26ea3ee751e5808781477ddd8edeb3bdf",
+        "scripts/tests/collect_test21_r3_3_4_1_binding_contract.py": "c853142891e1e1ce79315403e8c39ba441fc56e7a46e628af268aa521b0dff8d",
+        "scripts/tests/collect_test21_r3_3_4_local_activation.py": "2205931c3a7a1778750e5897a61705da47c054945b76baa8d9602adac2bfa5f6",
+        "scripts/tests/inspect_test21_r3_3_4_1_apk_strings.py": "b0a6b05c18a066d9b29a992e3285665d080e24a2e1311c5b957c908a5ba2d489",
+        "scripts/tests/package_test21_r3_3_4_1_sanitized.py": "2e4b2c6638f0c84a66295cd1ff3ab567b66936501fdea965053ce43c8aff5fbd",
+        "scripts/tests/package_test21_r3_3_4_sanitized.py": "e3509a27076dfef0439a8702e77565d8a958da2883375205c74654f869768609",
+        "scripts/tests/run_test21_r3_3_4_1_binding_contract.sh": "66af88902d77ea83f38d463f4b9884affc657d58285bb87b2879ce57f0595adf",
+        "scripts/tests/run_test21_r3_3_4_local_activation.sh": "c8ca871ed1df618889dd75f9c3d8e3c99227f07b0d9f6b9c2b667fe91109c97c",
+        "scripts/tests/test_test21_r3_3_4_1_tools.py": "d2b5440a1da7735ee6b19adf1c31e2951a43763e4457d57e82385689d21e663b",
+        "scripts/tests/test_test21_r3_3_4_tools.py": "bc312420dfef1f27baa7a1419b9905a2994406feacc224ef53bdaf7917369b2c"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "8ad1c8d26e56ab5a78919ea1ece95d36436fb3cb2af076af272142dc8daac8f7",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_1_SOURCE_CONTRACT=PASS\nR3_3_4_2_PREREQUISITE_IDENTITY=PASS\nMODE=OFFLINE_EXISTING_EVIDENCE_ONLY\nAPK_SCOPE=ALL_PRESERVED_R3_3_4_1_SPLITS\nDEVICE_OPERATION=NONE\nADB_OPERATION=NONE\nNEW_CAPTURE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "1d74b8c0232d851bcd79d2a969dd6d90b8bd83e812b7e0dc3c591f2be4bc138f",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-1-sdk-fallback-global-service-closure.md": "7ee289900a113f6e2b5560287a8c9e1e01597ac4b2da751c161b6b6b4649f394",
+        "docs/tests/test-21-r3-3-4-2-static-callpath-intent-binder-closure.md": "2501bf2861e9a7a2226df3c07eaabc38f638d7269f8f8d8e7186f2d0b393344a",
+        "scripts/tests/analyze_test21_r3_3_4_2_1_closure.py": "db47efd919b9ad21c9b8c95a9ad050ab650a63891c47230c295fdfded0cfea37",
+        "scripts/tests/analyze_test21_r3_3_4_2_static_contract.py": "3debe42644cc59320d5824d69a9ffbd1f0c9a1fafbc652dd3569c668966f6cfd",
+        "scripts/tests/package_test21_r3_3_4_2_1_sanitized.py": "c3b5a43fa4f8f1bb13bd9946e608288984a027106f80ba0bc36d04eb47a1dd87",
+        "scripts/tests/package_test21_r3_3_4_2_sanitized.py": "7ba529936770821ad7ddcc461efdca6d932b954a6babc5c948d5a0a5adbca451",
+        "scripts/tests/run_test21_r3_3_4_2_1_closure.sh": "5bd5e8c1154db95f1bfd14d281b19595872a97c5a9152c8cfe31a22d4184da6e",
+        "scripts/tests/run_test21_r3_3_4_2_static_contract.sh": "bd656be0589573a388558f7a3ed157ef8be33545648ab9899cb8d4b59f0b4c9f",
+        "scripts/tests/test_test21_r3_3_4_2_1_tools.py": "184869ece5428ed39dfbdc1faa29171c1a5c2cfd4eada6d01d623e49b848f46b",
+        "scripts/tests/test_test21_r3_3_4_2_tools.py": "e473cf6fdd7b4deaddcd7e20bd1910720a6b2fac6c456be616a7cbbf4c1a050c"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "09948b65b13f277aefedf27c4f05b8fc78e227b69efce791e05102887613a747",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_2_SOURCE_CONTRACT=PASS\nR3_3_4_2_1_PREREQUISITE_IDENTITY=PASS\nMODE=OFFLINE_EXISTING_EVIDENCE_ONLY\nANALYSIS_SCOPE=REGISTER_DATAFLOW_PLUS_ALL_PRESERVED_R3_3_4_1_APK_DEX\nDEVICE_OPERATION=NONE\nADB_OPERATION=NONE\nNEW_CAPTURE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "6de0b2a5de4e4ff54e0b090ae070ecbdeb1e931db8d882b61780938e3e954e63",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-1-sdk-fallback-global-service-closure.md": "7ee289900a113f6e2b5560287a8c9e1e01597ac4b2da751c161b6b6b4649f394",
+        "docs/tests/test-21-r3-3-4-2-2-fallback-dataflow-class-location-service-implementation.md": "2c066a35d66ee34597ff9e20bb3500a22ba4addb2841c3d0804d90c2fb8f417f",
+        "scripts/tests/analyze_test21_r3_3_4_2_1_closure.py": "db47efd919b9ad21c9b8c95a9ad050ab650a63891c47230c295fdfded0cfea37",
+        "scripts/tests/analyze_test21_r3_3_4_2_2_closure.py": "d2922e375719b4fbfc61543df03cf1d7272776f27d69c8964abd72a057d013e6",
+        "scripts/tests/package_test21_r3_3_4_2_1_sanitized.py": "c3b5a43fa4f8f1bb13bd9946e608288984a027106f80ba0bc36d04eb47a1dd87",
+        "scripts/tests/package_test21_r3_3_4_2_2_sanitized.py": "2981596e683d18249529bba449e6c918c95e5c413db47df6763196f9281a48fa",
+        "scripts/tests/run_test21_r3_3_4_2_1_closure.sh": "5bd5e8c1154db95f1bfd14d281b19595872a97c5a9152c8cfe31a22d4184da6e",
+        "scripts/tests/run_test21_r3_3_4_2_2_closure.sh": "0eea9da70ea039af077f2c8f9f99d9adff3c8e91831c2d016a7e2b07734bc779",
+        "scripts/tests/test_test21_r3_3_4_2_1_tools.py": "184869ece5428ed39dfbdc1faa29171c1a5c2cfd4eada6d01d623e49b848f46b",
+        "scripts/tests/test_test21_r3_3_4_2_2_tools.py": "c93ea3dba396d5f46b7ce947b6f10c2e174636d1ceb6aed950692e632da4d6c8"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "27bb6e3056495c4eb71786ad8773b4647b2d699daa86e1520b66350ba13c3f5e",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_3_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_3_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_3_SOURCE_CONTRACT=PASS\nR3_3_4_2_2_PREREQUISITE_IDENTITY=PASS\nPROFILE=RUNTIME_CODE_ORIGIN_READ_ONLY\nADB_ACCESS=READ_ONLY\nDEVICE_MUTATION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "9a706bfc904e2f1ad808fd8921a1bf6dcbc9e52173b80f9efd7b34da7632f023",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-2-fallback-dataflow-class-location-service-implementation.md": "2c066a35d66ee34597ff9e20bb3500a22ba4addb2841c3d0804d90c2fb8f417f",
+        "docs/tests/test-21-r3-3-4-2-3-runtime-code-origin-classloader-artifact-recovery.md": "856f2f42f746b5f6ae6298cd72aa8cdce3033817e8c06e7147c10179ef8cc6e7",
+        "scripts/tests/analyze_test21_r3_3_4_2_2_closure.py": "d2922e375719b4fbfc61543df03cf1d7272776f27d69c8964abd72a057d013e6",
+        "scripts/tests/analyze_test21_r3_3_4_2_3_code_origin.py": "82e400df1f98ee8b77343db40e3310ea801e5b42640987dcd0afe8687e92d2be",
+        "scripts/tests/package_test21_r3_3_4_2_2_sanitized.py": "2981596e683d18249529bba449e6c918c95e5c413db47df6763196f9281a48fa",
+        "scripts/tests/package_test21_r3_3_4_2_3_sanitized.py": "20a68a2aeb92a4e1e254f5f24f4113a03359aa2afc3aad4904f077552c451daa",
+        "scripts/tests/run_test21_r3_3_4_2_2_closure.sh": "0eea9da70ea039af077f2c8f9f99d9adff3c8e91831c2d016a7e2b07734bc779",
+        "scripts/tests/run_test21_r3_3_4_2_3_code_origin.sh": "52bef581c51d5bf12b204291509867e52d652fcf85f286d4635b768ddb71454a",
+        "scripts/tests/test_test21_r3_3_4_2_2_tools.py": "c93ea3dba396d5f46b7ce947b6f10c2e174636d1ceb6aed950692e632da4d6c8",
+        "scripts/tests/test_test21_r3_3_4_2_3_tools.py": "67074c2a012290ea84337f9ad02519f3ab40e8bf931cb68d152165ad534cd1f0"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.3",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "273e50578f154a305df1ffe50963b941d475b2d3685d0f7f9ceaa1bbfa6f73ce",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.3",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_4_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_4_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_4_SOURCE_CONTRACT=PASS\nR3_3_4_2_3_PREREQUISITE_IDENTITY=PASS\nMODE=OFFLINE_FIRST_OPTIONAL_ROOT_READ_ONLY\nROOT_ASSIST=READ_ONLY_OPTIONAL\nPAYLOAD_EXECUTION=NONE\nDEVICE_MUTATION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "9b9ceed05adaba4a78d5531031ac87dfd4148a8ff97962419d831f4d34143fa8",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-3-runtime-code-origin-classloader-artifact-recovery.md": "856f2f42f746b5f6ae6298cd72aa8cdce3033817e8c06e7147c10179ef8cc6e7",
+        "docs/tests/test-21-r3-3-4-2-4-nondex-protected-payload-origin.md": "5334f4ec722b96b1a17e9dccf408cfbadf9e8011f3726e12cb8440c192a7d8b7",
+        "scripts/tests/analyze_test21_r3_3_4_2_3_code_origin.py": "82e400df1f98ee8b77343db40e3310ea801e5b42640987dcd0afe8687e92d2be",
+        "scripts/tests/analyze_test21_r3_3_4_2_4_payload_origin.py": "fd274f31d63ba1741acfcf96a5cdd3f1b5bea9f6fd457a989dec461566858cce",
+        "scripts/tests/package_test21_r3_3_4_2_3_sanitized.py": "20a68a2aeb92a4e1e254f5f24f4113a03359aa2afc3aad4904f077552c451daa",
+        "scripts/tests/package_test21_r3_3_4_2_4_sanitized.py": "6be4042bbb546cc5174a4a264ec03e626d760b1b4575a2bf77cd54e17f2a1548",
+        "scripts/tests/run_test21_r3_3_4_2_3_code_origin.sh": "52bef581c51d5bf12b204291509867e52d652fcf85f286d4635b768ddb71454a",
+        "scripts/tests/run_test21_r3_3_4_2_4_payload_origin.sh": "bd03ec08f69d3d6d264192f135b42c024b6d01514b0222297beaf8230be2400c",
+        "scripts/tests/test_test21_r3_3_4_2_3_tools.py": "67074c2a012290ea84337f9ad02519f3ab40e8bf931cb68d152165ad534cd1f0",
+        "scripts/tests/test_test21_r3_3_4_2_4_tools.py": "3599341d85641a079a6ce1df3373f0741eaa5e94cd52eb506af8a7abf88f6bfe"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.4",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "1da43285ed28c7e28d000fb72ca04f2763af2dddbf4ba5564151dfc83e577e31",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.5",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_5_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_5_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_5_1_SOURCE_CONTRACT=PASS\nR3_3_4_2_5_PREREQUISITE_IDENTITY=PASS\nFRIDA_EXPECTED_VERSION=17.16.4\nFRIDA_JAVA_BRIDGE_SPEC=frida-java-bridge@7.0.4\nMODE=FRIDA17_COMPILED_AGENT_RUNTIME_RESUME\nMETHOD_REPLACEMENT=NONE\nBINDER_RETURN_MODIFICATION=NONE\nPAYLOAD_EXECUTION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "1a9950519ccb3c1a77faef9457d5bda4b32f397350522e92d8493563dc7a8b7b",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-5-1-frida17-java-bridge-compiled-agent-resume.md": "762ad13999730e3ba21435b5b4a9069825ec9cdbdf8ec4ce98312b9ab9f2ed33",
+        "docs/tests/test-21-r3-3-4-2-5-runtime-classloader-inmemory-dex-implementation-closure.md": "f142f2106cb7a139c2d3444c3063464eb5d0d26e2f5cb4e1e75c0accd8464085",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_1_resume.py": "e274d20d2c856b5bcde2eaac6f73ea640d65550c4d5babce48de7f5b4bd5dc64",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_runtime.py": "0696cf4c7ffcda20a10d967a041b994655fe8c4af85fec97042faf33c7de9ad2",
+        "scripts/tests/collect_test21_r3_3_4_2_5_1_frida17.py": "9af7c163c5e74792f44e84e9ce2c4b44d574cb973e37c6bad2b5efe599a91805",
+        "scripts/tests/collect_test21_r3_3_4_2_5_frida.py": "03a21f97280eeb270b5a1e6e126ab9ae99951201407d3a340fb2ec062d385c7a",
+        "scripts/tests/package_test21_r3_3_4_2_5_1_sanitized.py": "d7fb0dc90e653b6edee766350e4b6ccb1b74328a2155bd95dfc202c33f6da844",
+        "scripts/tests/package_test21_r3_3_4_2_5_sanitized.py": "48b58adf67084a9cd9e4b7829251d883b8041e1bef46a12968d2870750e73d1b",
+        "scripts/tests/prepare_test21_r3_3_4_2_5_1_frida17_agent.py": "942eb16b8a48bb9cac27e4cf0b0970c0aada57c0fb51d5b84e707b1cec2f7204",
+        "scripts/tests/run_test21_r3_3_4_2_5_1_resume.sh": "ba03e71a30f3d87655dbebed11adaf6ffddbfef03e69b48c17363a07d0e990c2",
+        "scripts/tests/run_test21_r3_3_4_2_5_runtime_classloader.sh": "ac4be0f61b23da1b54b991532a101f302a73289c0795fce756092ff99709e790",
+        "scripts/tests/test21_r3_3_4_2_5_1_frida17_agent.ts": "9643eb459b32bf9bfb4bb4aaa97e6cdb8752ae79b556848e1561ab7bcbd647ff",
+        "scripts/tests/test21_r3_3_4_2_5_frida_agent.js": "55526892217aa296ed2fb8d4ed7a08d26437dffa4e4236c8cbc350499dc34aa7",
+        "scripts/tests/test_test21_r3_3_4_2_5_1_tools.py": "b2e50545ffef8f6c8810d862d8fe68e94170d40725e75f69f8c865878cb650c2",
+        "scripts/tests/test_test21_r3_3_4_2_5_tools.py": "6da25e3e791adf0cb4d8af45b1a63b2e1af284cd9bfbb1302d2421427f1ee4ba"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.5.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "83fd7ba6d1ba2f630264281bd89395ce73f7ab3c30555d47c0ce592802c185b3",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.5.2.1.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_1_1_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_5_2_1_1_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_5_2_1_1_1_SOURCE_CONTRACT=PASS\nR3_3_4_2_5_2_1_1_PREREQUISITE_IDENTITY=PASS\nMODE=MAGISK_NON_TTY_PERSISTENT_WORKER_BOOTSTRAP_REPAIR\nPERSISTENT_ROOT_TRANSPORT=ADB_SHELL_T\nMAGISK_SU_COMMAND_MODE=SINGLE_QUOTED_SU_C\nPERSISTENT_ROOT_SESSION_QUALIFICATION=REQUIRED_BEFORE_MEMORY\nQUALIFICATION_MAX_SECONDS=60\nGLOBAL_RUNTIME_MAX_SECONDS=600\nPROGRESS_TELEMETRY=ENABLED\nFULL_COVERAGE_REQUIRED_FOR_EXHAUSTION=YES\nDEVICE_TRANSIENT_TEMP_FILES=YES\nDEVICE_PERSISTENT_MUTATION=NONE\nFRIDA_SERVER_START=NONE\nFRIDA_PROCESS_ATTACH=NONE\nINJECTED_AGENT_LOAD=NONE\nPTRACE_ATTACH=NONE\nPROCESS_SIGNAL=NONE\nPAYLOAD_EXECUTION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "c1ffc1aa84b1934d5f28e6c686635d9477236ea1edb944e492dbfb3998cbb372",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-5-2-1-1-1-magisk-nontty-bootstrap-resume.md": "9cfd5faaab1b8be2b1143987716b8f953ee8af376601bc226bbb9eecfea37cd5",
+        "docs/tests/test-21-r3-3-4-2-5-2-1-1-persistent-root-session-progress-resume.md": "97ab6055916e636333dc91cf8af9f543261e50934ba62b97443e7ba4f10cfd58",
+        "scripts/tests/analyze_test21_r3_3_4_2_3_code_origin.py": "82e400df1f98ee8b77343db40e3310ea801e5b42640987dcd0afe8687e92d2be",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_2_1_1_1_bootstrap.py": "b8de2954e3408e2bd70febd5b44be8f66ac25e0c48807f3a301af4bd131354dc",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_2_1_1_persistent.py": "9ba39181df2873d3dfb474c131f11550cbaa633c8cddc60da1d5998b60b937b0",
+        "scripts/tests/analyze_test21_r3_3_4_2_static_contract.py": "3debe42644cc59320d5824d69a9ffbd1f0c9a1fafbc652dd3569c668966f6cfd",
+        "scripts/tests/collect_test21_r3_3_4_2_5_2_1_1_1_persistent.py": "74d6622da44471c64ee624f12a34a3c771a1de7b133193a9e44998b14e1d23b9",
+        "scripts/tests/collect_test21_r3_3_4_2_5_2_1_1_persistent.py": "76b9fd04f087840b6deb06628a4fe05a221f4d01926d4e35849703f05fc0264b",
+        "scripts/tests/package_test21_r3_3_4_2_5_2_1_1_1_sanitized.py": "0dec303bf59f32fadd4b745c1997c1ad22eb86f6d3213ee42bd16874fa676efa",
+        "scripts/tests/package_test21_r3_3_4_2_5_2_1_1_sanitized.py": "fbc38a543c3ed30a72f9470dea41149e3c892e21cff5bb864ce9b6bdcf3e431e",
+        "scripts/tests/run_test21_r3_3_4_2_5_2_1_1_1_resume.sh": "77f1daf43bff5e6b44389e95fc9fed068ed02da5f489f81deae89217eb51af9f",
+        "scripts/tests/run_test21_r3_3_4_2_5_2_1_1_resume.sh": "4085f2176cc68b1b1b51115ffac36f16caf6a380a60d61abf25d89475e62b947",
+        "scripts/tests/test_test21_r3_3_4_2_5_2_1_1_1_tools.py": "adf08d6e03ca724cfeaff22872d54580760dffc4e0cee31672e86a40e13c7c5e",
+        "scripts/tests/test_test21_r3_3_4_2_5_2_1_1_tools.py": "7159cc1ed9b8bd66f3dce471ceba6a3dd7e8de724a015f10bb0c037d9635251d"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.5.2.1.1.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "3cb1675aabf0e3512133f706fe4de57a4192f36a9692f9b0d5754ca4dcf144be",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.5.2.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_1_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_5_2_1_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_5_2_1_1_SOURCE_CONTRACT=PASS\nR3_3_4_2_5_2_1_PREREQUISITE_IDENTITY=PASS\nMODE=PERSISTENT_ROOT_EXTERNAL_MEMORY_COVERAGE_REPAIR\nPERSISTENT_ROOT_SESSION=REQUIRED_SINGLE_SESSION\nQUALIFICATION_MAX_SECONDS=60\nGLOBAL_RUNTIME_MAX_SECONDS=600\nPROGRESS_TELEMETRY=ENABLED\nFULL_COVERAGE_REQUIRED_FOR_EXHAUSTION=YES\nDEVICE_TRANSIENT_TEMP_FILES=YES\nDEVICE_PERSISTENT_MUTATION=NONE\nFRIDA_SERVER_START=NONE\nFRIDA_PROCESS_ATTACH=NONE\nINJECTED_AGENT_LOAD=NONE\nPTRACE_ATTACH=NONE\nPROCESS_SIGNAL=NONE\nPAYLOAD_EXECUTION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "0a7b7cb5b86fff1659fe9c9719d4fbe14d39182e0be99831902a178da95affda",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-5-2-1-1-persistent-root-session-progress-resume.md": "97ab6055916e636333dc91cf8af9f543261e50934ba62b97443e7ba4f10cfd58",
+        "docs/tests/test-21-r3-3-4-2-5-2-1-proc-mem-short-read-coverage-repair.md": "5acc5e01f4a9874d756331cf59bbebd20047f7b97e29e6a57d82f4d752b479af",
+        "scripts/tests/analyze_test21_r3_3_4_2_3_code_origin.py": "82e400df1f98ee8b77343db40e3310ea801e5b42640987dcd0afe8687e92d2be",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_2_1_1_persistent.py": "9ba39181df2873d3dfb474c131f11550cbaa633c8cddc60da1d5998b60b937b0",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_2_1_coverage.py": "8885fac514b78b94a1d6b623e12292d62f864628e994e62abf87d687052394bb",
+        "scripts/tests/analyze_test21_r3_3_4_2_static_contract.py": "3debe42644cc59320d5824d69a9ffbd1f0c9a1fafbc652dd3569c668966f6cfd",
+        "scripts/tests/collect_test21_r3_3_4_2_5_2_1_1_persistent.py": "76b9fd04f087840b6deb06628a4fe05a221f4d01926d4e35849703f05fc0264b",
+        "scripts/tests/collect_test21_r3_3_4_2_5_2_1_coverage.py": "cc81490565372416de7e182965e796f0209b19878cf4bf7854d37d96da4cade0",
+        "scripts/tests/package_test21_r3_3_4_2_5_2_1_1_sanitized.py": "fbc38a543c3ed30a72f9470dea41149e3c892e21cff5bb864ce9b6bdcf3e431e",
+        "scripts/tests/package_test21_r3_3_4_2_5_2_1_sanitized.py": "2c7493be27392ac774d1b60a366106ec44059288496cfda4e10dcd9e1a57d473",
+        "scripts/tests/run_test21_r3_3_4_2_5_2_1_1_resume.sh": "4085f2176cc68b1b1b51115ffac36f16caf6a380a60d61abf25d89475e62b947",
+        "scripts/tests/run_test21_r3_3_4_2_5_2_1_resume.sh": "5106f46cfa773fd43b2b7a872f626cdcbd5b591bc9f690fbdad55f3240beaa4b",
+        "scripts/tests/test_test21_r3_3_4_2_5_2_1_1_tools.py": "7159cc1ed9b8bd66f3dce471ceba6a3dd7e8de724a015f10bb0c037d9635251d",
+        "scripts/tests/test_test21_r3_3_4_2_5_2_1_tools.py": "4d8be2cf56edeee440b0f761d890949a0f6b8299dfce87971197602dd7bd5b1a"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.5.2.1.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "bbb31509c34f363339aef2de4b41f8eac87921b2302dbc5ac095cffde545d950",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.5.2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_5_2_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_5_2_1_SOURCE_CONTRACT=PASS\nR3_3_4_2_5_2_PREREQUISITE_IDENTITY=PASS\nMODE=NON_INJECTED_ROOT_EXTERNAL_MEMORY_COVERAGE_REPAIR\nFULL_COVERAGE_REQUIRED_FOR_EXHAUSTION=YES\nFRIDA_SERVER_START=NONE\nFRIDA_PROCESS_ATTACH=NONE\nINJECTED_AGENT_LOAD=NONE\nPTRACE_ATTACH=NONE\nPROCESS_SIGNAL=NONE\nPAYLOAD_EXECUTION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "f003912d60581ccad331a0c2a4195dcda46279a9d7338ae5e887b1632f71e014",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-5-2-1-proc-mem-short-read-coverage-repair.md": "5acc5e01f4a9874d756331cf59bbebd20047f7b97e29e6a57d82f4d752b479af",
+        "docs/tests/test-21-r3-3-4-2-5-2-noninjected-root-external-memory-dex-closure.md": "1a17f1256afba4c12e87d5bc18fd9fd227918daa6b3fd2ea5a3449d888b1583e",
+        "scripts/tests/analyze_test21_r3_3_4_2_3_code_origin.py": "82e400df1f98ee8b77343db40e3310ea801e5b42640987dcd0afe8687e92d2be",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_2_1_coverage.py": "8885fac514b78b94a1d6b623e12292d62f864628e994e62abf87d687052394bb",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_2_external_memory.py": "456d8c87e55aadd9c0c991805ef56bc907312c8ae53681f23493b80cb9472385",
+        "scripts/tests/analyze_test21_r3_3_4_2_static_contract.py": "3debe42644cc59320d5824d69a9ffbd1f0c9a1fafbc652dd3569c668966f6cfd",
+        "scripts/tests/collect_test21_r3_3_4_2_5_2_1_coverage.py": "cc81490565372416de7e182965e796f0209b19878cf4bf7854d37d96da4cade0",
+        "scripts/tests/collect_test21_r3_3_4_2_5_2_external_memory.py": "e97eb711ebdbd928fb41c742c7f41a32093710c1ba6132a2ea21940f7431728a",
+        "scripts/tests/package_test21_r3_3_4_2_5_2_1_sanitized.py": "2c7493be27392ac774d1b60a366106ec44059288496cfda4e10dcd9e1a57d473",
+        "scripts/tests/package_test21_r3_3_4_2_5_2_sanitized.py": "bc645c1e73421faae4e6815a17e2acb1ced6200ca9b8a914acc276ce576f4b11",
+        "scripts/tests/run_test21_r3_3_4_2_5_2_1_resume.sh": "5106f46cfa773fd43b2b7a872f626cdcbd5b591bc9f690fbdad55f3240beaa4b",
+        "scripts/tests/run_test21_r3_3_4_2_5_2_external_memory.sh": "28354f7e4a8e3507278a18565a699cbfaa9434e1c8f29ba2f96e254841d04466",
+        "scripts/tests/test_test21_r3_3_4_2_5_2_1_tools.py": "4d8be2cf56edeee440b0f761d890949a0f6b8299dfce87971197602dd7bd5b1a",
+        "scripts/tests/test_test21_r3_3_4_2_5_2_tools.py": "b3d7a18490b04e8af54a246406a3600914e4fc8e6127c114fbd96f01dca2822e"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.5.2.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "a0c4423a69828498a1b8d6386b9b81c72670221e9d85eb3c20dae32dd5d28052",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.5.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_5_2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_5_2_SOURCE_CONTRACT=PASS\nR3_3_4_2_5_1_PREREQUISITE_IDENTITY=PASS\nMODE=NON_INJECTED_ROOT_EXTERNAL_MEMORY\nFRIDA_SERVER_START=NONE\nFRIDA_PROCESS_ATTACH=NONE\nINJECTED_AGENT_LOAD=NONE\nPTRACE_ATTACH=NONE\nPROCESS_SIGNAL=NONE\nPAYLOAD_EXECUTION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "dcb9bb6bd0216d09d3c4263c868380fdcea4a3b552209fad746559d1c89f59cd",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-5-1-frida17-java-bridge-compiled-agent-resume.md": "762ad13999730e3ba21435b5b4a9069825ec9cdbdf8ec4ce98312b9ab9f2ed33",
+        "docs/tests/test-21-r3-3-4-2-5-2-noninjected-root-external-memory-dex-closure.md": "1a17f1256afba4c12e87d5bc18fd9fd227918daa6b3fd2ea5a3449d888b1583e",
+        "scripts/tests/analyze_test21_r3_3_4_2_3_code_origin.py": "82e400df1f98ee8b77343db40e3310ea801e5b42640987dcd0afe8687e92d2be",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_1_resume.py": "e274d20d2c856b5bcde2eaac6f73ea640d65550c4d5babce48de7f5b4bd5dc64",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_2_external_memory.py": "456d8c87e55aadd9c0c991805ef56bc907312c8ae53681f23493b80cb9472385",
+        "scripts/tests/analyze_test21_r3_3_4_2_static_contract.py": "3debe42644cc59320d5824d69a9ffbd1f0c9a1fafbc652dd3569c668966f6cfd",
+        "scripts/tests/collect_test21_r3_3_4_2_5_1_frida17.py": "9af7c163c5e74792f44e84e9ce2c4b44d574cb973e37c6bad2b5efe599a91805",
+        "scripts/tests/collect_test21_r3_3_4_2_5_2_external_memory.py": "e97eb711ebdbd928fb41c742c7f41a32093710c1ba6132a2ea21940f7431728a",
+        "scripts/tests/package_test21_r3_3_4_2_5_1_sanitized.py": "d7fb0dc90e653b6edee766350e4b6ccb1b74328a2155bd95dfc202c33f6da844",
+        "scripts/tests/package_test21_r3_3_4_2_5_2_sanitized.py": "bc645c1e73421faae4e6815a17e2acb1ced6200ca9b8a914acc276ce576f4b11",
+        "scripts/tests/prepare_test21_r3_3_4_2_5_1_frida17_agent.py": "942eb16b8a48bb9cac27e4cf0b0970c0aada57c0fb51d5b84e707b1cec2f7204",
+        "scripts/tests/run_test21_r3_3_4_2_5_1_resume.sh": "ba03e71a30f3d87655dbebed11adaf6ffddbfef03e69b48c17363a07d0e990c2",
+        "scripts/tests/run_test21_r3_3_4_2_5_2_external_memory.sh": "28354f7e4a8e3507278a18565a699cbfaa9434e1c8f29ba2f96e254841d04466",
+        "scripts/tests/test21_r3_3_4_2_5_1_frida17_agent.ts": "9643eb459b32bf9bfb4bb4aaa97e6cdb8752ae79b556848e1561ab7bcbd647ff",
+        "scripts/tests/test_test21_r3_3_4_2_5_1_tools.py": "b2e50545ffef8f6c8810d862d8fe68e94170d40725e75f69f8c865878cb650c2",
+        "scripts/tests/test_test21_r3_3_4_2_5_2_tools.py": "b3d7a18490b04e8af54a246406a3600914e4fc8e6127c114fbd96f01dca2822e"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.5.2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "4120e44660eb7d5e991c0e1e2e5371e9d0cfd8f3c623700317ea650829567e37",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.4",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_5_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_5_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_5_SOURCE_CONTRACT=PASS\nR3_3_4_2_4_PREREQUISITE_IDENTITY=PASS\nMODE=ROOT_ASSISTED_RUNTIME_OBSERVATION\nMETHOD_REPLACEMENT=NONE\nBINDER_RETURN_MODIFICATION=NONE\nPAYLOAD_EXECUTION=NONE\nHI_ROKID_FORCE_STOP=NONE\nCXR_L_CONNECTION_ATTEMPT=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "1b686e4818fcdbf7b8fb7fd11534eaef7132d6c6e667aa8af089b699f2242720",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-4-nondex-protected-payload-origin.md": "5334f4ec722b96b1a17e9dccf408cfbadf9e8011f3726e12cb8440c192a7d8b7",
+        "docs/tests/test-21-r3-3-4-2-5-runtime-classloader-inmemory-dex-implementation-closure.md": "f142f2106cb7a139c2d3444c3063464eb5d0d26e2f5cb4e1e75c0accd8464085",
+        "scripts/tests/analyze_test21_r3_3_4_2_4_payload_origin.py": "fd274f31d63ba1741acfcf96a5cdd3f1b5bea9f6fd457a989dec461566858cce",
+        "scripts/tests/analyze_test21_r3_3_4_2_5_runtime.py": "0696cf4c7ffcda20a10d967a041b994655fe8c4af85fec97042faf33c7de9ad2",
+        "scripts/tests/collect_test21_r3_3_4_2_5_frida.py": "03a21f97280eeb270b5a1e6e126ab9ae99951201407d3a340fb2ec062d385c7a",
+        "scripts/tests/package_test21_r3_3_4_2_4_sanitized.py": "6be4042bbb546cc5174a4a264ec03e626d760b1b4575a2bf77cd54e17f2a1548",
+        "scripts/tests/package_test21_r3_3_4_2_5_sanitized.py": "48b58adf67084a9cd9e4b7829251d883b8041e1bef46a12968d2870750e73d1b",
+        "scripts/tests/run_test21_r3_3_4_2_4_payload_origin.sh": "bd03ec08f69d3d6d264192f135b42c024b6d01514b0222297beaf8230be2400c",
+        "scripts/tests/run_test21_r3_3_4_2_5_runtime_classloader.sh": "ac4be0f61b23da1b54b991532a101f302a73289c0795fce756092ff99709e790",
+        "scripts/tests/test21_r3_3_4_2_5_frida_agent.js": "55526892217aa296ed2fb8d4ed7a08d26437dffa4e4236c8cbc350499dc34aa7",
+        "scripts/tests/test_test21_r3_3_4_2_4_tools.py": "3599341d85641a079a6ce1df3373f0741eaa5e94cd52eb506af8a7abf88f6bfe",
+        "scripts/tests/test_test21_r3_3_4_2_5_tools.py": "6da25e3e791adf0cb4d8af45b1a63b2e1af284cd9bfbb1302d2421427f1ee4ba"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.5",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "9859261741f1d07ffbd627c25a759864a5814b853cb0803fae2ddc33c4d395e0",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.6.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_6_1_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_6_1_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_6_1_1_SOURCE_CONTRACT=PASS\nR3_3_4_2_6_1_PREREQUISITE_IDENTITY=PASS\nACCESS_MODE=HOST_ONLY_LOCAL_AAR\nROOT_REQUIRED=NO\nMAGISK_REQUIRED=NO\nADB_REQUIRED=NO\nFRIDA_REQUIRED=NO\nNETWORK_REQUIRED=NO\nDEVICE_OPERATION=NONE\nFILES_ADDED=6\nEXISTING_FILES_MODIFIED=0\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "6b911b304509adb2cf3076972be51d021bd5a2b234bbd9443cd521496149a659",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-6-1-1-obfuscation-resilient-proxy.md": "317db2f5781e7f3642afdd6460ca81d0d21e3d451d1eca2d4c80fe8ae6c33453",
+        "docs/tests/test-21-r3-3-4-2-6-1-cxrl-aar-binder-contract.md": "1549ff815c1ef5af6988fbb14e6325979c0369e12dc997f152098ac4d21914e8",
+        "scripts/tests/analyze_test21_r3_3_4_2_6_1_1_proxy_closure.py": "bb5f7f26ef233455c1fa47b6111c4bce3ae34a7c2aeb3e0fbc5359ac472e2120",
+        "scripts/tests/analyze_test21_r3_3_4_2_6_1_aar_contract.py": "726209e9a03eea04537eeabae23fdf031e6c67d139572ba3753256a065168a90",
+        "scripts/tests/package_test21_r3_3_4_2_6_1_1_sanitized.py": "80e4652a599e3ac06ee7e8c2f7f167c344d480213726ca86a2eebbfe50175619",
+        "scripts/tests/package_test21_r3_3_4_2_6_1_sanitized.py": "8644edbbee2038db3cf2d2b5f66f6e110ad6c7fa7373352e3933de1ca151d06c",
+        "scripts/tests/run_test21_r3_3_4_2_6_1_1_proxy_closure.sh": "526408c8e8aa96fdc2cbca54627f831a63d8e6b5caf635016551ef847aba1400",
+        "scripts/tests/run_test21_r3_3_4_2_6_1_aar_contract.sh": "4b0cdf333e4e91face33cdd44d40b1b887873a9e79d9966a26c084a4b0fc1210",
+        "scripts/tests/test_test21_r3_3_4_2_6_1_1_tools.py": "1d87bb46c80c6a9c7e3c82a2400c4fe8887d69eeb249bfc42acc3ac3f7ca867d",
+        "scripts/tests/test_test21_r3_3_4_2_6_1_tools.py": "4ee2324f2f18ee4c7c6150feb4bb9de77b69565b94aa2e0db55edd4afdeb81e1"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.6.1.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "7995bfb8bc61ea1c0b6f14966109a70ea69b19fc5cb684defd84ad34ef966426",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.6.1.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_6_1_2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_6_1_2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_6_1_2_SOURCE_CONTRACT=PASS\nR3_3_4_2_6_1_1_PREREQUISITE_IDENTITY=PASS\nACCESS_MODE=HOST_ONLY_LOCAL_AAR\nROOT_REQUIRED=NO\nMAGISK_REQUIRED=NO\nADB_REQUIRED=NO\nFRIDA_REQUIRED=NO\nNETWORK_REQUIRED=NO\nDEVICE_OPERATION=NONE\nFILES_ADDED=6\nEXISTING_FILES_MODIFIED=0\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "f3669c80735e13f2613437e3f5ae0a4457da5c2e093214ba915773484102f19f",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-6-1-1-obfuscation-resilient-proxy.md": "317db2f5781e7f3642afdd6460ca81d0d21e3d451d1eca2d4c80fe8ae6c33453",
+        "docs/tests/test-21-r3-3-4-2-6-1-2-callback-binder-abi.md": "da2a53d8f07a9ad1f9e6c0f7a5ad1be918cbba6298a7ba59d6976defd4cf5633",
+        "scripts/tests/analyze_test21_r3_3_4_2_6_1_1_proxy_closure.py": "bb5f7f26ef233455c1fa47b6111c4bce3ae34a7c2aeb3e0fbc5359ac472e2120",
+        "scripts/tests/analyze_test21_r3_3_4_2_6_1_2_callback_abi.py": "1859eb0940bd415e49f88c31c4973d17a24bc789e0959ea15de19b95f554c649",
+        "scripts/tests/package_test21_r3_3_4_2_6_1_1_sanitized.py": "80e4652a599e3ac06ee7e8c2f7f167c344d480213726ca86a2eebbfe50175619",
+        "scripts/tests/package_test21_r3_3_4_2_6_1_2_sanitized.py": "45de64aa447eaf45ccd35f6b12e32d018ec8c30e73ffa24471433833fd30d0bd",
+        "scripts/tests/run_test21_r3_3_4_2_6_1_1_proxy_closure.sh": "526408c8e8aa96fdc2cbca54627f831a63d8e6b5caf635016551ef847aba1400",
+        "scripts/tests/run_test21_r3_3_4_2_6_1_2_callback_abi.sh": "13ca418ef3f631553252a3217524c90f63a070adfd88f11885fd1653e18e20d8",
+        "scripts/tests/test_test21_r3_3_4_2_6_1_1_tools.py": "1d87bb46c80c6a9c7e3c82a2400c4fe8887d69eeb249bfc42acc3ac3f7ca867d",
+        "scripts/tests/test_test21_r3_3_4_2_6_1_2_tools.py": "cc0bc6d05490ddd527af7a5d699924f566551c2f612cb04af2ea69e0f33c6619"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.6.1.2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "3f8b634c13a1315fbe8e721979723ad9470d94c3da3db5483ae46efd8177bc91",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2.6",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_6_1_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_6_1_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_6_1_SOURCE_CONTRACT=PASS\nR3_3_4_2_6_PREREQUISITE_IDENTITY=PASS\nACCESS_MODE=HOST_ONLY_LOCAL_AAR\nROOT_REQUIRED=NO\nMAGISK_REQUIRED=NO\nADB_REQUIRED=NO\nFRIDA_REQUIRED=NO\nNETWORK_REQUIRED=NO\nDEVICE_OPERATION=NONE\nFILES_ADDED=6\nEXISTING_FILES_MODIFIED=0\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "c60eed6fbcd20783e805f5303b15f9f03db6c92d380a0384c9744fccd58d3d81",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-6-1-cxrl-aar-binder-contract.md": "1549ff815c1ef5af6988fbb14e6325979c0369e12dc997f152098ac4d21914e8",
+        "docs/tests/test-21-r3-3-4-2-6-privilege-free-binder-contract-cleanroom.md": "d2ac82613e3dff46669e822e3ac2463182bcd2b1c4f75522906a656cb6a7a259",
+        "scripts/tests/analyze_test21_r3_3_4_2_6_1_aar_contract.py": "726209e9a03eea04537eeabae23fdf031e6c67d139572ba3753256a065168a90",
+        "scripts/tests/analyze_test21_r3_3_4_2_6_privilege_free_contract.py": "b8069c19f3a918668e81701a4f0d4e30ad98855a6116b41d9240cd97250807b6",
+        "scripts/tests/package_test21_r3_3_4_2_6_1_sanitized.py": "8644edbbee2038db3cf2d2b5f66f6e110ad6c7fa7373352e3933de1ca151d06c",
+        "scripts/tests/package_test21_r3_3_4_2_6_sanitized.py": "858440b32801818b2533f9689e47d78e0a16352564b7f3ca651e2bf7a200a430",
+        "scripts/tests/run_test21_r3_3_4_2_6_1_aar_contract.sh": "4b0cdf333e4e91face33cdd44d40b1b887873a9e79d9966a26c084a4b0fc1210",
+        "scripts/tests/run_test21_r3_3_4_2_6_privilege_free_contract.sh": "9b3e6c1009e0e6f0a22a6673e07337aa6123bfc810254ce8c88532f7d5e82a6f",
+        "scripts/tests/test_test21_r3_3_4_2_6_1_tools.py": "4ee2324f2f18ee4c7c6150feb4bb9de77b69565b94aa2e0db55edd4afdeb81e1",
+        "scripts/tests/test_test21_r3_3_4_2_6_tools.py": "2c3ca3aef0d0d2b57c2347b5903da43ed0f0f1697c172c7f80de4931d27148ea"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.6.1",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "278ddd2c9adc44a0b9dfa9f20dadc4e93e2db8f08146bba3968123b813ae504f",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_6_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_6_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_6_SOURCE_CONTRACT=PASS\nR3_3_4_2_PREREQUISITE_IDENTITY=PASS\nACCESS_MODE=HOST_ONLY_EXISTING_EVIDENCE\nROOT_REQUIRED=NO\nMAGISK_REQUIRED=NO\nADB_REQUIRED=NO\nFRIDA_REQUIRED=NO\nDEVICE_OPERATION=NONE\nFILES_ADDED=6\nEXISTING_FILES_MODIFIED=0\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "478b29161b6ec3a6cc25cc121d1b119eeda8b46ea8dda5f363deb09e1ff255d5",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-2-6-privilege-free-binder-contract-cleanroom.md": "d2ac82613e3dff46669e822e3ac2463182bcd2b1c4f75522906a656cb6a7a259",
+        "docs/tests/test-21-r3-3-4-2-static-callpath-intent-binder-closure.md": "2501bf2861e9a7a2226df3c07eaabc38f638d7269f8f8d8e7186f2d0b393344a",
+        "scripts/tests/analyze_test21_r3_3_4_2_6_privilege_free_contract.py": "b8069c19f3a918668e81701a4f0d4e30ad98855a6116b41d9240cd97250807b6",
+        "scripts/tests/analyze_test21_r3_3_4_2_static_contract.py": "3debe42644cc59320d5824d69a9ffbd1f0c9a1fafbc652dd3569c668966f6cfd",
+        "scripts/tests/package_test21_r3_3_4_2_6_sanitized.py": "858440b32801818b2533f9689e47d78e0a16352564b7f3ca651e2bf7a200a430",
+        "scripts/tests/package_test21_r3_3_4_2_sanitized.py": "7ba529936770821ad7ddcc461efdca6d932b954a6babc5c948d5a0a5adbca451",
+        "scripts/tests/run_test21_r3_3_4_2_6_privilege_free_contract.sh": "9b3e6c1009e0e6f0a22a6673e07337aa6123bfc810254ce8c88532f7d5e82a6f",
+        "scripts/tests/run_test21_r3_3_4_2_static_contract.sh": "bd656be0589573a388558f7a3ed157ef8be33545648ab9899cb8d4b59f0b4c9f",
+        "scripts/tests/test_test21_r3_3_4_2_6_tools.py": "2c3ca3aef0d0d2b57c2347b5903da43ed0f0f1697c172c7f80de4931d27148ea"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2.6",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "ffd1c9b043ebe016182f24bbf77951c3c526fe0e3b5315271ce4bf17ccbf9ae3",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.4.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_2_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_2_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_2_SOURCE_CONTRACT=PASS\nMODE=OFFLINE_EXISTING_EVIDENCE_ONLY\nR3_3_4_1_PREREQUISITE_IDENTITY=PASS\nDEX_ANALYSIS=SELF_CONTAINED\nDEVICE_OPERATION=NONE\nADB_OPERATION=NONE\nNEW_CAPTURE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "4c97665e0b1d9d54202963facfe8f1e386089d6f999a8b164c5c8d976c28bc34",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-4-1-cxrlinkservice-binding-contract.md": "546c8f3355e5004a23e4c6be779c16930ab9617d2cd7978dedc49261172523c0",
+        "docs/tests/test-21-r3-3-4-2-static-callpath-intent-binder-closure.md": "2501bf2861e9a7a2226df3c07eaabc38f638d7269f8f8d8e7186f2d0b393344a",
+        "scripts/tests/analyze_test21_r3_3_4_1_binding_contract.py": "1a25ed497f6d627e9dcd90e750e7c65134ae96f074b7aa30b841067ff01d68b5",
+        "scripts/tests/analyze_test21_r3_3_4_2_static_contract.py": "3debe42644cc59320d5824d69a9ffbd1f0c9a1fafbc652dd3569c668966f6cfd",
+        "scripts/tests/collect_test21_r3_3_4_1_binding_contract.py": "c853142891e1e1ce79315403e8c39ba441fc56e7a46e628af268aa521b0dff8d",
+        "scripts/tests/inspect_test21_r3_3_4_1_apk_strings.py": "b0a6b05c18a066d9b29a992e3285665d080e24a2e1311c5b957c908a5ba2d489",
+        "scripts/tests/package_test21_r3_3_4_1_sanitized.py": "2e4b2c6638f0c84a66295cd1ff3ab567b66936501fdea965053ce43c8aff5fbd",
+        "scripts/tests/package_test21_r3_3_4_2_sanitized.py": "7ba529936770821ad7ddcc461efdca6d932b954a6babc5c948d5a0a5adbca451",
+        "scripts/tests/run_test21_r3_3_4_1_binding_contract.sh": "66af88902d77ea83f38d463f4b9884affc657d58285bb87b2879ce57f0595adf",
+        "scripts/tests/run_test21_r3_3_4_2_static_contract.sh": "bd656be0589573a388558f7a3ed157ef8be33545648ab9899cb8d4b59f0b4c9f",
+        "scripts/tests/test_test21_r3_3_4_1_tools.py": "d2b5440a1da7735ee6b19adf1c31e2951a43763e4457d57e82385689d21e663b",
+        "scripts/tests/test_test21_r3_3_4_2_tools.py": "e473cf6fdd7b4deaddcd7e20bd1910720a6b2fac6c456be616a7cbbf4c1a050c"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4.2",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "6427e6ae0a25e14511c35c4208caef745b56f393b21918642f1416327c78e374",
+      "contract_dependencies": [
+        {
+          "revision": "r3.3.3.2.1",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_4_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_4_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_4_SOURCE_CONTRACT=PASS\nR3_3_3_2_1_PREREQUISITE_IDENTITY=PASS\nPROFILE=EXACT_CXRL_LOCAL_ACTIVATION\nHI_ROKID_FORCE_STOP_COUNT=1\nCXR_L_CONNECTION_ATTEMPT=ONE_CONTROLLED_ATTEMPT\nPCAPDROID_OPERATION=NONE\nNETWORK_CAPTURE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "1a42ac053bf315fc83872bb4b7fa4837ed734797f35e90c56bb76f3b093be513",
+      "required_directories": [],
+      "required_file_sha256": {
+        "docs/tests/test-21-r3-3-3-2-1-tshark-field-separator-repair.md": "0a3e9c3f77463d5162b739cb02607fb8b815f2883ca041b4fab8227d424a8798",
+        "docs/tests/test-21-r3-3-4-exact-cxrl-local-component-activation.md": "a39937c0aa235d90afa5ad108990bc8333fc6098d856324c6be22ad09bb8a47d",
+        "scripts/tests/analyze_test21_r3_3_3_2_1_offline.py": "e6eaef4fd7673c3f635a7d4c8f3b91be4c4e8fbeeba32ea99a45724626cf452f",
+        "scripts/tests/analyze_test21_r3_3_4_local_activation.py": "9bc58c9851be247ff8ef91dcdeb66ec26ea3ee751e5808781477ddd8edeb3bdf",
+        "scripts/tests/collect_test21_r3_3_4_local_activation.py": "2205931c3a7a1778750e5897a61705da47c054945b76baa8d9602adac2bfa5f6",
+        "scripts/tests/package_test21_r3_3_3_2_1_sanitized.py": "1f87ed710b8803e75497888be0d3f2635ed206885516d950daf37ccaaa495276",
+        "scripts/tests/package_test21_r3_3_4_sanitized.py": "e3509a27076dfef0439a8702e77565d8a958da2883375205c74654f869768609",
+        "scripts/tests/run_test21_r3_3_3_2_1_offline_reanalysis.sh": "72b69152270896e28183814fb941555cbc86ebf86d018a94c99d500c0ce61f24",
+        "scripts/tests/run_test21_r3_3_4_local_activation.sh": "c8ca871ed1df618889dd75f9c3d8e3c99227f07b0d9f6b9c2b667fe91109c97c",
+        "scripts/tests/test_test21_r3_3_3_2_1_tools.py": "6d412058f854f6fae7d9786e3df9f81643ce43c95d10b2d9ddf7a8a84dc6a8df",
+        "scripts/tests/test_test21_r3_3_4_tools.py": "bc312420dfef1f27baa7a1419b9905a2994406feacc224ef53bdaf7917369b2c"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3.4",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "baa1659d44274b95d2768642fe4f33974250f92c27d4275f6f9475c57fd73401",
+      "contract_dependencies": [
+        {
+          "revision": "r3.2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_3_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_3_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_3_SOURCE_CONTRACT=PASS\nPROFILE=CUSTOM_AUTHORIZED_NO_CONNECT\nR3_2_ACCEPTED_PREREQUISITE_IDENTITY=PASS\nAUTHORIZATION_OPERATION=ONE_CONTROLLED_ATTEMPT\nCXR_L_CONNECTION_ATTEMPT=NONE\nHI_ROKID_FORCE_STOP_COUNT=1\nSECONDARY_PACKAGE_FORCE_STOP=NONE\nPACKAGE_DISABLE_OR_UNINSTALL=NONE\nPACKAGE_DATA_CLEAR=NONE\nBLUETOOTH_TOGGLE=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "a8fce12fd2f82d1b3877f4842445a331c91172b28d594490242fcf9cbe48c48c",
+      "required_directories": [],
+      "required_file_sha256": {
+        "scripts/tests/analyze_test21_r3_2_topology.py": "0cebfe4d47a40e807812c43bc50ccfa1247bdfbb340d26a8370a26c0238383e9",
+        "scripts/tests/analyze_test21_r3_3_authorized_no_connect.py": "ac34ce8a0b403dc32d3af82e00c26eb8c7ccd3a1887ff6c2f36f05081280a18a",
+        "scripts/tests/collect_test21_r3_3_authorized_topology.py": "9fd9a13e8d6947c19a464b43911b0caeffc755b062294474615908f7fb223eea",
+        "scripts/tests/run_test21_r3_2_process_topology.sh": "46bd1623c5bb14f6677cdb3b2687371791d9f3b3aa9a89f3c00e523f94ad9d90",
+        "scripts/tests/run_test21_r3_3_authorized_no_connect.sh": "6c9aeaebf3dcf4279e515e3ccb0d891b937748fd76ec727e05d0261b38e4719c"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3.3",
+      "supports_output": false,
+      "track": "test21"
+    },
+    {
+      "compatibility_shim_sha256": "6adc776dbb441c87dba201739510ab6223432d433ccdbaab6d9e7be419fc9cdd",
+      "contract_dependencies": [
+        {
+          "revision": "r2",
+          "track": "test21"
+        }
+      ],
+      "contract_mode": "ACCEPTED_SOURCE_SNAPSHOT_V1",
+      "expected_pass_markers": [
+        "TEST21_R3_SOURCE_CONTRACT=PASS"
+      ],
+      "legacy_checker": "scripts/tests/check_test21_r3_source_contract.py",
+      "legacy_success_stdout": "TEST21_R3_SOURCE_CONTRACT=PASS\nHI_ROKID_PACKAGE=com.rokid.sprite.global.aiapp\nCUSTOM_COMPANION_PACKAGE=org.aimindseye.rokid.cxrphotoqualification\nR2_ACCEPTED_PREREQUISITE_IDENTITY=PASS\nTAKE_PHOTO_EXECUTABLE_CALL_SITES=1\nAUDIO_EXECUTABLE_CALL_SITES=0\nHI_ROKID_FORCE_STOP_COUNT=1\nLOGCAT_CLEAR=NONE\nPACKAGE_DISABLE_OR_UNINSTALL=NONE\nPACKAGE_DATA_CLEAR=NONE\nPHOTO_OPERATION=NONE\nAUDIO_OPERATION=NONE\nFIRMWARE_OPERATION=NONE\nTEST20_HOST_ARM_BROADCAST=NONE\n",
+      "lineage_state": "INDEPENDENT_ACCEPTED_SNAPSHOT_ENGINE",
+      "oracle_source_sha256": "308ba66a144fb34ad89f3fb2819c75141c2d99206120bd50708c5a26276fbea7",
+      "required_directories": [
+        ".git"
+      ],
+      "required_file_sha256": {
+        "android-client/test20r32/src/main/java/org/aimindseye/rokid/cxrphotoqualification/CxrLPhotoController.java": "cf4454d801f265002f54a216571d12f203a117d59178f0df187689ed4a738a41",
+        "docs/tests/test-21-r2-hi-rokid-force-stop-session-ownership.md": "e7f6ed5fd7ce29427533fd2367bdffe2d207e1aa8f7643d4eb60eaef95707df3",
+        "scripts/tests/analyze_test21_r2_ownership.py": "a118d0df81743f8241ae761189691441b28085697a5197e8638d55e7bff15979",
+        "scripts/tests/analyze_test21_r3_respawn.py": "96561be5bf37939566a1446b8d853a4d73c441f7f127929a100954a041f3ab13",
+        "scripts/tests/collect_test21_r3_timeline.py": "e69b88d0c91041c7edf833b1a630178545c1a8fa1407423516828452dc1c4fd9",
+        "scripts/tests/package_test21_r2_sanitized.py": "6b372c2a4247106c2a8562499d53f2b035f986a11576d9d9a5d2810aed441b0b",
+        "scripts/tests/package_test21_r3_sanitized.py": "e6b0c2467d86d9c56bc80ad9adf0574044914469f45a667f5cab4e02dee05026",
+        "scripts/tests/run_test21_r2_force_stop_ownership.sh": "7f3861aea865e99411d7d9dd869eb392971a2e0f110d420cf8f40896f090bf7c",
+        "scripts/tests/run_test21_r3_bound_service_respawn.sh": "b29217e477baf1d0500498bf380ff0a7ee91447558a74aa80fcc0254f2443e4a",
+        "scripts/tests/test_test21_r2_tools.py": "ceb75941d8577258018cac5401d4ebc9097d7e825f33f461cce9b3a92dcab760"
+      },
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r3",
+      "supports_output": false,
+      "track": "test21"
+    }
+  ],
+  "schema": "rokid.r27.1.11.source-contract-profiles.v2"
+}

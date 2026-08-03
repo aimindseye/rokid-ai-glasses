@@ -1,0 +1,335 @@
+{
+  "profiles": [
+    {
+      "compatibility_shim_sha256": "1cd040a8a416b67009d0c544d6db2588cc3eed99366ac0510743b0d9a4eab58d",
+      "equals": [
+        [
+          "closure.ble_to_rfcomm_bootstrap_attributed",
+          true
+        ],
+        [
+          "closure.sdp_service_channel_attributed",
+          true
+        ],
+        [
+          "closure.rfcomm_scn_dlci_reconstructed",
+          true
+        ],
+        [
+          "closure.stock_session_establishment_sequence_closed",
+          true
+        ],
+        [
+          "closure.application_message_framing_closed",
+          false
+        ],
+        [
+          "closure.session_authentication_semantics_closed",
+          false
+        ],
+        [
+          "closure.independent_client_rfcomm_session_implemented",
+          false
+        ],
+        [
+          "closure.developer_mode_remote_invocation_closed",
+          false
+        ],
+        [
+          "rfcomm_session.sdp_server_channel",
+          3
+        ],
+        [
+          "rfcomm_session.dlci",
+          6
+        ],
+        [
+          "rfcomm_session.mtu",
+          990
+        ],
+        [
+          "public_safety.raw_hci_published",
+          false
+        ],
+        [
+          "public_safety.bluetooth_address_published",
+          false
+        ],
+        [
+          "public_safety.runtime_uuid_published",
+          false
+        ],
+        [
+          "public_safety.account_material_published",
+          false
+        ]
+      ],
+      "historical_source_sha256": "17344863c3cdf4b504ec2e490854f5078281c9fa91c670f80a65f91563826741",
+      "legacy_path": "scripts/research/connection-protocol/verify_r25_1_publication.py",
+      "legacy_sha256": "17344863c3cdf4b504ec2e490854f5078281c9fa91c670f80a65f91563826741",
+      "reject_base64_like": true,
+      "retirement_reason": "historical publication verifier implementation archived; live revision path delegates to canonical r25 publication verifier",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.1",
+      "success_lines": [
+        "R1_3_3_2_25_1_PUBLICATION_VERIFY=PASS"
+      ],
+      "text_forbidden_regex": [
+        "(?i)\\b(?:[0-9a-f]{2}:){5}[0-9a-f]{2}\\b"
+      ],
+      "uuid_policy": {
+        "allowed": [
+          "00009301-0000-1000-8000-00805f9b34fb"
+        ],
+        "regex": "(?i)\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b"
+      }
+    },
+    {
+      "compatibility_shim_sha256": "08583d57e41cb1c2ec56f83485dfd93c4b8fe048a8dfe13afd18a8ab24b08a45",
+      "equals": [
+        [
+          "schema",
+          "rokid.r25.2.connection-only-public.v1"
+        ],
+        [
+          "runtime_uuid_published",
+          false
+        ],
+        [
+          "classic_address_published",
+          false
+        ],
+        [
+          "account_material_published",
+          false
+        ],
+        [
+          "application_payload_reads",
+          0
+        ],
+        [
+          "application_payload_writes",
+          0
+        ]
+      ],
+      "historical_source_sha256": "9e12c25494961130727e9cdbb9e7af68ba2c3e43d2cec158d1b50ce3b8064194",
+      "legacy_path": "scripts/research/connection-protocol/verify_r25_2_publication.py",
+      "legacy_sha256": "9e12c25494961130727e9cdbb9e7af68ba2c3e43d2cec158d1b50ce3b8064194",
+      "retirement_reason": "historical publication verifier implementation archived; live revision path delegates to canonical r25 publication verifier",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2",
+      "success_lines": [
+        "R1_3_3_2_25_2_PUBLICATION_VERIFY=PASS"
+      ],
+      "text_forbidden_regex": [
+        "(?i)\\b[0-9a-f]{2}(?::[0-9a-f]{2}){5}\\b",
+        "(?i)\\b[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\\b"
+      ]
+    },
+    {
+      "compatibility_shim_sha256": "811c03dc4c34d6152a6c767ff5e40c426b4a641967abef37204a29fee4ee36b2",
+      "equals": [
+        [
+          "schema",
+          "rokid.r25.2.1.publication.v1"
+        ],
+        [
+          "release",
+          "r1.3.3.2.25.2.1"
+        ],
+        [
+          "private_device_ids_published",
+          false
+        ],
+        [
+          "private_fingerprint_hashes_published",
+          false
+        ],
+        [
+          "raw_advertisement_bytes_published",
+          false
+        ],
+        [
+          "raw_bluetooth_addresses_published",
+          false
+        ],
+        [
+          "capture_model.gatt_attempted",
+          false
+        ],
+        [
+          "capture_model.rfcomm_attempted",
+          false
+        ],
+        [
+          "capture_model.application_payload_reads",
+          0
+        ],
+        [
+          "capture_model.application_payload_writes",
+          0
+        ]
+      ],
+      "forbidden_keys": [
+        "device_id",
+        "device_ids",
+        "fingerprint_sha256",
+        "payload_fingerprints",
+        "selected_candidate",
+        "raw_record_sha256",
+        "manufacturer_data",
+        "service_data",
+        "phone_serial",
+        "probe_uid"
+      ],
+      "historical_source_sha256": "7302009fe4a94630913c41c21c949e428ed1b36b0706cb090dc07d96b49e4e45",
+      "legacy_path": "scripts/research/connection-protocol/verify_r25_2_1_publication.py",
+      "legacy_sha256": "7302009fe4a94630913c41c21c949e428ed1b36b0706cb090dc07d96b49e4e45",
+      "retirement_reason": "historical publication verifier implementation archived; live revision path delegates to canonical r25 publication verifier",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.1",
+      "string_forbidden_regex": [
+        "(?i)\\b(?:[0-9a-f]{2}:){5}[0-9a-f]{2}\\b",
+        "(?i)\\b[0-9a-f]{64}\\b"
+      ],
+      "success_lines": [
+        "R1_3_3_2_25_2_1_PUBLICATION_VERIFY=PASS"
+      ]
+    },
+    {
+      "compatibility_shim_sha256": "729fde6f219f4f9349d2bbb137282cea5f21652a641025d56b74da4b30dafe28",
+      "equals": [
+        [
+          "endpoint_address_published",
+          false
+        ],
+        [
+          "public_safety.correlation_key_published",
+          false
+        ],
+        [
+          "connection_boundary.probe_gatt_attempted",
+          false
+        ],
+        [
+          "connection_boundary.probe_rfcomm_attempted",
+          false
+        ]
+      ],
+      "historical_source_sha256": "55ee7ef33348e224dbb4376c9e6d3a9bc2ee8013caf4f0268997c240658be411",
+      "legacy_path": "scripts/research/connection-protocol/verify_r25_2_2_publication.py",
+      "legacy_sha256": "55ee7ef33348e224dbb4376c9e6d3a9bc2ee8013caf4f0268997c240658be411",
+      "retirement_reason": "historical publication verifier implementation archived; live revision path delegates to canonical r25 publication verifier",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.2",
+      "success_lines": [
+        "R25_2_2_PUBLICATION_VERIFY=PASS"
+      ],
+      "text_forbidden_regex": [
+        "(?:[0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}"
+      ]
+    },
+    {
+      "compatibility_shim_sha256": "9044594fe9c41986a5a32ed5ffa1f6db1f4c8ef5a58b9d5dab3b74a8e4a6d76e",
+      "equals": [
+        [
+          "runtime_address_published",
+          false
+        ],
+        [
+          "runtime_uuid_published",
+          false
+        ],
+        [
+          "connection_boundary.offline_reanalysis_only",
+          true
+        ],
+        [
+          "connection_boundary.independent_gatt_attempted",
+          false
+        ],
+        [
+          "connection_boundary.independent_rfcomm_attempted",
+          false
+        ],
+        [
+          "connection_boundary.automatic_connection_performed",
+          false
+        ],
+        [
+          "connection_boundary.application_payload_reads",
+          0
+        ],
+        [
+          "connection_boundary.application_payload_writes",
+          0
+        ],
+        [
+          "connection_boundary.developer_mode_action_performed",
+          false
+        ]
+      ],
+      "historical_source_sha256": "af36ba9bc1a8165020c4a4b0d11cca76f0f5b23042cc7dc749d2f03582239320",
+      "legacy_path": "scripts/research/connection-protocol/verify_r25_2_2_1_publication.py",
+      "legacy_sha256": "af36ba9bc1a8165020c4a4b0d11cca76f0f5b23042cc7dc749d2f03582239320",
+      "retirement_reason": "historical publication verifier implementation archived; live revision path delegates to canonical r25 publication verifier",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.2.1",
+      "success_lines": [
+        "R25_2_2_1_RUNTIME_ADDRESS_PUBLICATION=NO",
+        "R25_2_2_1_RUNTIME_UUID_PUBLICATION=NO",
+        "R25_2_2_1_PUBLICATION_VERIFY=PASS"
+      ],
+      "text_forbidden_regex": [
+        "(?i)(?<![0-9a-f])(?:[0-9a-f]{2}:){5}[0-9a-f]{2}(?![0-9a-f])",
+        "(?i)(?<![0-9a-f])[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}(?![0-9a-f])"
+      ]
+    },
+    {
+      "compatibility_shim_sha256": "30012c17045dd8f876e62bc78de5b64d0fec0d102cdf3b68767e21a418c52f82",
+      "equals": [
+        [
+          "endpoint.address_published",
+          false
+        ],
+        [
+          "endpoint.runtime_uuid_published",
+          false
+        ],
+        [
+          "connection_boundary.application_payload_reads",
+          0
+        ],
+        [
+          "connection_boundary.application_payload_writes",
+          0
+        ],
+        [
+          "connection_boundary.application_data_streams_obtained",
+          false
+        ],
+        [
+          "connection_boundary.independent_gatt_attempted",
+          false
+        ]
+      ],
+      "historical_source_sha256": "e3a89380cfd5a9fd5d2501736ff2679c247496f74c1c13a76f9292c25e73c6a0",
+      "legacy_path": "scripts/research/connection-protocol/verify_r25_2_2_2_publication.py",
+      "legacy_sha256": "e3a89380cfd5a9fd5d2501736ff2679c247496f74c1c13a76f9292c25e73c6a0",
+      "retirement_reason": "historical publication verifier implementation archived; live revision path delegates to canonical r25 publication verifier",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "r25.2.2.2",
+      "success_lines": [
+        "R25_2_2_2_PUBLICATION_RAW_ADDRESS_PRESENT=NO",
+        "R25_2_2_2_PUBLICATION_RAW_RUNTIME_UUID_PRESENT=NO",
+        "R25_2_2_2_PUBLICATION_ZERO_PAYLOAD=YES",
+        "R25_2_2_2_PUBLICATION_VERIFY=PASS"
+      ],
+      "text_forbidden_regex": [
+        "(?i)(?:[0-9a-f]{2}:){5}[0-9a-f]{2}",
+        "(?i)\\b[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}\\b"
+      ]
+    }
+  ],
+  "schema": "rokid.r27.2.1.r25-publication-verifiers.v1"
+}

@@ -1,0 +1,3 @@
+#!/bin/bash
+BASE="$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)"
+exec python3 "$BASE/research/canonical/r27_catalog.py" "$@"

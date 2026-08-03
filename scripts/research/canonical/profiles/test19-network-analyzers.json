@@ -1,0 +1,33 @@
+{
+  "profiles": [
+    {
+      "blocked_exit_code": null,
+      "compatibility_shim_sha256": "2cacaac1b79809e98f9f81042b710221a67ca4eeb15cb6d60f327fb9a5b52bb3",
+      "fail_exit_code": 4,
+      "legacy_path": "scripts/tests/analyze_test19_network.py",
+      "legacy_sha256": "c89b38eb0c9408187a2cf9080f28a1840544cd8cc1288f23c66765556f83c909",
+      "mode": "r1_destination_gate",
+      "original_source_sha256": "c89b38eb0c9408187a2cf9080f28a1840544cd8cc1288f23c66765556f83c909",
+      "pass_exit_code": 0,
+      "retirement_reason": "historical analyzer implementation preserved privately; historical path retained as canonical network analyzer compatibility shim",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "test19-r1",
+      "schema": "rokid.test19-r1.network-privacy.v1"
+    },
+    {
+      "blocked_exit_code": 30,
+      "compatibility_shim_sha256": "8d57e7e14fcd96f7b33e81986ee474f8f7a9599bace15f05c5921c14f4df9a7a",
+      "fail_exit_code": 10,
+      "legacy_path": "scripts/tests/analyze_test19_r2_network.py",
+      "legacy_sha256": "af5537ce9f3d66fe8044ac99eb2d8400d4f68597ddf300f861558e1dfd643a37",
+      "mode": "r2_app_scoped_gate",
+      "original_source_sha256": "af5537ce9f3d66fe8044ac99eb2d8400d4f68597ddf300f861558e1dfd643a37",
+      "pass_exit_code": 0,
+      "retirement_reason": "historical analyzer implementation preserved privately; historical path retained as canonical network analyzer compatibility shim",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "revision": "test19-r2",
+      "schema": "rokid.test19-r2.network-privacy.v1"
+    }
+  ],
+  "schema": "rokid.r27.2.8.test19-network-analyzers.v2"
+}

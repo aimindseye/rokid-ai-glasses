@@ -44,3 +44,7 @@ The tooling never sends a proprietary command and never writes a Bluetooth chara
 - `analyze_r25_2_2_stock_assist.py`: unique provisioning-GATT address attribution and scan-token correlation.
 - `verify_r25_2_2_publication.py`: fails on raw address or key disclosure.
 - `finalize_r25_2_2.py`: seals private evidence.
+
+## R27.2.2 compatibility status
+
+The seven `finalize_r25*.py` entry points and six `verify_r25_*_publication.py` entry points are retained for historical runner compatibility, but their independent implementations have been archived and replaced by thin shims over the canonical R27 finalizer/publication-verifier engines. No historical path is deleted.

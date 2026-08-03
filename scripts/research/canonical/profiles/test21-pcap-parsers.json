@@ -1,0 +1,51 @@
+{
+  "profiles": [
+    {
+      "compatibility_shim_sha256": "e70b68e44048bd3cddf2f2ffc489e223b3927161ea60b7b1cd3b522d9150a61a",
+      "include_frame_number": false,
+      "include_public_endpoint": false,
+      "legacy_path": "scripts/tests/parse_test21_r3_3_3_pcap.py",
+      "legacy_sha256": "3ea78c9268db98588f85676d6e9375dbafb95478285e464f31d16f6d09815608",
+      "lifecycle_state": "COMPATIBILITY_SHIM",
+      "linktype_mode": "legacy_ethernet_fallback",
+      "pass_marker": "TEST21_R3_3_3_PCAP_PARSE=PASS",
+      "revision": "r3.3.3",
+      "stdout_fields": [
+        "PACKET_ROWS",
+        "DECRYPTED_HTTP_METADATA"
+      ],
+      "summary_schema": "rokid.test21-r3-3-3.network-parse.v1",
+      "target_packages": [],
+      "trailer_search_bytes": 80,
+      "tshark_include_frame_number": false,
+      "tshark_target_attribution": false
+    },
+    {
+      "compatibility_shim_sha256": "5db3e5b1ecfe840c47007fca865c3683311b6302e2cee4fa29e5593061e474f6",
+      "include_frame_number": true,
+      "include_public_endpoint": true,
+      "legacy_path": "scripts/tests/parse_test21_r3_3_3_1_pcap.py",
+      "legacy_sha256": "a39cf96ee91edd737b2f626f6201ad88379f2ca279ece101fec9216a7d271f04",
+      "lifecycle_state": "COMPATIBILITY_SHIM",
+      "linktype_mode": "pcap_linktype_aware",
+      "pass_marker": "TEST21_R3_3_3_1_PCAP_PARSE=PASS",
+      "revision": "r3.3.3.1",
+      "stdout_fields": [
+        "PACKET_ROWS",
+        "TARGET_PACKET_ROWS",
+        "DECRYPTED_HTTP_METADATA",
+        "TARGET_ATTRIBUTED_HTTP_ROWS",
+        "FRAME_TRAILER_ATTRIBUTED_HTTP_ROWS"
+      ],
+      "summary_schema": "rokid.test21-r3-3-3-1.network-parse.v1",
+      "target_packages": [
+        "com.rokid.sprite.global.aiapp",
+        "org.aimindseye.rokid.cxrphotoqualification"
+      ],
+      "trailer_search_bytes": 96,
+      "tshark_include_frame_number": true,
+      "tshark_target_attribution": true
+    }
+  ],
+  "schema": "rokid.r27.2.4.test21-pcap-parsers.v1"
+}

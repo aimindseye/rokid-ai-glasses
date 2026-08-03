@@ -43,9 +43,8 @@ instructions or community projects.
 - Stock Developer Mode actions have been observed and decoded for a bounded
   four-message family; independent command transmission remains prohibited and
   unimplemented.
-- A complete replacement companion app, Style-qualified CXR integration, and
-  * Test 21 closes the static CXR-L Binder boundary for the accepted `client-l:1.0.1` artifact: all 7 callback interfaces and 21 callback methods have final Stub ↔ Proxy agreement with 0 transaction mismatches; runtime authorization/session semantics remain outside the claim.
-  custom firmware have not yet been delivered.
+- Test 21 closes the static CXR-L Binder boundary for the accepted `client-l:1.0.1` artifact: all 7 callback interfaces and 21 callback methods have final Stub ↔ Proxy agreement with 0 transaction mismatches; runtime authorization/session semantics remain outside the claim.
+- A complete replacement companion app, independent authorization/session reproduction, and custom firmware have not yet been delivered.
 
 The concise capability boundary is maintained in
 [Developer current status](docs/developer/current-status.md). Detailed proof and
@@ -60,9 +59,23 @@ release history remain in the [Research library](docs/research/README.md).
 - [Architecture summary](ARCHITECTURE.md)
   * [Test 21 static Binder boundary](docs/research/cxr/test21-static-binder-boundary-overview.md)
 
+<!-- r27.1.0-canonical-tooling -->
+## Research tooling and revision lineage
+
+Repository-wide tooling normalization is tracked under **R27**. Use the [canonical research tooling index](docs/research/tooling/README.md) and `scripts/rokid-research` to inventory and resolve historical implementations. Revision-named scripts remain preserved for provenance until an explicit equivalence and retirement gate passes; new device testing is paused during this consolidation. R27.1.12 closes the Tests 19–21/r25 retirement queue with 71 compatibility shims and 38 intentionally preserved independent regression-oracle suites; see [R27.1.12](docs/research/r27.1.12-tool-test-oracle-preservation.md).
+
 ## Safety and privacy
 
 Do not publish raw PCAPs, TLS keys, bugreports, HCI logs, APKs, native libraries,
 account identifiers, device serials, Bluetooth addresses, tokens, or precise
 location. The repository contains sanitized summaries, hashes, and reproducible
 public tooling only.
+
+## R27 whole-history consolidation complete
+
+R27.2.8 FINAL closes the repository/tooling consolidation program: 88 historical implementations are canonicalized, independent regression oracles remain preserved, and residual low-similarity families are explicitly retained as distinct historical programs. Run `scripts/rokid-research consolidation status` for the machine-readable closure gate. The repository is ready to proceed to Test 22. See [R27.2.8 FINAL](docs/research/r27.2.8-final-consolidation-closure.md).
+
+<!-- r27.3-final-publication -->
+## R27 final publication baseline
+
+R27.3 publishes the accepted whole-history consolidation as the clean GitHub baseline before Test 22. The public tree contains the canonical research harness, compatibility shims, preserved regression-oracle source, sanitized historical research source required by those contracts, and closure documentation; private evidence archives and generated artifacts remain excluded. The machine gate remains `scripts/rokid-research consolidation status`, with `R27_WHOLE_HISTORY_CONSOLIDATION=COMPLETE` and `NEXT_DEVICE_TEST_READY=YES` required before new device testing.

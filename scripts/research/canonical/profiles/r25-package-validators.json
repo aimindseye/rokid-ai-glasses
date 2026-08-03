@@ -1,0 +1,589 @@
+{
+  "profiles": {
+    "r25.2.2.2.1": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1.sh"
+      ],
+      "compatibility_shim_sha256": "489b532434739d21e70fd5da28bed9c36efb9da61001578b356f47c850aa4d69",
+      "historical_implementation_sha256": "9f3d8d589c62295ac40812291a75011492ac1b77a965064eb24114f390cf46f6",
+      "legacy_source_sha256": "9f3d8d589c62295ac40812291a75011492ac1b77a965064eb24114f390cf46f6",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_2_2_1_package.sh",
+      "pass_lines": [
+        "R1_3_3_2_25_2_2_2_1_REPOSITORY_SCRIPTS=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_2_2_1_offline.py"
+      ],
+      "required": [
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/r25_2_2_2_1_offline.py"
+        },
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1.sh"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.2.2.2.1.1": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1_1.sh"
+      ],
+      "compatibility_shim_sha256": "164d95668cf80d3c20a36a1bdf1c50ad49b06fe5b72a67ee970d8e2a510f8ddb",
+      "historical_implementation_sha256": "788baae24b6d2b63af7596a1db3130c712d26147ea4ac73f9d814f8e0cadf099",
+      "legacy_source_sha256": "788baae24b6d2b63af7596a1db3130c712d26147ea4ac73f9d814f8e0cadf099",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_2_2_1_1_package.sh",
+      "pass_lines": [
+        "R1_3_3_2_25_2_2_2_1_1_REPOSITORY_SCRIPTS=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_2_2_1_1_offline.py"
+      ],
+      "required": [
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/r25_2_2_2_1_1_offline.py"
+        },
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1_1.sh"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.2.2.2.1.2": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1_2.sh"
+      ],
+      "compatibility_shim_sha256": "3b26a9cdac410e704e26def1d729a01d808cace465926735bee90cbb0e347e36",
+      "contains": {
+        "scripts/research/connection-protocol/r25_2_2_2_1_2_offline.py": [
+          "BT_SCOPE_RE",
+          "from uid/pid",
+          "requested_service_uuid",
+          "native_service_class_uuid",
+          "rfc_port_event_close",
+          "duplicate_semantic_lines",
+          "global_zero_payload_evidence",
+          "payload_data_event_count",
+          "35b209ab8243e68a26b3f32ab7f4bfcd111f88ece3d0be05c0a72e095dccf662"
+        ]
+      },
+      "historical_implementation_sha256": "5786411aabf56f8445d054b0787eecbd184e0918aae6cc46fef199ffb34b5709",
+      "legacy_source_sha256": "5786411aabf56f8445d054b0787eecbd184e0918aae6cc46fef199ffb34b5709",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_2_2_1_2_package.sh",
+      "pass_lines": [
+        "R1_3_3_2_25_2_2_2_1_2_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_2_2_1_2_offline.py"
+      ],
+      "required": [
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/r25_2_2_2_1_2_offline.py"
+        },
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1_2.sh"
+        },
+        {
+          "nonempty": true,
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.2.2.2.1.2-bluetooth-scoped-lifecycle-correlation-repair.md"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.2.2.2.1.3": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1_3.sh"
+      ],
+      "compatibility_shim_sha256": "90badae39678d497a264ed218531228845afcb190c9d06fd0026c1a347258dd3",
+      "contains": {
+        "scripts/research/connection-protocol/r25_2_2_2_1_3_offline.py": [
+          "attempt_level_gate_projection",
+          "archive_wide_zero_payload_source_census",
+          "candidate_rejection_diagnostics",
+          "extract_zero_payload_candidates",
+          "correlate_zero_candidates",
+          "rejected_configuration_only",
+          "PASS_BOUNDED_RFCOMM_CLIENT_LIFECYCLE_CLOSURE_ONLY",
+          "payload_data_event_count",
+          "35b209ab8243e68a26b3f32ab7f4bfcd111f88ece3d0be05c0a72e095dccf662"
+        ]
+      },
+      "historical_implementation_sha256": "fd33ceb8aa1be8439de82522eb59e67529a58ca6fefe32f00669da0456f07174",
+      "legacy_source_sha256": "fd33ceb8aa1be8439de82522eb59e67529a58ca6fefe32f00669da0456f07174",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_2_2_1_3_package.sh",
+      "pass_lines": [
+        "R1_3_3_2_25_2_2_2_1_3_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_2_2_1_3_offline.py"
+      ],
+      "required": [
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/r25_2_2_2_1_3_offline.py"
+        },
+        {
+          "nonempty": true,
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2_1_3.sh"
+        },
+        {
+          "nonempty": true,
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.2.2.2.1.3-attempt-gate-zero-payload-census-repair.md"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.2.3": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3.sh"
+      ],
+      "compatibility_shim_sha256": "b5c0ec617b036ec6e2b1fcc4a83dae6db1d465118c8302399888389908941421",
+      "contains": {
+        "scripts/research/connection-protocol/r25_2_3_capture.py": [
+          "PASS_FULL_RFCOMM_HCI_ZERO_PAYLOAD_CLOSURE",
+          "PASS_BOUNDED_RFCOMM_CLIENT_LIFECYCLE_CLOSURE_ONLY",
+          "FAIL_POSITIVE_RFCOMM_PAYLOAD_OBSERVED",
+          "Logcat silence alone is not proof"
+        ]
+      },
+      "forbidden_regex": [
+        {
+          "label": "device mutation or destructive pattern",
+          "paths": [
+            "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3.sh"
+          ],
+          "pattern": "settings\\s+put|setprop|adb\\s+root|rm\\s+-rf\\s+/"
+        }
+      ],
+      "historical_implementation_sha256": "6bb8d866f59bd608b582bf0dff9eb8828e15a7560c6a63cbacd3d23af71c42dd",
+      "legacy_source_sha256": "6bb8d866f59bd608b582bf0dff9eb8828e15a7560c6a63cbacd3d23af71c42dd",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_3_package.sh",
+      "pass_lines": [
+        "R25_2_3_INSTALLED_SYNTAX_GATE=PASS",
+        "R25_2_3_NO_DEVICE_SETTING_MUTATION_GATE=PASS",
+        "R25_2_3_FAIL_CLOSED_PROOF_POLICY_GATE=PASS",
+        "R1_3_3_2_25_2_3_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_3_capture.py"
+      ],
+      "required": [
+        {
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3.sh"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_capture.py"
+        },
+        {
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.2.3-instrumented-rfcomm-hci-zero-payload-capture.md"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.2.3.1": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3_1.sh"
+      ],
+      "compatibility_shim_sha256": "b1bb10bf4c01321da9abd8c6023623bbf6129feb0f1133266f5be71f3caff1fc",
+      "contains": {
+        "scripts/research/connection-protocol/r25_2_3_1_hci_preflight.py": [
+          "PROVISIONAL_UNKNOWN"
+        ],
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3_1.sh": [
+          "bluetooth_btsnoop_default_mode",
+          "POST_BUGREPORT_BTSNOOP_EVIDENCE"
+        ]
+      },
+      "forbidden_regex": [
+        {
+          "label": "device setting mutation",
+          "paths": [
+            "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3_1.sh"
+          ],
+          "pattern": "settings\\s+put|setprop|adb\\s+root|adb\\s+reboot|svc\\s+bluetooth"
+        }
+      ],
+      "historical_implementation_sha256": "c806b97a3149b381539039a64289a13647007f9d30e69d07ef8e803561366f95",
+      "legacy_source_sha256": "c806b97a3149b381539039a64289a13647007f9d30e69d07ef8e803561366f95",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_3_1_package.sh",
+      "pass_lines": [
+        "R25_2_3_1_INSTALLED_SYNTAX_GATE=PASS",
+        "R25_2_3_1_NO_DEVICE_SETTING_MUTATION_GATE=PASS",
+        "R25_2_3_1_PIXEL_AOSP_CONTROL_RECOGNITION_GATE=PASS",
+        "R25_2_3_1_PROVISIONAL_FAIL_CLOSED_GATE=PASS",
+        "R1_3_3_2_25_2_3_1_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_3_1_capture.py",
+        "scripts/research/connection-protocol/r25_2_3_1_hci_preflight.py"
+      ],
+      "required": [
+        {
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3_1.sh"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_1_capture.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_1_hci_preflight.py"
+        },
+        {
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.2.3.1-pixel-aosp-hci-snoop-preflight-repair.md"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.2.3.2": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3_2.sh"
+      ],
+      "compatibility_shim_sha256": "79db0685580dbe6765f2a1f3054c57344e5b2f492a598491f1aa493104b8de24",
+      "contains": {
+        "scripts/research/connection-protocol/r25_2_3_2_orchestrator.py": [
+          "run_r1_3_3_2_25_2_2_2.sh",
+          "Bugreport is collected after close and before handoff revocation"
+        ]
+      },
+      "historical_implementation_sha256": "9d62b8f9d596224ff2dc0274a3050dd6c784b449e5534d7156cab81bbf442a6c",
+      "legacy_source_sha256": "9d62b8f9d596224ff2dc0274a3050dd6c784b449e5534d7156cab81bbf442a6c",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_3_2_package.sh",
+      "pass_lines": [
+        "R25_2_3_2_INSTALLED_STRICT_RUNNER_DEPENDENCY_GATE=PASS",
+        "R25_2_3_2_INSTALLED_READINESS_BEFORE_INTERVAL_GATE=PASS",
+        "R25_2_3_2_INSTALLED_SINGLE_TAP_GATE=PASS",
+        "R25_2_3_2_INSTALLED_POST_ATTEMPT_REVOCATION_GATE=PASS",
+        "R1_3_3_2_25_2_3_2_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_3_2_orchestrator.py",
+        "scripts/research/connection-protocol/r25_2_3_2_capture.py",
+        "scripts/research/connection-protocol/r25_2_3_2_hci_preflight.py"
+      ],
+      "required": [
+        {
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_3_2.sh"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_2_orchestrator.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_2_capture.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_2_hci_preflight.py"
+        },
+        {
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.2.3.2-strict-private-handoff-integration.md"
+        },
+        {
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_2_2.sh"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.2.4": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_4.sh"
+      ],
+      "compatibility_shim_sha256": "ab0e3bb4e2ec863db3cbc6ab0d2e3b3ba8dc052e77d969dd5b9cc9aa3145c662",
+      "contains": {
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_2_4.sh": [
+          "EXPECTED_SANITIZED_SHA256='5efaa9c38b8868fb7bc3ae3bb7253790a905d9b6e390df2843bbd00c5728df18'",
+          "EXPECTED_ANALYSIS_SHA256='21a1b66de908d5284498c5e2868f1dc5b2666b5d2eb3aadfbb0832b7c870fac1'",
+          "EXPECTED_EVIDENCE_SHA256='37fc0b5f2f8e77282c57dd030f779d2a3fbe60c06783d6c2c5d10af38f8ad54b'"
+        ]
+      },
+      "forbidden_regex": [
+        {
+          "label": "device-contact token",
+          "paths": [
+            "scripts/research/connection-protocol/r25_2_4_publish.py",
+            "scripts/research/connection-protocol/run_r1_3_3_2_25_2_4.sh"
+          ],
+          "pattern": "(^|[^A-Za-z0-9_])adb([^A-Za-z0-9_]|$)|PHONE_SERIAL|bluetooth_manager|bugreportz"
+        }
+      ],
+      "historical_implementation_sha256": "f3e8a2b7702f73d8cb0030e811fc5e0929dcb3ae73eea99bf2cb896c90e04e36",
+      "legacy_source_sha256": "f3e8a2b7702f73d8cb0030e811fc5e0929dcb3ae73eea99bf2cb896c90e04e36",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_2_4_package.sh",
+      "pass_lines": [
+        "R25_2_4_INSTALLED_INPUT_HASH_LOCK_GATE=PASS",
+        "R25_2_4_INSTALLED_OFFLINE_ONLY_GATE=PASS",
+        "R25_2_4_INSTALLED_SYNTAX_GATE=PASS",
+        "R1_3_3_2_25_2_4_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_2_4_publish.py"
+      ],
+      "required": [
+        {
+          "path": "scripts/research/connection-protocol/r25_2_4_publish.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_2_4.sh"
+        },
+        {
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.2.4-publication-integration-method.md"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r25.3.1": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1.sh"
+      ],
+      "compatibility_shim_sha256": "26c8ff2c2172af334b1eba83f06945080dcacb97485b33038a6d8886f46ac6b4",
+      "contains": {
+        "scripts/research/connection-protocol/r25_3_1_analyze.py": [
+          "final_semantic_state_restored"
+        ],
+        "scripts/research/connection-protocol/r25_3_1_capture.py": [
+          "DEFAULT_STOCK_PACKAGE = \"com.rokid.sprite.global.aiapp\"",
+          "\"persist_vendor_adb_state\": transition[\"persist_vendor_adb_state\"]",
+          "\"ui_switch_state\": transition[\"ui_switch_state\"]",
+          "\"adb_transport_disappearance_required\": False",
+          "\"control_channel_usable_required\": True",
+          "if args.plan_only:"
+        ]
+      },
+      "forbidden_regex": [
+        {
+          "label": "custom transmission or privileged mutation (call-aware repair)",
+          "paths": [
+            "scripts/research/connection-protocol/r25_3_1_analyze.py",
+            "scripts/research/connection-protocol/r25_3_1_capture.py",
+            "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1.sh"
+          ],
+          "pattern": "createRfcommSocket|BluetoothSocket|socket\\.(send|sendall|write)\\s*\\(|rfcomm[^\\n]{0,80}write\\s*\\(|pm (enable|disable)|run-as .*channelprobe|fastboot|dd if=|dd of="
+        }
+      ],
+      "historical_implementation_sha256": "99ee789ff35b7da6fbf460d4c03723ce7ba78a24f0ee526b0ee984073b94ca4e",
+      "legacy_source_sha256": "99ee789ff35b7da6fbf460d4c03723ce7ba78a24f0ee526b0ee984073b94ca4e",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_package.sh",
+      "pass_lines": [
+        "R25_3_1_INSTALLED_ACCEPTED_HCI_PARSER_HASH_GATE=PASS",
+        "R25_3_1_INSTALLED_STOCK_ONLY_CAPTURE_GATE=PASS",
+        "R25_3_1_INSTALLED_NO_CUSTOM_TRANSMISSION_GATE=PASS",
+        "R25_3_1_INSTALLED_SEMANTIC_ORACLE_GATE=PASS",
+        "R25_3_1_INSTALLED_TRANSPORT_DISAPPEARANCE_NOT_REQUIRED_GATE=PASS",
+        "R25_3_1_INSTALLED_CONTROL_CHANNEL_GATE=PASS",
+        "R25_3_1_INSTALLED_FINAL_STATE_RESTORE_GATE=PASS",
+        "R25_3_1_INSTALLED_NO_DEVICE_DRY_RUN_GATE=PASS",
+        "R1_3_3_2_25_3_1_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_3_1_analyze.py",
+        "scripts/research/connection-protocol/r25_3_1_capture.py"
+      ],
+      "required": [
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_2_capture.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_2_hci_preflight.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_3_1_analyze.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_3_1_capture.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1.sh"
+        }
+      ],
+      "retirement_reason": "historical implementation archived; publication verifier migrated to canonical profile lineage; revision path retained as compatibility shim",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "sha256": {
+        "scripts/research/connection-protocol/r25_2_3_2_capture.py": "0a126e98fe63a5cc4cc676f5e3bceb3dd6f3b3766efacaba3d05955fa579bc2f",
+        "scripts/research/connection-protocol/r25_2_3_2_hci_preflight.py": "571c5520b3d0092dfcdc6ae0a28866e649dbcdf6f81ae005bc4c1b69e63ce2e7"
+      }
+    },
+    "r25.3.1.1": {
+      "bash_syntax": [
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_1.sh"
+      ],
+      "compatibility_shim_sha256": "27f97412d6467b1b1074c1ed484fe434461641158b9da5e45fe76f2c1795a8de",
+      "contains": {
+        "scripts/research/connection-protocol/r25_3_1_1_analyze.py": [
+          "final_semantic_state_restored"
+        ],
+        "scripts/research/connection-protocol/r25_3_1_1_capture.py": [
+          "DEFAULT_STOCK_PACKAGE = \"com.rokid.sprite.global.aiapp\"",
+          "\"persist_vendor_adb_state\": transition[\"persist_vendor_adb_state\"]",
+          "\"ui_switch_state\": transition[\"ui_switch_state\"]",
+          "\"adb_transport_disappearance_required\": False",
+          "\"control_channel_usable_required\": True",
+          "if args.plan_only:"
+        ]
+      },
+      "forbidden_regex": [
+        {
+          "label": "custom transmission or privileged mutation (call-aware repair)",
+          "paths": [
+            "scripts/research/connection-protocol/r25_3_1_1_analyze.py",
+            "scripts/research/connection-protocol/r25_3_1_1_capture.py",
+            "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_1.sh"
+          ],
+          "pattern": "createRfcommSocket|BluetoothSocket|socket\\.(send|sendall|write)\\s*\\(|rfcomm[^\\n]{0,80}write\\s*\\(|pm (enable|disable)|run-as .*channelprobe|fastboot|dd if=|dd of="
+        }
+      ],
+      "historical_implementation_sha256": "198303ea2c111013ab5dca6a0702f62d0dd7115fce025df3be92f97c02acef01",
+      "legacy_source_sha256": "198303ea2c111013ab5dca6a0702f62d0dd7115fce025df3be92f97c02acef01",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_1_package.sh",
+      "pass_lines": [
+        "R25_3_1_1_INSTALLED_ACCEPTED_HCI_PARSER_HASH_GATE=PASS",
+        "R25_3_1_1_INSTALLED_STOCK_ONLY_CAPTURE_GATE=PASS",
+        "R25_3_1_1_INSTALLED_NO_CUSTOM_TRANSMISSION_GATE=PASS",
+        "R25_3_1_1_INSTALLED_SEMANTIC_ORACLE_GATE=PASS",
+        "R25_3_1_1_INSTALLED_TRANSPORT_DISAPPEARANCE_NOT_REQUIRED_GATE=PASS",
+        "R25_3_1_1_INSTALLED_CONTROL_CHANNEL_GATE=PASS",
+        "R25_3_1_1_INSTALLED_FINAL_STATE_RESTORE_GATE=PASS",
+        "R25_3_1_1_INSTALLED_NO_DEVICE_DRY_RUN_GATE=PASS",
+        "R1_3_3_2_25_3_1_1_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_3_1_1_analyze.py",
+        "scripts/research/connection-protocol/r25_3_1_1_capture.py"
+      ],
+      "required": [
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_2_capture.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_2_3_2_hci_preflight.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_3_1_1_analyze.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/r25_3_1_1_capture.py"
+        },
+        {
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_1.sh"
+        }
+      ],
+      "retirement_reason": "historical implementation archived; publication verifier migrated to canonical profile lineage; revision path retained as compatibility shim",
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "sha256": {
+        "scripts/research/connection-protocol/r25_2_3_2_capture.py": "0a126e98fe63a5cc4cc676f5e3bceb3dd6f3b3766efacaba3d05955fa579bc2f",
+        "scripts/research/connection-protocol/r25_2_3_2_hci_preflight.py": "571c5520b3d0092dfcdc6ae0a28866e649dbcdf6f81ae005bc4c1b69e63ce2e7"
+      }
+    },
+    "r25.3.1.2": {
+      "compatibility_shim_sha256": "cef41c166bd365fa70fa391cf8fb0a471c5b6145dfe1dc23c687bd2ba38dc4cc",
+      "contains": {
+        "scripts/research/connection-protocol/r25_3_1_2_analyze.py": [
+          "target_pair_scoped_rfcomm_error_qualification",
+          "non_target_rfcomm_errors_excluded_from_qualification",
+          "target_rfcomm_parse_error_count"
+        ],
+        "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_2.sh": [
+          "DEVICE_CONTACT=NO"
+        ]
+      },
+      "forbidden_regex": [
+        {
+          "ignore_case": true,
+          "label": "host-only device command",
+          "paths": [
+            "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_2.sh"
+          ],
+          "pattern": "^\\s*(adb|fastboot)\\s"
+        }
+      ],
+      "historical_implementation_sha256": "94c3b103277d621bb14c3a326cd0a1942e247cbcce4d66a13310858a0b98ed1c",
+      "legacy_source_sha256": "94c3b103277d621bb14c3a326cd0a1942e247cbcce4d66a13310858a0b98ed1c",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_2_package.sh",
+      "pass_lines": [
+        "R25_3_1_2_INSTALLED_ACCEPTED_HCI_PARSER_HASH_GATE=PASS",
+        "R25_3_1_2_INSTALLED_TARGET_PAIR_SCOPING_GATE=PASS",
+        "R25_3_1_2_INSTALLED_NON_TARGET_ERROR_RETENTION_GATE=PASS",
+        "R25_3_1_2_INSTALLED_NO_DEVICE_COMMAND_GATE=PASS",
+        "R1_3_3_2_25_3_1_2_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_3_1_2_analyze.py"
+      ],
+      "required": [
+        {
+          "no_symlink": true,
+          "path": "scripts/research/connection-protocol/r25_3_1_2_analyze.py"
+        },
+        {
+          "no_symlink": true,
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_2.sh"
+        },
+        {
+          "no_symlink": true,
+          "path": "scripts/research/connection-protocol/r25_2_3_2_capture.py"
+        },
+        {
+          "no_symlink": true,
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.3.1.2-target-pair-scoped-rfcomm-error-qualification-and-offline-salvage.md"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM",
+      "sha256": {
+        "scripts/research/connection-protocol/r25_2_3_2_capture.py": "0a126e98fe63a5cc4cc676f5e3bceb3dd6f3b3766efacaba3d05955fa579bc2f"
+      }
+    },
+    "r25.3.1.3": {
+      "compatibility_shim_sha256": "f99be82969670c7390c655d62f758367792ebf606f9c0a364a544c90540c9cd2",
+      "contains": {
+        "scripts/research/connection-protocol/r25_3_1_3_analyze.py": [
+          "captured_payload_replay_attempted",
+          "nested_total_length_self_inclusive"
+        ]
+      },
+      "forbidden_regex": [
+        {
+          "ignore_case": true,
+          "label": "host-only device command",
+          "paths": [
+            "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_3.sh"
+          ],
+          "pattern": "^\\s*(adb|fastboot)\\s"
+        }
+      ],
+      "historical_implementation_sha256": "13c5b35f10e015eb2e73f7ea070ab25f476927e1a7c3b6c9e4dda7637d9ecd53",
+      "legacy_source_sha256": "13c5b35f10e015eb2e73f7ea070ab25f476927e1a7c3b6c9e4dda7637d9ecd53",
+      "legacy_validator": "scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_3_package.sh",
+      "pass_lines": [
+        "R25_3_1_3_INSTALLED_IN_MEMORY_SYNTAX_COMPILE=PASS",
+        "R25_3_1_3_INSTALLED_SYNTAX_GATE=PASS",
+        "R25_3_1_3_INSTALLED_NO_DEVICE_COMMAND_GATE=PASS",
+        "R25_3_1_3_INSTALLED_NO_REPLAY_BOUNDARY_GATE=PASS",
+        "R1_3_3_2_25_3_1_3_INSTALLED_VALIDATION=PASS"
+      ],
+      "python_compile": [
+        "scripts/research/connection-protocol/r25_3_1_3_analyze.py"
+      ],
+      "required": [
+        {
+          "no_symlink": true,
+          "path": "scripts/research/connection-protocol/r25_3_1_3_analyze.py"
+        },
+        {
+          "no_symlink": true,
+          "path": "scripts/research/connection-protocol/run_r1_3_3_2_25_3_1_3.sh"
+        },
+        {
+          "no_symlink": true,
+          "path": "scripts/research/connection-protocol/validate_r1_3_3_2_25_3_1_3_package.sh"
+        },
+        {
+          "no_symlink": true,
+          "path": "docs/research/connection-protocol/r1.3.3.2.25.3.1.3-exact-adb-toggle-frame-grammar-and-field-role-closure.md"
+        }
+      ],
+      "retirement_state": "COMPATIBILITY_SHIM"
+    }
+  },
+  "schema": "rokid.r27.1.1.r25-package-validator-profiles.v1"
+}

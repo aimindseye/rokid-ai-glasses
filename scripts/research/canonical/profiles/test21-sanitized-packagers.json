@@ -1,0 +1,768 @@
+{
+  "profiles": {
+    "r1": {
+      "compatibility_shim_sha256": "1c2e490ab98e4bf880674ca97cd83e987d64100a4b7aca4d683c6130618b4b75",
+      "container_mode": "deterministic",
+      "file_set_mode": "all_files",
+      "forbidden_name_terms": [
+        "raw",
+        "private",
+        "pcap",
+        "keylog",
+        "screenshot",
+        "image",
+        "audio"
+      ],
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence_output",
+      "legacy_packager": "scripts/tests/package_test21_r1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "4a3a41d0b1a82d24e9c62a39330deb5c24f8d5ab7ecaca39a98559732d6f1d86",
+      "manifest_mode": "require",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r1-summary.json",
+        "test21-r1-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "r1",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r2": {
+      "compatibility_shim_sha256": "6b372c2a4247106c2a8562499d53f2b035f986a11576d9d9a5d2810aed441b0b",
+      "container_mode": "deterministic",
+      "file_set_mode": "all_files",
+      "forbidden_name_terms": [
+        "raw",
+        "private",
+        "pcap",
+        "keylog",
+        "screenshot",
+        "image-payload",
+        "authorization-token",
+        "operator-gate-token"
+      ],
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence_output",
+      "legacy_packager": "scripts/tests/package_test21_r2_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R2_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "fad871ff045f9a9a238519e9357371a2490ccf8a9d438e60c70d55a16f73ef51",
+      "manifest_mode": "verify",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r2-summary.json",
+        "test21-r2-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "r2",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3": {
+      "compatibility_shim_sha256": "e6b0c2467d86d9c56bc80ad9adf0574044914469f45a667f5cab4e02dee05026",
+      "container_mode": "deterministic",
+      "file_set_mode": "all_files",
+      "forbidden_name_terms": [
+        "raw",
+        "private",
+        "pcap",
+        "keylog",
+        "screenshot",
+        "image-payload",
+        "authorization-token",
+        "operator-gate-token"
+      ],
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence_output",
+      "legacy_packager": "scripts/tests/package_test21_r3_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "0596c029788558bad4601d38f0603e1984d74ac1bb0ec46bab6ae7f7a258b7e9",
+      "manifest_mode": "verify",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-summary.json",
+        "test21-r3-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "r3",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.1": {
+      "compatibility_shim_sha256": "d059ee8dfe9c3dab1f4bd211222bab88c6b7647d3d940c9926327bb81d2b44d2",
+      "container_mode": "historical_source_metadata",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "d7b2a7746241cfa95f49a35d3daced8364b35781f9a85e7520e2e27bea7e84d8",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-1-summary.json",
+        "test21-r3-1-summary.txt"
+      ],
+      "phone_required": true,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; revision path retained as canonical compatibility shim with legacy ZipFile.write container semantics",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.2": {
+      "compatibility_shim_sha256": "c90bd171b122f79662da9e1e058f64a77e91f303c547d11ec7f12560b2e0a52b",
+      "container_mode": "historical_source_metadata",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_2_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_2_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "cadd9da5a58e71f51c1e22a1c65f5311260107d23b8ba3da212a54437b761782",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-2-summary.json",
+        "test21-r3-2-summary.txt"
+      ],
+      "phone_required": true,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; revision path retained as canonical compatibility shim with legacy ZipFile.write container semantics",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3": {
+      "compatibility_shim_sha256": "befd557fa55f016767585b66339dcb9a100538f4b0e088ba58a7713b7bb32ca3",
+      "container_mode": "historical_source_metadata",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "b6ade207ed2c8e60cc5d3f47803636fda813b863006badea0ac7c8b307ffed72",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-summary.json",
+        "test21-r3-3-summary.txt"
+      ],
+      "phone_required": true,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; revision path retained as canonical compatibility shim with legacy ZipFile.write container semantics",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.1": {
+      "compatibility_shim_sha256": "7c4d2620aae066afb27c038c56decfcafbfe0dedfddcae2ab624cd90e2ac963d",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "12fd63268f97cafc8cd276186d293c31aff54db54f8c56596c04772c9ecc70a8",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-1-summary.json",
+        "test21-r3-3-1-summary.txt"
+      ],
+      "phone_required": true,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.2": {
+      "compatibility_shim_sha256": "d100e370a3923e2f043811d2e6210f7dadfab76c2b09e116e1b3f5206674229f",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_2_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_2_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "b3bd886fa454f9dcdbc2e078a860746db179c518721bc8c4946a40cc62ca87a1",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-2-summary.json",
+        "test21-r3-3-2-summary.txt"
+      ],
+      "phone_required": true,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.3": {
+      "compatibility_shim_sha256": "dbb3a702a8099080a0d0ce909a89ed9f39fd71f835358c155bb8370f06d48693",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_3_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_3_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "651f824d9c9e78d919780105109d651b3e6528d92e5b1a280ff61a2107258713",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-3-summary.txt",
+        "test21-r3-3-3-summary.json",
+        "network-http-sanitized.jsonl"
+      ],
+      "phone_required": false,
+      "privacy_policy": "capture_tree",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.3.1": {
+      "compatibility_shim_sha256": "ec0a1603509e62e2bc66461ad5c545d68a4e1463111abc89d3e32b60894ab5d8",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_3_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_3_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "2da9dd2c6d39418e3d0d4a14f37da7cc5f8f203ea2e6495be138d6a498c4050d",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-3-1-summary.txt",
+        "test21-r3-3-3-1-summary.json",
+        "network-http-attributed-sanitized.jsonl"
+      ],
+      "phone_required": false,
+      "privacy_policy": "capture_tree",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.3.2": {
+      "compatibility_shim_sha256": "e8865bed020fa787ad0a53dc4b2053e61f2cc4df71422be8d5fffde0d8c9ab2a",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_3_2_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_3_2_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "b719aaf4f7fbf53192f45a7331c9b355e7bab27af87f6e5584cbef356896efe5",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-3-2-summary.txt",
+        "test21-r3-3-3-2-summary.json",
+        "native-csv-ground-truth-sanitized.jsonl",
+        "r333-known-endpoint-timeline-sanitized.jsonl",
+        "scanner-ground-truth-calibration-sanitized.json"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.3.2.1": {
+      "compatibility_shim_sha256": "1f87ed710b8803e75497888be0d3f2635ed206885516d950daf37ccaaa495276",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_3_2_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_3_2_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "30ce93934511dca10260bd7f9159a92389b372fe24233dd03901cc51addec1d5",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-3-2-1-summary.txt",
+        "test21-r3-3-3-2-1-summary.json",
+        "scanner-ground-truth-4-of-4-sanitized.json",
+        "native-csv-ground-truth-sanitized.jsonl",
+        "r333-known-rokid-endpoint-timeline-sanitized.jsonl"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4": {
+      "compatibility_shim_sha256": "e3509a27076dfef0439a8702e77565d8a958da2883375205c74654f869768609",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "6fcba81d502c86e7e6d067a64ed91242e6e2239073164abf572395728ee985af",
+      "manifest_mode": "require",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-summary.json",
+        "test21-r3-3-4-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.1": {
+      "compatibility_shim_sha256": "2e4b2c6638f0c84a66295cd1ff3ab567b66936501fdea965053ce43c8aff5fbd",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "80b7aaee30ff9a3c7cb015bab0bccf4777fbb8e41e264caf57ded35fdb6cb488",
+      "manifest_mode": "require",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-1-summary.json",
+        "test21-r3-3-4-1-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; source-contract hash chain migrated to canonical compatibility shim identity",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2": {
+      "compatibility_shim_sha256": "7ba529936770821ad7ddcc461efdca6d932b954a6babc5c948d5a0a5adbca451",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "f9f8c8bb720fb9e84af0e33ab6ef80dc61573b2d19a5d385eaeb929f7d48823a",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-2-summary.json",
+        "test21-r3-3-4-2-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.1": {
+      "compatibility_shim_sha256": "c3b5a43fa4f8f1bb13bd9946e608288984a027106f80ba0bc36d04eb47a1dd87",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "d52e23a3cc86c682ea89e25d21f8014e71f0fa8d408caaff5fd0bc5baf5f0785",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-2-1-summary.json",
+        "test21-r3-3-4-2-1-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.2": {
+      "compatibility_shim_sha256": "2981596e683d18249529bba449e6c918c95e5c413db47df6763196f9281a48fa",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_2_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_2_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "10b4eda7e5ac7698be1cc03902c8b4ad94db6c2f941299943416fc5c0c64efd2",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-2-2-summary.json",
+        "test21-r3-3-4-2-2-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.3": {
+      "compatibility_shim_sha256": "20a68a2aeb92a4e1e254f5f24f4113a03359aa2afc3aad4904f077552c451daa",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_3_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_3_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "32dd1fc6609c538b6273719a16de4d0e564074ed1276333375e78e3cac6c9082",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-2-3-summary.json",
+        "test21-r3-3-4-2-3-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.4": {
+      "compatibility_shim_sha256": "6be4042bbb546cc5174a4a264ec03e626d760b1b4575a2bf77cd54e17f2a1548",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_4_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_4_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "5370e397fd18cb950651d76a39df7968394782f5830d40aa793bc0bd5c4f2128",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-2-4-summary.json",
+        "test21-r3-3-4-2-4-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.5": {
+      "compatibility_shim_sha256": "48b58adf67084a9cd9e4b7829251d883b8041e1bef46a12968d2870750e73d1b",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_5_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_5_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "994a389f09c06e5bed97225ff45d214d2afca2c4d4dafdb45a824bf07e59d6ea",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS.txt",
+      "members": [
+        "test21-r3-3-4-2-5-summary.json",
+        "test21-r3-3-4-2-5-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.5.1": {
+      "compatibility_shim_sha256": "d7fb0dc90e653b6edee766350e4b6ccb1b74328a2155bd95dfc202c33f6da844",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_5_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_5_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "397e400946b84f9c0683b6dc6fc0fab88e3c35304c84c8b12a9ef638d36059c6",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS-r3-3-4-2-5-1.txt",
+      "members": [
+        "test21-r3-3-4-2-5-1-summary.json",
+        "test21-r3-3-4-2-5-1-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.5.2": {
+      "compatibility_shim_sha256": "bc645c1e73421faae4e6815a17e2acb1ced6200ca9b8a914acc276ce576f4b11",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_5_2_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "7e80eb5fa9620feec82bd27f652707d4923ef40c6aafa4c9c027a4ddc1151a76",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS-r3-3-4-2-5-2.txt",
+      "members": [
+        "test21-r3-3-4-2-5-2-summary.json",
+        "test21-r3-3-4-2-5-2-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.5.2.1": {
+      "compatibility_shim_sha256": "2c7493be27392ac774d1b60a366106ec44059288496cfda4e10dcd9e1a57d473",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_5_2_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "ffe99604ea0e349a8c9b7cdc39975583ad3b7b3995ac7f1f9b1f188b1c8f8fae",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS-r3-3-4-2-5-2-1.txt",
+      "members": [
+        "test21-r3-3-4-2-5-2-1-summary.json",
+        "test21-r3-3-4-2-5-2-1-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.5.2.1.1": {
+      "compatibility_shim_sha256": "fbc38a543c3ed30a72f9470dea41149e3c892e21cff5bb864ce9b6bdcf3e431e",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_5_2_1_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_1_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "4c81e5eded9920f8c0635db8d287d35a5dd8ed775cdeaaf49b05718c730e4f24",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS-r3-3-4-2-5-2-1-1.txt",
+      "members": [
+        "test21-r3-3-4-2-5-2-1-1-summary.json",
+        "test21-r3-3-4-2-5-2-1-1-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.5.2.1.1.1": {
+      "compatibility_shim_sha256": "0dec303bf59f32fadd4b745c1997c1ad22eb86f6d3213ee42bd16874fa676efa",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_5_2_1_1_1_sanitized.py",
+      "legacy_pass_markers": [
+        "TEST21_R3_3_4_2_5_2_1_1_1_SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "1eccb41a65d33dd0842b8eacb8da69073e9c760d714ae6859c30c0cec43762d8",
+      "manifest_mode": "generate",
+      "manifest_name": "SHA256SUMS-r3-3-4-2-5-2-1-1-1.txt",
+      "members": [
+        "test21-r3-3-4-2-5-2-1-1-1-summary.json",
+        "test21-r3-3-4-2-5-2-1-1-1-summary.txt"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.6": {
+      "compatibility_shim_sha256": "858440b32801818b2533f9689e47d78e0a16352564b7f3ca651e2bf7a200a430",
+      "container_mode": "deterministic",
+      "file_set_mode": "exact",
+      "forbidden_name_terms": [
+        "private",
+        "apk",
+        "dex",
+        "maps",
+        "memory",
+        "token",
+        "serial",
+        "pcap",
+        "sslkeylog"
+      ],
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_6_sanitized.py",
+      "legacy_pass_markers": [
+        "SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "8529de0052d79dadbbcce61a305ead80b6c05e40eb8e253581f46584644e86b2",
+      "manifest_mode": "none",
+      "manifest_name": null,
+      "members": [
+        "test21-r3-3-4-2-6-summary.json",
+        "test21-r3-3-4-2-6-summary.txt",
+        "test21-r3-3-4-2-6-summary.md",
+        "test21-r3-3-4-2-6-transaction-map.tsv"
+      ],
+      "phone_required": false,
+      "privacy_policy": "forbidden_filename",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.6.1": {
+      "compatibility_shim_sha256": "8644edbbee2038db3cf2d2b5f66f6e110ad6c7fa7373352e3933de1ca151d06c",
+      "container_mode": "deterministic",
+      "file_set_mode": "exact",
+      "forbidden_name_terms": [
+        "private",
+        "apk",
+        "dex",
+        "maps",
+        "memory",
+        "token",
+        "serial",
+        "pcap",
+        "sslkeylog",
+        "auth_token",
+        "device_id"
+      ],
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_6_1_sanitized.py",
+      "legacy_pass_markers": [
+        "SANITIZED_PACKAGE=PASS"
+      ],
+      "legacy_sha256": "4940b465a8a3a55446505feec6120fd8d3dfe5648a5043978af21e2caefd261d",
+      "manifest_mode": "none",
+      "manifest_name": null,
+      "members": [
+        "test21-r3-3-4-2-6-1-summary.json",
+        "test21-r3-3-4-2-6-1-summary.txt",
+        "test21-r3-3-4-2-6-1-summary.md",
+        "test21-r3-3-4-2-6-1-transaction-map.tsv",
+        "test21-r3-3-4-2-6-1-sdk-wrapper-bridge.tsv",
+        "test21-r3-3-4-2-6-1-parcel-contract.tsv"
+      ],
+      "phone_required": false,
+      "privacy_policy": "forbidden_filename",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.6.1.1": {
+      "compatibility_shim_sha256": "80e4652a599e3ac06ee7e8c2f7f167c344d480213726ca86a2eebbfe50175619",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_6_1_1_sanitized.py",
+      "legacy_pass_markers": [],
+      "legacy_sha256": "4b3716871d9f29dcb200b954c8a5a52b88d12cacc998c5e200de7cd0d0ba6b17",
+      "manifest_mode": "none",
+      "manifest_name": null,
+      "members": [
+        "test21-r3-3-4-2-6-1-1-summary.json",
+        "test21-r3-3-4-2-6-1-1-summary.md",
+        "test21-r3-3-4-2-6-1-1-summary.txt",
+        "test21-r3-3-4-2-6-1-1-transaction-map.tsv",
+        "test21-r3-3-4-2-6-1-1-parcel-marshalling.tsv",
+        "test21-r3-3-4-2-6-1-1-sdk-wrapper-bridge.tsv"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.6.1.2": {
+      "compatibility_shim_sha256": "45de64aa447eaf45ccd35f6b12e32d018ec8c30e73ffa24471433833fd30d0bd",
+      "container_mode": "deterministic",
+      "file_set_mode": "fixed",
+      "input_subdir": "sanitized",
+      "legacy_cli": "evidence",
+      "legacy_packager": "scripts/tests/package_test21_r3_3_4_2_6_1_2_sanitized.py",
+      "legacy_pass_markers": [],
+      "legacy_sha256": "813e7dd6f320505040f2037e03f284af1193581b0a52ec1d7bda167da7551549",
+      "manifest_mode": "none",
+      "manifest_name": null,
+      "members": [
+        "test21-r3-3-4-2-6-1-2-summary.txt",
+        "test21-r3-3-4-2-6-1-2-summary.json",
+        "test21-r3-3-4-2-6-1-2-summary.md",
+        "test21-r3-3-4-2-6-1-2-callback-interface-summary.tsv",
+        "test21-r3-3-4-2-6-1-2-callback-transaction-map.tsv",
+        "test21-r3-3-4-2-6-1-2-callback-parcel-marshalling.tsv"
+      ],
+      "phone_required": false,
+      "privacy_policy": "none",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    },
+    "r3.3.4.2.6.1.3": {
+      "compatibility_shim_sha256": "026bdc3d09b76603decfd195708686f1f18ea8b6209be7eead602d0ac820eab4",
+      "container_mode": "deterministic",
+      "file_set_mode": "exact",
+      "input_subdir": "sanitized-summary",
+      "legacy_cli": "input_zip",
+      "legacy_packager": "scripts/research/cxr/package_test21_r3_3_4_2_6_1_3_sanitized.py",
+      "legacy_pass_markers": [
+        "SANITIZED_PRIVACY_GATE=PASS"
+      ],
+      "legacy_sha256": "971aef478c02d2f94b2ad2b3b9146044bfd77450e3fea6b63d38dd8891eae853",
+      "manifest_mode": "none",
+      "manifest_name": null,
+      "members": [
+        "test21-r3-3-4-2-6-1-3-summary.txt",
+        "test21-r3-3-4-2-6-1-3-summary.json",
+        "test21-r3-3-4-2-6-1-3-summary.md",
+        "test21-r3-3-4-2-6-1-3-callback-transaction-map.tsv"
+      ],
+      "phone_required": false,
+      "privacy_policy": "current",
+      "retirement_blockers": [],
+      "retirement_reason": "historical implementation archived; runner/test/source-contract callers retained through stable compatibility shim path backed by canonical packager",
+      "retirement_state": "COMPATIBILITY_SHIM"
+    }
+  },
+  "schema": "rokid.r27.1.2.test21-sanitized-packager-profiles.v1"
+}

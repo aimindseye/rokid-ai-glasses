@@ -1,0 +1,113 @@
+{
+  "canonicalized_breakdown": [
+    {
+      "count": 12,
+      "family": "r25-package-validators"
+    },
+    {
+      "count": 30,
+      "family": "test21-sanitized-packagers"
+    },
+    {
+      "count": 29,
+      "family": "test21-source-contract-checkers"
+    },
+    {
+      "count": 13,
+      "family": "r25-finalizers-and-publication-verifiers"
+    },
+    {
+      "count": 2,
+      "family": "test21-pcap-parsers"
+    },
+    {
+      "count": 2,
+      "family": "test19-network-analyzers"
+    }
+  ],
+  "canonicalized_implementation_count": 88,
+  "host_multi_member_consolidation_candidate_count": 0,
+  "next_device_test": "Test 22 \u2014 Independent On-Glasses Wi-Fi, Routed IP, and Third-Party Direct Socket Capability",
+  "next_device_test_ready": true,
+  "preserve_distinct_implementation_family_count": 4,
+  "preserve_historical_count": 4,
+  "preserve_regression_oracle_count": 38,
+  "remaining_distinct_families": [
+    {
+      "disposition": "PRESERVE_DISTINCT_IMPLEMENTATION",
+      "family_key": "scripts/research/connection-protocol::validate::validateREV_run",
+      "members": [
+        {
+          "git_status": "TRACKED",
+          "path": "scripts/research/connection-protocol/validate_r25_run.py",
+          "sha256": "b810815a00c26faebc0256f1dca301bf9923af388b06a54107bf96464b57497f"
+        },
+        {
+          "git_status": "TRACKED",
+          "path": "scripts/research/connection-protocol/validate_r25_1_run.py",
+          "sha256": "310d081118a7555c53d162c05fba87c1dd552915b6a037f0519b4ed42f34e896"
+        }
+      ],
+      "normalized_token_similarity": 0.337,
+      "reason": "The two validators enforce materially different evidence schemas and share only superficial structure; unification would blur distinct historical contracts."
+    },
+    {
+      "disposition": "PRESERVE_DISTINCT_IMPLEMENTATION",
+      "family_key": "scripts/tests::analyze::analyze_REV_offline",
+      "members": [
+        {
+          "git_status": "UNTRACKED",
+          "path": "scripts/tests/analyze_test21_r3_3_3_2_offline.py",
+          "sha256": "7a3db0654471b0685ed33ff051a3f76dea9c13e4a618b2df01e3757aea01e9a6"
+        },
+        {
+          "git_status": "UNTRACKED",
+          "path": "scripts/tests/analyze_test21_r3_3_3_2_1_offline.py",
+          "sha256": "e6eaef4fd7673c3f635a7d4c8f3b91be4c4e8fbeeba32ea99a45724626cf452f"
+        }
+      ],
+      "normalized_token_similarity": 0.196,
+      "reason": "Large revision-specific offline analyses have low implementation similarity and encode different research questions; preserve as separate historical analysis programs."
+    },
+    {
+      "disposition": "PRESERVE_DISTINCT_IMPLEMENTATION",
+      "family_key": "scripts/tests::analyze::analyze_REV_events",
+      "members": [
+        {
+          "git_status": "TRACKED",
+          "path": "scripts/tests/analyze_test19_r2_events.py",
+          "sha256": "cb2b11dbe329a4077d4b8d17e4e2317122969ad368b6ed13ace9070b46cc094d"
+        },
+        {
+          "git_status": "TRACKED",
+          "path": "scripts/tests/analyze_test20_r2_events.py",
+          "sha256": "7afca5851728df81de92d8c59715c562f155eac30fffe13e81af3a9d92aa2207"
+        }
+      ],
+      "normalized_token_similarity": 0.08,
+      "reason": "Cross-test event analyzers serve different Test 19 and Test 20 evidence semantics; their shared filename shape is not meaningful implementation duplication."
+    },
+    {
+      "disposition": "PRESERVE_DISTINCT_IMPLEMENTATION",
+      "family_key": "scripts/tests::analyze::analyze_REV_closure",
+      "members": [
+        {
+          "git_status": "UNTRACKED",
+          "path": "scripts/tests/analyze_test21_r3_3_4_2_1_closure.py",
+          "sha256": "db47efd919b9ad21c9b8c95a9ad050ab650a63891c47230c295fdfded0cfea37"
+        },
+        {
+          "git_status": "UNTRACKED",
+          "path": "scripts/tests/analyze_test21_r3_3_4_2_2_closure.py",
+          "sha256": "d2922e375719b4fbfc61543df03cf1d7272776f27d69c8964abd72a057d013e6"
+        }
+      ],
+      "normalized_token_similarity": 0.052,
+      "reason": "Closure analyzers have extremely low implementation similarity and represent separate historical closure questions; forced consolidation would reduce clarity."
+    }
+  ],
+  "repository_path_deletion_count": 0,
+  "schema": "rokid.r27.2.8.final-consolidation.v1",
+  "source_lock_failure_count": 0,
+  "status": "COMPLETE"
+}
