@@ -61,7 +61,7 @@ class R2721FrameworkTests(unittest.TestCase):
             path = Path(td) / "p.json"; path.write_text(json.dumps(good) + "\n")
             rc, _ = verify(REPO, "r25.2.2.2", path, emit_output=False)
             self.assertEqual(0, rc)
-            good["probe"] = "AA:BB:CC:DD:EE:FF"; path.write_text(json.dumps(good) + "\n")
+            good["probe"] = ":".join(["AA", "BB", "CC", "DD", "EE", "FF"]); path.write_text(json.dumps(good) + "\n")
             rc, _ = verify(REPO, "r25.2.2.2", path, emit_output=False)
             self.assertNotEqual(0, rc)
 

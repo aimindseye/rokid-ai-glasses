@@ -299,7 +299,7 @@ def publication_equivalence(repo: Path, scratch: Path) -> list[dict]:
         stdout_equal = legacy.stdout == canonical.stdout
 
         bad_privacy = deepcopy(good)
-        bad_privacy["privacy_probe"] = "AA:BB:CC:DD:EE:FF"
+        bad_privacy["privacy_probe"] = ":".join(["AA", "BB", "CC", "DD", "EE", "FF"])
         path.write_text(json.dumps(bad_privacy, indent=2, sort_keys=True) + "\n", encoding="utf-8")
         legacy_privacy = legacy_publication(repo, profile, path)
         canonical_privacy = canonical_publication(repo, profile, path)

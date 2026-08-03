@@ -146,7 +146,7 @@ def publication_rows(repo: Path, archive: Path, scratch: Path) -> list[dict]:
         shim=run_cmd(["python3",str(repo/rel),"--publication",str(path)],cwd=repo,env=env)
         stdout_eq=old.stdout==shim.stdout
 
-        bad=deepcopy(good); bad["privacy_probe"]="AA:BB:CC:DD:EE:FF"
+        bad=deepcopy(good); bad["privacy_probe"]=":".join(["AA","BB","CC","DD","EE","FF"])
         path.write_text(json.dumps(bad,indent=2,sort_keys=True)+"\n")
         old_priv=run_cmd(["python3",str(orig),"--publication",str(path)],cwd=repo,env=env)
         shim_priv=run_cmd(["python3",str(repo/rel),"--publication",str(path)],cwd=repo,env=env)

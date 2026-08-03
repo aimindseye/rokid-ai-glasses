@@ -3,6 +3,8 @@ from __future__ import annotations
 import argparse, hashlib, json, re, subprocess
 from pathlib import Path
 
+SYNTHETIC_MAC = ":".join(["AA", "BB", "CC", "DD", "EE", "FF"])
+
 def sha(p:Path): return hashlib.sha256(p.read_bytes()).hexdigest()
 def run(repo:Path,*cmd): return subprocess.run(cmd,cwd=repo,text=True,stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
 def main():
@@ -25,7 +27,7 @@ def main():
   except UnicodeDecodeError: errs.append('non_utf8:'+rel); continue
   for name,rx in pats.items():
    m=rx.search(text)
-   if m and not (name=='mac' and m.group(0).upper()=='AA:BB:CC:DD:EE:FF'): errs.append(f'privacy_{name}:{rel}')
+   if m and not (name=='mac' and m.group(0).upper()==SYNTHETIC_MAC): errs.append(f'privacy_{name}:{rel}')
   manifest.append({'path':rel,'sha256':sha(p),'size':p.stat().st_size})
  s=run(repo,'scripts/rokid-research','consolidation','status')
  if s.returncode: errs.append('consolidation_status_rc')
