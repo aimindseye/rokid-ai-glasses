@@ -1,0 +1,13 @@
+flowchart TD
+    A[Stock voice/visual workflows] --> B[Phone observed as public-network gateway]
+    C[CXR-M APK transfer] --> D[Glasses Wi-Fi ON]
+    D --> E[wlan0 IPv4 + route]
+    E --> F[Phone powered off]
+    F --> G[Wi-Fi OFF; IPv4/route absent]
+    H[Ordinary sideloaded app] --> I[One-shot ARM + RUN accepted]
+    I --> J[AssistServer settings_wifi_enable=true]
+    J --> K[SpriteWifiService initWifiWithSetting]
+    K -. +2/+5/+10/+15 s .-> L[No Wi-Fi data-plane transition]
+    G --> M[No independent persistent route proven]
+    L --> M
+    M --> N[Phone-off direct socket not executed]

@@ -26,6 +26,11 @@ raw-exports/
 .env.*
 !.env.example
 
+# test22-final-publication:start
+# Test 22 generated Android output
+/android-client/test22/build/
+# test22-final-publication:end
+
 # Android packages
 *.apk
 *.apks
@@ -71,3 +76,5 @@ android-client/test19/local-sdk.properties
 *.lc
 *.aar
 android-client/test19/maven-private/
+# test22-final-publication-r2: generic Android module build outputs
+/android-client/*/build/

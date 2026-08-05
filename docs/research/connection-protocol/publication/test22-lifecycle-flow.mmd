@@ -1,0 +1,10 @@
+stateDiagram-v2
+    [*] --> BaselineOff
+    BaselineOff --> OrdinaryEffectRequested: one accepted ARM/RUN
+    OrdinaryEffectRequested --> AssistServerConsumed: setting_change consumed
+    AssistServerConsumed --> BaselineOff: no data-plane transition observed
+    BaselineOff --> CxrmTransfer: S25 Provisioner APK transfer
+    CxrmTransfer --> RoutedWifi: WIFI_ON=1 + wlan0 IPv4/route
+    RoutedWifi --> PhoneRemoved: S25 power-off
+    PhoneRemoved --> BaselineOff: five samples Wi-Fi off/no IPv4/no route
+    BaselineOff --> Closed: independent route prerequisite absent

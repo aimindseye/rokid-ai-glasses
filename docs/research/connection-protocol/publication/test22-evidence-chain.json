@@ -1,0 +1,108 @@
+{
+  "schema": "rokid.test22.final-publication.evidence-chain.v1",
+  "test": "Test 22 \u2014 Independent On-Glasses Wi-Fi, Routed IP, and Third-Party Direct Socket Capability",
+  "closed_utc": "2026-08-05T01:30:00Z",
+  "final_status": "PARTIAL_CAPABILITY_PHONE_CXRM_DEPENDENT_WIFI_NO_INDEPENDENT_ROUTE_PROVEN",
+  "claims": [
+    {
+      "id": "T22-C1",
+      "claim": "Functional glasses Wi-Fi client data plane exists",
+      "status": "PROVEN",
+      "basis": [
+        "CXR-M transfer produced WIFI_ON=1",
+        "wlan0 IPv4 observed",
+        "wlan0 route observed"
+      ]
+    },
+    {
+      "id": "T22-C2",
+      "claim": "Ordinary sideloaded app one-shot reached AssistServer Wi-Fi-setting consumer",
+      "status": "PROVEN",
+      "basis": [
+        "ARM ok/armed",
+        "RUN ok/accepted",
+        "broadcast_count=1",
+        "settings_wifi_enable setting_change targeted to AssistServer"
+      ]
+    },
+    {
+      "id": "T22-C3",
+      "claim": "Ordinary-app AssistServer request produced usable Android Wi-Fi data plane",
+      "status": "NOT_OBSERVED",
+      "basis": [
+        "+2/+5/+10/+15 s samples wifi_enabled=false",
+        "active Wi-Fi transport absent"
+      ]
+    },
+    {
+      "id": "T22-C4",
+      "claim": "CXR-M-established routed Wi-Fi persisted after phone power-off",
+      "status": "DISPROVEN_FOR_TESTED_SESSION",
+      "basis": [
+        "five post-removal samples WIFI_ON=0",
+        "no wlan0 IPv4",
+        "no wlan0 default route"
+      ]
+    },
+    {
+      "id": "T22-C5",
+      "claim": "Phone-off third-party direct socket",
+      "status": "NOT_TESTED_PREREQUISITE_ABSENT",
+      "basis": [
+        "independent routed Wi-Fi vanished before socket stage"
+      ]
+    }
+  ],
+  "events": [
+    {
+      "id": "T22-E01",
+      "kind": "baseline",
+      "result": "stock voice/visual workflows had no glasses IP route; phone observed as gateway"
+    },
+    {
+      "id": "T22-E02",
+      "kind": "wifi-capability",
+      "result": "CXR-M/Android framework demonstrated association and IP provisioning on wlan0"
+    },
+    {
+      "id": "T22-E03",
+      "kind": "one-shot-receipt",
+      "result": "ARM accepted; RUN accepted; exactly one AssistServer settings_wifi_enable broadcast"
+    },
+    {
+      "id": "T22-E04",
+      "kind": "receiver-correlation",
+      "result": "AssistServer consumed settings_wifi_enable=true and entered SpriteWifiService initialization path"
+    },
+    {
+      "id": "T22-E05",
+      "kind": "post-effect",
+      "result": "no Wi-Fi enable/active transport observed at +2/+5/+10/+15 seconds"
+    },
+    {
+      "id": "T22-E06",
+      "kind": "forensics",
+      "result": "6.9.x lineage closed Activity/onNewIntent/phase-gate ambiguity without retrying effect"
+    },
+    {
+      "id": "T22-E07",
+      "kind": "live-reproduction",
+      "result": "during S25 Test22 Provisioner APK transfer, WIFI_ON changed 0 to 1; wlan0 IPv4 and route followed"
+    },
+    {
+      "id": "T22-E08",
+      "kind": "phone-isolation",
+      "result": "after S25 power-off, five consecutive samples showed Wi-Fi off and no wlan0 IPv4/route"
+    },
+    {
+      "id": "T22-E09",
+      "kind": "stage-c",
+      "result": "direct-socket stage intentionally not executed because phone-off route prerequisite was absent"
+    }
+  ],
+  "privacy": {
+    "raw_device_identifiers_published": false,
+    "raw_network_identifiers_published": false,
+    "private_archives_published": false
+  }
+}

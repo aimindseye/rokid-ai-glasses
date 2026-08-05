@@ -53,3 +53,11 @@ qualifies only that exact triplet and does not generalize all parameter semantic
 The merged APK removes Internet, Camera, and Record Audio permissions. Build,
 install, and run only through the governed Test 20 r3.2 scripts. See the
 [Test 20 r3.2 runbook](../docs/tests/test-20-r3-2-cxr-l-one-shot-photo-qualification.md).
+## Test 22 independent Wi-Fi/direct-socket module
+
+The `test22` module is a bounded, ordinary sideloaded Android probe for the
+non-display glasses. It contains no Bluetooth, CXR, camera, or microphone
+permission/dependency. From a controlled Wi-Fi-OFF baseline it tests legacy
+non-privileged Wi-Fi enable/provisioning and then binds TCP/TLS specifically to
+an Android `TRANSPORT_WIFI` `Network`. Run only through the governed Test 22
+script and a disposable non-phone WPA2 test network.

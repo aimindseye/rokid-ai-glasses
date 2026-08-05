@@ -1,0 +1,7 @@
+# Public/package artifact identities retained for Test 22 publication lineage.
+# Private evidence archives, APKs, device identifiers, network identifiers, and raw logs are excluded.
+25a2d1efa763a4bce8488223991c92b5dd4ddcab4157fd1fcce478a54ac0e286  rokid-ai-glasses-test22-r4-3-6-3-6-repair3-2-macos-bash32-shell-portability-closure.zip
+0852b63b5ce3231e8bd32f0cc2476f8c5f5d56e8d5759b36348a0002ccf432be  rokid-ai-glasses-test22-r4-3-6-3-6-repair6-5-3-final-stock-wifi-boundary.zip
+f4b46ee50553eb243b58ceb79d9d5c2c5c6a7a643fa938ee820909ab2ec7267c  rokid-ai-glasses-test22-r4-3-6-3-6-repair6-9-7-post-apply-control-flow.zip
+217abfe18b29db8557ebf915188e535753aec30a641976162902f128f95dc753  rokid-ai-glasses-test22-r4-3-6-3-6-final-controlled-execution-repair2.zip
+d7cf5007f49dcb1170757c35a2c10a4d1571f4b8f7ea6d79ffa5abb406f91421  rokid-ai-glasses-test22-final-stage-c.zip

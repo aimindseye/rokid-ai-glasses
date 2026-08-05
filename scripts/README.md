@@ -31,6 +31,15 @@ python3 scripts/tests/analyze_test19_cxr_evidence.py --help
 
 The runner resolves CXR-M from Rokid Maven metadata, keeps the downloaded POM/AAR and runtime evidence private, and requires capture-based local-network qualification for a complete pass.
 
+<!-- test22-final-publication:start -->
+## Canonical Test 22 diagnostics
+
+`scripts/tests/test22` consolidates the read-only Test 22 utilities that were repeatedly repaired during qualification: multi-device ADB selection, compact Wi-Fi/route monitoring, phone-off isolation, historical ARM/RUN receipt recovery, post-effect recovery, and redacted log compaction. `scripts/safety/check_shell_portability.py` provides a reusable macOS Bash 3.2 surface check.
+
+Repair-version scripts remain provenance only; new work should use the canonical tool.
+
+<!-- test22-final-publication:end -->
+
 ### Consolidation status
 
 `./scripts/rokid-research consolidation status` verifies the R27.2.8 whole-history closure and next-test readiness. Historical filenames may remain as compatibility shims or intentionally distinct research programs.
