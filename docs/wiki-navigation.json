@@ -1,7 +1,7 @@
 {
   "schema": "rokid-ai-glasses.wiki-navigation.v1",
   "device_scope": "rokid-ai-glasses-style-non-display",
-  "last_reviewed": "2026-07-31",
+  "last_reviewed": "2026-08-05",
   "landing_pages": [
     {
       "path": "README.md",
@@ -46,6 +46,7 @@
         "docs/developer/companion-app/README.md",
         "docs/developer/companion-app/requirements.md",
         "docs/developer/companion-app/test-plan.md",
+        "docs/developer/companion-app/test22-networking-boundary.md",
         "docs/developer/companion-app/test-19-r1-qualification.md",
         "docs/developer/companion-app/test-19-r2-qualification.md",
         "docs/developer/companion-app/test-19-r2-final-findings.md",

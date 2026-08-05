@@ -31,6 +31,7 @@ roadmap for three goals:
 - [Companion application](companion-app/README.md)
   - [Requirements](companion-app/requirements.md)
   - [Qualification test plan](companion-app/test-plan.md)
+  - [Test 22 networking boundary](companion-app/test22-networking-boundary.md)
   - [Test 19 r2: Hi Rokid CXR-L firmware comparison](companion-app/test-19-r2-qualification.md)
   - [Withdrawn Test 19 r1 CXR-M experiment](companion-app/test-19-r1-qualification.md)
   - [Lifecycle and recovery](companion-app/lifecycle.md)

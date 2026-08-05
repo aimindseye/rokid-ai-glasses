@@ -1,5 +1,15 @@
 # Test 22 Developer Networking Boundary
 
+<!-- wiki-status: audience=developer; applies_to=rokid-ai-glasses-style-non-display; evidence=validated; last_reviewed=2026-08-05 -->
+## Page status
+
+| Field | Value |
+|---|---|
+| Audience | Developer |
+| Applies to | Rokid AI Glasses Style (non-display) |
+| Evidence status | Validated |
+| Last reviewed | 2026-08-05 |
+
 ## Practical result for replacement-app design
 
 The Rokid AI Glasses Style are capable of real Wi-Fi client networking, but Test 22 did not identify an ordinary non-privileged application path that leaves the glasses with an independently persistent routed Wi-Fi connection after the phone/CXR-M session ends.
