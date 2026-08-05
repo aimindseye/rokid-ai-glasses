@@ -35,6 +35,22 @@
 | Independent microphone and speaker path | Not yet tested |
 | Complete Hi Rokid replacement | Not built |
 
+<!-- test22-final-publication:start -->
+### Test 22 networking boundary
+
+| Capability | Current status |
+|---|---|
+| Glasses Wi-Fi client stack | Proven functional during CXR-M transfer |
+| CXR-M `wlan0` + IPv4 + route | Proven temporary |
+| Ordinary-app AssistServer Wi-Fi-setting delivery | Proven; exactly one accepted request |
+| Usable Wi-Fi transition from that ordinary-app request | Not observed in bounded 15-second sampling |
+| CXR-M route after phone power-off | Does not persist in tested session |
+| Phone-off third-party direct socket | Not tested because independent route prerequisite disappeared |
+
+See [Test 22 developer networking boundary](companion-app/test22-networking-boundary.md).
+
+<!-- test22-final-publication:end -->
+
 ## On-glasses and firmware boundary
 
 | Capability | Current status |
@@ -166,3 +182,10 @@ Repository/tooling consolidation is complete. The final machine gate is `scripts
 ## R27 publication closure and next device gate
 
 R27 whole-history consolidation is complete and R27.3 is the publication gate for that state. The accepted closure is 88 canonicalized historical implementations, 38 preserved independent regression oracles, four preserved historical/deferred entries, four explicitly preserved distinct implementation families, zero remaining host-only multi-member consolidation candidates, and zero source-lock failures. After R27.3 is merged and post-merge verification passes on `main`, the repository is ready for **Test 22 — Independent On-Glasses Wi-Fi, Routed IP, and Third-Party Direct Socket Capability**.
+## Test 22 next device qualification
+
+R27 consolidation/publication is closed. The next controlled device test is
+[Test 22](../tests/test-22-independent-on-glasses-wifi-direct-socket.md), which
+asks whether an ordinary sideloaded app can bring Wi-Fi up from OFF and create
+a certificate-verified socket bound explicitly to an Android Wi-Fi `Network`.
+No Test 22 capability result is claimed until live evidence passes the runbook.

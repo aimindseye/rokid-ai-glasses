@@ -52,6 +52,11 @@ reports and evidence are sanitized.
 | 20 | CXR-L one-shot photo and callback closure | Two-phase one-shot arm; callback lifecycle | PASS in tested environment; post-service-status callback re-registration required | [Final publication](test-20-final-photo-control-callback-publication.md) |
 | 21 | CXR-L static Binder boundary | Service/client and callback Binder ABI | PASS — static boundary closed for `client-l:1.0.1`; callback side 7 interfaces / 21 methods / 21 confirmations / 0 mismatches | [Overview](../research/cxr/test21-static-binder-boundary-overview.md) |
 
+<!-- test22-final-publication:start -->
+| 22 | Independent on-glasses Wi-Fi, routed IP, and direct-socket capability | Phone/CXR-M dependence | **PARTIAL CAPABILITY — phone/CXR-M-dependent Wi-Fi; no independent persistent route proven** | [Final record](test-22-independent-wifi-and-direct-socket.md) |
+
+<!-- test22-final-publication:end -->
+
 ## Research and implementation releases
 
 | Release | Scope | Accepted result | Public result |
@@ -104,3 +109,4 @@ See [project status](../project-status.md) for the current engineering boundary.
 | Exact 42-path publication changed/staged set | PASS |
 | No private analysis archive included | PASS |
 | macOS Bash 3.2 package workflow | PASS |
+| 22 | Independent on-glasses Wi-Fi and third-party direct socket | Ordinary sideloaded APK + USB ADB + non-phone test AP + controlled TLS backend | READY — live result pending | [Runbook](test-22-independent-on-glasses-wifi-direct-socket.md) |

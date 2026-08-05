@@ -96,6 +96,22 @@ R27.1 separates the stable developer interface from historical revision filename
 
 See [canonical research tooling](docs/research/tooling/README.md).
 
+<!-- test22-final-publication:start -->
+## Test 22 Wi-Fi lifecycle boundary
+
+```mermaid
+flowchart LR
+    P[S25 + CXR-M transfer] --> W[wlan0 + IPv4 + route]
+    W --> O[Phone powered off]
+    O --> D[Wi-Fi off; IPv4/route absent]
+    A[Ordinary app] --> S[AssistServer Wi-Fi setting consumed]
+    S -. no Android Wi-Fi transition observed .-> N[No independent data plane]
+```
+
+Test 22 proves that the glasses Wi-Fi hardware/framework can carry a routed client session, but the tested CXR-M route is lifecycle-coupled to the phone and the tested ordinary-app AssistServer setting path did not independently bring up Android Wi-Fi. See [Test 22 final publication](docs/research/connection-protocol/publication/test22-independent-wifi-boundary.md).
+
+<!-- test22-final-publication:end -->
+
 ## Current application boundary
 
 ```mermaid

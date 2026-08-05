@@ -38,6 +38,11 @@ limitations, sanitized evidence, and supersession history.
 - [Test 21 static Binder boundary](research/cxr/test21-static-binder-boundary-overview.md)
 - [Canonical research tooling and revision lineage](research/tooling/README.md)
 
+<!-- test22-final-publication:start -->
+- [Test 22 independent Wi-Fi and direct-socket boundary](tests/test-22-independent-wifi-and-direct-socket.md)
+
+<!-- test22-final-publication:end -->
+
 ## Shared reference
 
 The [Reference library](reference/README.md) holds the common device profile,

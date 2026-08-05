@@ -94,6 +94,17 @@ pending until a reviewed run is completed.
 - [Test 19 research record](../tests/test-19-r1-cxr-m-maven-and-ownership.md)
 - [Developer qualification runbook](../developer/companion-app/test-19-r1-qualification.md)
 
+<!-- test22-final-publication:start -->
+## Test 22 independent Wi-Fi boundary
+
+Test 22 closes the phone-independent networking question for the tested ordinary non-privileged paths. CXR-M can temporarily bring up glasses `wlan0`, IPv4, and routing, but that session tears down when the phone is powered off. A separately tested ordinary-app AssistServer Wi-Fi-setting request was accepted and consumed but produced no Android Wi-Fi data-plane transition in the bounded window. The phone-off direct-socket stage was not executed because its independent-route prerequisite disappeared.
+
+- [Final Test 22 record](../tests/test-22-independent-wifi-and-direct-socket.md)
+- [Sanitized Test 22 publication](connection-protocol/publication/test22-independent-wifi-boundary.md)
+- [Machine-readable evidence chain](connection-protocol/publication/test22-evidence-chain.json)
+
+<!-- test22-final-publication:end -->
+
 ## OTA boot-chain and offline boot-image research
 
 The read-only boot-chain track matched the live 11,904-byte vbmeta chain to the

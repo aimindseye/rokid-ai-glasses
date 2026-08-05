@@ -50,6 +50,13 @@ The concise capability boundary is maintained in
 [Developer current status](docs/developer/current-status.md). Detailed proof and
 release history remain in the [Research library](docs/research/README.md).
 
+<!-- test22-final-publication:start -->
+## Test 22 independent Wi-Fi boundary
+
+Test 22 is closed. The glasses have a functional Wi-Fi client stack, but the tested ordinary-app AssistServer Wi-Fi request did not create a usable data plane, and the CXR-M-created `wlan0`/IPv4/route session was torn down when the S25 Ultra that established it was powered off. A phone-free persistent route was therefore not proven, so the planned phone-off direct-socket stage was not executed. See [Test 22](docs/tests/test-22-independent-wifi-and-direct-socket.md).
+
+<!-- test22-final-publication:end -->
+
 ## Documentation map
 
 - [Full documentation index](docs/README.md)
@@ -79,3 +86,7 @@ R27.2.8 FINAL closes the repository/tooling consolidation program: 88 historical
 ## R27 final publication baseline
 
 R27.3 publishes the accepted whole-history consolidation as the clean GitHub baseline before Test 22. The public tree contains the canonical research harness, compatibility shims, preserved regression-oracle source, sanitized historical research source required by those contracts, and closure documentation; private evidence archives and generated artifacts remain excluded. The machine gate remains `scripts/rokid-research consolidation status`, with `R27_WHOLE_HISTORY_CONSOLIDATION=COMPLETE` and `NEXT_DEVICE_TEST_READY=YES` required before new device testing.
+
+## Next qualification
+
+The next controlled device experiment is [Test 22 — Independent On-Glasses Wi-Fi, Routed IP, and Third-Party Direct Socket Capability](docs/tests/test-22-independent-on-glasses-wifi-direct-socket.md). The harness is ready; no result is claimed before live execution.

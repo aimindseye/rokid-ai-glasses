@@ -39,6 +39,11 @@ replacement-app, on-glasses application, firmware, and common-platform work.
 | Test 20 CXR-L media no-payload preflight | PASS: status queries, callback registration, 15-second quiet window, zero unsolicited media callbacks, clean disconnect, and stock recovery | [Published summary](research/connection-protocol/publication/test20-r3-1-cxr-l-no-payload-preflight.md) |
 | Test 20 CXR-L one-shot photo qualification | Implementation ready: one explicit request, one bounded image callback, no payload persistence, and automatic recovery | [Runbook](tests/test-20-r3-2-cxr-l-one-shot-photo-qualification.md) |
 
+<!-- test22-final-publication:start -->
+| Test 22 independent Wi-Fi boundary | **Closed**: functional Wi-Fi stack and temporary CXR-M route proven; ordinary-app AssistServer request produced no observed data-plane transition; CXR-M route disappeared after phone power-off | [Test 22](tests/test-22-independent-wifi-and-direct-socket.md) |
+
+<!-- test22-final-publication:end -->
+
 ## Current engineering boundary
 
 | Capability | Current result |

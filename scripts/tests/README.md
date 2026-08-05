@@ -22,6 +22,19 @@
 - `run_rokid_test17e_visual_ai_interface.sh`
 - `run_rokid_test17f_static_dev_baseline.sh`
 
+<!-- test22-final-publication:start -->
+## Test 22 network-boundary diagnostics
+
+- `test22` — canonical read-only Test 22 command wrapper
+- `test22_tool.py` — multi-device ADB selection, Wi-Fi/route monitor, phone-off isolation, receipt/effect recovery, and compact redaction
+- `test_test22_tool.py` — synthetic unit tests for redaction and retained receipt contracts
+
+The canonical Test 22 tool contains no Wi-Fi enable command, AssistServer sender, app-data reset, APK install, ADB data tunnel, or automatic effect retry.
+
+The pre-publication Test 22 branch also contains lower-level build, source-contract, install-policy, analyzer, TLS-backend, and Wi-Fi-state helpers. They are retained as implementation/reproducibility helpers after syntax/portability validation, but `scripts/tests/test22` is the canonical operator entry point.
+
+<!-- test22-final-publication:end -->
+
 ## Validation and synthetic tests
 
 - `validate_06c_public_findings.sh`
